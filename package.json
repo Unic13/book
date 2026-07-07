@@ -1,0 +1,12 @@
+{
+  "name": "unic-academic",
+  "version": "1.0.0",
+  "private": true,
+  "description": "UNIC Academic — Practice Portal (static HTML/JS frontend + Vercel serverless functions + Hasura/Postgres backend)",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "vercel dev"
+  }
+}

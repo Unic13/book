@@ -1,0 +1,179 @@
+{
+  "subject": "Physics",
+  "code": "PH",
+  "color": "#6C3FF5",
+  "units": [
+    {
+      "id": "ph_u1",
+      "title": "Unit 1: Mechanics",
+      "chapters": [
+        {
+          "id": "ph_u1_c1",
+          "title": "Ch 1: Laws of Motion",
+          "concept": {
+            "title": "Newton's Laws of Motion",
+            "latex": true,
+            "body": [
+              "Newton's **First Law** (Law of Inertia) states that a body remains in a state of rest or uniform motion in a straight line unless acted upon by an external unbalanced force.",
+              "Newton's **Second Law** relates force, mass, and acceleration: $$F = ma$$ where $F$ is the net force (N), $m$ is mass (kg), and $a$ is acceleration (m/s²). This is the most widely used law for solving dynamics problems.",
+              "Newton's **Third Law** states that for every action there is an equal and opposite reaction: $$\\vec{F}_{AB} = -\\vec{F}_{BA}$$ These action-reaction pairs always act on different bodies, so they never cancel each other out.",
+              "Key application — inclined planes: For a frictionless incline at angle $\\theta$, the component of gravity along the incline is $mg\\sin\\theta$, giving acceleration $a = g\\sin\\theta$. The normal force is $N = mg\\cos\\theta$.",
+              "Free body diagrams are essential: always resolve forces into perpendicular components before applying $F=ma$ along each axis."
+            ],
+            "formulas": [
+              "$F_{net} = ma$",
+              "$a = g\\sin\\theta$ (frictionless incline)",
+              "$N = mg\\cos\\theta$ (normal force on incline)",
+              "$f = \\mu N$ (friction force)"
+            ]
+          },
+          "questions": [
+            {
+              "id": "ph_q1",
+              "type": "MCQ",
+              "latex": true,
+              "question": "A body of mass $m$ is placed on a frictionless incline of angle $\\theta$. The acceleration of the body along the incline is:",
+              "options": ["$g \\sin\\theta$", "$g \\cos\\theta$", "$g \\tan\\theta$", "$g$"],
+              "answer": [0],
+              "explanation": "On a frictionless incline, the component of gravity along the surface is $mg\\sin\\theta$, so $a = g\\sin\\theta$."
+            },
+            {
+              "id": "ph_q2",
+              "type": "MSQ",
+              "latex": true,
+              "question": "Which of the following are correct statements about Newton's Third Law? (Select all that apply)",
+              "options": [
+                "Action and reaction forces act on different bodies",
+                "Action and reaction forces are equal in magnitude",
+                "Action and reaction forces cancel each other",
+                "Action and reaction are opposite in direction"
+              ],
+              "answer": [0, 1, 3],
+              "explanation": "Newton's Third Law: action-reaction pairs act on different bodies, are equal in magnitude and opposite in direction. They do NOT cancel because they act on different bodies."
+            },
+            {
+              "id": "ph_q3",
+              "type": "MCQ",
+              "latex": true,
+              "question": "A force $\\vec{F} = 10\\hat{i} + 5\\hat{j}$ N acts on a 2 kg body. The magnitude of acceleration is:",
+              "options": ["$5\\sqrt{5}$ m/s²", "$\\frac{5\\sqrt{5}}{2}$ m/s²", "$10$ m/s²", "$\\frac{15}{2}$ m/s²"],
+              "answer": [1],
+              "explanation": "$|\\vec{F}| = \\sqrt{10^2+5^2} = 5\\sqrt{5}$ N. $a = F/m = 5\\sqrt{5}/2$ m/s²."
+            },
+            {
+              "id": "ph_q3n",
+              "type": "NAT",
+              "latex": true,
+              "question": "A block of mass $4\\,\\text{kg}$ is pulled by a horizontal force of $20\\,\\text{N}$ on a frictionless surface. Find its acceleration in m/s².",
+              "answer": 5,
+              "tolerance": 0.1,
+              "unit": "m/s²",
+              "explanation": "Using $F = ma$: $a = F/m = 20/4 = 5$ m/s²."
+            }
+          ]
+        },
+        {
+          "id": "ph_u1_c2",
+          "title": "Ch 2: Work, Energy & Power",
+          "concept": {
+            "title": "Work, Energy & Power",
+            "latex": true,
+            "body": [
+              "Work done by a force is the dot product of force and displacement: $$W = \\vec{F} \\cdot \\vec{d} = |F||d|\\cos\\theta$$ Work is a scalar quantity measured in Joules (J).",
+              "Kinetic Energy is the energy possessed by a body due to its motion: $$KE = \\frac{1}{2}mv^2$$ The Work-Energy Theorem states that the net work done on a body equals its change in kinetic energy: $W_{net} = \\Delta KE$.",
+              "Conservative forces (gravity, spring/elastic force) do work that is independent of the path taken — only initial and final positions matter. Their work over a closed path is zero. Non-conservative forces (friction, air drag) dissipate energy as heat and depend on the path.",
+              "Potential Energy is associated with conservative forces. Gravitational PE: $U = mgh$. Spring PE: $U = \\frac{1}{2}kx^2$.",
+              "Power is the rate of doing work: $$P = \\frac{W}{t} = \\vec{F}\\cdot\\vec{v}$$ measured in Watts (W).",
+              "Conservation of Mechanical Energy: In the absence of non-conservative forces, total mechanical energy ($KE + PE$) remains constant."
+            ],
+            "formulas": [
+              "$W = \\vec{F}\\cdot\\vec{d} = Fd\\cos\\theta$",
+              "$KE = \\frac{1}{2}mv^2$",
+              "$U_{gravity} = mgh$",
+              "$U_{spring} = \\frac{1}{2}kx^2$",
+              "$P = \\frac{W}{t} = Fv$"
+            ]
+          },
+          "questions": [
+            {
+              "id": "ph_q4",
+              "type": "MCQ",
+              "latex": true,
+              "question": "The work done by a force $\\vec{F}$ over displacement $\\vec{d}$ is given by:",
+              "options": ["$|\\vec{F}||\\vec{d}|$", "$\\vec{F} \\times \\vec{d}$", "$\\vec{F} \\cdot \\vec{d}$", "$\\frac{|\\vec{F}|}{|\\vec{d}|}$"],
+              "answer": [2],
+              "explanation": "Work is the dot product: $W = \\vec{F} \\cdot \\vec{d} = |F||d|\\cos\\theta$."
+            },
+            {
+              "id": "ph_q5",
+              "type": "MSQ",
+              "latex": true,
+              "question": "Which of the following are conservative forces? (Select all that apply)",
+              "options": ["Gravitational force", "Friction force", "Spring (elastic) force", "Air drag"],
+              "answer": [0, 2],
+              "explanation": "Conservative forces (gravity, spring) have work independent of path. Friction and drag are non-conservative."
+            },
+            {
+              "id": "ph_q5n",
+              "type": "NAT",
+              "latex": true,
+              "question": "A $2\\,\\text{kg}$ object moving at $3\\,\\text{m/s}$ speeds up to $5\\,\\text{m/s}$. Find the work done on it (in Joules).",
+              "answer": 16,
+              "tolerance": 0.5,
+              "unit": "J",
+              "explanation": "$W = \\Delta KE = \\frac{1}{2}m(v_f^2-v_i^2) = \\frac{1}{2}(2)(25-9) = 16$ J."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ph_u2",
+      "title": "Unit 2: Waves & Optics",
+      "chapters": [
+        {
+          "id": "ph_u2_c1",
+          "title": "Ch 3: Wave Motion",
+          "concept": {
+            "title": "Wave Motion Basics",
+            "latex": true,
+            "body": [
+              "A wave is a disturbance that transfers energy through a medium (or vacuum, for EM waves) without net transport of matter.",
+              "A travelling wave can be written as $$y(x,t) = A\\sin(kx - \\omega t)$$ where $A$ is amplitude, $k = 2\\pi/\\lambda$ is the wave number, and $\\omega = 2\\pi f$ is the angular frequency.",
+              "Wave speed relates frequency and wavelength: $$v = f\\lambda = \\frac{\\omega}{k}$$",
+              "Transverse waves (e.g. light, waves on a string) have particle displacement perpendicular to wave propagation. Longitudinal waves (e.g. sound) have displacement parallel to propagation.",
+              "The principle of superposition states that when two or more waves overlap, the resultant displacement is the algebraic sum of individual displacements — this underlies interference and standing waves."
+            ],
+            "formulas": [
+              "$v = f\\lambda$",
+              "$\\omega = 2\\pi f$",
+              "$k = \\dfrac{2\\pi}{\\lambda}$",
+              "$v = \\dfrac{\\omega}{k}$"
+            ]
+          },
+          "questions": [
+            {
+              "id": "ph_q6",
+              "type": "MCQ",
+              "latex": true,
+              "question": "The equation of a wave is $y = A\\sin(kx - \\omega t)$. The speed of the wave is:",
+              "options": ["$\\frac{k}{\\omega}$", "$\\frac{\\omega}{k}$", "$k\\omega$", "$\\frac{1}{k\\omega}$"],
+              "answer": [1],
+              "explanation": "Wave speed $v = \\frac{\\omega}{k} = f\\lambda$."
+            },
+            {
+              "id": "ph_q6n",
+              "type": "NAT",
+              "latex": true,
+              "question": "A wave has frequency $50\\,\\text{Hz}$ and wavelength $4\\,\\text{m}$. Find its speed (in m/s).",
+              "answer": 200,
+              "tolerance": 1,
+              "unit": "m/s",
+              "explanation": "$v = f\\lambda = 50 \\times 4 = 200$ m/s."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
