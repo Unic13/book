@@ -10,6 +10,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
   onload="window.__katexReady=true"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/sql.js@1.10.2/dist/sql-wasm.js"></script>
 
 <style>
 /* ─── Reset & Base ─── */
@@ -144,44 +145,72 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 #main::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:2px}
 
 /* ─── Concept Panel ─── */
-#question-wrap{max-width:720px;margin:0 auto}
+#question-wrap{max-width:760px;margin:0 auto}
 .concept-card{
   background:#fff;border-radius:var(--radius-lg);border:1px solid #e5e7eb;
   box-shadow:var(--shadow);overflow:hidden;margin-bottom:22px
 }
 .concept-header{
-  display:flex;align-items:center;gap:10px;
-  padding:14px 20px;cursor:pointer;user-select:none;
+  display:flex;align-items:center;gap:12px;
+  padding:16px 22px;cursor:pointer;user-select:none;
   border-bottom:1px solid transparent;transition:border-color var(--trans)
 }
 .concept-header.open{border-bottom-color:#f3f4f6}
 .concept-icon{
-  width:34px;height:34px;border-radius:10px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff
+  width:40px;height:40px;border-radius:11px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:19px;color:#fff
 }
 .concept-title-wrap{flex:1;min-width:0}
-.concept-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
-.concept-title{font-size:14.5px;font-weight:700;color:#111;margin-top:1px}
-.concept-chevron{width:18px;height:18px;color:#9ca3af;flex-shrink:0;transition:transform .25s ease}
+.concept-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.concept-title{font-size:18px;font-weight:700;color:#111;margin-top:2px;line-height:1.3}
+.concept-chevron{width:20px;height:20px;color:#9ca3af;flex-shrink:0;transition:transform .25s ease}
 .concept-chevron.open{transform:rotate(180deg)}
-.concept-body{padding:0 22px 20px;display:none}
+.concept-body{padding:0 24px 24px;display:none}
 .concept-body.open{display:block;animation:fadeUp .2s ease-out}
-.concept-para{font-size:13.5px;line-height:1.85;color:#374151;margin-bottom:13px}
+.concept-para{font-size:15.5px;line-height:1.9;color:#374151;margin-bottom:15px}
 .concept-para:last-child{margin-bottom:0}
 .concept-para strong{color:#111;font-weight:700}
+.concept-heading{font-size:16.5px;font-weight:700;color:#111;margin:16px 0 8px}
+.concept-list{margin:6px 0 14px 20px;padding:0}
+.concept-list li{margin-bottom:9px;line-height:1.8;font-size:15px;color:#374151}
+.concept-note{
+  margin:14px 0;padding:12px 15px;background:#fff8db;
+  border-left:4px solid #facc15;border-radius:8px;color:#6b5500;
+  font-size:14px;line-height:1.7;box-shadow:0 3px 8px rgba(0,0,0,0.05)
+}
+.concept-syntax{margin:14px 0}
+.syntax-title{font-size:11.5px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.concept-syntax pre{
+  background:#1e1e2e;color:#e2e8f0;border-radius:10px;
+  padding:14px 16px;overflow-x:auto;font-size:13.5px;line-height:1.7;
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace
+}
 .concept-formulas{
-  margin-top:14px;padding:14px 16px;border-radius:12px;
+  margin-top:16px;padding:16px 18px;border-radius:12px;
   background:#f9fafb;border:1px solid #f0f0f0
 }
-.concept-formulas-label{font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9ca3af;margin-bottom:9px}
+.concept-formulas-label{font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9ca3af;margin-bottom:10px}
 .formula-chip{
   display:inline-block;background:#fff;border:1px solid #e5e7eb;
-  border-radius:8px;padding:6px 12px;margin:0 6px 6px 0;
-  font-size:13px;color:#1f2937
+  border-radius:8px;padding:8px 14px;margin:0 7px 7px 0;
+  font-size:14.5px;color:#1f2937
 }
+/* Concept Table */
+.concept-table{
+  width:100%;border-collapse:collapse;margin:18px 0;
+  overflow:hidden;border-radius:10px;font-size:14px;
+  box-shadow:0 3px 10px rgba(0,0,0,.08)
+}
+.concept-table thead{background:#2563eb;color:#fff}
+.concept-table th,.concept-table td{padding:10px 12px;text-align:left}
+.concept-table tbody tr:nth-child(even){background:#f8fafc}
+.concept-table tbody tr:hover{background:#eef4ff}
+.concept-table th{font-weight:700;font-size:13px}
+.concept-table td,.concept-table th{border-bottom:1px solid #e5e7eb}
+.table-wrapper{overflow-x:auto}
 
 /* ─── Question type tabs ─── */
-.qtype-tabs{display:flex;gap:6px;margin-bottom:14px}
+.qtype-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
 .qtype-tab{
   padding:7px 16px;border-radius:9px;border:1.5px solid #e5e7eb;
   background:#fff;font-size:12.5px;font-weight:700;color:#6b7280;
@@ -200,6 +229,11 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 .q-progress-fill{height:100%;border-radius:3px;transition:width .4s ease}
 .q-progress-label{font-size:12px;font-weight:600;color:#9ca3af;white-space:nowrap}
 
+/* Batch of question cards */
+.q-batch{display:flex;flex-direction:column;gap:18px;margin-bottom:16px}
+.q-batch-actions{display:flex;gap:10px;margin-top:2px}
+.q-batch-actions .btn{flex:1;justify-content:center}
+
 /* Card */
 .q-card{background:#fff;border-radius:var(--radius-lg);border:1px solid #e5e7eb;box-shadow:var(--shadow);overflow:hidden}
 .q-card-header{
@@ -213,13 +247,13 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 .q-type-hint{font-size:12px;color:#9ca3af}
 .q-num{margin-left:auto;font-size:12px;color:#c4c4c4;font-weight:600}
 .q-body{padding:20px 22px}
-.q-text{font-size:15px;color:#111;line-height:1.7;font-weight:500}
+.q-text{font-size:16px;color:#111;line-height:1.75;font-weight:500}
 .q-options{padding:0 22px 20px;display:flex;flex-direction:column;gap:10px}
 
 /* Options */
 .opt{
   display:flex;align-items:flex-start;gap:12px;
-  padding:13px 15px;border-radius:11px;border:2px solid #e5e7eb;
+  padding:14px 16px;border-radius:11px;border:2px solid #e5e7eb;
   background:#fff;cursor:pointer;text-align:left;
   transition:all var(--trans);width:100%
 }
@@ -230,16 +264,16 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 .opt.wrong{border-color:#ef4444;background:#fef2f2}
 .opt.disabled{cursor:default}
 .opt-label{
-  width:28px;height:28px;border-radius:8px;flex-shrink:0;
+  width:30px;height:30px;border-radius:8px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:700;
+  font-size:13px;font-weight:700;
   background:#f3f4f6;color:#6b7280;transition:all var(--trans)
 }
 .opt.selected .opt-label{background:var(--brand);color:#fff}
 .opt.correct .opt-label{background:#16a34a;color:#fff}
 .opt.missed .opt-label{background:#22c55e;color:#fff}
 .opt.wrong .opt-label{background:#ef4444;color:#fff}
-.opt-text{font-size:13.5px;color:#374151;line-height:1.6;flex:1;padding-top:2px}
+.opt-text{font-size:14.5px;color:#374151;line-height:1.65;flex:1;padding-top:2px}
 
 /* NAT input */
 .nat-wrap{padding:0 22px 4px}
@@ -253,22 +287,23 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 .nat-input.correct{border-color:#16a34a;background:#f0fdf4;color:#15803d}
 .nat-input.wrong{border-color:#ef4444;background:#fef2f2;color:#b91c1c}
 .nat-unit{font-size:13px;color:#9ca3af;font-weight:600;white-space:nowrap}
-.nat-correct-value{font-size:12px;color:#16a34a;margin-top:8px;font-weight:600}
+.nat-correct-value{font-size:12.5px;color:#16a34a;margin-top:8px;font-weight:600}
+.nat-hint{font-size:11.5px;color:#9ca3af;margin-top:6px}
 
 /* Explanation */
 .explanation{
-  margin:0 22px 20px;padding:14px 16px;
-  border-radius:12px;border:1.5px solid;font-size:13px;line-height:1.7
+  margin:0 22px 20px;padding:15px 17px;
+  border-radius:12px;border:1.5px solid;font-size:14px;line-height:1.75
 }
 .explanation.correct{background:#f0fdf4;border-color:#86efac;color:#15803d}
 .explanation.wrong{background:#fef2f2;border-color:#fca5a5;color:#b91c1c}
-.explanation-head{display:flex;align-items:center;gap:7px;font-weight:700;margin-bottom:5px;font-size:14px}
+.explanation-head{display:flex;align-items:center;gap:7px;font-weight:700;margin-bottom:5px;font-size:15px}
 
 /* Actions */
 .q-actions{padding:0 22px 20px;display:flex;align-items:center;gap:10px}
 .btn{
   display:inline-flex;align-items:center;gap:6px;
-  padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;
+  padding:11px 18px;border-radius:10px;font-size:13.5px;font-weight:600;
   border:none;cursor:pointer;transition:all var(--trans)
 }
 .btn:disabled{opacity:.35;cursor:not-allowed}
@@ -281,6 +316,54 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 /* Dot navigator */
 .q-dots{display:flex;justify-content:center;gap:6px;margin-top:14px;flex-wrap:wrap}
 .q-dot{height:6px;border-radius:3px;transition:all .25s ease;cursor:pointer}
+
+/* ─── SQL Playground ─── */
+.sql-playground{
+  background:#fff;border-radius:var(--radius-lg);border:1px solid #e5e7eb;
+  box-shadow:var(--shadow);overflow:hidden;margin-bottom:22px
+}
+.sql-pg-header{
+  display:flex;align-items:center;gap:12px;padding:16px 22px;
+  border-bottom:1px solid #f3f4f6;cursor:pointer;user-select:none
+}
+.sql-pg-icon{
+  width:40px;height:40px;border-radius:11px;flex-shrink:0;background:#0F9D8C;
+  display:flex;align-items:center;justify-content:center;font-size:19px;color:#fff
+}
+.sql-pg-title-wrap{flex:1;min-width:0}
+.sql-pg-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0F9D8C;opacity:.9}
+.sql-pg-title{font-size:17px;font-weight:700;color:#111;margin-top:2px}
+.sql-pg-body{padding:20px 22px}
+.sql-pg-body.hidden{display:none}
+.sql-schema-note{font-size:13.5px;color:#6b7280;line-height:1.7;margin-bottom:14px;background:#f9fafb;border:1px solid #f0f0f0;border-radius:10px;padding:12px 14px}
+.sql-schema-note code{background:#eef2f7;padding:1px 6px;border-radius:5px;font-size:12.5px}
+textarea#sql-editor{
+  width:100%;min-height:120px;resize:vertical;
+  background:#1e1e2e;color:#e2e8f0;border:none;border-radius:12px;
+  padding:16px 18px;font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  font-size:14px;line-height:1.7;outline:none
+}
+.sql-pg-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.sql-pg-actions .btn-outline{background:#f9fafb}
+.sql-result-wrap{margin-top:16px}
+.sql-result-msg{
+  padding:12px 14px;border-radius:10px;font-size:13.5px;font-weight:600;
+  margin-bottom:10px
+}
+.sql-result-msg.ok{background:#f0fdf4;color:#15803d;border:1px solid #86efac}
+.sql-result-msg.err{background:#fef2f2;color:#b91c1c;border:1px solid #fca5a5}
+.sql-result-table-wrap{overflow-x:auto;border-radius:10px;border:1px solid #e5e7eb}
+table.sql-result-table{width:100%;border-collapse:collapse;font-size:13px}
+table.sql-result-table thead{background:#0F9D8C;color:#fff}
+table.sql-result-table th,table.sql-result-table td{padding:9px 12px;text-align:left;white-space:nowrap}
+table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
+.sql-sample-queries{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.sql-sample-chip{
+  font-size:12px;font-weight:600;color:#0F9D8C;background:#e6f7f4;
+  border:1px solid #b9ece3;border-radius:20px;padding:6px 13px;cursor:pointer;
+  transition:all var(--trans)
+}
+.sql-sample-chip:hover{background:#0F9D8C;color:#fff;border-color:#0F9D8C}
 
 /* ─── Loading spinner ─── */
 #loader{
@@ -355,11 +438,41 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
   #brand-name{display:none}
   #sidebar{position:absolute;top:var(--topbar-h);left:0;height:calc(100vh - var(--topbar-h));z-index:20;box-shadow:var(--shadow-md)}
   #sidebar.closed{width:0}
-  #main{padding:16px 12px}
+  #main{padding:14px 10px}
+  .concept-header{padding:13px 16px;gap:10px}
+  .concept-icon{width:34px;height:34px;font-size:16px;border-radius:10px}
+  .concept-title{font-size:15.5px}
+  .concept-eyebrow{font-size:10px}
+  .concept-body{padding:0 16px 18px}
+  .concept-para{font-size:14px;line-height:1.75}
+  .concept-list li{font-size:13.5px}
+  .concept-note{font-size:13px;padding:10px 12px}
+  .concept-table th,.concept-table td{padding:7px 8px;font-size:12.5px}
+  .formula-chip{font-size:13px;padding:6px 11px}
+  .qtype-tabs{gap:5px}
+  .qtype-tab{padding:6px 12px;font-size:11.5px}
   .q-body{padding:16px}
-  .q-options{padding:0 16px 16px}
+  .q-text{font-size:14.5px}
+  .q-options{padding:0 16px 16px;gap:8px}
+  .opt{padding:12px 13px}
+  .opt-text{font-size:13.5px}
   .q-actions{padding:0 16px 16px}
-  .explanation{margin:0 16px 16px}
+  .nat-wrap{padding:0 16px 4px}
+  .explanation{margin:0 16px 16px;font-size:13px}
+  .q-batch{gap:14px}
+  .q-batch-actions{flex-direction:row;justify-content:space-between}
+  .q-batch-actions .btn{padding:10px 14px;font-size:12.5px;min-width:0;flex:0 0 auto}
+  .sql-pg-body{padding:16px}
+  textarea#sql-editor{font-size:13px;min-height:100px;padding:12px 14px}
+  .sql-pg-actions{gap:8px}
+  .sql-pg-actions .btn{flex:1;justify-content:center;padding:10px 8px;font-size:12.5px}
+}
+@media(max-width:400px){
+  .q-card-header{flex-wrap:wrap;padding:10px 14px}
+  .q-num{margin-left:0}
+  .btn{padding:10px 12px;font-size:12.5px}
+  .concept-title{font-size:14.5px}
+  .q-text{font-size:14px}
 }
 </style>
 </head>
@@ -376,7 +489,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 
       <div class="field">
         <label>Full Name</label>
-        <input type="text" id="f-name" placeholder="e.g. Priya Sharma">
+        <input type="text" id="f-name" placeholder="e.g. Muthu Raj">
         <div class="errmsg" id="err-name"></div>
       </div>
       <div class="field">
@@ -386,7 +499,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
       </div>
       <div class="field">
         <label>Mobile Number</label>
-        <input type="tel" id="f-mobile" placeholder="+91 98765 43210">
+        <input type="tel" id="f-mobile" placeholder="9655168622">
         <div class="errmsg" id="err-mobile"></div>
       </div>
       <div class="field">
@@ -419,10 +532,10 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
         <div class="uname" id="dd-name">Guest</div>
         <div class="uemail" id="dd-email"></div>
         <hr>
-        <a href="admin.html">
+      <!-- <a href="admin.html">
           <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           Admin Panel
-        </a>
+        </a>--->
         <button class="dropdown-btn" id="dd-signout">
           <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
           Sign out
@@ -458,9 +571,47 @@ const SUBJECTS = {
   CH:  { label:'Chemistry',   emoji:'🧪', color:'#E53E3E', file:'data/chemistry.json' },
   MA:  { label:'Mathematics', emoji:'∑',  color:'#2563EB', file:'data/mathematics.json' },
   BIO: { label:'Biology',     emoji:'🧬', color:'#16a34a', file:'data/biology.json' },
+  SQL: { label:'SQL',         emoji:'⛁⛁', color:'#0F9D8C', file:'data/sql.json' },
 };
 
 const LABELS = ['A','B','C','D','E'];
+const BATCH_SIZE = 3;
+
+// ── SQL Playground fallback (used only if a chapter has no playground config) ──
+const DEFAULT_SQL_SCHEMA = `CREATE TABLE Student (
+  Roll_No INT PRIMARY KEY,
+  Name VARCHAR(30),
+  Class VARCHAR(5),
+  Marks INT
+);
+
+INSERT INTO Student VALUES (1, 'Riya', '10A', 88);
+INSERT INTO Student VALUES (2, 'Aman', '10B', 72);
+INSERT INTO Student VALUES (3, 'Zoya', '10A', 95);
+INSERT INTO Student VALUES (4, 'Kabir', '10B', 64);
+INSERT INTO Student VALUES (5, 'Meera', '10A', 79);
+INSERT INTO Student VALUES (6, 'Vihaan', '10C', 58);`;
+
+const DEFAULT_SQL_QUERIES = [
+  'SELECT * FROM Student;',
+  "SELECT Name, Marks FROM Student WHERE Class = '10A';",
+  'SELECT Class, AVG(Marks) FROM Student GROUP BY Class;',
+  'SELECT * FROM Student ORDER BY Marks DESC;',
+  "UPDATE Student SET Marks = 90 WHERE Name = 'Aman';",
+];
+
+// Each SQL chapter can carry its own `playground: { schema, sampleQueries }`
+// (e.g. two tables for the Joins chapter, a Gender column for GROUP BY, an
+// empty table for the CREATE TABLE chapter). Falls back to the defaults
+// above for chapters that don't define one (or for non-SQL subjects).
+function getActivePlayground() {
+  const chapter = getCurrentChapter();
+  const pg = chapter?.playground;
+  return {
+    schema: pg?.schema || DEFAULT_SQL_SCHEMA,
+    sampleQueries: (pg?.sampleQueries && pg.sampleQueries.length) ? pg.sampleQueries : DEFAULT_SQL_QUERIES,
+  };
+}
 
 // ── State ──
 let state = {
@@ -468,14 +619,19 @@ let state = {
   activeSubject: 'PH',
   subjectData: null,
   activeChapterId: null,
-  questionIndex: 0,
-  answers: {},      // { qid: [indices] }
-  submitted: {},    // { qid: true }
+  questionIndex: 0,   // start index of the current 3-question batch
+  answers: {},        // { qid: [indices] | text }
+  submitted: {},       // { qid: true }
   sidebarOpen: true,
   userData: null,
   conceptOpen: true,
   qtypeFilter: 'ALL', // ALL | MCQ | MSQ | NAT
+  sqlPgOpen: true,
+  sqlDb: null,
+  sqlJsLoading: null,
+  sqlLoadedChapterId: null, // which chapter's schema is currently loaded into sqlDb
 };
+
 
 // ── Utilities ──
 function hex2rgba(hex, a) {
@@ -529,7 +685,7 @@ async function init() {
   try {
     state.config = await ajax('data/config.json');
   } catch {
-    state.config = { academyName:'UNIC Academic', logoText:'UN', subjects:['PH','CH','MA','BIO'], howDidYouFindUs:['Google','Friend','YouTube','Other'] };
+    state.config = { academyName:'UNIC Academic', logoText:'UN', subjects:['PH','CH','MA','BIO','SQL'], howDidYouFindUs:['Google','Friend','YouTube','Other'] };
   }
 
   // Apply branding
@@ -767,6 +923,7 @@ function switchSubject(code) {
   state.submitted = {};
   state.qtypeFilter = 'ALL';
   state.conceptOpen = true;
+  state.questionIndex = 0;
   updateActiveTabs();
   loadSubject(code);
 }
@@ -787,11 +944,11 @@ function selectChapter(chapterId) {
 
 function goNext() {
   const qs = getQuestions();
-  if (state.questionIndex < qs.length - 1) {
-    state.questionIndex++;
+  const nextStart = state.questionIndex + BATCH_SIZE;
+  if (nextStart < qs.length) {
+    state.questionIndex = nextStart;
     renderQuestion();
   } else {
-    // Next chapter
     const all = getAllChapters();
     const idx = all.findIndex(c => c.id === state.activeChapterId);
     if (idx < all.length - 1) {
@@ -805,7 +962,7 @@ function goNext() {
 
 function goPrev() {
   if (state.questionIndex > 0) {
-    state.questionIndex--;
+    state.questionIndex = Math.max(0, state.questionIndex - BATCH_SIZE);
     renderQuestion();
   } else {
     const all = getAllChapters();
@@ -813,7 +970,8 @@ function goPrev() {
     if (idx > 0) {
       const prev = all[idx-1];
       state.activeChapterId = prev.id;
-      state.questionIndex = (prev.questions?.length || 1) - 1;
+      const prevTotal = prev.questions?.length || 0;
+      state.questionIndex = prevTotal ? Math.floor((prevTotal - 1) / BATCH_SIZE) * BATCH_SIZE : 0;
       updateSidebarActive();
       renderQuestion();
     }
@@ -822,7 +980,7 @@ function goPrev() {
 
 function canGoNext() {
   const qs = getQuestions();
-  if (state.questionIndex < qs.length - 1) return true;
+  if (state.questionIndex + BATCH_SIZE < qs.length) return true;
   const all = getAllChapters();
   return all.findIndex(c => c.id === state.activeChapterId) < all.length - 1;
 }
@@ -833,16 +991,89 @@ function canGoPrev() {
   return all.findIndex(c => c.id === state.activeChapterId) > 0;
 }
 
+function formatText(text = "") {
+  return text.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+}
+
+function renderConceptBody(body = []) {
+  return body
+    .map((item) => {
+      // Backward compatibility (old string format)
+      if (typeof item === "string") {
+        return `<p class="concept-para">${formatText(item)}</p>`;
+      }
+
+      switch (item.type) {
+        case "heading":
+          return `<h4 class="concept-heading">${formatText(item.text)}</h4>`;
+
+        case "paragraph":
+          return `<p class="concept-para">${formatText(item.text)}</p>`;
+
+        case "list":
+          return `
+            <ul class="concept-list">
+              ${item.items
+                .map((i) => `<li>${formatText(i)}</li>`)
+                .join("")}
+            </ul>
+          `;
+
+        case "note":
+          return `
+            <div class="concept-note">
+              💡 ${formatText(item.text)}
+            </div>
+          `;
+
+        case "syntax":
+          return `
+            <div class="concept-syntax">
+              ${
+                item.title
+                  ? `<div class="syntax-title">${item.title}</div>`
+                  : ""
+              }
+              <pre><code>${item.code}</code></pre>
+            </div>
+          `;
+
+        case "table":
+          return `
+            <div class="table-wrapper">
+            <table class="concept-table">
+              <thead>
+                <tr>
+                  ${item.headers.map((h) => `<th>${h}</th>`).join("")}
+                </tr>
+              </thead>
+              <tbody>
+                ${item.rows
+                  .map(
+                    (r) => `
+                      <tr>
+                        ${r.map((c) => `<td>${c}</td>`).join("")}
+                      </tr>
+                    `
+                  )
+                  .join("")}
+              </tbody>
+            </table>
+            </div>
+          `;
+
+        default:
+          return "";
+      }
+    })
+    .join("");
+}
+
 function renderConceptHTML(chapter, color) {
   const c = chapter?.concept;
   if (!c) return '';
   const openCls = state.conceptOpen ? ' open' : '';
-  let bodyHTML = '';
-  (c.body || []).forEach(p => {
-    // Convert **bold** markdown to <strong>
-    const withBold = p.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-    bodyHTML += `<p class="concept-para">${withBold}</p>`;
-  });
+  const bodyHTML = renderConceptBody(c.body);
   let formulasHTML = '';
   if (c.formulas && c.formulas.length) {
     formulasHTML = `<div class="concept-formulas">
@@ -850,6 +1081,15 @@ function renderConceptHTML(chapter, color) {
       ${c.formulas.map(f => `<span class="formula-chip">${f}</span>`).join('')}
     </div>`;
   }
+
+  let syntaxHTML = '';
+  if (c.syntax && c.syntax.length) {
+    syntaxHTML = `<div class="concept-formulas">
+      <div class="concept-formulas-label">Syntax</div>
+      ${c.syntax.map(f => `<span class="formula-chip">${f}</span>`).join('')}
+    </div>`;
+  }
+
   return `
     <div class="concept-card">
       <div class="concept-header${openCls}" onclick="toggleConcept()">
@@ -863,6 +1103,7 @@ function renderConceptHTML(chapter, color) {
       <div class="concept-body${openCls}" id="concept-body">
         ${bodyHTML}
         ${formulasHTML}
+        ${syntaxHTML}
       </div>
     </div>`;
 }
@@ -906,41 +1147,98 @@ function setQtypeFilter(type) {
 }
 
 // ══════════════════════════════════════════
-//  RENDER QUESTION
+//  RENDER QUESTION (batch of 3 at a time)
 // ══════════════════════════════════════════
 function renderQuestion() {
   const wrap = document.getElementById('question-wrap');
   const chapter = getCurrentChapter();
   const color = subjectColor();
   const conceptHTML = renderConceptHTML(chapter, color);
+  const sqlPgHTML = state.activeSubject === 'SQL' ? renderSqlPlaygroundHTML() : '';
   const tabsHTML = renderTypeTabsHTML();
 
   const questions = getQuestions();
-  const q = questions[state.questionIndex];
+  const totalQ = questions.length;
+  const batch = questions.slice(state.questionIndex, state.questionIndex + BATCH_SIZE);
 
-  if (!q) {
+  if (!batch.length) {
     wrap.innerHTML = `
       <div class="fade-in">
         ${conceptHTML}
+        ${sqlPgHTML}
         ${tabsHTML}
         <div class="empty"><div class="empty-icon">📭</div><p>No ${state.qtypeFilter !== 'ALL' ? state.qtypeFilter : ''} questions in this chapter</p></div>
       </div>`;
     if (chapter?.concept?.latex && state.conceptOpen) renderLatex(document.getElementById('concept-body'));
+    bindSqlPlaygroundEvents();
     return;
   }
 
-  const selected = state.answers[q.id] || [];
+  const batchStart = state.questionIndex;
+  const batchEnd = Math.min(batchStart + batch.length, totalQ);
+  const pct = (batchEnd / totalQ) * 100;
+
+  const cardsHTML = batch.map((q, bi) => renderSingleQuestionCard(q, batchStart + bi, color)).join('');
+
+  // Batch dots (one dot per group of 3)
+  const totalBatches = Math.ceil(totalQ / BATCH_SIZE);
+  const currentBatch = Math.floor(state.questionIndex / BATCH_SIZE);
+  let dotsHTML = '<div class="q-dots">';
+  for (let i = 0; i < totalBatches; i++) {
+    const w = i === currentBatch ? '18px' : '6px';
+    const bg = i === currentBatch ? color : '#d1d5db';
+    dotsHTML += `<div class="q-dot" style="width:${w};background:${bg}" onclick="goToDot(${i * BATCH_SIZE})"></div>`;
+  }
+  dotsHTML += '</div>';
+
+  wrap.innerHTML = `
+    <div class="fade-in">
+      ${conceptHTML}
+      ${sqlPgHTML}
+      ${tabsHTML}
+      <div class="q-breadcrumb">${chapter?.title || ''}</div>
+      <div class="q-progress-row">
+        <div class="q-progress-track"><div class="q-progress-fill" style="width:${pct}%;background:${color}"></div></div>
+        <span class="q-progress-label">${batchStart+1}-${batchEnd} / ${totalQ}</span>
+      </div>
+      <div class="q-batch">
+        ${cardsHTML}
+      </div>
+      <div class="q-batch-actions">
+        <button class="btn btn-outline" onclick="goPrev()" ${!canGoPrev()?'disabled':''}>
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg> Prev 3
+        </button>
+        <button class="btn btn-primary" onclick="goNext()" ${!canGoNext()?'disabled':''} style="background:${color}">Next 3 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      ${dotsHTML}
+    </div>`;
+
+  // Render LaTeX if needed
+  if (chapter?.concept?.latex || batch.some(q => q.latex)) {
+    renderLatex(wrap);
+  }
+
+  // Bind NAT input listeners for each un-submitted NAT question in the batch
+  batch.forEach(q => {
+    if (q.type === 'NAT' && !state.submitted[q.id]) {
+      const natInput = document.getElementById(`nat-input-${q.id}`);
+      if (natInput) {
+        natInput.addEventListener('input', () => handleNatInput(q.id));
+      }
+    }
+  });
+
+  bindSqlPlaygroundEvents();
+}
+
+function renderSingleQuestionCard(q, absoluteIndex, color) {
+  const selected = state.answers[q.id] ?? (q.type === 'NAT' ? '' : []);
   const isSubmitted = !!state.submitted[q.id];
-  const totalQ = questions.length;
-  const pct = ((state.questionIndex + 1) / totalQ) * 100;
 
-  // ── Body HTML depends on question type ──
   let bodyHTML = '';
-
   if (q.type === 'NAT') {
     bodyHTML = renderNATHTML(q, isSubmitted);
   } else {
-    // MCQ / MSQ options
     let optionsHTML = '';
     q.options.forEach((opt, i) => {
       let cls = 'opt';
@@ -948,15 +1246,15 @@ function renderQuestion() {
       if (isSubmitted) {
         cls += ' disabled';
         const isCorrect = q.answer.includes(i);
-        const isSel = selected.includes(i);
+        const isSel = (selected || []).includes(i);
         if (isCorrect && isSel)  { cls += ' correct'; labelContent = '✓'; }
         else if (isCorrect)       { cls += ' missed';  labelContent = '✓'; }
         else if (isSel)           { cls += ' wrong';   labelContent = '✗'; }
       } else {
-        if (selected.includes(i)) cls += ' selected';
+        if ((selected || []).includes(i)) cls += ' selected';
       }
       optionsHTML += `
-        <button class="${cls}" data-idx="${i}" onclick="toggleOption(${i})">
+        <button class="${cls}" data-idx="${i}" onclick="toggleOption('${q.id}', ${i})">
           <span class="opt-label">${labelContent}</span>
           <span class="opt-text">${opt}</span>
         </button>`;
@@ -964,7 +1262,6 @@ function renderQuestion() {
     bodyHTML = `<div class="q-options">${optionsHTML}</div>`;
   }
 
-  // Explanation
   let exHTML = '';
   if (isSubmitted && q.explanation) {
     const isRight = checkIsCorrect(q, selected);
@@ -977,84 +1274,39 @@ function renderQuestion() {
     </div>`;
   }
 
-  // Dots
-  let dotsHTML = '<div class="q-dots">';
-  for (let i = 0; i < totalQ; i++) {
-    const w = i === state.questionIndex ? '18px' : '6px';
-    const bg = i === state.questionIndex ? color : '#d1d5db';
-    dotsHTML += `<div class="q-dot" style="width:${w};background:${bg}" onclick="goToDot(${i})"></div>`;
-  }
-  dotsHTML += '</div>';
+  const hasAnswer = q.type === 'NAT'
+    ? (selected !== undefined && selected !== null && String(selected).trim() !== '')
+    : (selected && selected.length > 0);
 
-  // Action btn
-  const hasAnswer = q.type === 'NAT' ? (selected !== undefined && selected !== null && selected !== '') : selected.length > 0;
   let actionHTML = '';
   if (!isSubmitted) {
-    actionHTML = `<button class="btn btn-primary" id="btn-check" onclick="submitAnswer()" ${!hasAnswer?'disabled':''} style="background:${color}">Check Answer</button>`;
-  } else {
-    actionHTML = `<button class="btn btn-primary" onclick="goNext()" ${!canGoNext()?'disabled':''} style="background:${color}">${state.questionIndex < totalQ-1 ? 'Next Question →' : 'Next Chapter →'}</button>`;
+    actionHTML = `<div class="q-actions"><button class="btn btn-primary" id="btn-check-${q.id}" onclick="submitAnswer('${q.id}')" ${!hasAnswer?'disabled':''} style="background:${color}">Check Answer</button></div>`;
   }
 
   let typeHintHTML = '';
   if (q.type === 'MSQ') typeHintHTML = '<span class="q-type-hint">Select all correct answers</span>';
-  else if (q.type === 'NAT') typeHintHTML = '<span class="q-type-hint">Enter a numeric value</span>';
+  else if (q.type === 'NAT') typeHintHTML = '<span class="q-type-hint">Type a number or a word</span>';
 
-  wrap.innerHTML = `
-    <div class="fade-in">
-      ${conceptHTML}
-      ${tabsHTML}
-      <div class="q-breadcrumb">${chapter?.title || ''}</div>
-      <div class="q-progress-row">
-        <div class="q-progress-track"><div class="q-progress-fill" style="width:${pct}%;background:${color}"></div></div>
-        <span class="q-progress-label">${state.questionIndex+1} / ${totalQ}</span>
+  return `
+    <div class="q-card fade-in">
+      <div class="q-card-header" style="background:${hex2rgba(color,.06)}">
+        <span class="q-type-badge" style="background:${color}">${q.type}</span>
+        ${typeHintHTML}
+        <span class="q-num">Q${absoluteIndex+1}</span>
       </div>
-      <div class="q-card">
-        <div class="q-card-header" style="background:${hex2rgba(color,.06)}">
-          <span class="q-type-badge" style="background:${color}">${q.type}</span>
-          ${typeHintHTML}
-          <span class="q-num">Q${state.questionIndex+1}</span>
-        </div>
-        <div class="q-body">
-          <div class="q-text q-question">${q.question}</div>
-        </div>
-        ${bodyHTML}
-        ${exHTML}
-        <div class="q-actions">
-          <button class="btn btn-outline" onclick="goPrev()" ${!canGoPrev()?'disabled':''}>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg> Prev
-          </button>
-          ${actionHTML}
-          <button class="btn btn-outline" onclick="goNext()" ${!canGoNext()?'disabled':''}>
-            Next <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-          </button>
-        </div>
+      <div class="q-body">
+        <div class="q-text q-question">${q.question}</div>
       </div>
-      ${dotsHTML}
+      ${bodyHTML}
+      ${exHTML}
+      ${actionHTML}
     </div>`;
-
-  // Render LaTeX if needed
-  if (q.latex || chapter?.concept?.latex) {
-    renderLatex(wrap);
-  }
-
-  // Bind NAT input listener
-  if (q.type === 'NAT' && !isSubmitted) {
-    const natInput = document.getElementById('nat-input');
-    if (natInput) {
-      natInput.addEventListener('input', () => {
-        state.answers[q.id] = natInput.value;
-        const checkBtn = document.getElementById('btn-check');
-        if (checkBtn) checkBtn.disabled = natInput.value.trim() === '';
-      });
-      natInput.focus();
-    }
-  }
 }
 
 function renderNATHTML(q, isSubmitted) {
   const selected = state.answers[q.id];
   let inputCls = 'nat-input';
-  let valueAttr = isSubmitted ? (selected ?? '') : (selected ?? '');
+  let valueAttr = selected ?? '';
   let correctNoteHTML = '';
 
   if (isSubmitted) {
@@ -1069,40 +1321,55 @@ function renderNATHTML(q, isSubmitted) {
     <div class="nat-wrap">
       <div class="nat-input-row">
         <input
-          type="number"
-          step="any"
+          type="text"
           class="${inputCls}"
-          id="nat-input"
+          id="nat-input-${q.id}"
           placeholder="Enter your answer"
           value="${valueAttr ?? ''}"
           ${isSubmitted ? 'disabled' : ''}
         >
         ${q.unit ? `<span class="nat-unit">${q.unit}</span>` : ''}
       </div>
+      ${!isSubmitted ? '<div class="nat-hint">Numbers and short text answers are both accepted.</div>' : ''}
       ${correctNoteHTML}
     </div>`;
 }
 
+function handleNatInput(qid) {
+  const el = document.getElementById(`nat-input-${qid}`);
+  if (!el) return;
+  state.answers[qid] = el.value;
+  const checkBtn = document.getElementById(`btn-check-${qid}`);
+  if (checkBtn) checkBtn.disabled = el.value.trim() === '';
+}
+
+// NAT now supports either a NUMBER answer (compared with tolerance) or a
+// TEXT answer (compared case-insensitively, trimmed) depending on the type
+// of `q.answer` in the JSON — no schema change needed for existing data.
 function checkIsCorrect(q, selected) {
   if (q.type === 'NAT') {
-    const val = parseFloat(selected);
-    if (isNaN(val)) return false;
-    const tol = q.tolerance ?? 0;
-    return Math.abs(val - q.answer) <= tol;
+    if (selected === undefined || selected === null || String(selected).trim() === '') return false;
+    if (typeof q.answer === 'number') {
+      const val = parseFloat(selected);
+      if (isNaN(val)) return false;
+      const tol = q.tolerance ?? 0;
+      return Math.abs(val - q.answer) <= tol;
+    }
+    return String(selected).trim().toLowerCase() === String(q.answer).trim().toLowerCase();
   }
   return JSON.stringify([...(selected||[])].sort((a,b)=>a-b)) === JSON.stringify([...q.answer].sort((a,b)=>a-b));
 }
 
-function goToDot(i) {
-  state.questionIndex = i;
+function goToDot(batchStartIndex) {
+  state.questionIndex = batchStartIndex;
   renderQuestion();
 }
 
 // ══════════════════════════════════════════
 //  ANSWER HANDLING
 // ══════════════════════════════════════════
-function toggleOption(idx) {
-  const q = getQuestions()[state.questionIndex];
+function toggleOption(qid, idx) {
+  const q = getQuestions().find(qq => qq.id === qid);
   if (!q || state.submitted[q.id] || q.type === 'NAT') return;
   const prev = state.answers[q.id] || [];
   if (q.type === 'MCQ') {
@@ -1111,20 +1378,11 @@ function toggleOption(idx) {
     const has = prev.includes(idx);
     state.answers[q.id] = has ? prev.filter(x=>x!==idx) : [...prev, idx];
   }
-  // Re-render options only (efficient)
-  const qs = getQuestions();
-  const color = subjectColor();
-  const selected = state.answers[q.id] || [];
-  document.querySelectorAll('.q-options .opt').forEach((btn, i) => {
-    btn.className = 'opt' + (selected.includes(i) ? ' selected' : '');
-  });
-  // Enable/disable check button
-  const checkBtn = document.getElementById('btn-check');
-  if (checkBtn) checkBtn.disabled = selected.length === 0;
+  renderQuestion();
 }
 
-function submitAnswer() {
-  const q = getQuestions()[state.questionIndex];
+function submitAnswer(qid) {
+  const q = getQuestions().find(qq => qq.id === qid);
   if (!q || state.submitted[q.id]) return;
   const selected = state.answers[q.id];
 
@@ -1154,6 +1412,145 @@ function submitAnswer() {
 
   updateChapterProgress(state.activeChapterId);
   renderQuestion();
+}
+
+// ══════════════════════════════════════════
+//  SQL PLAYGROUND (live query runner, powered by sql.js/SQLite-WASM)
+// ══════════════════════════════════════════
+function renderSqlPlaygroundHTML() {
+  const openCls = state.sqlPgOpen ? '' : ' hidden';
+  const chevronOpen = state.sqlPgOpen ? ' open' : '';
+  const pg = getActivePlayground();
+  const starterQuery = pg.sampleQueries[0] || 'SELECT * FROM Student;';
+  return `
+    <div class="sql-playground">
+      <div class="sql-pg-header" onclick="toggleSqlPlayground()">
+        <div class="sql-pg-icon">🖥️</div>
+        <div class="sql-pg-title-wrap">
+          <div class="sql-pg-eyebrow">Live Practice — this chapter's schema</div>
+          <div class="sql-pg-title">SQL Playground — run real queries</div>
+        </div>
+        <svg class="concept-chevron${chevronOpen}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+      <div class="sql-pg-body${openCls}" id="sql-pg-body">
+        <details class="sql-schema-note" open>
+          <summary style="cursor:pointer;font-weight:700;color:#0F9D8C">📋 Preloaded schema for this chapter (click to collapse)</summary>
+          <pre style="margin-top:10px;background:#1e1e2e;color:#e2e8f0;border-radius:8px;padding:12px 14px;overflow-x:auto;font-size:12.5px;line-height:1.6;white-space:pre-wrap">${pg.schema}</pre>
+        </details>
+        <textarea id="sql-editor" spellcheck="false">${starterQuery}</textarea>
+        <div class="sql-pg-actions">
+          <button class="btn btn-primary" id="sql-run-btn" style="background:#0F9D8C" onclick="runSqlQuery()">▶ Run Query</button>
+          <button class="btn btn-outline" onclick="resetSqlPlayground()">↺ Reset This Chapter's Data</button>
+        </div>
+        <div class="sql-sample-queries" id="sql-sample-queries"></div>
+        <div class="sql-result-wrap" id="sql-result-wrap"></div>
+      </div>
+    </div>`;
+}
+
+function toggleSqlPlayground() {
+  state.sqlPgOpen = !state.sqlPgOpen;
+  const body = document.getElementById('sql-pg-body');
+  const chevron = document.querySelector('.sql-pg-header .concept-chevron');
+  if (body) body.classList.toggle('hidden', !state.sqlPgOpen);
+  if (chevron) chevron.classList.toggle('open', state.sqlPgOpen);
+}
+
+function bindSqlPlaygroundEvents() {
+  const chipsWrap = document.getElementById('sql-sample-queries');
+  if (!chipsWrap) return;
+  const pg = getActivePlayground();
+  chipsWrap.innerHTML = pg.sampleQueries.map(q =>
+    `<span class="sql-sample-chip" onclick="loadSampleQuery(this)">${q}</span>`
+  ).join('');
+}
+
+function loadSampleQuery(el) {
+  const editor = document.getElementById('sql-editor');
+  if (editor) editor.value = el.textContent;
+}
+
+// Builds (or rebuilds) the SQLite engine using the ACTIVE CHAPTER's schema.
+// If the student switches to a different chapter, the schema is different,
+// so the in-memory database is recreated to match — each chapter gets its
+// own tables (e.g. two tables for a Joins chapter, an empty table for the
+// CREATE TABLE chapter, a Gender column for the GROUP BY chapter, etc).
+async function ensureSqlEngine(forceRebuild = false) {
+  const chapterId = state.activeChapterId;
+  if (state.sqlDb && state.sqlLoadedChapterId === chapterId && !forceRebuild) {
+    return state.sqlDb;
+  }
+
+  state.sqlJsLoading = (async () => {
+    // initSqlJs is provided by the sql.js CDN script tag in <head>
+    const SQL = await initSqlJs({
+      locateFile: file => `https://cdn.jsdelivr.net/npm/sql.js@1.10.2/dist/${file}`
+    });
+    const db = new SQL.Database();
+    const pg = getActivePlayground();
+    try {
+      db.run(pg.schema);
+    } catch (e) {
+      // A chapter's starter schema is occasionally just an explanatory
+      // comment (e.g. the "write your own CREATE TABLE" chapters) — that's
+      // fine, the student's own queries will create tables from scratch.
+    }
+    state.sqlDb = db;
+    state.sqlLoadedChapterId = chapterId;
+    return db;
+  })();
+
+  return state.sqlJsLoading;
+}
+
+async function runSqlQuery() {
+  const editor = document.getElementById('sql-editor');
+  const resultWrap = document.getElementById('sql-result-wrap');
+  const runBtn = document.getElementById('sql-run-btn');
+  if (!editor || !resultWrap) return;
+  const sql = editor.value.trim();
+  if (!sql) return;
+
+  runBtn.disabled = true;
+  runBtn.textContent = '⏳ Running…';
+  resultWrap.innerHTML = '';
+
+  try {
+    const db = await ensureSqlEngine();
+    const results = db.exec(sql); // array of {columns, values}
+
+    if (!results.length) {
+      resultWrap.innerHTML = `<div class="sql-result-msg ok">✓ Query executed successfully. No rows to display (e.g. INSERT/UPDATE/DELETE/CREATE ran fine).</div>`;
+    } else {
+      let html = '';
+      results.forEach(res => {
+        html += `<div class="sql-result-msg ok">✓ ${res.values.length} row(s) returned</div>`;
+        html += `<div class="sql-result-table-wrap"><table class="sql-result-table"><thead><tr>${res.columns.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>`;
+        res.values.forEach(row => {
+          html += `<tr>${row.map(cell => `<td>${cell === null ? '<em>NULL</em>' : cell}</td>`).join('')}</tr>`;
+        });
+        html += `</tbody></table></div>`;
+      });
+      resultWrap.innerHTML = html;
+    }
+  } catch (err) {
+    resultWrap.innerHTML = `<div class="sql-result-msg err">✗ ${err.message}</div>`;
+  } finally {
+    runBtn.disabled = false;
+    runBtn.textContent = '▶ Run Query';
+  }
+}
+
+async function resetSqlPlayground() {
+  const resultWrap = document.getElementById('sql-result-wrap');
+  state.sqlDb = null;
+  state.sqlLoadedChapterId = null;
+  try {
+    await ensureSqlEngine(true);
+    if (resultWrap) resultWrap.innerHTML = `<div class="sql-result-msg ok">✓ Data reset — this chapter's sample table(s) restored to their original rows.</div>`;
+  } catch (err) {
+    if (resultWrap) resultWrap.innerHTML = `<div class="sql-result-msg err">✗ Could not reset: ${err.message}</div>`;
+  }
 }
 
 // ══════════════════════════════════════════
@@ -1208,7 +1605,7 @@ function submitModal() {
   updateUserUI();
   document.getElementById('modal-overlay').classList.add('hidden');
   // Submit to API
-  ajax('api/register', 'POST', data).catch(()=>{});
+  ajax('api/adregister', 'POST', data).catch(()=>{});
 }
 
 // ══════════════════════════════════════════
