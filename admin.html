@@ -677,7 +677,7 @@ async function loadSubjectIntoBuilder(code) {
 
   // Fall back to bundled static file for the 4 built-in subjects
   if (!loaded) {
-    const fileMap = { PH:'data/physics.json', CH:'data/chemistry.json', MA:'data/mathematics.json', BIO:'data/biology.json'
+    const fileMap = { PH:'data/physics.json', CH:'data/chemistry.json', MA:'data/mathematics.json', BIO:'data/biology.json',
                     EXCEL:'data/excel.json', SQL:'data/sql.json'};
     if (fileMap[code]) {
       try { loaded = await ajax(fileMap[code]); } catch {}
