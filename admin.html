@@ -8,8 +8,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
-<script src="https://tikzjax.com/v1/tikzjax.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
@@ -237,8 +235,6 @@ tr:hover td{background:#fafafa}
 .pv-img-wrap img{max-width:100%;border-radius:10px;border:1px solid #e5e7eb;display:block}
 .pv-img-title{font-size:11px;color:#9ca3af;margin-top:4px;text-align:center}
 .pv-pdf-link{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:9px;background:#f3f4f6;color:#374151;font-size:12px;font-weight:600;text-decoration:none;margin-bottom:14px}
-.pv-tikz-wrap{margin-bottom:14px;text-align:center;overflow-x:auto}
-.pv-tikz-wrap svg{max-width:100%}
 .pv-q{border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px;margin-bottom:12px}
 .pv-q-num{font-size:11px;font-weight:700;color:#9ca3af;margin-bottom:6px}
 .pv-q-img{margin-bottom:10px}
@@ -567,12 +563,12 @@ function switchSection(section) {
 //
 //  Concept content blocks support these types, matching the
 //  app's rendering schema:
-//    heading, paragraph, note, formula, list, table, syntax, image, tikz
+//    heading, paragraph, note, formula, list, table, syntax, image
 //  "image" blocks may carry an `image` (picture) and/or a `pdf`
 //  field — either a URL/path string, or a base64 data URI
 //  produced automatically when a file is uploaded in the editor.
-//  "tikz" blocks carry raw TikZ/PGF source (rendered client-side
-//  via TikZJax into an inline SVG).
+//  Questions (MCQ/MSQ/NAT) and each answer option can likewise
+//  carry an image (uploaded as base64) alongside or instead of text.
 // ══════════════════════════════════════════════════════
 
 const BUILTIN_SUBJECTS = [
@@ -586,7 +582,7 @@ const QTYPE_COLORS = { MCQ: '#6C3FF5', MSQ: '#0891b2', NAT: '#d97706' };
 
 const BTYPE_COLORS = {
   heading: '#4f46e5', paragraph: '#6b7280', note: '#7c3aed', formula: '#0891b2',
-  list: '#d97706', table: '#059669', syntax: '#dc2626', image: '#db2777', tikz: '#0d9488'
+  list: '#d97706', table: '#059669', syntax: '#dc2626', image: '#db2777'
 };
 
 let builder = {
@@ -761,10 +757,6 @@ function renderBuilderTree() {
 
 function escHtml(s) { return String(s ?? '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
 function escAttr(s) { return String(s ?? '').replace(/"/g, '&quot;'); }
-// Safe for embedding raw source inside a <script type="text/tikz"> tag: script content
-// isn't HTML-parsed, so we only need to guard against an accidental "</script" sequence.
-function escTikzScript(s) { return String(s ?? '').replace(/<\/(script)/gi, '<\\/$1'); }
-
 function markDirty() { builder.dirty = true; setBuilderStatus('Unsaved changes', ''); }
 
 function addUnit() {
@@ -900,7 +892,6 @@ function renderBuilderEditor() {
           <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('formula')">+ Formula</button>
           <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('syntax')">+ Syntax/Code</button>
           <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('image')">+ Image / PDF</button>
-          <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('tikz')">+ TikZ Diagram</button>
         </div>
         <div class="b-field-hint">Blocks render top-to-bottom exactly as shown in the app. Use ↑ ↓ to reorder.</div>
       </div>
@@ -952,7 +943,6 @@ function addBodyItem(type) {
   else if (type === 'table') item = { type: 'table', headers: ['Column 1', 'Column 2'], rows: [['', '']] };
   else if (type === 'syntax') item = { type: 'syntax', language: 'text', code: '' };
   else if (type === 'image') item = { type: 'image', title: '', image: '', pdf: '' };
-  else if (type === 'tikz') item = { type: 'tikz', title: '', code: '' };
   else item = { type, text: '' };
 
   chapter.concept.body.push(item);
@@ -961,12 +951,17 @@ function addBodyItem(type) {
   markDirty();
 }
 
+// Base64 data URIs are long — never show them raw as summary/label text,
+// show a short friendly marker instead. Actual <img> tags still use the
+// full value directly, so the image itself always renders normally.
+function isDataUri(s) { return typeof s === 'string' && s.startsWith('data:'); }
+function fileLabel(s, kind) { return isDataUri(s) ? `📎 ${kind} uploaded` : s; }
+
 function bodyItemSummary(item) {
   if (item.type === 'list') return (item.items || []).filter(Boolean).join(', ') || '(empty list)';
   if (item.type === 'table') return (item.headers || []).join(' | ') || '(empty table)';
   if (item.type === 'syntax') return item.code || '(empty code)';
-  if (item.type === 'image') return item.title || item.image || item.pdf || '(empty image/pdf)';
-  if (item.type === 'tikz') return (item.title || '').trim() || (item.code || '').replace(/\s+/g, ' ').trim() || '(empty tikz code)';
+  if (item.type === 'image') return item.title || fileLabel(item.image, 'Image') || fileLabel(item.pdf, 'PDF') || '(empty image/pdf)';
   return item.text || '(empty)';
 }
 
@@ -1086,30 +1081,12 @@ function renderBodyItemEditor(item, i, container) {
     return;
   }
 
-  if (item.type === 'tikz') {
-    container.innerHTML = `
-      <div class="b-field"><label>Caption (optional)</label><input type="text" value="${escAttr(item.title || '')}" oninput="updateTikzField(${i},'title',this.value)"></div>
-      <div class="b-field">
-        <label>TikZ / PGF source</label>
-        <textarea rows="8" style="font-family:monospace" oninput="updateTikzField(${i},'code',this.value)" placeholder="\\begin{tikzpicture}\n  \\draw[->] (0,0) -- (4,0);\n\\end{tikzpicture}">${escHtml(item.code || '')}</textarea>
-        <div class="b-field-hint">Paste the raw TikZ code (just the \\begin{tikzpicture}…\\end{tikzpicture} block, or \\begin{tikzcd}…). It's compiled to an inline SVG right in the browser — no image upload needed.</div>
-      </div>`;
-    return;
-  }
-
   container.innerHTML = '<div class="b-field-hint">Unsupported block type.</div>';
 }
 
 function updateBodyText(i, val) {
   const chapter = getActiveChapterObj();
   chapter.concept.body[i].text = val;
-  refreshBodyItemSummary(i);
-  markDirty();
-}
-
-function updateTikzField(i, field, val) {
-  const chapter = getActiveChapterObj();
-  chapter.concept.body[i][field] = val;
   refreshBodyItemSummary(i);
   markDirty();
 }
@@ -1271,9 +1248,9 @@ function addQuestion(type) {
 
   let q;
   if (type === 'NAT') {
-    q = { id: uid('q'), type: 'NAT', latex: false, question: '', image: '', tikz: '', answer: 0, tolerance: 0, unit: '', explanation: '' };
+    q = { id: uid('q'), type: 'NAT', latex: false, question: '', image: '', answer: 0, tolerance: 0, unit: '', explanation: '' };
   } else {
-    q = { id: uid('q'), type, latex: false, question: '', image: '', tikz: '', options: ['', '', '', ''], optionImages: ['', '', '', ''], answer: [], explanation: '' };
+    q = { id: uid('q'), type, latex: false, question: '', image: '', options: ['', '', '', ''], optionImages: ['', '', '', ''], answer: [], explanation: '' };
   }
   chapter.questions.push(q);
   builder.openQuestionId = q.id;
@@ -1374,11 +1351,6 @@ function renderQuestionEditor(q, container) {
         <input type="file" accept="image/*" onchange="handleQuestionImageUpload('${q.id}',this)">
         ${q.image ? `<img src="${escAttr(q.image)}" class="b-thumb" onerror="this.style.display='none'">` : ''}
       </div>
-    </div>
-    <div class="b-field">
-      <label>Diagram (TikZ source, optional)</label>
-      <textarea rows="5" style="font-family:monospace" oninput="updateQuestionField('${q.id}','tikz',this.value)" placeholder="\\begin{tikzpicture}\n  \\draw[->] (0,0) -- (4,0);\n\\end{tikzpicture}">${escHtml(q.tikz||'')}</textarea>
-      <div class="b-field-hint">Rendered inline via TikZJax, right above the question — no image upload needed for diagrams like number lines or graphs.</div>
     </div>
     ${q.type !== 'NAT' ? `
       <div class="b-field">
@@ -1562,12 +1534,6 @@ function pvBodyItemHtml(item) {
       if (!item.image && !item.pdf) h += `<div class="pv-p" style="color:#9ca3af">(no image or PDF set)</div>`;
       return h;
     }
-    case 'tikz': {
-      if (!item.code || !item.code.trim()) return `<div class="pv-p" style="color:#9ca3af">(no TikZ source set)</div>`;
-      let h = `<div class="pv-tikz-wrap tikzjax-container"><script type="text/tikz">${escTikzScript(item.code)}</script></div>`;
-      if (item.title) h += `<div class="pv-img-title">${escHtml(item.title)}</div>`;
-      return h;
-    }
     default: return '';
   }
 }
@@ -1584,9 +1550,6 @@ function renderChapterPreviewHtml(chapter) {
     html += `<div class="pv-h" style="margin-top:22px">Practice Questions (${questions.length})</div>`;
     questions.forEach((q, qi) => {
       html += `<div class="pv-q"><div class="pv-q-num">Q${qi + 1} · ${q.type}</div>`;
-      if (q.tikz && q.tikz.trim()) {
-        html += `<div class="pv-tikz-wrap tikzjax-container"><script type="text/tikz">${escTikzScript(q.tikz)}</script></div>`;
-      }
       if (q.image) {
         html += `<div class="pv-q-img"><img src="${escAttr(q.image)}" onerror="this.parentElement.style.display='none'"></div>`;
       }
@@ -1608,10 +1571,26 @@ function renderChapterPreviewHtml(chapter) {
   return html;
 }
 
+// Base64 uploads can be huge — replace them with a short marker for the
+// human-readable "Raw JSON" tab so it stays scannable. This is display-only:
+// Save/Download/Copy always use the real, full data (see below).
+function jsonForDisplay(value) {
+  if (Array.isArray(value)) return value.map(jsonForDisplay);
+  if (value && typeof value === 'object') {
+    const out = {};
+    for (const k in value) out[k] = jsonForDisplay(value[k]);
+    return out;
+  }
+  if (typeof value === 'string' && value.startsWith('data:')) {
+    return `[uploaded file — ${value.length.toLocaleString()} chars, hidden from preview]`;
+  }
+  return value;
+}
+
 function showJsonPreview() {
   if (!builder.activeData) return;
   document.getElementById('json-modal-title').textContent = `${builder.activeData.subject} (${builder.activeData.code})`;
-  document.getElementById('json-modal-content').textContent = JSON.stringify(builder.activeData, null, 2);
+  document.getElementById('json-modal-content').textContent = JSON.stringify(jsonForDisplay(builder.activeData), null, 2);
 
   const chapter = getActiveChapterObj();
   document.getElementById('pv-pane-preview').innerHTML = chapter
