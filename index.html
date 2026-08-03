@@ -1766,7 +1766,7 @@ function submitModal() {
   updateUserUI();
   document.getElementById('modal-overlay').classList.add('hidden');
   // Submit to API
-  ajax('api/adregister', 'POST', data).catch(()=>{});
+  ajax('api/register', 'POST', data).catch(()=>{});
 }
 
 // ══════════════════════════════════════════
