@@ -1,0 +1,15 @@
+{
+  "academyName": "UNIC Academic",
+  "tagline": "Master concepts. Ace exams.",
+  "logoText": "UNIC",
+  "adminEmail": "admin@unicacademic.in",
+  "subjects": ["PH", "CH", "MA", "BIO","SQL","EXCEL"],
+  "howDidYouFindUs": [
+    "Google Search",
+    "YouTube",
+    "Friend / Classmate",
+    "School / College",
+    "Social Media",
+    "Other"
+  ]
+}
