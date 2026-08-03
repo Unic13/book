@@ -337,10 +337,8 @@
               "explanation": "The Name Box displays the address of the currently selected cell, such as A1 or C5."
             }
           ]
-        }
-      ]
-    },
-    {
+        },
+        {
   "id": "excel_u1_c2",
   "title": "Day 2: Data Entry, Editing, AutoFill and Flash Fill",
   "concept": {
@@ -771,5 +769,9 @@
   }
 ]
     }
+
+        
+      ]
+    }    
   ]
 }
