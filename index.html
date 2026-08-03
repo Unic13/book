@@ -884,12 +884,6 @@ function renderHomeHTML() {
     </div>`;
 }
 
-// ══════════════════════════════════════════
-//  LOAD SUBJECT
-//  Tries Hasura-backed content (api/content) first — so questions added via
-//  the Admin Question Builder show up immediately — and falls back to the
-//  static /data/<subject>.json file if the API/DB isn't configured yet.
-// ══════════════════════════════════════════
 async function loadSubject(code) {
   document.getElementById('question-wrap').innerHTML = '<div id="loader"><div class="spinner"></div></div>';
   document.getElementById('loader') && (document.getElementById('loader').querySelector('.spinner').style.borderTopColor = subjectColor());
@@ -898,7 +892,7 @@ async function loadSubject(code) {
 
   // 1. Try live content from Hasura (admin-authored questions)
   try {
-    const remote = await ajax(`api/content?code=${code}`);
+    const remote = await ajax(`api/content11?code=${code}`);
     if (remote && remote.data && remote.data.units) {
       loaded = remote.data;
     }
@@ -1573,7 +1567,7 @@ function submitAnswer(qid) {
   // Track attempt
   if (state.userData) {
     const isCorrect = checkIsCorrect(q, selected);
-    ajax('api/attempt', 'POST', {
+    ajax('api/attempt11', 'POST', {
       userId: state.userData.email || state.userData.name || 'guest',
       questionId: q.id,
       subject: state.activeSubject,
