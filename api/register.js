@@ -41,9 +41,9 @@ module.exports = async (req, res) => {
         id,
         name: name.trim(),
         email: email.trim(),
-        mobile: mobile.trim(),
-        source: source.trim(),
-        ip,
+        phone: mobile.trim(),
+        howkonw: source.trim(),
+        ipaddress,
       },
     });
 
