@@ -381,12 +381,12 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 /* ─── Welcome Modal ─── */
-#modal-overlay{
+#{
   position:fixed;inset:0;background:rgba(0,0,0,.6);
   backdrop-filter:blur(4px);z-index:200;
   display:flex;align-items:center;justify-content:center;padding:16px
 }
-#modal-overlay.hidden{display:none}
+#.hidden{display:none}
 .modal{
   background:#fff;border-radius:22px;width:100%;max-width:420px;
   overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2)
@@ -793,7 +793,7 @@ async function init() {
   // Land on the home page (card picker) instead of jumping straight into a subject
   showHome();
 
-  // Show the sign-up / subscribe modal 2 minutes after the page loads —
+  // Show the sign-up / subscribe modal 1 minutes after the page loads —
   // but only if we don't already have the visitor's details, and only if
   // they haven't already dismissed it this session.
   if (!state.userData) {
@@ -801,7 +801,7 @@ async function init() {
       if (!state.userData && !sessionStorage.getItem('unic_modal_dismissed')) {
         document.getElementById('modal-overlay').classList.remove('hidden');
       }
-    }, 120000); // 2 minutes
+    }, 60000); // 2 minutes
   }
 
   bindEvents();
