@@ -1,0 +1,183 @@
+{
+  "subject": "Microsoft Excel",
+  "code": "EXCEL",
+  "color": "#217346",
+  "duration_days": 30,
+  "units": [
+    {
+      "id": "excel_u1",
+      "title": "Week 1: Excel Fundamentals",
+      "chapters": [
+        {
+          "id": "excel_u1_c1",
+          "title": "Day 1: Introduction to Microsoft Excel",
+          "concept": {
+            "title": "Introduction to Excel, Workbook, Worksheet, Ribbon and Cells",
+            "body": [
+              "Microsoft Excel is a spreadsheet application developed by Microsoft. It is used to organize, analyze, calculate, and visualize data efficiently.",
+              "Excel is widely used in schools, colleges, businesses, banks, hospitals, research organizations, and government offices for maintaining records and performing calculations.",
+              "A Workbook is an Excel file that can contain one or more Worksheets. The default file extension is .xlsx.",
+              "A Worksheet is a single spreadsheet page inside a workbook where data is entered and managed.",
+              "Rows run horizontally and are identified by numbers (1, 2, 3...). Columns run vertically and are identified by letters (A, B, C...).",
+              "A Cell is the intersection of a row and a column. Every cell has a unique address such as A1, B5, or C10.",
+              "The Ribbon is the command area at the top of Excel that contains tabs such as Home, Insert, Page Layout, Formulas, Data, Review, and View.",
+              "The Formula Bar displays the contents or formula of the selected cell.",
+              "The Name Box displays the address of the currently selected (active) cell.",
+              "The active cell is the currently selected cell where data can be entered or edited.",
+              "Excel automatically recalculates formulas whenever the data changes, making it an excellent tool for data analysis.",
+              "Keyboard shortcuts such as Ctrl+S (Save), Ctrl+C (Copy), Ctrl+V (Paste), Ctrl+Z (Undo), and Ctrl+B (Bold) improve productivity."
+            ],
+            "syntax": [
+              "Workbook Example:\nStudent_Marks.xlsx",
+              "Worksheet Example:\nSheet1\nAttendance\nResults",
+              "Cell Address Examples:\nA1\nB5\nC10\nD25",
+              "Keyboard Shortcuts:\nCtrl + N : New Workbook\nCtrl + O : Open Workbook\nCtrl + S : Save Workbook\nCtrl + C : Copy\nCtrl + V : Paste\nCtrl + Z : Undo"
+            ]
+          },
+          "questions": [
+            {
+              "id": "excel_q001",
+              "type": "MCQ",
+              "difficulty_rating": 1,
+              "question": "What is Microsoft Excel primarily used for?",
+              "options": [
+                "Video Editing",
+                "Spreadsheet and Data Analysis",
+                "Photo Editing",
+                "Programming"
+              ],
+              "answer": [1],
+              "explanation": "Microsoft Excel is a spreadsheet application used for storing, organizing, analyzing, and calculating data."
+            },
+            {
+              "id": "excel_q002",
+              "type": "MCQ",
+              "difficulty_rating": 1,
+              "question": "What is an Excel Workbook?",
+              "options": [
+                "A Row",
+                "A Column",
+                "An Excel File",
+                "A Formula"
+              ],
+              "answer": [2],
+              "explanation": "A Workbook is an Excel file that contains one or more worksheets."
+            },
+            {
+              "id": "excel_q003",
+              "type": "MCQ",
+              "difficulty_rating": 1,
+              "question": "Which of the following represents a valid cell address?",
+              "options": [
+                "1A",
+                "A1",
+                "AA",
+                "11"
+              ],
+              "answer": [1],
+              "explanation": "A valid cell address is formed using the column letter followed by the row number."
+            },
+            {
+              "id": "excel_q004",
+              "type": "MCQ",
+              "difficulty_rating": 1,
+              "question": "Rows in Excel are identified using:",
+              "options": [
+                "Letters",
+                "Symbols",
+                "Numbers",
+                "Colors"
+              ],
+              "answer": [2],
+              "explanation": "Rows are numbered 1, 2, 3, and so on."
+            },
+            {
+              "id": "excel_q005",
+              "type": "MCQ",
+              "difficulty_rating": 1,
+              "question": "Columns in Excel are identified using:",
+              "options": [
+                "Numbers",
+                "Letters",
+                "Roman Numerals",
+                "Special Characters"
+              ],
+              "answer": [1],
+              "explanation": "Columns are labeled A, B, C, D, and so on."
+            },
+            {
+              "id": "excel_q006",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "What is the intersection of a row and a column called?",
+              "options": [
+                "Table",
+                "Workbook",
+                "Cell",
+                "Worksheet"
+              ],
+              "answer": [2],
+              "explanation": "The intersection of a row and column is called a Cell."
+            },
+            {
+              "id": "excel_q007",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "Which Excel component displays formulas and cell contents?",
+              "options": [
+                "Status Bar",
+                "Ribbon",
+                "Formula Bar",
+                "Title Bar"
+              ],
+              "answer": [2],
+              "explanation": "The Formula Bar displays the contents or formula of the active cell."
+            },
+            {
+              "id": "excel_q008",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "Which component contains commands like Home, Insert, Formulas, and Data?",
+              "options": [
+                "Worksheet",
+                "Ribbon",
+                "Status Bar",
+                "Name Box"
+              ],
+              "answer": [1],
+              "explanation": "The Ribbon organizes all Excel commands into different tabs."
+            },
+            {
+              "id": "excel_q009",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "Which keyboard shortcut saves the current workbook?",
+              "options": [
+                "Ctrl + C",
+                "Ctrl + S",
+                "Ctrl + V",
+                "Ctrl + P"
+              ],
+              "answer": [1],
+              "explanation": "Ctrl + S saves the current workbook."
+            },
+            {
+              "id": "excel_q010",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "The Name Box in Excel displays:",
+              "options": [
+                "Workbook Name",
+                "Worksheet Name",
+                "Active Cell Address",
+                "Formula Result"
+              ],
+              "answer": [2],
+              "explanation": "The Name Box displays the address of the currently selected cell, such as A1 or C5."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
