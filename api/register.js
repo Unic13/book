@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
     }
 
     const id = `reg_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-    const ip =
+    const ipaddress =
       (req.headers['x-forwarded-for'] || '').split(',')[0].trim() ||
       req.socket?.remoteAddress ||
       '';
@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
         email: email.trim(),
         phone: mobile.trim(),
         howkonw: source.trim(),
-        ipaddress: ip,
+        ipaddress,
       },
     });
 
