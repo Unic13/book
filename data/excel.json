@@ -343,7 +343,7 @@
   "title": "Day 2: Data Entry, Editing, AutoFill and Flash Fill",
   "concept": {
     "title": "Entering, Editing and Managing Data in Microsoft Excel",
-    "content": [
+    "body": [
       {
         "type": "heading",
         "text": "1. What is Data Entry?"
@@ -355,7 +355,7 @@
       {
         "type": "image",
         "title": "Entering Data in Excel",
-        "path": "/imagepdf/day2/data-entry.jpeg"
+        "image": "/imagepdf/day2/data-entry.jpeg"
       },
       {
         "type": "list",
@@ -415,12 +415,7 @@
       {
         "type": "paragraph",
         "text": "Editing means modifying existing data without deleting the entire worksheet. Excel provides several methods for editing cell contents."
-      },
-      {
-        "type": "image",
-        "title": "Editing Cell",
-        "path": "/imagepdf/day2/edit-cell.jpeg"
-      },
+      },      
       {
         "type": "list",
         "items": [
@@ -470,11 +465,6 @@
         "text": "AutoFill is a powerful Excel feature that automatically fills cells with a series of values or copies existing values and formulas. It saves time by reducing repetitive typing."
       },
       {
-        "type": "image",
-        "title": "AutoFill Handle",
-        "path": "/imagepdf/day2/autofill.jpeg"
-      },
-      {
         "type": "list",
         "items": [
           "Generate Serial Numbers",
@@ -522,12 +512,7 @@
       {
         "type": "paragraph",
         "text": "Flash Fill automatically detects patterns in your data and fills the remaining cells without requiring formulas. It is commonly used to split names, combine text, or extract specific information."
-      },
-      {
-        "type": "image",
-        "title": "Flash Fill Example",
-        "path": "/imagepdf/day2/flashfill.jpeg"
-      },
+      },      
       {
         "type": "table",
         "headers": [
@@ -626,7 +611,7 @@
       }
     ]
   },
-    "questions": [
+  "questions": [
   {
     "id": "excel_q011",
     "type": "MCQ",
