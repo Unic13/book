@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
         email: email.trim(),
         phone: mobile.trim(),
         howkonw: source.trim(),
-        ipaddress,
+        ipaddress: ip,
       },
     });
 
