@@ -14,6 +14,16 @@ html{-webkit-text-size-adjust:100%}
 body{font-family:'Inter',sans-serif;background:#f4f5fb;color:#1a1a2e;min-height:100vh;min-height:100dvh}
 :root{--brand:#6C3FF5}
 
+/* ── Login = full-screen card, centered, no header/margin clutter ── */
+body.auth-screen{display:flex;flex-direction:column;height:100dvh;overflow:hidden}
+body.auth-screen header{display:none}
+body.auth-screen .container{flex:1;display:flex;align-items:center;justify-content:center;padding:24px;max-width:none;overflow-y:auto}
+@media (max-width:600px){
+  body.auth-screen .container{padding:0}
+  body.auth-screen #login-panel{max-width:none;width:100%;min-height:100dvh;border-radius:0;box-shadow:none;display:flex;flex-direction:column;justify-content:center}
+  body.auth-screen .login-body{width:100%}
+}
+
 header{background:#fff;border-bottom:1px solid #e5e7eb;padding:0 24px;height:56px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);position:sticky;top:0;z-index:50}
 .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#4f46e5);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:11px;flex-shrink:0}
 .back-btn{background:none;border:none;cursor:pointer;color:#9ca3af;padding:6px;border-radius:8px;transition:.15s;flex-shrink:0}
@@ -249,7 +259,7 @@ tr:hover td{background:#fafafa}
 }
 </style>
 </head>
-<body>
+<body class="auth-screen">
 
 <header>
   <button class="back-btn" onclick="location.href='index.html'">
@@ -445,6 +455,7 @@ async function login() {
       return;
     }
     adminKey = k;
+    document.body.classList.remove('auth-screen');
     document.getElementById('login-panel').style.display = 'none';
     document.getElementById('dashboard').style.display = 'block';
     loadData('registrations');
