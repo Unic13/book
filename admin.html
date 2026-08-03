@@ -100,7 +100,7 @@ tr:hover td{background:#fafafa}
 .section-panel.active{display:block}
 
 /* ── Question Builder layout ── */
-.builder-grid{display:grid;grid-template-columns:260px 1fr;gap:18px;align-items:start}
+.builder-grid{display:grid;grid-template-columns:400px 1fr;gap:18px;align-items:start}
 @media(max-width:840px){.builder-grid{grid-template-columns:1fr}}
 
 .builder-col{background:#fff;border-radius:16px;border:1px solid #e5e7eb;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
@@ -880,7 +880,7 @@ function renderBuilderEditor() {
 
     <div class="editor-section">
       <div class="editor-section-title">
-        <span>❓ Practice Questions (${(chapter.questions||[]).length})</span>
+        <span>Practice Questions (${(chapter.questions||[]).length})</span>
       </div>
       <div id="ed-questions-list"></div>
       <div style="display:flex;gap:8px;margin-top:8px">
