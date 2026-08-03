@@ -2,17 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Admin — UNIC Academic</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#f4f5fb;color:#1a1a2e;min-height:100vh}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Inter',sans-serif;background:#f4f5fb;color:#1a1a2e;min-height:100vh;min-height:100dvh}
 :root{--brand:#6C3FF5}
 
-header{background:#fff;border-bottom:1px solid #e5e7eb;padding:0 24px;height:56px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#4f46e5);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:11px}
-.back-btn{background:none;border:none;cursor:pointer;color:#9ca3af;padding:6px;border-radius:8px;transition:.15s}
+header{background:#fff;border-bottom:1px solid #e5e7eb;padding:0 24px;height:56px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);position:sticky;top:0;z-index:50}
+.logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#4f46e5);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:11px;flex-shrink:0}
+.back-btn{background:none;border:none;cursor:pointer;color:#9ca3af;padding:6px;border-radius:8px;transition:.15s;flex-shrink:0}
 .back-btn:hover{background:#f3f4f6;color:#374151}
 .brand{font-weight:700;font-size:14px;color:#111}
 .sub-brand{font-size:12px;color:#9ca3af}
@@ -46,8 +50,8 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;padding:0 24px;height:56p
 .stat-value{font-size:28px;font-weight:800;color:#111}
 .stat-label{font-size:12px;color:#9ca3af;margin-top:2px}
 
-.tabs{display:flex;gap:8px;margin-bottom:16px}
-.tab-btn{padding:8px 18px;border-radius:10px;border:1.5px solid #e5e7eb;background:#fff;font-size:13px;font-weight:600;cursor:pointer;color:#6b7280;transition:.15s}
+.tabs{display:flex;gap:8px;margin-bottom:16px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+.tab-btn{padding:8px 18px;border-radius:10px;border:1.5px solid #e5e7eb;background:#fff;font-size:13px;font-weight:600;cursor:pointer;color:#6b7280;transition:.15s;white-space:nowrap;flex-shrink:0}
 .tab-btn.active{background:#6C3FF5;color:#fff;border-color:transparent;box-shadow:0 2px 8px rgba(108,63,245,.3)}
 
 .table-wrap{background:#fff;border-radius:16px;border:1px solid #e5e7eb;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
@@ -71,16 +75,16 @@ tr:hover td{background:#fafafa}
 .empty-table .big{font-size:36px;margin-bottom:8px}
 .db-tip{background:#faf5ff;border:1.5px solid #e9d5ff;border-radius:14px;padding:20px 24px;margin-top:20px}
 .db-tip h3{font-size:14px;font-weight:700;color:#7c3aed;margin-bottom:8px}
-.db-tip code{display:block;background:#1e1e2e;color:#cdd6f4;padding:12px 16px;border-radius:10px;font-size:12px;line-height:1.7;margin-top:8px;white-space:pre}
-.pagination{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-top:1px solid #f3f4f6;font-size:12px;color:#9ca3af}
+.db-tip code{display:block;background:#1e1e2e;color:#cdd6f4;padding:12px 16px;border-radius:10px;font-size:12px;line-height:1.7;margin-top:8px;white-space:pre;overflow-x:auto}
+.pagination{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-top:1px solid #f3f4f6;font-size:12px;color:#9ca3af;flex-wrap:wrap;gap:8px}
 .page-btns{display:flex;gap:6px}
 .page-btn{padding:5px 10px;border-radius:7px;border:1.5px solid #e5e7eb;background:#fff;cursor:pointer;font-size:12px;transition:.15s}
 .page-btn:hover:not(:disabled){background:#f3f4f6}
 .page-btn:disabled{opacity:.4;cursor:not-allowed}
 
 /* ── Top-level section tabs (Data vs Builder) ── */
-.section-tabs{display:flex;gap:8px;margin-bottom:20px;border-bottom:1.5px solid #e5e7eb}
-.section-tab{padding:10px 4px;margin-right:20px;background:none;border:none;border-bottom:2.5px solid transparent;cursor:pointer;font-size:13.5px;font-weight:700;color:#9ca3af;transition:.15s;margin-bottom:-1.5px}
+.section-tabs{display:flex;gap:8px;margin-bottom:20px;border-bottom:1.5px solid #e5e7eb;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.section-tab{padding:10px 4px;margin-right:20px;background:none;border:none;border-bottom:2.5px solid transparent;cursor:pointer;font-size:13.5px;font-weight:700;color:#9ca3af;transition:.15s;margin-bottom:-1.5px;white-space:nowrap;flex-shrink:0}
 .section-tab.active{color:#6C3FF5;border-bottom-color:#6C3FF5}
 .section-panel{display:none}
 .section-panel.active{display:block}
@@ -90,7 +94,7 @@ tr:hover td{background:#fafafa}
 @media(max-width:840px){.builder-grid{grid-template-columns:1fr}}
 
 .builder-col{background:#fff;border-radius:16px;border:1px solid #e5e7eb;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
-.builder-col-header{padding:14px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.builder-col-header{padding:14px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .builder-col-title{font-size:12px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:.05em}
 .builder-col-body{padding:10px;max-height:560px;overflow-y:auto}
 
@@ -104,7 +108,7 @@ tr:hover td{background:#fafafa}
 .b-unit-row{display:flex;align-items:center;gap:6px;padding:8px 10px;border-radius:9px;cursor:pointer;transition:.15s}
 .b-unit-row:hover{background:#f9fafb}
 .b-unit-title{flex:1;font-size:12.5px;font-weight:600;color:#374151;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.b-icon-btn{background:none;border:none;cursor:pointer;color:#9ca3af;padding:4px;border-radius:6px;display:flex;align-items:center;transition:.15s;flex-shrink:0}
+.b-icon-btn{background:none;border:none;cursor:pointer;color:#9ca3af;padding:4px;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:.15s;flex-shrink:0;font-size:11px;font-weight:700}
 .b-icon-btn:hover{background:#f3f4f6;color:#374151}
 .b-icon-btn.danger:hover{background:#fee2e2;color:#dc2626}
 .b-chap-list{padding-left:16px;border-left:2px solid #f3f4f6;margin-left:14px}
@@ -138,6 +142,22 @@ tr:hover td{background:#fafafa}
 .b-list-item textarea,.b-list-item input{flex:1}
 .b-list-remove{flex-shrink:0;margin-top:2px}
 
+/* Generic collapsible item cards (used by both content blocks & questions) */
+.b-item-card{border:1.5px solid #e5e7eb;border-radius:12px;margin-bottom:10px;overflow:hidden}
+.b-item-head{display:flex;align-items:center;gap:8px;padding:9px 12px;background:#f9fafb;cursor:pointer}
+.b-item-type-badge{font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:20px;color:#fff;flex-shrink:0;text-transform:uppercase;letter-spacing:.03em}
+.b-item-summary{flex:1;font-size:12px;color:#374151;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-item-body{padding:12px;display:none}
+.b-item-body.open{display:block}
+.b-item-move{display:flex;gap:2px;flex-shrink:0}
+.b-thumb{max-width:160px;max-height:110px;border-radius:8px;border:1px solid #e5e7eb;display:block;margin-top:6px;object-fit:cover}
+.b-upload-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.b-upload-row input[type=file]{font-size:11px;max-width:100%}
+.b-table-editor{width:100%;border-collapse:collapse;margin-top:6px}
+.b-table-editor td{padding:3px;border:1px solid #f0f0f0}
+.b-table-editor input{width:100%;font-size:11.5px;padding:6px 7px;border:1px solid #e5e7eb;border-radius:5px;font-family:inherit}
+.badge-type-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+
 /* Question cards inside builder */
 .b-question-card{border:1.5px solid #e5e7eb;border-radius:12px;margin-bottom:12px;overflow:hidden}
 .b-question-head{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#f9fafb;cursor:pointer}
@@ -166,17 +186,67 @@ tr:hover td{background:#fafafa}
 .builder-status.success{color:#16a34a;font-weight:600}
 .builder-status.error{color:#dc2626;font-weight:600}
 
-/* JSON preview modal */
+/* JSON / Live-Preview modal */
 #json-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(3px);z-index:300;display:none;align-items:center;justify-content:center;padding:20px}
 #json-modal-overlay.open{display:flex}
-.json-modal{background:#1e1e2e;border-radius:18px;width:100%;max-width:720px;max-height:80vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.json-modal{background:#1e1e2e;border-radius:18px;width:100%;max-width:760px;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
 .json-modal-head{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid #313244}
-.json-modal-title{font-size:13px;font-weight:700;color:#cdd6f4;flex:1}
-.json-modal-close{background:none;border:none;color:#9399b2;cursor:pointer;padding:4px;border-radius:6px}
+.json-modal-title{font-size:13px;font-weight:700;color:#cdd6f4;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.json-modal-close{background:none;border:none;color:#9399b2;cursor:pointer;padding:4px;border-radius:6px;flex-shrink:0}
 .json-modal-close:hover{background:#313244;color:#fff}
-.json-modal-body{padding:16px 20px;overflow-y:auto;flex:1}
+.pv-tabs{display:flex;gap:4px;padding:0 20px;border-bottom:1px solid #313244;flex-shrink:0}
+.pv-tab{padding:10px 14px;background:none;border:none;cursor:pointer;font-size:12px;font-weight:700;color:#9399b2;border-bottom:2px solid transparent;transition:.15s}
+.pv-tab.active{color:#cdd6f4;border-bottom-color:#a78bfa}
+.json-modal-body{padding:16px 20px;overflow-y:auto;flex:1;background:#292a3e}
+.pv-pane{display:none}
+.pv-pane.active{display:block}
 .json-modal-body pre{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.7;color:#cdd6f4;white-space:pre-wrap;word-break:break-word}
-.json-modal-foot{padding:14px 20px;border-top:1px solid #313244;display:flex;gap:8px}
+.json-modal-foot{padding:14px 20px;border-top:1px solid #313244;display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0}
+
+/* Live preview — mimics the learner-facing app */
+.pv-app{background:#fff;border-radius:14px;padding:20px;color:#1a1a2e;font-family:'Inter',sans-serif}
+.pv-title{font-size:18px;font-weight:800;margin-bottom:14px;color:#111}
+.pv-h{font-size:16px;font-weight:800;color:#4f46e5;margin:18px 0 8px}
+.pv-h:first-child{margin-top:0}
+.pv-p{font-size:13.5px;line-height:1.7;color:#374151;margin-bottom:10px}
+.pv-note{background:#faf5ff;border-left:3px solid #7c3aed;padding:10px 14px;border-radius:8px;font-size:12.5px;color:#6b21a8;margin-bottom:12px}
+.pv-list{margin:0 0 12px 20px;font-size:13px;color:#374151;line-height:1.8}
+.pv-formula{background:#1e1e2e;color:#cdd6f4;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px;text-align:center;overflow-x:auto}
+.pv-syntax{background:#1e1e2e;color:#a6e3a1;font-family:monospace;padding:12px 14px;border-radius:8px;font-size:12px;white-space:pre-wrap;margin-bottom:12px;overflow-x:auto}
+.pv-table-wrap{overflow-x:auto;margin-bottom:14px}
+.pv-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.pv-table th,.pv-table td{border:1px solid #e5e7eb;padding:6px 10px;text-align:left}
+.pv-table th{background:#f9fafb;color:#6b7280}
+.pv-img-wrap{margin-bottom:14px}
+.pv-img-wrap img{max-width:100%;border-radius:10px;border:1px solid #e5e7eb;display:block}
+.pv-img-title{font-size:11px;color:#9ca3af;margin-top:4px;text-align:center}
+.pv-pdf-link{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:9px;background:#f3f4f6;color:#374151;font-size:12px;font-weight:600;text-decoration:none;margin-bottom:14px}
+.pv-q{border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.pv-q-num{font-size:11px;font-weight:700;color:#9ca3af;margin-bottom:6px}
+.pv-opt{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;font-size:12.5px;margin-bottom:5px;border:1.5px solid #e5e7eb}
+.pv-opt.correct{border-color:#16a34a;background:#f0fdf4;color:#15803d;font-weight:600}
+.pv-explain{font-size:12px;color:#6b7280;background:#f9fafb;border-radius:8px;padding:8px 10px;margin-top:8px}
+
+/* ── Mobile-friendly full page tweaks ── */
+@media (max-width:600px){
+  .container{padding:16px 12px}
+  header{padding:0 14px}
+  .brand{font-size:13px}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat-card{padding:14px}
+  .stat-value{font-size:22px}
+  .table-toolbar{flex-direction:column;align-items:stretch}
+  .search-input{width:100%}
+  .builder-toolbar{flex-direction:column;align-items:stretch}
+  .builder-toolbar .b-btn{width:100%;justify-content:center}
+  .builder-status{margin-left:0;text-align:center;order:99}
+  .b-field-row{grid-template-columns:1fr}
+  .json-modal{max-width:100%;max-height:100dvh;height:100dvh;border-radius:0}
+  .builder-col-header{align-items:flex-start}
+  .subj-pill-row{padding:10px}
+  .b-add-btn{font-size:11.5px}
+  .pv-app{padding:14px}
+}
 </style>
 </head>
 <body>
@@ -294,7 +364,7 @@ ADMIN_KEY=your-admin-password
           <div class="builder-col-header">
             <span class="builder-col-title" id="builder-editor-label">Editor</span>
             <div style="display:flex;gap:6px">
-              <button class="b-btn b-btn-outline b-btn-sm" onclick="showJsonPreview()">👁 Preview JSON</button>
+              <button class="b-btn b-btn-outline b-btn-sm" onclick="showJsonPreview()">👁 Preview</button>
             </div>
           </div>
           <div id="builder-editor">
@@ -314,16 +384,23 @@ ADMIN_KEY=your-admin-password
 
 </div>
 
-<!-- JSON Preview Modal -->
+<!-- Preview / JSON Modal -->
 <div id="json-modal-overlay" onclick="if(event.target===this) closeJsonPreview()">
   <div class="json-modal">
     <div class="json-modal-head">
-      <span class="json-modal-title" id="json-modal-title">Subject JSON</span>
+      <span class="json-modal-title" id="json-modal-title">Preview</span>
       <button class="json-modal-close" onclick="closeJsonPreview()">
         <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
-    <div class="json-modal-body"><pre id="json-modal-content"></pre></div>
+    <div class="pv-tabs">
+      <button class="pv-tab active" id="pv-tab-preview" onclick="switchPvTab('preview')">🔍 Live Preview</button>
+      <button class="pv-tab" id="pv-tab-json" onclick="switchPvTab('json')">{ } Raw JSON</button>
+    </div>
+    <div class="json-modal-body">
+      <div class="pv-pane active" id="pv-pane-preview"></div>
+      <div class="pv-pane" id="pv-pane-json"><pre id="json-modal-content"></pre></div>
+    </div>
     <div class="json-modal-foot">
       <button class="b-btn b-btn-primary" onclick="copyJsonPreview()">📋 Copy JSON</button>
       <button class="b-btn b-btn-outline" onclick="closeJsonPreview()">Close</button>
@@ -462,8 +539,16 @@ function switchSection(section) {
 // ══════════════════════════════════════════════════════
 //  QUESTION BUILDER
 //  Lets admins create/edit Subjects → Units → Chapters →
-//  Concept + Questions (MCQ/MSQ/NAT), matching the exact
-//  JSON schema used by the main app's /data/*.json files.
+//  Concept (rich content blocks) + Questions (MCQ/MSQ/NAT),
+//  matching the JSON schema used by the main app's
+//  /data/*.json files.
+//
+//  Concept content blocks support these types, matching the
+//  app's rendering schema:
+//    heading, paragraph, note, formula, list, table, syntax, image
+//  "image" blocks may carry an `image` (picture) and/or a `pdf`
+//  field — either a URL/path string, or a base64 data URI
+//  produced automatically when a file is uploaded in the editor.
 // ══════════════════════════════════════════════════════
 
 const BUILTIN_SUBJECTS = [
@@ -475,6 +560,11 @@ const BUILTIN_SUBJECTS = [
 
 const QTYPE_COLORS = { MCQ: '#6C3FF5', MSQ: '#0891b2', NAT: '#d97706' };
 
+const BTYPE_COLORS = {
+  heading: '#4f46e5', paragraph: '#6b7280', note: '#7c3aed', formula: '#0891b2',
+  list: '#d97706', table: '#059669', syntax: '#dc2626', image: '#db2777'
+};
+
 let builder = {
   subjectsLoaded: false,
   subjects: [],          // [{code, subject, color}]
@@ -483,6 +573,7 @@ let builder = {
   activeUnitId: null,
   activeChapterId: null,
   openQuestionId: null,   // which question card is expanded
+  openBodyIndex: null,    // which concept content-block is expanded
   dirty: false,
 };
 
@@ -558,6 +649,7 @@ function openNewSubjectPrompt() {
   builder.activeData = { subject: name.trim(), code, color, units: [] };
   builder.activeUnitId = null;
   builder.activeChapterId = null;
+  builder.openBodyIndex = null;
 
   renderSubjectPills();
   renderBuilderTree();
@@ -569,6 +661,7 @@ async function loadSubjectIntoBuilder(code) {
   builder.activeCode = code;
   builder.activeUnitId = null;
   builder.activeChapterId = null;
+  builder.openBodyIndex = null;
   renderSubjectPills();
 
   document.getElementById('builder-tree').innerHTML = '<div class="editor-empty"><div class="big">⏳</div><p style="font-size:12px">Loading…</p></div>';
@@ -683,7 +776,7 @@ function addChapter(unitId) {
   const chapter = {
     id: uid('c'),
     title: title.trim(),
-    concept: { title: title.trim(), latex: true, body: [], formulas: [] },
+    concept: { title: title.trim(), latex: true, body: [] },
     questions: [],
   };
   unit.chapters = unit.chapters || [];
@@ -707,6 +800,7 @@ function selectChapterInBuilder(unitId, chapterId) {
   builder.activeUnitId = unitId;
   builder.activeChapterId = chapterId;
   builder.openQuestionId = null;
+  builder.openBodyIndex = null;
   renderBuilderTree();
   renderBuilderEditor();
 }
@@ -714,6 +808,24 @@ function selectChapterInBuilder(unitId, chapterId) {
 function getActiveChapterObj() {
   const unit = builder.activeData?.units?.find(u => u.id === builder.activeUnitId);
   return unit?.chapters?.find(c => c.id === builder.activeChapterId) || null;
+}
+
+// Normalizes a chapter's concept into the rich content-block schema.
+// Migrates the legacy { body:[strings], formulas:[strings] } format
+// (used by the bundled physics/chemistry/maths/biology JSON files)
+// into { body:[ {type, ...}, ... ] } content blocks automatically.
+function normalizeConcept(concept, fallbackTitle) {
+  concept = concept || {};
+  const out = { title: concept.title || fallbackTitle || '', latex: concept.latex !== false, body: [] };
+  const rawBody = Array.isArray(concept.body) ? concept.body : [];
+  rawBody.forEach(b => {
+    if (typeof b === 'string') out.body.push({ type: 'paragraph', text: b });
+    else if (b && b.type) out.body.push(b);
+  });
+  (concept.formulas || []).forEach(f => {
+    if (typeof f === 'string' && f.trim()) out.body.push({ type: 'formula', text: f });
+  });
+  return out;
 }
 
 // ── EDITOR (concept + questions) ──
@@ -729,7 +841,8 @@ function renderBuilderEditor() {
   }
 
   label.textContent = chapter.title;
-  const concept = chapter.concept || { title: chapter.title, latex: true, body: [], formulas: [] };
+  chapter.concept = normalizeConcept(chapter.concept, chapter.title);
+  const concept = chapter.concept;
 
   let html = `
     <div class="editor-section">
@@ -749,14 +862,19 @@ function renderBuilderEditor() {
         <label><input type="checkbox" id="ed-concept-latex" ${concept.latex ? 'checked' : ''} onchange="updateConceptField('latex', this.checked)" style="width:auto;margin-right:6px"> Enable LaTeX rendering</label>
       </div>
       <div class="b-field">
-        <label>Body Paragraphs</label>
-        <div id="ed-concept-body-list"></div>
-        <button class="b-btn b-btn-outline b-btn-sm" onclick="addConceptParagraph()">+ Add Paragraph</button>
-      </div>
-      <div class="b-field">
-        <label>Key Formulas</label>
-        <div id="ed-concept-formula-list"></div>
-        <button class="b-btn b-btn-outline b-btn-sm" onclick="addConceptFormula()">+ Add Formula</button>
+        <label>Content Blocks</label>
+        <div id="ed-body-list"></div>
+        <div class="badge-type-row">
+          <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('heading')">+ Heading</button>
+          <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('paragraph')">+ Paragraph</button>
+          <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('list')">+ List</button>
+          <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('table')">+ Table</button>
+          <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('note')">+ Note</button>
+          <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('formula')">+ Formula</button>
+          <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('syntax')">+ Syntax/Code</button>
+          <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('image')">+ Image / PDF</button>
+        </div>
+        <div class="b-field-hint">Blocks render top-to-bottom exactly as shown in the app. Use ↑ ↓ to reorder.</div>
       </div>
     </div>
 
@@ -773,8 +891,7 @@ function renderBuilderEditor() {
     </div>`;
 
   wrap.innerHTML = html;
-  renderConceptBodyList(concept);
-  renderConceptFormulaList(concept);
+  renderBodyItemsList(concept);
   renderQuestionsList(chapter);
 }
 
@@ -782,7 +899,6 @@ function updateChapterTitle(val) {
   const chapter = getActiveChapterObj();
   if (!chapter) return;
   chapter.title = val;
-  if (chapter.concept) chapter.concept.title = chapter.concept.title || val;
   renderBuilderTree();
   document.getElementById('builder-editor-label').textContent = val;
   markDirty();
@@ -791,83 +907,312 @@ function updateChapterTitle(val) {
 function updateConceptField(field, val) {
   const chapter = getActiveChapterObj();
   if (!chapter) return;
-  chapter.concept = chapter.concept || { title:'', latex:true, body:[], formulas:[] };
+  chapter.concept = chapter.concept || { title:'', latex:true, body:[] };
   chapter.concept[field] = val;
   markDirty();
 }
 
-function renderConceptBodyList(concept) {
-  const wrap = document.getElementById('ed-concept-body-list');
+// ── Concept content blocks ──
+function addBodyItem(type) {
+  const chapter = getActiveChapterObj();
+  if (!chapter) return;
+  chapter.concept = chapter.concept || { title: chapter.title, latex: true, body: [] };
+  chapter.concept.body = chapter.concept.body || [];
+
+  let item;
+  if (type === 'list') item = { type: 'list', items: [''] };
+  else if (type === 'table') item = { type: 'table', headers: ['Column 1', 'Column 2'], rows: [['', '']] };
+  else if (type === 'syntax') item = { type: 'syntax', language: 'text', code: '' };
+  else if (type === 'image') item = { type: 'image', title: '', image: '', pdf: '' };
+  else item = { type, text: '' };
+
+  chapter.concept.body.push(item);
+  builder.openBodyIndex = chapter.concept.body.length - 1;
+  renderBodyItemsList(chapter.concept);
+  markDirty();
+}
+
+function bodyItemSummary(item) {
+  if (item.type === 'list') return (item.items || []).filter(Boolean).join(', ') || '(empty list)';
+  if (item.type === 'table') return (item.headers || []).join(' | ') || '(empty table)';
+  if (item.type === 'syntax') return item.code || '(empty code)';
+  if (item.type === 'image') return item.title || item.image || item.pdf || '(empty image/pdf)';
+  return item.text || '(empty)';
+}
+
+function renderBodyItemsList(concept) {
+  const wrap = document.getElementById('ed-body-list');
+  if (!wrap) return;
   wrap.innerHTML = '';
-  (concept.body || []).forEach((para, i) => {
-    const row = document.createElement('div');
-    row.className = 'b-list-item';
-    row.innerHTML = `
-      <textarea rows="2" oninput="updateConceptParagraph(${i}, this.value)" placeholder="Use **bold** and $LaTeX$ as needed">${escHtml(para)}</textarea>
-      <button class="b-icon-btn danger b-list-remove" onclick="removeConceptParagraph(${i})" title="Remove">
-        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>`;
-    wrap.appendChild(row);
+  (concept.body || []).forEach((item, i) => {
+    const isOpen = builder.openBodyIndex === i;
+    const card = document.createElement('div');
+    card.className = 'b-item-card';
+    const summary = bodyItemSummary(item).replace(/\$/g, '').slice(0, 60);
+    card.innerHTML = `
+      <div class="b-item-head" onclick="toggleBodyItemOpen(${i})">
+        <span class="b-item-type-badge" style="background:${BTYPE_COLORS[item.type] || '#6b7280'}">${item.type}</span>
+        <span class="b-item-summary">${escHtml(summary)}</span>
+        <div class="b-item-move">
+          <button class="b-icon-btn" onclick="event.stopPropagation();moveBodyItem(${i},-1)" title="Move up">↑</button>
+          <button class="b-icon-btn" onclick="event.stopPropagation();moveBodyItem(${i},1)" title="Move down">↓</button>
+        </div>
+        <button class="b-icon-btn danger" onclick="event.stopPropagation();removeBodyItem(${i})" title="Remove block">
+          <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="b-item-body${isOpen ? ' open' : ''}" id="bbody-${i}"></div>`;
+    wrap.appendChild(card);
+    if (isOpen) renderBodyItemEditor(item, i, document.getElementById(`bbody-${i}`));
   });
 }
 
-function addConceptParagraph() {
+function toggleBodyItemOpen(i) {
+  builder.openBodyIndex = builder.openBodyIndex === i ? null : i;
   const chapter = getActiveChapterObj();
-  chapter.concept = chapter.concept || { title:'', latex:true, body:[], formulas:[] };
-  chapter.concept.body = chapter.concept.body || [];
-  chapter.concept.body.push('');
-  renderConceptBodyList(chapter.concept);
+  renderBodyItemsList(chapter.concept);
+}
+
+function moveBodyItem(i, dir) {
+  const chapter = getActiveChapterObj();
+  const arr = chapter.concept.body;
+  const j = i + dir;
+  if (j < 0 || j >= arr.length) return;
+  [arr[i], arr[j]] = [arr[j], arr[i]];
+  builder.openBodyIndex = j;
+  renderBodyItemsList(chapter.concept);
   markDirty();
 }
 
-function updateConceptParagraph(i, val) {
-  const chapter = getActiveChapterObj();
-  chapter.concept.body[i] = val;
-  markDirty();
-}
-
-function removeConceptParagraph(i) {
+function removeBodyItem(i) {
+  if (!confirm('Remove this content block?')) return;
   const chapter = getActiveChapterObj();
   chapter.concept.body.splice(i, 1);
-  renderConceptBodyList(chapter.concept);
+  builder.openBodyIndex = null;
+  renderBodyItemsList(chapter.concept);
   markDirty();
 }
 
-function renderConceptFormulaList(concept) {
-  const wrap = document.getElementById('ed-concept-formula-list');
-  wrap.innerHTML = '';
-  (concept.formulas || []).forEach((f, i) => {
-    const row = document.createElement('div');
-    row.className = 'b-list-item';
-    row.innerHTML = `
-      <input type="text" value="${escAttr(f)}" oninput="updateConceptFormula(${i}, this.value)" placeholder="$F = ma$">
-      <button class="b-icon-btn danger b-list-remove" onclick="removeConceptFormula(${i})" title="Remove">
-        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>`;
-    wrap.appendChild(row);
+function refreshBodyItemSummary(i) {
+  const chapter = getActiveChapterObj();
+  const item = chapter.concept.body[i];
+  const wrap = document.getElementById('ed-body-list');
+  const headSpan = wrap?.children[i]?.querySelector('.b-item-summary');
+  if (headSpan) headSpan.textContent = bodyItemSummary(item).replace(/\$/g, '').slice(0, 60);
+}
+
+function renderBodyItemEditor(item, i, container) {
+  if (['heading', 'paragraph', 'note', 'formula'].includes(item.type)) {
+    const rows = item.type === 'heading' ? 1 : 3;
+    const ph = item.type === 'formula' ? '$F = ma$' : 'Text… use $LaTeX$ or $$LaTeX$$ where needed';
+    container.innerHTML = `<div class="b-field"><label>Text</label><textarea rows="${rows}" oninput="updateBodyText(${i}, this.value)" placeholder="${escAttr(ph)}">${escHtml(item.text || '')}</textarea></div>`;
+    return;
+  }
+
+  if (item.type === 'list') {
+    let rows = '';
+    (item.items || []).forEach((li, li_i) => {
+      rows += `<div class="b-list-item"><input type="text" value="${escAttr(li)}" oninput="updateListItemText(${i},${li_i},this.value)" placeholder="List item">
+        <button class="b-icon-btn danger b-list-remove" onclick="removeListItemAt(${i},${li_i})">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button></div>`;
+    });
+    container.innerHTML = `<div class="b-field"><label>List Items</label>${rows}<button class="b-btn b-btn-outline b-btn-sm" onclick="addListItemAt(${i})">+ Add Item</button></div>`;
+    return;
+  }
+
+  if (item.type === 'table') {
+    container.innerHTML = tableEditorHtml(item, i);
+    return;
+  }
+
+  if (item.type === 'syntax') {
+    container.innerHTML = `
+      <div class="b-field"><label>Language</label><input type="text" value="${escAttr(item.language || 'text')}" oninput="updateSyntaxField(${i},'language',this.value)" placeholder="excel / python / text"></div>
+      <div class="b-field"><label>Code</label><textarea rows="4" style="font-family:monospace" oninput="updateSyntaxField(${i},'code',this.value)">${escHtml(item.code || '')}</textarea></div>`;
+    return;
+  }
+
+  if (item.type === 'image') {
+    container.innerHTML = `
+      <div class="b-field"><label>Title / Caption</label><input type="text" value="${escAttr(item.title || '')}" oninput="updateImageField(${i},'title',this.value)"></div>
+      <div class="b-field">
+        <label>Image — URL path or base64 (upload auto-converts)</label>
+        <input type="text" id="img-url-${i}" value="${escAttr(item.image || '')}" oninput="updateImageField(${i},'image',this.value)" placeholder="/data/imagepdf/img6.jpeg">
+        <div class="b-upload-row">
+          <input type="file" accept="image/*" onchange="handleImageUpload(${i},this)">
+          ${item.image ? `<img src="${escAttr(item.image)}" class="b-thumb" onerror="this.style.display='none'">` : ''}
+        </div>
+      </div>
+      <div class="b-field">
+        <label>PDF — URL path or base64 (upload auto-converts)</label>
+        <input type="text" id="pdf-url-${i}" value="${escAttr(item.pdf || '')}" oninput="updateImageField(${i},'pdf',this.value)" placeholder="/data/imagepdf/img6.pdf">
+        <div class="b-upload-row">
+          <input type="file" accept="application/pdf" onchange="handlePdfUpload(${i},this)">
+          ${item.pdf ? `<a href="${escAttr(item.pdf)}" target="_blank" class="export-btn" style="text-decoration:none;display:inline-block">📄 View current PDF</a>` : ''}
+        </div>
+      </div>
+      <div class="b-field-hint">Provide an image, a PDF, or both — the app shows whichever is present. Uploaded files are embedded as base64 directly in the JSON, so no separate file hosting is required.</div>`;
+    return;
+  }
+
+  container.innerHTML = '<div class="b-field-hint">Unsupported block type.</div>';
+}
+
+function updateBodyText(i, val) {
+  const chapter = getActiveChapterObj();
+  chapter.concept.body[i].text = val;
+  refreshBodyItemSummary(i);
+  markDirty();
+}
+
+function addListItemAt(i) {
+  const chapter = getActiveChapterObj();
+  const item = chapter.concept.body[i];
+  item.items = item.items || [];
+  item.items.push('');
+  renderBodyItemEditor(item, i, document.getElementById(`bbody-${i}`));
+  refreshBodyItemSummary(i);
+  markDirty();
+}
+
+function updateListItemText(i, li, val) {
+  const chapter = getActiveChapterObj();
+  chapter.concept.body[i].items[li] = val;
+  refreshBodyItemSummary(i);
+  markDirty();
+}
+
+function removeListItemAt(i, li) {
+  const chapter = getActiveChapterObj();
+  const item = chapter.concept.body[i];
+  item.items.splice(li, 1);
+  renderBodyItemEditor(item, i, document.getElementById(`bbody-${i}`));
+  refreshBodyItemSummary(i);
+  markDirty();
+}
+
+function tableEditorHtml(item, i) {
+  const headers = item.headers || [];
+  const rows = item.rows || [];
+  let html = '<div class="b-field"><label>Table</label><div style="overflow-x:auto"><table class="b-table-editor"><tr>';
+  headers.forEach((h, ci) => {
+    html += `<td><input type="text" value="${escAttr(h)}" oninput="updateTableHeader(${i},${ci},this.value)" placeholder="Header"></td>`;
+  });
+  html += `<td><button class="b-icon-btn" onclick="addTableCol(${i})" title="Add column">+col</button></td></tr>`;
+  rows.forEach((r, ri) => {
+    html += '<tr>';
+    headers.forEach((_, ci) => {
+      html += `<td><input type="text" value="${escAttr(r[ci] || '')}" oninput="updateTableCell(${i},${ri},${ci},this.value)"></td>`;
+    });
+    html += `<td><button class="b-icon-btn danger" onclick="removeTableRow(${i},${ri})" title="Remove row">✕</button></td></tr>`;
+  });
+  html += '</table></div>';
+  html += `<button class="b-btn b-btn-outline b-btn-sm" style="margin-top:6px" onclick="addTableRow(${i})">+ Add Row</button></div>`;
+  return html;
+}
+
+function rerenderTableEditor(i) {
+  const chapter = getActiveChapterObj();
+  const item = chapter.concept.body[i];
+  const container = document.getElementById(`bbody-${i}`);
+  if (container) container.innerHTML = tableEditorHtml(item, i);
+  refreshBodyItemSummary(i);
+  markDirty();
+}
+
+function addTableCol(i) {
+  const chapter = getActiveChapterObj();
+  const item = chapter.concept.body[i];
+  item.headers = item.headers || [];
+  item.headers.push(`Column ${item.headers.length + 1}`);
+  (item.rows || []).forEach(r => r.push(''));
+  rerenderTableEditor(i);
+}
+
+function addTableRow(i) {
+  const chapter = getActiveChapterObj();
+  const item = chapter.concept.body[i];
+  item.rows = item.rows || [];
+  item.rows.push((item.headers || []).map(() => ''));
+  rerenderTableEditor(i);
+}
+
+function removeTableRow(i, ri) {
+  const chapter = getActiveChapterObj();
+  const item = chapter.concept.body[i];
+  item.rows.splice(ri, 1);
+  rerenderTableEditor(i);
+}
+
+function updateTableHeader(i, ci, val) {
+  const chapter = getActiveChapterObj();
+  chapter.concept.body[i].headers[ci] = val;
+  refreshBodyItemSummary(i);
+  markDirty();
+}
+
+function updateTableCell(i, ri, ci, val) {
+  const chapter = getActiveChapterObj();
+  chapter.concept.body[i].rows[ri][ci] = val;
+  markDirty();
+}
+
+function updateSyntaxField(i, field, val) {
+  const chapter = getActiveChapterObj();
+  chapter.concept.body[i][field] = val;
+  if (field === 'code') refreshBodyItemSummary(i);
+  markDirty();
+}
+
+function updateImageField(i, field, val) {
+  const chapter = getActiveChapterObj();
+  chapter.concept.body[i][field] = val;
+  refreshBodyItemSummary(i);
+  markDirty();
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
   });
 }
 
-function addConceptFormula() {
-  const chapter = getActiveChapterObj();
-  chapter.concept = chapter.concept || { title:'', latex:true, body:[], formulas:[] };
-  chapter.concept.formulas = chapter.concept.formulas || [];
-  chapter.concept.formulas.push('');
-  renderConceptFormulaList(chapter.concept);
-  markDirty();
+async function handleImageUpload(i, inputEl) {
+  const file = inputEl.files[0];
+  if (!file) return;
+  try {
+    const dataUrl = await fileToBase64(file);
+    const chapter = getActiveChapterObj();
+    chapter.concept.body[i].image = dataUrl;
+    const urlField = document.getElementById(`img-url-${i}`);
+    if (urlField) urlField.value = dataUrl;
+    renderBodyItemEditor(chapter.concept.body[i], i, document.getElementById(`bbody-${i}`));
+    refreshBodyItemSummary(i);
+    markDirty();
+  } catch {
+    alert('Could not read that image file.');
+  }
 }
 
-function updateConceptFormula(i, val) {
-  const chapter = getActiveChapterObj();
-  chapter.concept.formulas[i] = val;
-  markDirty();
-}
-
-function removeConceptFormula(i) {
-  const chapter = getActiveChapterObj();
-  chapter.concept.formulas.splice(i, 1);
-  renderConceptFormulaList(chapter.concept);
-  markDirty();
+async function handlePdfUpload(i, inputEl) {
+  const file = inputEl.files[0];
+  if (!file) return;
+  try {
+    const dataUrl = await fileToBase64(file);
+    const chapter = getActiveChapterObj();
+    chapter.concept.body[i].pdf = dataUrl;
+    const urlField = document.getElementById(`pdf-url-${i}`);
+    if (urlField) urlField.value = dataUrl;
+    renderBodyItemEditor(chapter.concept.body[i], i, document.getElementById(`bbody-${i}`));
+    refreshBodyItemSummary(i);
+    markDirty();
+  } catch {
+    alert('Could not read that PDF file.');
+  }
 }
 
 // ── Questions ──
@@ -1024,7 +1369,6 @@ function addOption(qid) {
   q.options = q.options || [];
   if (q.options.length >= 6) { alert('Maximum 6 options.'); return; }
   q.options.push('');
-  const chapter = getActiveChapterObj();
   renderQuestionEditor(q, document.getElementById(`qbody-${qid}`));
   markDirty();
 }
@@ -1083,11 +1427,93 @@ function downloadSubjectJson() {
   a.click();
 }
 
+// ── Preview modal (Live Preview + Raw JSON, tabbed) ──
+function pvBodyItemHtml(item) {
+  switch (item.type) {
+    case 'heading': return `<div class="pv-h">${escHtml(item.text || '')}</div>`;
+    case 'paragraph': return `<div class="pv-p">${escHtml(item.text || '')}</div>`;
+    case 'note': return `<div class="pv-note">💡 ${escHtml(item.text || '')}</div>`;
+    case 'formula': return `<div class="pv-formula">${escHtml(item.text || '')}</div>`;
+    case 'syntax': return `<div class="pv-syntax">${escHtml(item.code || '')}</div>`;
+    case 'list': return `<ul class="pv-list">${(item.items || []).map(li => `<li>${escHtml(li)}</li>`).join('')}</ul>`;
+    case 'table': {
+      const headers = item.headers || [];
+      const rows = item.rows || [];
+      let h = `<div class="pv-table-wrap"><table class="pv-table"><tr>${headers.map(x => `<th>${escHtml(x)}</th>`).join('')}</tr>`;
+      rows.forEach(r => { h += `<tr>${headers.map((_, ci) => `<td>${escHtml(r[ci] || '')}</td>`).join('')}</tr>`; });
+      h += '</table></div>';
+      return h;
+    }
+    case 'image': {
+      let h = '';
+      if (item.image) h += `<div class="pv-img-wrap"><img src="${escAttr(item.image)}" alt="${escAttr(item.title || '')}" onerror="this.parentElement.innerHTML='⚠️ Image failed to load'">${item.title ? `<div class="pv-img-title">${escHtml(item.title)}</div>` : ''}</div>`;
+      if (item.pdf) h += `<a class="pv-pdf-link" href="${escAttr(item.pdf)}" target="_blank">📄 ${escHtml(item.title || 'View PDF')}</a>`;
+      if (!item.image && !item.pdf) h += `<div class="pv-p" style="color:#9ca3af">(no image or PDF set)</div>`;
+      return h;
+    }
+    default: return '';
+  }
+}
+
+function renderChapterPreviewHtml(chapter) {
+  const concept = normalizeConcept(chapter.concept, chapter.title);
+  let html = '<div class="pv-app">';
+  html += `<div class="pv-title">${escHtml(concept.title)}</div>`;
+  (concept.body || []).forEach(item => { html += pvBodyItemHtml(item); });
+  if (!(concept.body || []).length) html += '<div class="pv-p" style="color:#9ca3af">No concept content yet — add blocks on the left.</div>';
+
+  const questions = chapter.questions || [];
+  if (questions.length) {
+    html += `<div class="pv-h" style="margin-top:22px">Practice Questions (${questions.length})</div>`;
+    questions.forEach((q, qi) => {
+      html += `<div class="pv-q"><div class="pv-q-num">Q${qi + 1} · ${q.type}</div><div class="pv-p" style="margin-bottom:8px">${escHtml(q.question || '(empty question)')}</div>`;
+      if (q.type === 'NAT') {
+        html += `<div class="pv-opt correct">Answer: ${q.answer ?? 0}${q.tolerance ? ` (± ${q.tolerance})` : ''}${q.unit ? ' ' + escHtml(q.unit) : ''}</div>`;
+      } else {
+        (q.options || []).forEach((opt, oi) => {
+          const isCorrect = (q.answer || []).includes(oi);
+          html += `<div class="pv-opt${isCorrect ? ' correct' : ''}">${String.fromCharCode(65 + oi)}. ${escHtml(opt)}${isCorrect ? ' ✓' : ''}</div>`;
+        });
+      }
+      if (q.explanation) html += `<div class="pv-explain">💡 ${escHtml(q.explanation)}</div>`;
+      html += '</div>';
+    });
+  }
+  html += '</div>';
+  return html;
+}
+
 function showJsonPreview() {
   if (!builder.activeData) return;
-  document.getElementById('json-modal-title').textContent = `${builder.activeData.subject} (${builder.activeData.code}) — JSON`;
+  document.getElementById('json-modal-title').textContent = `${builder.activeData.subject} (${builder.activeData.code})`;
   document.getElementById('json-modal-content').textContent = JSON.stringify(builder.activeData, null, 2);
+
+  const chapter = getActiveChapterObj();
+  document.getElementById('pv-pane-preview').innerHTML = chapter
+    ? renderChapterPreviewHtml(chapter)
+    : '<div class="editor-empty"><div class="big">👈</div><p style="font-size:12px">Select a chapter on the left to preview it here</p></div>';
+
+  switchPvTab('preview');
   document.getElementById('json-modal-overlay').classList.add('open');
+
+  if (chapter && window.renderMathInElement) {
+    try {
+      renderMathInElement(document.getElementById('pv-pane-preview'), {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
+    } catch (e) {}
+  }
+}
+
+function switchPvTab(tab) {
+  document.getElementById('pv-tab-preview').classList.toggle('active', tab === 'preview');
+  document.getElementById('pv-tab-json').classList.toggle('active', tab === 'json');
+  document.getElementById('pv-pane-preview').classList.toggle('active', tab === 'preview');
+  document.getElementById('pv-pane-json').classList.toggle('active', tab === 'json');
 }
 
 function closeJsonPreview() {
