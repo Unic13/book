@@ -1185,11 +1185,10 @@ function renderConceptBody(body = []) {
             </div>
           `;
 
-        case "images":
-          return renderImageBlock(item.src || item.image || item.url);
-
+          case "image":
+            return renderImageBlock(item.src || item.image || item.path || item.url);
         case "pdf":
-          return renderPdfBlock(item.src || item.pdf || item.url);
+          return renderPdfBlock(item.src || item.pdf || item.path || item.url);
 
         case "table":
           return `
