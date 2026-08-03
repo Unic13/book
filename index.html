@@ -255,7 +255,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
   display:flex;align-items:flex-start;gap:12px;
   padding:14px 16px;border-radius:11px;border:2px solid #e5e7eb;
   background:#fff;cursor:pointer;text-align:left;
-  transition:all var(--trans);width:100%
+  transition:all var(--trans);width:100%;overflow:hidden
 }
 .opt:hover:not(.disabled){border-color:#a5b4fc;background:#f8f7ff;transform:translateX(2px)}
 .opt.selected{border-color:var(--brand);background:#f0ebff}
@@ -273,7 +273,13 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 .opt.correct .opt-label{background:#16a34a;color:#fff}
 .opt.missed .opt-label{background:#22c55e;color:#fff}
 .opt.wrong .opt-label{background:#ef4444;color:#fff}
-.opt-text{font-size:14.5px;color:#374151;line-height:1.65;flex:1;padding-top:2px}
+.opt-text{font-size:14.5px;color:#374151;line-height:1.65;flex:1;padding-top:2px;min-width:0}
+.opt-text-inline{display:block;word-break:break-word}
+.opt-img{
+  display:block;max-width:100%;max-height:180px;width:auto;
+  object-fit:contain;border-radius:8px;margin-bottom:8px;
+  border:1px solid #e5e7eb;background:#f9fafb
+}
 
 /* NAT input */
 .nat-wrap{padding:0 22px 4px}
@@ -516,6 +522,7 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
   .q-options{padding:0 16px 16px;gap:8px}
   .opt{padding:12px 13px}
   .opt-text{font-size:13.5px}
+  .opt-img{max-height:140px}
   .q-actions{padding:0 16px 16px}
   .nat-wrap{padding:0 16px 4px}
   .explanation{margin:0 16px 16px;font-size:13px}
@@ -610,10 +617,6 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
         <div class="uname" id="dd-name">Guest</div>
         <div class="uemail" id="dd-email"></div>
         <hr>
-      <!-- <a href="admin.html">
-          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-          Admin Panel
-        </a>--->
         <button class="dropdown-btn" id="dd-signout">
           <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
           Sign out
@@ -679,10 +682,6 @@ const DEFAULT_SQL_QUERIES = [
   "UPDATE Student SET Marks = 90 WHERE Name = 'Aman';",
 ];
 
-// Each SQL chapter can carry its own `playground: { schema, sampleQueries }`
-// (e.g. two tables for the Joins chapter, a Gender column for GROUP BY, an
-// empty table for the CREATE TABLE chapter). Falls back to the defaults
-// above for chapters that don't define one (or for non-SQL subjects).
 function getActivePlayground() {
   const chapter = getCurrentChapter();
   const pg = chapter?.playground;
@@ -694,22 +693,22 @@ function getActivePlayground() {
 
 // ── State ──
 let state = {
-  view: 'home',        // 'home' | 'subject'
+  view: 'home',
   config: null,
   activeSubject: 'PH',
   subjectData: null,
   activeChapterId: null,
-  questionIndex: 0,   // start index of the current 3-question batch
-  answers: {},        // { qid: [indices] | text }
-  submitted: {},       // { qid: true }
+  questionIndex: 0,
+  answers: {},
+  submitted: {},
   sidebarOpen: true,
   userData: null,
   conceptOpen: true,
-  qtypeFilter: 'ALL', // ALL | MCQ | MSQ | NAT
+  qtypeFilter: 'ALL',
   sqlPgOpen: true,
   sqlDb: null,
   sqlJsLoading: null,
-  sqlLoadedChapterId: null, // which chapter's schema is currently loaded into sqlDb
+  sqlLoadedChapterId: null,
 };
 
 
@@ -761,47 +760,38 @@ function renderLatex(el) {
 //  INIT
 // ══════════════════════════════════════════
 async function init() {
-  // Load config
   try {
     state.config = await ajax('data/config.json');
   } catch {
     state.config = { academyName:'UNIC Academic', logoText:'UN', subjects:['PH','CH','MA','BIO','SQL','EXCEL'], howDidYouFindUs:['Google','Friend','YouTube','Other'] };
   }
 
-  // Apply branding
   document.title = state.config.academyName + ' — Practice Portal';
   document.querySelectorAll('#logo-box, .modal-logo').forEach(el => el.textContent = state.config.logoText || 'UN');
   document.getElementById('modal-title').textContent = 'Welcome to ' + state.config.academyName;
   document.getElementById('brand-name').textContent = state.config.academyName;
 
-  // Populate source dropdown
   const src = document.getElementById('f-source');
   (state.config.howDidYouFindUs || []).forEach(opt => {
     const o = document.createElement('option'); o.value = opt; o.textContent = opt; src.appendChild(o);
   });
 
-  // Build subject tabs
   buildSubjectTabs();
 
-  // Check saved user
   const saved = localStorage.getItem('unic_user');
   if (saved) {
     state.userData = JSON.parse(saved);
     updateUserUI();
   }
 
-  // Land on the home page (card picker) instead of jumping straight into a subject
   showHome();
 
-  // Show the sign-up / subscribe modal 1 minutes after the page loads —
-  // but only if we don't already have the visitor's details, and only if
-  // they haven't already dismissed it this session.
   if (!state.userData) {
     setTimeout(() => {
       if (!state.userData && !sessionStorage.getItem('unic_modal_dismissed')) {
         document.getElementById('modal-overlay').classList.remove('hidden');
       }
-    }, 120000); // 2 minutes
+    }, 120000);
   }
 
   bindEvents();
@@ -850,7 +840,7 @@ function updateActiveTabs() {
 }
 
 // ══════════════════════════════════════════
-//  HOME PAGE (card picker + "back to home")
+//  HOME PAGE
 // ══════════════════════════════════════════
 function showHome() {
   state.view = 'home';
@@ -890,7 +880,6 @@ async function loadSubject(code) {
 
   let loaded = null;
 
-  // 1. Try live content from Hasura (admin-authored questions)
   try {
     const remote = await ajax(`api/content11?code=${code}`);
     if (remote && remote.data && remote.data.units) {
@@ -898,7 +887,6 @@ async function loadSubject(code) {
     }
   } catch { /* fall through to static file */ }
 
-  // 2. Fallback to bundled static JSON
   if (!loaded) {
     try {
       loaded = await ajax(SUBJECTS[code].file);
@@ -910,7 +898,6 @@ async function loadSubject(code) {
 
   state.subjectData = loaded;
 
-  // Set first chapter
   const firstChapter = state.subjectData.units?.[0]?.chapters?.[0];
   if (firstChapter) {
     state.activeChapterId = firstChapter.id;
@@ -939,7 +926,6 @@ function buildSidebar() {
   tree.innerHTML = '';
 
   data.units?.forEach((unit, ui) => {
-    // Unit button
     const unitBtn = document.createElement('button');
     unitBtn.className = 'unit-btn';
     unitBtn.innerHTML = `<span>${unit.title}</span><svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>`;
@@ -949,7 +935,6 @@ function buildSidebar() {
     });
     tree.appendChild(unitBtn);
 
-    // Chapter list
     const chapList = document.createElement('div');
     chapList.className = 'chapter-list';
     chapList.id = `chaplist-${unit.id}`;
@@ -1062,7 +1047,6 @@ function selectChapter(chapterId) {
   state.conceptOpen = true;
   updateSidebarActive();
   renderQuestion();
-  // On mobile close sidebar
   if (window.innerWidth < 640) {
     state.sidebarOpen = false;
     document.getElementById('sidebar').classList.add('closed');
@@ -1124,20 +1108,32 @@ function formatText(text = "") {
 
 // ══════════════════════════════════════════
 //  MEDIA (image / pdf) — driven by an "image" / "pdf" key in the JSON.
-//  The value can be:
-//   - a URL / fetch path ("https://…", "/assets/…", "data/img1.png")
-//   - a raw base64 string (no scheme) — we add the right data: prefix
-//   - an already-complete data URI ("data:image/png;base64,…")
 // ══════════════════════════════════════════
 function resolveMediaSrc(val, kind) {
   if (!val || typeof val !== 'string') return '';
   const v = val.trim();
   if (/^(https?:)?\/\//.test(v) || v.startsWith('/') || v.startsWith('./') || v.startsWith('data:')) {
-    return v; // already a usable URL / path / data URI
+    return v;
   }
-  // Otherwise treat it as a raw base64 payload
   const mime = kind === 'pdf' ? 'application/pdf' : 'image/png';
   return `data:${mime};base64,${v}`;
+}
+
+// Heuristic: does this bare string look like it's actually an image
+// reference (path/filename/data-uri/raw base64) rather than plain
+// answer text? Used so option arrays of plain strings keep working
+// exactly as before, while option strings that are clearly images
+// get rendered as <img> instead of dumped as raw text.
+function looksLikeImageString(v) {
+  if (typeof v !== 'string') return false;
+  const s = v.trim();
+  if (!s) return false;
+  if (s.startsWith('data:image')) return true;
+  if (/^(https?:)?\/\//.test(s) && /\.(png|jpe?g|gif|webp|svg|bmp)(\?.*)?$/i.test(s)) return true;
+  if (/^(\.{0,2}\/)?[\w\-\/]+\.(png|jpe?g|gif|webp|svg|bmp)$/i.test(s)) return true;
+  // Raw base64 payload (no scheme, no spaces, long, base64 charset only)
+  if (s.length > 100 && !/\s/.test(s) && /^[A-Za-z0-9+/=]+$/.test(s)) return true;
+  return false;
 }
 
 function renderImageBlock(imgVal, title = '') {
@@ -1157,10 +1153,39 @@ function renderPdfBlock(pdfVal, title = '') {
   </div>`;
 }
 
+// Renders the content of a single answer OPTION. Supports three shapes:
+//   1. Plain string of text                     -> "Paris"
+//   2. Plain string that is itself an image ref  -> "data:image/png;base64,…" or "options/img1.png"
+//   3. Object with optional text + image/src/path/url key
+//      -> { "text": "Diagram B", "image": "…" }  or  { "image": "…" } (image-only option)
+// This mirrors how q.image/q.pdf already work for the question stem,
+// and keeps the option box from breaking layout by capping image size.
+function renderOptionContent(opt) {
+  if (opt && typeof opt === 'object' && !Array.isArray(opt)) {
+    const text = opt.text ?? opt.label ?? '';
+    const imgVal = opt.image || opt.src || opt.path || opt.url;
+    const pdfVal = opt.pdf;
+    let html = '';
+    if (imgVal) {
+      const src = resolveMediaSrc(imgVal, 'image');
+      if (src) html += `<img src="${src}" alt="" loading="lazy" class="opt-img">`;
+    }
+    if (pdfVal) html += renderPdfBlock(pdfVal);
+    if (text) html += `<span class="opt-text-inline">${formatText(String(text))}</span>`;
+    return html || '&nbsp;';
+  }
+
+  if (looksLikeImageString(opt)) {
+    const src = resolveMediaSrc(opt, 'image');
+    return `<img src="${src}" alt="" loading="lazy" class="opt-img">`;
+  }
+
+  return formatText(String(opt ?? ''));
+}
+
 function renderConceptBody(body = []) {
   return body
     .map((item) => {
-      // Backward compatibility (old string format)
       if (typeof item === "string") {
         return `<p class="concept-para">${formatText(item)}</p>`;
       }
@@ -1285,7 +1310,6 @@ function toggleConcept() {
   if (header) header.classList.toggle('open', state.conceptOpen);
   if (body) body.classList.toggle('open', state.conceptOpen);
   if (chevron) chevron.classList.toggle('open', state.conceptOpen);
-  // Re-render latex inside concept if just opened
   if (state.conceptOpen && body) renderLatex(body);
 }
 
@@ -1349,7 +1373,6 @@ function renderQuestion() {
 
   const cardsHTML = batch.map((q, bi) => renderSingleQuestionCard(q, batchStart + bi, color)).join('');
 
-  // Batch dots (one dot per group of 3)
   const totalBatches = Math.ceil(totalQ / BATCH_SIZE);
   const currentBatch = Math.floor(state.questionIndex / BATCH_SIZE);
   let dotsHTML = '<div class="q-dots">';
@@ -1382,12 +1405,10 @@ function renderQuestion() {
       ${dotsHTML}
     </div>`;
 
-  // Render LaTeX if needed
   if (chapter?.concept?.latex || batch.some(q => q.latex)) {
     renderLatex(wrap);
   }
 
-  // Bind NAT input listeners for each un-submitted NAT question in the batch
   batch.forEach(q => {
     if (q.type === 'NAT' && !state.submitted[q.id]) {
       const natInput = document.getElementById(`nat-input-${q.id}`);
@@ -1425,7 +1446,7 @@ function renderSingleQuestionCard(q, absoluteIndex, color) {
       optionsHTML += `
         <button class="${cls}" data-idx="${i}" onclick="toggleOption('${q.id}', ${i})">
           <span class="opt-label">${labelContent}</span>
-          <span class="opt-text">${opt}</span>
+          <span class="opt-text">${renderOptionContent(opt)}</span>
         </button>`;
     });
     bodyHTML = `<div class="q-options">${optionsHTML}</div>`;
@@ -1513,9 +1534,6 @@ function handleNatInput(qid) {
   if (checkBtn) checkBtn.disabled = el.value.trim() === '';
 }
 
-// NAT now supports either a NUMBER answer (compared with tolerance) or a
-// TEXT answer (compared case-insensitively, trimmed) depending on the type
-// of `q.answer` in the JSON — no schema change needed for existing data.
 function checkIsCorrect(q, selected) {
   if (q.type === 'NAT') {
     if (selected === undefined || selected === null || String(selected).trim() === '') return false;
@@ -1564,7 +1582,6 @@ function submitAnswer(qid) {
 
   state.submitted[q.id] = true;
 
-  // Track attempt
   if (state.userData) {
     const isCorrect = checkIsCorrect(q, selected);
     ajax('api/attempt11', 'POST', {
@@ -1585,7 +1602,7 @@ function submitAnswer(qid) {
 }
 
 // ══════════════════════════════════════════
-//  SQL PLAYGROUND (live query runner, powered by sql.js/SQLite-WASM)
+//  SQL PLAYGROUND
 // ══════════════════════════════════════════
 function renderSqlPlaygroundHTML() {
   const openCls = state.sqlPgOpen ? '' : ' hidden';
@@ -1640,11 +1657,6 @@ function loadSampleQuery(el) {
   if (editor) editor.value = el.textContent;
 }
 
-// Builds (or rebuilds) the SQLite engine using the ACTIVE CHAPTER's schema.
-// If the student switches to a different chapter, the schema is different,
-// so the in-memory database is recreated to match — each chapter gets its
-// own tables (e.g. two tables for a Joins chapter, an empty table for the
-// CREATE TABLE chapter, a Gender column for the GROUP BY chapter, etc).
 async function ensureSqlEngine(forceRebuild = false) {
   const chapterId = state.activeChapterId;
   if (state.sqlDb && state.sqlLoadedChapterId === chapterId && !forceRebuild) {
@@ -1652,7 +1664,6 @@ async function ensureSqlEngine(forceRebuild = false) {
   }
 
   state.sqlJsLoading = (async () => {
-    // initSqlJs is provided by the sql.js CDN script tag in <head>
     const SQL = await initSqlJs({
       locateFile: file => `https://cdn.jsdelivr.net/npm/sql.js@1.10.2/dist/${file}`
     });
@@ -1661,9 +1672,7 @@ async function ensureSqlEngine(forceRebuild = false) {
     try {
       db.run(pg.schema);
     } catch (e) {
-      // A chapter's starter schema is occasionally just an explanatory
-      // comment (e.g. the "write your own CREATE TABLE" chapters) — that's
-      // fine, the student's own queries will create tables from scratch.
+      // starter schema was just an explanatory comment; fine
     }
     state.sqlDb = db;
     state.sqlLoadedChapterId = chapterId;
@@ -1687,7 +1696,7 @@ async function runSqlQuery() {
 
   try {
     const db = await ensureSqlEngine();
-    const results = db.exec(sql); // array of {columns, values}
+    const results = db.exec(sql);
 
     if (!results.length) {
       resultWrap.innerHTML = `<div class="sql-result-msg ok">✓ Query executed successfully. No rows to display (e.g. INSERT/UPDATE/DELETE/CREATE ran fine).</div>`;
@@ -1774,7 +1783,6 @@ function submitModal() {
   localStorage.setItem('unic_user', JSON.stringify(data));
   updateUserUI();
   document.getElementById('modal-overlay').classList.add('hidden');
-  // Submit to API
   ajax('api/register', 'POST', data).catch(()=>{});
 }
 
@@ -1782,7 +1790,6 @@ function submitModal() {
 //  EVENT BINDINGS
 // ══════════════════════════════════════════
 function bindEvents() {
-  // Modal
   document.getElementById('modal-submit').addEventListener('click', submitModal);
   document.getElementById('modal-skip').addEventListener('click', () => {
     document.getElementById('modal-overlay').classList.add('hidden');
@@ -1790,17 +1797,14 @@ function bindEvents() {
   });
   document.getElementById('f-name').addEventListener('keydown', e => { if(e.key==='Enter') submitModal(); });
 
-  // Home navigation
   document.getElementById('brand-home-btn').addEventListener('click', showHome);
   document.getElementById('home-nav-btn').addEventListener('click', showHome);
 
-  // Sidebar toggle
   document.getElementById('sidebar-toggle').addEventListener('click', () => {
     state.sidebarOpen = !state.sidebarOpen;
     document.getElementById('sidebar').classList.toggle('closed', !state.sidebarOpen);
   });
 
-  // User dropdown
   document.getElementById('user-btn').addEventListener('click', (e) => {
     e.stopPropagation();
     document.getElementById('user-dropdown').classList.toggle('open');
@@ -1809,7 +1813,6 @@ function bindEvents() {
     document.getElementById('user-dropdown').classList.remove('open');
   });
 
-  // Sign out
   document.getElementById('dd-signout').addEventListener('click', () => {
     localStorage.removeItem('unic_user');
     location.reload();
