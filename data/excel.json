@@ -12,8 +12,8 @@
           "id": "excel_u1_c1",
           "title": "Day 1: Introduction to Microsoft Excel",
           "concept": {
-            "title": "Introduction to Microsoft Excel",
-            "content": [
+            "title": "Introduction to Microsoft Excel",             
+            "body": [
               {
                 "type": "heading",
                 "text": "1. What is Microsoft Excel?"
