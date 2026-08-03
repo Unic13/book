@@ -351,12 +351,7 @@
       {
         "type": "paragraph",
         "text": "Data Entry is the process of entering information into Microsoft Excel worksheets. Every piece of information entered into Excel is stored inside a cell. Excel supports different types of data such as text, numbers, dates, time, currency, percentages, and formulas."
-      },
-      {
-        "type": "image",
-        "title": "Entering Data in Excel",
-        "image": "/imagepdf/day2/data-entry.jpeg"
-      },
+      },     
       {
         "type": "list",
         "items": [
