@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
 <script src="https://tikzjax.com/v1/tikzjax.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -180,6 +181,10 @@ tr:hover td{background:#fafafa}
 .b-opt-row input[type=checkbox],.b-opt-row input[type=radio]{width:16px;height:16px;flex-shrink:0;cursor:pointer}
 .b-opt-row input[type=text]{flex:1}
 .b-opt-letter{width:22px;height:22px;border-radius:6px;background:#f3f4f6;color:#6b7280;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.b-opt-img-btn{flex-shrink:0}
+.b-opt-img-btn input[type=file]{display:none}
+.b-opt-thumb-row{display:flex;align-items:center;gap:8px;margin:-3px 0 10px 30px}
+.b-opt-thumb-row img{max-width:110px;max-height:70px;border-radius:6px;border:1px solid #e5e7eb;object-fit:cover}
 
 /* Buttons */
 .b-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:9px;font-size:12px;font-weight:700;border:none;cursor:pointer;transition:.15s;font-family:inherit}
@@ -232,10 +237,15 @@ tr:hover td{background:#fafafa}
 .pv-img-wrap img{max-width:100%;border-radius:10px;border:1px solid #e5e7eb;display:block}
 .pv-img-title{font-size:11px;color:#9ca3af;margin-top:4px;text-align:center}
 .pv-pdf-link{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:9px;background:#f3f4f6;color:#374151;font-size:12px;font-weight:600;text-decoration:none;margin-bottom:14px}
+.pv-tikz-wrap{margin-bottom:14px;text-align:center;overflow-x:auto}
+.pv-tikz-wrap svg{max-width:100%}
 .pv-q{border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px;margin-bottom:12px}
 .pv-q-num{font-size:11px;font-weight:700;color:#9ca3af;margin-bottom:6px}
+.pv-q-img{margin-bottom:10px}
+.pv-q-img img{max-width:100%;max-height:220px;border-radius:8px;border:1px solid #e5e7eb;display:block}
 .pv-opt{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;font-size:12.5px;margin-bottom:5px;border:1.5px solid #e5e7eb}
 .pv-opt.correct{border-color:#16a34a;background:#f0fdf4;color:#15803d;font-weight:600}
+.pv-opt img{max-width:70px;max-height:50px;border-radius:5px;object-fit:cover;flex-shrink:0}
 .pv-explain{font-size:12px;color:#6b7280;background:#f9fafb;border-radius:8px;padding:8px 10px;margin-top:8px}
 
 /* ── Mobile-friendly full page tweaks ── */
@@ -557,10 +567,12 @@ function switchSection(section) {
 //
 //  Concept content blocks support these types, matching the
 //  app's rendering schema:
-//    heading, paragraph, note, formula, list, table, syntax, image
+//    heading, paragraph, note, formula, list, table, syntax, image, tikz
 //  "image" blocks may carry an `image` (picture) and/or a `pdf`
 //  field — either a URL/path string, or a base64 data URI
 //  produced automatically when a file is uploaded in the editor.
+//  "tikz" blocks carry raw TikZ/PGF source (rendered client-side
+//  via TikZJax into an inline SVG).
 // ══════════════════════════════════════════════════════
 
 const BUILTIN_SUBJECTS = [
@@ -574,7 +586,7 @@ const QTYPE_COLORS = { MCQ: '#6C3FF5', MSQ: '#0891b2', NAT: '#d97706' };
 
 const BTYPE_COLORS = {
   heading: '#4f46e5', paragraph: '#6b7280', note: '#7c3aed', formula: '#0891b2',
-  list: '#d97706', table: '#059669', syntax: '#dc2626', image: '#db2777'
+  list: '#d97706', table: '#059669', syntax: '#dc2626', image: '#db2777', tikz: '#0d9488'
 };
 
 let builder = {
@@ -749,6 +761,9 @@ function renderBuilderTree() {
 
 function escHtml(s) { return String(s ?? '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
 function escAttr(s) { return String(s ?? '').replace(/"/g, '&quot;'); }
+// Safe for embedding raw source inside a <script type="text/tikz"> tag: script content
+// isn't HTML-parsed, so we only need to guard against an accidental "</script" sequence.
+function escTikzScript(s) { return String(s ?? '').replace(/<\/(script)/gi, '<\\/$1'); }
 
 function markDirty() { builder.dirty = true; setBuilderStatus('Unsaved changes', ''); }
 
@@ -885,6 +900,7 @@ function renderBuilderEditor() {
           <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('formula')">+ Formula</button>
           <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('syntax')">+ Syntax/Code</button>
           <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('image')">+ Image / PDF</button>
+          <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('tikz')">+ TikZ Diagram</button>
         </div>
         <div class="b-field-hint">Blocks render top-to-bottom exactly as shown in the app. Use ↑ ↓ to reorder.</div>
       </div>
@@ -936,6 +952,7 @@ function addBodyItem(type) {
   else if (type === 'table') item = { type: 'table', headers: ['Column 1', 'Column 2'], rows: [['', '']] };
   else if (type === 'syntax') item = { type: 'syntax', language: 'text', code: '' };
   else if (type === 'image') item = { type: 'image', title: '', image: '', pdf: '' };
+  else if (type === 'tikz') item = { type: 'tikz', title: '', code: '' };
   else item = { type, text: '' };
 
   chapter.concept.body.push(item);
@@ -949,6 +966,7 @@ function bodyItemSummary(item) {
   if (item.type === 'table') return (item.headers || []).join(' | ') || '(empty table)';
   if (item.type === 'syntax') return item.code || '(empty code)';
   if (item.type === 'image') return item.title || item.image || item.pdf || '(empty image/pdf)';
+  if (item.type === 'tikz') return (item.title || '').trim() || (item.code || '').replace(/\s+/g, ' ').trim() || '(empty tikz code)';
   return item.text || '(empty)';
 }
 
@@ -1068,12 +1086,30 @@ function renderBodyItemEditor(item, i, container) {
     return;
   }
 
+  if (item.type === 'tikz') {
+    container.innerHTML = `
+      <div class="b-field"><label>Caption (optional)</label><input type="text" value="${escAttr(item.title || '')}" oninput="updateTikzField(${i},'title',this.value)"></div>
+      <div class="b-field">
+        <label>TikZ / PGF source</label>
+        <textarea rows="8" style="font-family:monospace" oninput="updateTikzField(${i},'code',this.value)" placeholder="\\begin{tikzpicture}\n  \\draw[->] (0,0) -- (4,0);\n\\end{tikzpicture}">${escHtml(item.code || '')}</textarea>
+        <div class="b-field-hint">Paste the raw TikZ code (just the \\begin{tikzpicture}…\\end{tikzpicture} block, or \\begin{tikzcd}…). It's compiled to an inline SVG right in the browser — no image upload needed.</div>
+      </div>`;
+    return;
+  }
+
   container.innerHTML = '<div class="b-field-hint">Unsupported block type.</div>';
 }
 
 function updateBodyText(i, val) {
   const chapter = getActiveChapterObj();
   chapter.concept.body[i].text = val;
+  refreshBodyItemSummary(i);
+  markDirty();
+}
+
+function updateTikzField(i, field, val) {
+  const chapter = getActiveChapterObj();
+  chapter.concept.body[i][field] = val;
   refreshBodyItemSummary(i);
   markDirty();
 }
@@ -1235,9 +1271,9 @@ function addQuestion(type) {
 
   let q;
   if (type === 'NAT') {
-    q = { id: uid('q'), type: 'NAT', latex: false, question: '', answer: 0, tolerance: 0, unit: '', explanation: '' };
+    q = { id: uid('q'), type: 'NAT', latex: false, question: '', image: '', tikz: '', answer: 0, tolerance: 0, unit: '', explanation: '' };
   } else {
-    q = { id: uid('q'), type, latex: false, question: '', options: ['', '', '', ''], answer: [], explanation: '' };
+    q = { id: uid('q'), type, latex: false, question: '', image: '', tikz: '', options: ['', '', '', ''], optionImages: ['', '', '', ''], answer: [], explanation: '' };
   }
   chapter.questions.push(q);
   builder.openQuestionId = q.id;
@@ -1291,18 +1327,24 @@ function findQuestion(qid) {
 function renderQuestionEditor(q, container) {
   let optsHtml = '';
   if (q.type !== 'NAT') {
+    q.optionImages = q.optionImages || (q.options || []).map(() => '');
     (q.options || []).forEach((opt, i) => {
       const checked = (q.answer || []).includes(i);
       const inputType = q.type === 'MCQ' ? 'radio' : 'checkbox';
+      const optImg = q.optionImages[i] || '';
       optsHtml += `
         <div class="b-opt-row">
           <span class="b-opt-letter">${String.fromCharCode(65+i)}</span>
           <input type="text" value="${escAttr(opt)}" oninput="updateOptionText('${q.id}',${i},this.value)" placeholder="Option ${String.fromCharCode(65+i)}">
           <input type="${inputType}" name="correct-${q.id}" ${checked?'checked':''} onchange="toggleOptionCorrect('${q.id}',${i},this.checked)" title="Mark as correct">
+          <label class="b-icon-btn b-opt-img-btn" title="Add/replace option image">
+            🖼<input type="file" accept="image/*" onchange="handleOptionImageUpload('${q.id}',${i},this)">
+          </label>
           <button class="b-icon-btn danger" onclick="removeOption('${q.id}',${i})" title="Remove option">
             <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
-        </div>`;
+        </div>
+        ${optImg ? `<div class="b-opt-thumb-row"><img src="${escAttr(optImg)}" onerror="this.style.display='none'"><button class="b-icon-btn danger b-btn-sm" onclick="clearOptionImage('${q.id}',${i})">Remove image</button></div>` : ''}`;
     });
   }
 
@@ -1325,6 +1367,19 @@ function renderQuestionEditor(q, container) {
     <div class="b-field">
       <label><input type="checkbox" ${q.latex?'checked':''} onchange="updateQuestionField('${q.id}','latex',this.checked)" style="width:auto;margin-right:6px"> Enable LaTeX rendering</label>
     </div>
+    <div class="b-field">
+      <label>Question Image (optional) — URL or upload</label>
+      <input type="text" id="qimg-url-${q.id}" value="${escAttr(q.image||'')}" oninput="updateQuestionField('${q.id}','image',this.value)" placeholder="/data/imagepdf/qimg1.jpeg">
+      <div class="b-upload-row">
+        <input type="file" accept="image/*" onchange="handleQuestionImageUpload('${q.id}',this)">
+        ${q.image ? `<img src="${escAttr(q.image)}" class="b-thumb" onerror="this.style.display='none'">` : ''}
+      </div>
+    </div>
+    <div class="b-field">
+      <label>Diagram (TikZ source, optional)</label>
+      <textarea rows="5" style="font-family:monospace" oninput="updateQuestionField('${q.id}','tikz',this.value)" placeholder="\\begin{tikzpicture}\n  \\draw[->] (0,0) -- (4,0);\n\\end{tikzpicture}">${escHtml(q.tikz||'')}</textarea>
+      <div class="b-field-hint">Rendered inline via TikZJax, right above the question — no image upload needed for diagrams like number lines or graphs.</div>
+    </div>
     ${q.type !== 'NAT' ? `
       <div class="b-field">
         <label>Options ${q.type==='MCQ' ? '(select the one correct radio)' : '(check all correct boxes)'}</label>
@@ -1346,6 +1401,23 @@ function updateQuestionField(qid, field, val) {
     renderQuestionsList(chapter); // refresh summary text, keeps this card open
   }
   markDirty();
+}
+
+async function handleQuestionImageUpload(qid, inputEl) {
+  const file = inputEl.files[0];
+  if (!file) return;
+  const q = findQuestion(qid);
+  if (!q) return;
+  try {
+    const dataUrl = await fileToBase64(file);
+    q.image = dataUrl;
+    const urlField = document.getElementById(`qimg-url-${qid}`);
+    if (urlField) urlField.value = dataUrl;
+    renderQuestionEditor(q, document.getElementById(`qbody-${qid}`));
+    markDirty();
+  } catch {
+    alert('Could not read that image file.');
+  }
 }
 
 function updateNatField(qid, field, val) {
@@ -1375,12 +1447,38 @@ function toggleOptionCorrect(qid, idx, checked) {
   markDirty();
 }
 
+async function handleOptionImageUpload(qid, idx, inputEl) {
+  const file = inputEl.files[0];
+  if (!file) return;
+  const q = findQuestion(qid);
+  if (!q) return;
+  try {
+    const dataUrl = await fileToBase64(file);
+    q.optionImages = q.optionImages || (q.options || []).map(() => '');
+    q.optionImages[idx] = dataUrl;
+    renderQuestionEditor(q, document.getElementById(`qbody-${qid}`));
+    markDirty();
+  } catch {
+    alert('Could not read that image file.');
+  }
+}
+
+function clearOptionImage(qid, idx) {
+  const q = findQuestion(qid);
+  if (!q || !q.optionImages) return;
+  q.optionImages[idx] = '';
+  renderQuestionEditor(q, document.getElementById(`qbody-${qid}`));
+  markDirty();
+}
+
 function addOption(qid) {
   const q = findQuestion(qid);
   if (!q) return;
   q.options = q.options || [];
   if (q.options.length >= 6) { alert('Maximum 6 options.'); return; }
   q.options.push('');
+  q.optionImages = q.optionImages || [];
+  q.optionImages.push('');
   renderQuestionEditor(q, document.getElementById(`qbody-${qid}`));
   markDirty();
 }
@@ -1389,6 +1487,7 @@ function removeOption(qid, idx) {
   const q = findQuestion(qid);
   if (!q) return;
   q.options.splice(idx, 1);
+  if (q.optionImages) q.optionImages.splice(idx, 1);
   q.answer = (q.answer || []).filter(a => a !== idx).map(a => a > idx ? a - 1 : a);
   renderQuestionEditor(q, document.getElementById(`qbody-${qid}`));
   markDirty();
@@ -1463,6 +1562,12 @@ function pvBodyItemHtml(item) {
       if (!item.image && !item.pdf) h += `<div class="pv-p" style="color:#9ca3af">(no image or PDF set)</div>`;
       return h;
     }
+    case 'tikz': {
+      if (!item.code || !item.code.trim()) return `<div class="pv-p" style="color:#9ca3af">(no TikZ source set)</div>`;
+      let h = `<div class="pv-tikz-wrap tikzjax-container"><script type="text/tikz">${escTikzScript(item.code)}</script></div>`;
+      if (item.title) h += `<div class="pv-img-title">${escHtml(item.title)}</div>`;
+      return h;
+    }
     default: return '';
   }
 }
@@ -1478,13 +1583,21 @@ function renderChapterPreviewHtml(chapter) {
   if (questions.length) {
     html += `<div class="pv-h" style="margin-top:22px">Practice Questions (${questions.length})</div>`;
     questions.forEach((q, qi) => {
-      html += `<div class="pv-q"><div class="pv-q-num">Q${qi + 1} · ${q.type}</div><div class="pv-p" style="margin-bottom:8px">${escHtml(q.question || '(empty question)')}</div>`;
+      html += `<div class="pv-q"><div class="pv-q-num">Q${qi + 1} · ${q.type}</div>`;
+      if (q.tikz && q.tikz.trim()) {
+        html += `<div class="pv-tikz-wrap tikzjax-container"><script type="text/tikz">${escTikzScript(q.tikz)}</script></div>`;
+      }
+      if (q.image) {
+        html += `<div class="pv-q-img"><img src="${escAttr(q.image)}" onerror="this.parentElement.style.display='none'"></div>`;
+      }
+      html += `<div class="pv-p" style="margin-bottom:8px">${escHtml(q.question || '(empty question)')}</div>`;
       if (q.type === 'NAT') {
         html += `<div class="pv-opt correct">Answer: ${q.answer ?? 0}${q.tolerance ? ` (± ${q.tolerance})` : ''}${q.unit ? ' ' + escHtml(q.unit) : ''}</div>`;
       } else {
         (q.options || []).forEach((opt, oi) => {
           const isCorrect = (q.answer || []).includes(oi);
-          html += `<div class="pv-opt${isCorrect ? ' correct' : ''}">${String.fromCharCode(65 + oi)}. ${escHtml(opt)}${isCorrect ? ' ✓' : ''}</div>`;
+          const optImg = (q.optionImages || [])[oi];
+          html += `<div class="pv-opt${isCorrect ? ' correct' : ''}">${optImg ? `<img src="${escAttr(optImg)}" onerror="this.style.display='none'">` : ''}<span>${String.fromCharCode(65 + oi)}. ${escHtml(opt)}${isCorrect ? ' ✓' : ''}</span></div>`;
         });
       }
       if (q.explanation) html += `<div class="pv-explain">💡 ${escHtml(q.explanation)}</div>`;
