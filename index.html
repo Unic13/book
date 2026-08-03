@@ -1125,18 +1125,18 @@ function resolveMediaSrc(val, kind) {
   return `data:${mime};base64,${v}`;
 }
 
-function renderImageBlock(imgVal) {
+function renderImageBlock(imgVal, title = '') {
   if (!imgVal) return '';
   const src = resolveMediaSrc(imgVal, 'image');
   if (!src) return '';
-  return `<div class="media-image"><img src="${src}" alt="" loading="lazy"></div>`;
+  return `<div class="media-image">${title ? `<div class="media-title">${title}</div>` : ''}<img src="${src}" alt="" loading="lazy"></div>`;
 }
 
-function renderPdfBlock(pdfVal) {
+function renderPdfBlock(pdfVal, title = '') {
   if (!pdfVal) return '';
   const src = resolveMediaSrc(pdfVal, 'pdf');
   if (!src) return '';
-  return `<div class="media-pdf">
+  return `<div class="media-pdf">${title ? `<div class="media-title">${title}</div>` : ''}
     <iframe src="${src}" title="attached pdf"></iframe>
     <a class="media-pdf-link" href="${src}" target="_blank" rel="noopener">Open PDF in new tab ↗</a>
   </div>`;
@@ -1186,9 +1186,9 @@ function renderConceptBody(body = []) {
           `;
 
         case "image":
-          return renderImageBlock(item.src || item.image || item.path || item.url);
+          return renderImageBlock(item.src || item.image || item.path || item.url, item.title);
         case "pdf":
-          return renderPdfBlock(item.src || item.pdf || item.path || item.url);
+          return renderPdfBlock(item.src || item.pdf || item.path || item.url, item.title);
 
         case "table":
           return `
