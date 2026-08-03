@@ -387,12 +387,12 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 /* ─── Welcome Modal ─── */
-#{
+#modal-overlay{
   position:fixed;inset:0;background:rgba(0,0,0,.6);
   backdrop-filter:blur(4px);z-index:200;
   display:flex;align-items:center;justify-content:center;padding:16px
 }
-#.hidden{display:none}
+#modal-overlay.hidden{display:none}
 .modal{
   background:#fff;border-radius:22px;width:100%;max-width:420px;
   overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2)
@@ -572,22 +572,7 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
       <div class="field">
   <label for="f-source">How Did You Find Us?</label>
   <select id="f-source">
-    <option value="">Select one</option>
-    <option value="google">Google Search</option>
-    <option value="youtube">YouTube</option>
-    <option value="facebook">Facebook</option>
-    <option value="instagram">Instagram</option>
-    <option value="linkedin">LinkedIn</option>
-    <option value="whatsapp">WhatsApp</option>
-    <option value="friend">Friend / Family</option>
-    <option value="teacher">Teacher / Mentor</option>
-    <option value="college">College / School</option>
-    <option value="advertisement">Advertisement</option>
-    <option value="website">Website</option>
-    <option value="telegram">Telegram</option>
-    <option value="email">Email</option>
-    <option value="event">Seminar / Workshop</option>
-    <option value="other">Other</option>
+    <option value="">Select one</option>    
   </select>
 </div>
 
