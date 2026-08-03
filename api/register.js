@@ -3,6 +3,14 @@
 
 const { hasuraRequest } = require('../lib/hasura');
 
+const CHECK_REGISTRATION = `
+  query CheckRegistration($email: String!) {
+    registrations(where: { email: { _eq: $email } }, limit: 1) {
+      id
+    }
+  }
+`;
+
 const INSERT_REGISTRATION = `
   mutation InsertRegistration($object: registrations_insert_input!) {
     insert_registrations_one(object: $object) {
@@ -22,7 +30,10 @@ module.exports = async (req, res) => {
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({
+      success: false,
+      error: 'Method not allowed',
+    });
   }
 
   try {
@@ -39,43 +50,80 @@ module.exports = async (req, res) => {
     } = body;
 
     const trimmedName = name.trim();
-    const trimmedEmail = email.trim();
+    const trimmedEmail = email.trim().toLowerCase();
     const trimmedMobile = mobile.trim();
     const trimmedSource = source.trim();
 
+    // Validation
     if (!trimmedName && !trimmedEmail) {
-      return res
-        .status(400)
-        .json({ error: 'At least name or email is required' });
+      return res.status(400).json({
+        success: false,
+        error: 'At least name or email is required.',
+      });
     }
 
+    // Check if email already exists
+    if (trimmedEmail) {
+      const existing = await hasuraRequest(CHECK_REGISTRATION, {
+        email: trimmedEmail,
+      });
+
+      if (existing.registrations.length > 0) {
+        return res.status(409).json({
+          success: false,
+          error: 'You have already registered.',
+        });
+      }
+    }
+
+    // Get client IP
     const ipaddress =
       (req.headers['x-forwarded-for'] || '')
         .split(',')[0]
         .trim() ||
       req.socket?.remoteAddress ||
-      '';
+      null;
 
+    // Insert registration
     const data = await hasuraRequest(INSERT_REGISTRATION, {
       object: {
-        // Don't send id - PostgreSQL generates it
         name: trimmedName,
         email: trimmedEmail,
         phone: trimmedMobile || null,
         howkonw: trimmedSource || null,
-        ipaddress: ipaddress || null,
-        // Don't send created_at - PostgreSQL uses now()
+        ipaddress,
       },
     });
 
     return res.status(200).json({
       success: true,
+      message: 'Registration successful.',
       id: data.insert_registrations_one.id,
     });
+
   } catch (err) {
     console.error('[REGISTER ERROR]', err);
 
+    // Handle duplicate email (race condition)
+    const errors = err.response?.errors || [];
+
+    const duplicate = errors.some(
+      (e) =>
+        e.extensions?.code === 'constraint-violation' ||
+        e.message?.includes('registrations_email_key') ||
+        e.message?.includes('duplicate key value') ||
+        e.message?.includes('Uniqueness violation')
+    );
+
+    if (duplicate) {
+      return res.status(409).json({
+        success: false,
+        error: 'You have already registered.',
+      });
+    }
+
     return res.status(500).json({
+      success: false,
       error: err.message || 'Internal server error',
     });
   }
