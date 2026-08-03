@@ -83,12 +83,7 @@
               {
                 "type": "heading",
                 "text": "4. Rows and Columns"
-              },
-              {
-                "type": "image",
-                "title": "Rows and Columns",
-                "image": "/data/imagepdf/img2.jpeg"
-              },
+              },              
               {
                 "type": "paragraph",
                 "text": "Rows run horizontally and are identified using numbers. Columns run vertically and are identified using letters."
@@ -104,6 +99,11 @@
               {
                 "type": "heading",
                 "text": "5. Cell and Cell Address"
+              },
+              {
+                "type": "image",
+                "title": "Rows and Columns",
+                "image": "/data/imagepdf/img2.jpeg"
               },
               {
                 "type": "paragraph",
