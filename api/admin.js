@@ -12,9 +12,9 @@ const GET_REGISTRATIONS = `
       id
       name
       email
-      mobile
-      source
-      ip
+      phone
+      howkonw
+      ipaddress
       created_at
     }
     registrations_aggregate {
@@ -98,9 +98,9 @@ module.exports = async (req, res) => {
         id: r.id,
         name: r.name,
         email: r.email,
-        mobile: r.mobile,
-        source: r.source,
-        ip: r.ip,
+        phone: r.mobile,
+        howkonw: r.source,
+        ipaddress: r.ip,
         timestamp: r.created_at,
       })),
     });
