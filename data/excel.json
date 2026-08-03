@@ -339,6 +339,438 @@
           ]
         }
       ]
+    },
+    {
+  "id": "excel_u1_c2",
+  "title": "Day 2: Data Entry, Editing, AutoFill and Flash Fill",
+  "concept": {
+    "title": "Entering, Editing and Managing Data in Microsoft Excel",
+    "content": [
+      {
+        "type": "heading",
+        "text": "1. What is Data Entry?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Data Entry is the process of entering information into Microsoft Excel worksheets. Every piece of information entered into Excel is stored inside a cell. Excel supports different types of data such as text, numbers, dates, time, currency, percentages, and formulas."
+      },
+      {
+        "type": "image",
+        "title": "Entering Data in Excel",
+        "path": "/imagepdf/day2/data-entry.jpeg"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Text (Student Name)",
+          "Numbers (Marks, Salary)",
+          "Date (01/01/2026)",
+          "Time (10:30 AM)",
+          "Currency (₹15,000)",
+          "Percentage (95%)",
+          "Formula (=SUM(B2:B10))"
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Every value entered in Excel is stored in a cell identified by its unique cell address such as A1, B5, or C10."
+      },
+
+      {
+        "type": "heading",
+        "text": "2. Methods of Entering Data"
+      },
+      {
+        "type": "paragraph",
+        "text": "There are several ways to enter data into Excel. The easiest method is to click a cell, type the required information, and press Enter."
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Method",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Keyboard",
+            "Type directly into the selected cell."
+          ],
+          [
+            "Formula Bar",
+            "Type or edit data using the Formula Bar."
+          ],
+          [
+            "Copy & Paste",
+            "Paste data copied from another worksheet or application."
+          ],
+          [
+            "Import",
+            "Import data from CSV, Text, or external databases."
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "3. Editing Data"
+      },
+      {
+        "type": "paragraph",
+        "text": "Editing means modifying existing data without deleting the entire worksheet. Excel provides several methods for editing cell contents."
+      },
+      {
+        "type": "image",
+        "title": "Editing Cell",
+        "path": "/imagepdf/day2/edit-cell.jpeg"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Double-click the cell.",
+          "Press F2 to edit the active cell.",
+          "Edit using the Formula Bar.",
+          "Replace the existing value by typing a new value."
+        ]
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Shortcut",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            "F2",
+            "Edit Active Cell"
+          ],
+          [
+            "Delete",
+            "Clear Cell Contents"
+          ],
+          [
+            "Ctrl + Z",
+            "Undo Last Action"
+          ],
+          [
+            "Ctrl + Y",
+            "Redo Last Action"
+          ]
+        ]
+      },
+
+      {
+        "type": "note",
+        "text": "Editing data does not change the worksheet structure. It only changes the contents of the selected cell."
+      },
+
+      {
+        "type": "heading",
+        "text": "4. AutoFill"
+      },
+      {
+        "type": "paragraph",
+        "text": "AutoFill is a powerful Excel feature that automatically fills cells with a series of values or copies existing values and formulas. It saves time by reducing repetitive typing."
+      },
+      {
+        "type": "image",
+        "title": "AutoFill Handle",
+        "path": "/imagepdf/day2/autofill.jpeg"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Generate Serial Numbers",
+          "Fill Dates",
+          "Fill Months",
+          "Fill Weekdays",
+          "Copy Formulas",
+          "Copy Formatting"
+        ]
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Input",
+          "AutoFill Result"
+        ],
+        "rows": [
+          [
+            "1, 2",
+            "3, 4, 5, 6..."
+          ],
+          [
+            "Monday",
+            "Tuesday, Wednesday..."
+          ],
+          [
+            "January",
+            "February, March..."
+          ],
+          [
+            "=A1+B1",
+            "Formula copied to next rows"
+          ]
+        ]
+      },
+      {
+        "type": "tip",
+        "text": "Drag the small square (Fill Handle) located at the bottom-right corner of the selected cell to use AutoFill."
+      },
+
+      {
+        "type": "heading",
+        "text": "5. Flash Fill"
+      },
+      {
+        "type": "paragraph",
+        "text": "Flash Fill automatically detects patterns in your data and fills the remaining cells without requiring formulas. It is commonly used to split names, combine text, or extract specific information."
+      },
+      {
+        "type": "image",
+        "title": "Flash Fill Example",
+        "path": "/imagepdf/day2/flashfill.jpeg"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Original Data",
+          "Example Entered",
+          "Flash Fill Output"
+        ],
+        "rows": [
+          [
+            "John Doe",
+            "John",
+            "John, Alice, David..."
+          ],
+          [
+            "John Doe",
+            "Doe",
+            "Doe, Smith, Brown..."
+          ],
+          [
+            "john@gmail.com",
+            "john",
+            "alice, david..."
+          ]
+        ]
+      },
+      {
+        "type": "syntax",
+        "language": "text",
+        "title": "Flash Fill Shortcut",
+        "code": "Ctrl + E"
+      },
+      {
+        "type": "note",
+        "text": "Flash Fill recognizes patterns based on the examples you provide. It does not use formulas."
+      },
+
+      {
+        "type": "heading",
+        "text": "6. Difference Between AutoFill and Flash Fill"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Feature",
+          "AutoFill",
+          "Flash Fill"
+        ],
+        "rows": [
+          [
+            "Purpose",
+            "Copies values, formulas or creates series",
+            "Recognizes patterns and fills data"
+          ],
+          [
+            "Uses Formula",
+            "Yes",
+            "No"
+          ],
+          [
+            "Shortcut",
+            "Drag Fill Handle",
+            "Ctrl + E"
+          ],
+          [
+            "Best Used For",
+            "Serial numbers, dates, formulas",
+            "Extracting or formatting text"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "7. Best Practices"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Always verify data after using Flash Fill.",
+          "Use AutoFill for repetitive numeric or date sequences.",
+          "Use Flash Fill for text formatting and extraction.",
+          "Save your workbook regularly.",
+          "Use Undo (Ctrl + Z) if mistakes occur."
+        ]
+      },
+
+      {
+        "type": "summary",
+        "items": [
+          "Data Entry is the process of entering information into Excel cells.",
+          "Editing allows existing data to be modified.",
+          "AutoFill copies values, formulas and creates series automatically.",
+          "Flash Fill recognizes patterns and fills data without formulas.",
+          "AutoFill and Flash Fill improve productivity and reduce manual work."
+        ]
+      }
+    ]
+  }
+},
+    "questions": [
+  {
+    "id": "excel_q011",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "What is Data Entry in Excel?",
+    "options": [
+      "Creating charts",
+      "Entering information into worksheet cells",
+      "Printing a worksheet",
+      "Deleting rows"
+    ],
+    "answer": [1],
+    "explanation": "Data Entry is the process of entering information such as text, numbers, dates, and formulas into Excel cells."
+  },
+  {
+    "id": "excel_q012",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which of the following are valid types of data in Excel?",
+    "options": [
+      "Text, Numbers, Dates, Formulas",
+      "Images, Videos, Audio, Animation",
+      "HTML, CSS, JavaScript, PHP",
+      "Mouse, Keyboard, Monitor, Printer"
+    ],
+    "answer": [0],
+    "explanation": "Excel supports various data types including text, numbers, dates, time, currency, percentages, and formulas."
+  },
+  {
+    "id": "excel_q013",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which key is used to edit the active cell?",
+    "options": [
+      "F1",
+      "F2",
+      "F3",
+      "F4"
+    ],
+    "answer": [1],
+    "explanation": "Pressing F2 allows you to edit the contents of the active cell."
+  },
+  {
+    "id": "excel_q014",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is the main purpose of AutoFill?",
+    "options": [
+      "Create charts automatically",
+      "Save the workbook",
+      "Copy data, formulas, or create a series automatically",
+      "Print worksheets"
+    ],
+    "answer": [2],
+    "explanation": "AutoFill automatically copies values, formulas, and generates sequences such as numbers, dates, and months."
+  },
+  {
+    "id": "excel_q015",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Where is the Fill Handle located?",
+    "options": [
+      "Top-left corner of the worksheet",
+      "Bottom-right corner of the selected cell",
+      "Middle of the Ribbon",
+      "Formula Bar"
+    ],
+    "answer": [1],
+    "explanation": "The Fill Handle is the small square located at the bottom-right corner of the selected cell."
+  },
+  {
+    "id": "excel_q016",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is Flash Fill mainly used for?",
+    "options": [
+      "Creating Pivot Tables",
+      "Recognizing patterns and automatically filling data",
+      "Sorting worksheets",
+      "Calculating formulas"
+    ],
+    "answer": [1],
+    "explanation": "Flash Fill automatically recognizes patterns in data and fills the remaining cells without formulas."
+  },
+  {
+    "id": "excel_q017",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which keyboard shortcut activates Flash Fill?",
+    "options": [
+      "Ctrl + F",
+      "Ctrl + D",
+      "Ctrl + E",
+      "Ctrl + R"
+    ],
+    "answer": [2],
+    "explanation": "Ctrl + E is the shortcut key for Flash Fill."
+  },
+  {
+    "id": "excel_q018",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is the main difference between AutoFill and Flash Fill?",
+    "options": [
+      "AutoFill creates series or copies formulas, while Flash Fill recognizes patterns in data.",
+      "AutoFill edits worksheets, while Flash Fill saves files.",
+      "AutoFill creates charts, while Flash Fill creates tables.",
+      "There is no difference."
+    ],
+    "answer": [0],
+    "explanation": "AutoFill copies values, formulas, and sequences, whereas Flash Fill automatically recognizes patterns in text data."
+  },
+  {
+    "id": "excel_q019",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which keyboard shortcut performs Undo?",
+    "options": [
+      "Ctrl + Y",
+      "Ctrl + U",
+      "Ctrl + Z",
+      "Ctrl + X"
+    ],
+    "answer": [2],
+    "explanation": "Ctrl + Z is used to undo the last action performed in Excel."
+  },
+  {
+    "id": "excel_q020",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "How do you move to the next column while entering data?",
+    "options": [
+      "Press Enter",
+      "Press Tab",
+      "Press Shift",
+      "Press Esc"
+    ],
+    "answer": [1],
+    "explanation": "Pressing the Tab key moves the active cell to the next column."
+  }
+]
     }
   ]
 }
