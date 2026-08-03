@@ -1,61 +1,309 @@
 {
-  "subject": "Microsoft Excel",
-  "code": "EXCEL",
-  "color": "#217346",
-  "duration_days": 30,
-  "units": [
-    {
-      "id": "excel_u1",
-      "title": "Week 1: Excel Fundamentals",
-      "chapters": [
-        {
-          "id": "excel_u1_c1",
-          "title": "Day 1: Introduction to Microsoft Excel",
-          "concept": {
-            "title": "Introduction to Excel, Workbook, Worksheet, Ribbon and Cells",
-            "images": [
-              {
-                "id": "img1",
-                "title": "Microsoft Excel Home Screen",
-                "path": "/imagepdf/img6.jpeg"
-              },              
-              {
-                "id": "img3",
-                "title": "Workbook and Worksheet",
-                "path": "/imagepdf/img5.jpeg"
-              },
-              {
-                "id": "img4",
-                "title": "Rows and Columns",
-                "path": "/imagepdf/img2.jpeg"
-              },          
-              {
-                "id": "img6",
-                "title": " Ribbon Interface, Cell Address, Formula Bar and Name Box",
-                "path": "/imagepdf/img4.jpeg"
-              }
-            ],
-            "body": [
-              "Microsoft Excel is a spreadsheet application developed by Microsoft. It is used to organize, analyze, calculate, and visualize data efficiently.",
-              "Excel is widely used in schools, colleges, businesses, banks, hospitals, research organizations, and government offices for maintaining records and performing calculations.",
-              "A Workbook is an Excel file that can contain one or more Worksheets. The default file extension is .xlsx.",
-              "A Worksheet is a single spreadsheet page inside a workbook where data is entered and managed.",
-              "Rows run horizontally and are identified by numbers (1, 2, 3...). Columns run vertically and are identified by letters (A, B, C...).",
-              "A Cell is the intersection of a row and a column. Every cell has a unique address such as A1, B5, or C10.",
-              "The Ribbon is the command area at the top of Excel that contains tabs such as Home, Insert, Page Layout, Formulas, Data, Review, and View.",
-              "The Formula Bar displays the contents or formula of the selected cell.",
-              "The Name Box displays the address of the currently selected (active) cell.",
-              "The active cell is the currently selected cell where data can be entered or edited.",
-              "Excel automatically recalculates formulas whenever the data changes, making it an excellent tool for data analysis.",
-              "Keyboard shortcuts such as Ctrl+S (Save), Ctrl+C (Copy), Ctrl+V (Paste), Ctrl+Z (Undo), and Ctrl+B (Bold) improve productivity."
-            ],
-            "syntax": [
-              "Workbook Example:\nStudent_Marks.xlsx",
-              "Worksheet Example:\nSheet1\nAttendance\nResults",
-              "Cell Address Examples:\nA1\nB5\nC10\nD25",
-              "Keyboard Shortcuts:\nCtrl + N : New Workbook\nCtrl + O : Open Workbook\nCtrl + S : Save Workbook\nCtrl + C : Copy\nCtrl + V : Paste\nCtrl + Z : Undo"
-            ]
-          },
+  "id": "excel_u1_c1",
+  "title": "Day 1: Introduction to Microsoft Excel",
+  "concept": {
+    "title": "Introduction to Microsoft Excel",
+
+    "content": [
+
+      {
+        "type": "heading",
+        "text": "1. What is Microsoft Excel?"
+      },
+
+      {
+        "type": "image",
+        "title": "Microsoft Excel Home Screen",
+        "path": "/imagepdf/img6.jpeg"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "Microsoft Excel is a spreadsheet application developed by Microsoft. It is used to organize, calculate, analyze and visualize data efficiently."
+      },
+
+      {
+        "type": "paragraph",
+        "text": "Excel is widely used in schools, colleges, businesses, hospitals, banks and government organizations for maintaining records, preparing reports and performing calculations."
+      },
+
+      {
+        "type": "list",
+        "items": [
+          "Store Data",
+          "Perform Calculations",
+          "Create Reports",
+          "Analyze Data",
+          "Create Charts",
+          "Prepare Dashboards"
+        ]
+      },
+
+      {
+        "type": "note",
+        "text": "Microsoft Excel is one of the world's most widely used spreadsheet applications."
+      },
+
+      {
+        "type": "heading",
+        "text": "2. Workbook"
+      },
+
+      {
+        "type": "image",
+        "title": "Workbook and Worksheet",
+        "path": "/imagepdf/img5.jpeg"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "A Workbook is an Excel file. It contains one or more worksheets. The default Excel file extension is .xlsx."
+      },
+
+      {
+        "type": "syntax",
+        "language": "text",
+        "code": "Student_Marks.xlsx\nAttendance.xlsx\nSalary_Report.xlsx"
+      },
+
+      {
+        "type": "heading",
+        "text": "3. Worksheet"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "A Worksheet is a single spreadsheet page inside a workbook where users enter and organize data."
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Workbook",
+          "Worksheets"
+        ],
+        "rows": [
+          [
+            "Student.xlsx",
+            "Sheet1, Sheet2, Sheet3"
+          ],
+          [
+            "Attendance.xlsx",
+            "January, February, March"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "4. Rows and Columns"
+      },
+
+      {
+        "type": "image",
+        "title": "Rows and Columns",
+        "path": "/imagepdf/img2.jpeg"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "Rows run horizontally and are identified using numbers. Columns run vertically and are identified using letters."
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Item",
+          "Representation"
+        ],
+        "rows": [
+          [
+            "Rows",
+            "1,2,3,4..."
+          ],
+          [
+            "Columns",
+            "A,B,C,D..."
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "5. Cell and Cell Address"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "A Cell is the intersection of a row and a column. Every cell has a unique address."
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Cell",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "A1",
+            "Column A Row 1"
+          ],
+          [
+            "C5",
+            "Column C Row 5"
+          ],
+          [
+            "D10",
+            "Column D Row 10"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "6. Ribbon"
+      },
+
+      {
+        "type": "image",
+        "title": "Ribbon Interface",
+        "path": "/imagepdf/img4.jpeg"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "The Ribbon is the command area located at the top of Excel. It contains all tools required for working with worksheets."
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Tab",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            "Home",
+            "Formatting, Clipboard, Editing"
+          ],
+          [
+            "Insert",
+            "Tables, Charts, Pictures"
+          ],
+          [
+            "Page Layout",
+            "Themes and Printing"
+          ],
+          [
+            "Formulas",
+            "Functions"
+          ],
+          [
+            "Data",
+            "Sorting, Filtering"
+          ],
+          [
+            "Review",
+            "Comments, Protection"
+          ],
+          [
+            "View",
+            "Zoom, Freeze Panes"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "7. Formula Bar"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "The Formula Bar displays the content or formula of the selected cell."
+      },
+
+      {
+        "type": "syntax",
+        "language": "excel",
+        "code": "=SUM(B2:B10)"
+      },
+
+      {
+        "type": "heading",
+        "text": "8. Name Box"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "The Name Box displays the address of the currently selected cell. You can also jump directly to any cell by typing its address."
+      },
+
+      {
+        "type": "syntax",
+        "language": "text",
+        "code": "A1\nB5\nC10\nD25"
+      },
+
+      {
+        "type": "heading",
+        "text": "9. Common Keyboard Shortcuts"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Shortcut",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            "Ctrl + N",
+            "New Workbook"
+          ],
+          [
+            "Ctrl + O",
+            "Open Workbook"
+          ],
+          [
+            "Ctrl + S",
+            "Save Workbook"
+          ],
+          [
+            "Ctrl + C",
+            "Copy"
+          ],
+          [
+            "Ctrl + V",
+            "Paste"
+          ],
+          [
+            "Ctrl + X",
+            "Cut"
+          ],
+          [
+            "Ctrl + Z",
+            "Undo"
+          ],
+          [
+            "Ctrl + Y",
+            "Redo"
+          ],
+          [
+            "Ctrl + B",
+            "Bold"
+          ]
+        ]
+      },
+
+      {
+        "type": "note",
+        "text": "Mastering these basics makes learning formulas, functions, charts, Pivot Tables and dashboards much easier."
+      }
+
+    ]
+  },
           "questions": [
             {
               "id": "excel_q001",
@@ -199,7 +447,4 @@
             }
           ]
         }
-      ]
-    }
-  ]
-}
+      
