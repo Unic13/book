@@ -801,7 +801,7 @@ async function init() {
       if (!state.userData && !sessionStorage.getItem('unic_modal_dismissed')) {
         document.getElementById('modal-overlay').classList.remove('hidden');
       }
-    }, 60000); // 2 minutes
+    }, 120000); // 2 minutes
   }
 
   bindEvents();
