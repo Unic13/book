@@ -13,6 +13,28 @@
           "title": "Day 1: Introduction to Microsoft Excel",
           "concept": {
             "title": "Introduction to Excel, Workbook, Worksheet, Ribbon and Cells",
+            "images": [
+              {
+                "id": "img1",
+                "title": "Microsoft Excel Home Screen",
+                "path": "/imagepdf/img6.jpeg"
+              },              
+              {
+                "id": "img3",
+                "title": "Workbook and Worksheet",
+                "path": "/imagepdf/img5.jpeg"
+              },
+              {
+                "id": "img4",
+                "title": "Rows and Columns",
+                "path": "/imagepdf/img2.jpeg"
+              },          
+              {
+                "id": "img6",
+                "title": " Ribbon Interface, Cell Address, Formula Bar and Name Box",
+                "path": "/imagepdf/img4.jpeg"
+              }
+            ],
             "body": [
               "Microsoft Excel is a spreadsheet application developed by Microsoft. It is used to organize, analyze, calculate, and visualize data efficiently.",
               "Excel is widely used in schools, colleges, businesses, banks, hospitals, research organizations, and government offices for maintaining records and performing calculations.",
