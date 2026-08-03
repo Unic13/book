@@ -21,7 +21,7 @@
               {
                 "type": "image",
                 "title": "Microsoft Excel Home Screen",
-                "image": "/imagepdf/img6.jpeg"
+                "image": "/data/imagepdf/img6.jpeg"
               },
               {
                 "type": "paragraph",
@@ -53,7 +53,7 @@
               {
                 "type": "image",
                 "title": "Workbook and Worksheet",
-                "image": "/imagepdf/img5.jpeg"
+                "image": "/data/imagepdf/img5.jpeg"
               },
               {
                 "type": "paragraph",
@@ -87,7 +87,7 @@
               {
                 "type": "image",
                 "title": "Rows and Columns",
-                "image": "/imagepdf/img2.jpeg"
+                "image": "/data/imagepdf/img2.jpeg"
               },
               {
                 "type": "paragraph",
@@ -125,7 +125,7 @@
               {
                 "type": "image",
                 "title": "Ribbon Interface",
-                "image": "/imagepdf/img4.jpeg"
+                "image": "/data/imagepdf/img4.jpeg"
               },
               {
                 "type": "paragraph",
