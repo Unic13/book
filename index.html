@@ -91,6 +91,9 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
   cursor:pointer;padding:4px 0;transition:color var(--trans);width:100%
 }
 #user-dropdown a:hover,.dropdown-btn:hover{color:#7c3aed}
+.dropdown-btn.danger{color:#ef4444}
+.dropdown-btn.danger:hover{color:#b91c1c}
+#dd-guest-note{font-size:11px;color:#9ca3af;line-height:1.6;margin-top:8px}
 
 /* ─── Body ─── */
 #body{display:flex;flex:1;overflow:hidden}
@@ -278,7 +281,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 .opt-img{
   display:block;max-width:100%;max-height:180px;width:auto;
   object-fit:contain;border-radius:8px;margin-bottom:8px;
-  border:1px solid #e5e7eb;background:#f9fafb
+  border:1px solid #e5e7eb;background:#f9fafb;cursor:zoom-in
 }
 
 /* NAT input */
@@ -478,7 +481,7 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
 
 /* ─── Media blocks (image / pdf) driven by JSON ─── */
 .media-image{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
-.media-image img{display:block;width:100%;max-height:420px;object-fit:contain;background:#f9fafb}
+.media-image img{display:block;width:100%;max-height:420px;object-fit:contain;background:#f9fafb;cursor:zoom-in}
 .media-pdf{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;background:#f9fafb}
 .media-pdf iframe{display:block;width:100%;height:420px;border:none;background:#fff}
 .media-pdf-link{
@@ -493,6 +496,21 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
 } 
 .media-pdf-link:hover{background:#f3f4f6}
 .q-media{padding:0 22px 6px}
+
+/* ─── Image Lightbox ─── */
+#lightbox-overlay{
+  position:fixed;inset:0;background:rgba(10,10,20,.88);z-index:300;
+  display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out
+}
+#lightbox-overlay.open{display:flex}
+#lightbox-overlay img{max-width:100%;max-height:100%;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+#lightbox-close{
+  position:absolute;top:18px;right:22px;width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.12);border:none;color:#fff;font-size:20px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:background var(--trans)
+}
+#lightbox-close:hover{background:rgba(255,255,255,.25)}
+
 @media(max-width:640px){
   .q-media{padding:0 16px 6px}
   .media-pdf iframe{height:320px}
@@ -582,6 +600,12 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
   </div>
 </div>
 
+<!-- ══════════ IMAGE LIGHTBOX (tap any question/option/concept image to zoom) ══════════ -->
+<div id="lightbox-overlay">
+  <button id="lightbox-close" aria-label="Close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
 <!-- ══════════ APP SHELL ══════════ -->
 <div id="app">
 
@@ -602,10 +626,11 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
         <div class="uname" id="dd-name">Guest</div>
         <div class="uemail" id="dd-email"></div>
         <hr>
-        <button class="dropdown-btn" id="dd-signout">
+        <button class="dropdown-btn danger" id="dd-signout">
           <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
           Sign out
         </button>
+        <div id="dd-guest-note"></div>
       </div>
     </div>
   </header>
@@ -705,6 +730,12 @@ function hex2rgba(hex, a) {
 
 function subjectColor() { return SUBJECTS[state.activeSubject].color; }
 
+function escapeHtml(str) {
+  return String(str ?? '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
 // ── AJAX helper ──
 function ajax(url, method='GET', data=null) {
   return new Promise((resolve, reject) => {
@@ -765,18 +796,16 @@ async function init() {
 
   const saved = localStorage.getItem('unic_user');
   if (saved) {
-    state.userData = JSON.parse(saved);
-    updateUserUI();
+    try { state.userData = JSON.parse(saved); } catch { state.userData = null; }
   }
+  updateUserUI();
 
   showHome();
 
+  // Show the welcome/registration modal once, right away, only for
+  // signed-out visitors — no more silent 2-minute timer.
   if (!state.userData) {
-    setTimeout(() => {
-      if (!state.userData && !sessionStorage.getItem('unic_modal_dismissed')) {
-        document.getElementById('modal-overlay').classList.remove('hidden');
-      }
-    }, 120000);
+    document.getElementById('modal-overlay').classList.remove('hidden');
   }
 
   bindEvents();
@@ -861,7 +890,8 @@ function renderHomeHTML() {
 
 async function loadSubject(code) {
   document.getElementById('question-wrap').innerHTML = '<div id="loader"><div class="spinner"></div></div>';
-  document.getElementById('loader') && (document.getElementById('loader').querySelector('.spinner').style.borderTopColor = subjectColor());
+  const spinnerEl = document.querySelector('#loader .spinner');
+  if (spinnerEl) spinnerEl.style.borderTopColor = subjectColor();
 
   let loaded = null;
 
@@ -1125,14 +1155,14 @@ function renderImageBlock(imgVal, title = '') {
   if (!imgVal) return '';
   const src = resolveMediaSrc(imgVal, 'image');
   if (!src) return '';
-  return `<div class="media-image">${title ? `<div class="media-title">${title}</div>` : ''}<img src="${src}" alt="" loading="lazy"></div>`;
+  return `<div class="media-image">${title ? `<div class="media-title">${escapeHtml(title)}</div>` : ''}<img src="${src}" alt="${escapeHtml(title)}" loading="lazy" onclick="openLightbox('${src.replace(/'/g,"\\'")}')"></div>`;
 }
 
 function renderPdfBlock(pdfVal, title = '') {
   if (!pdfVal) return '';
   const src = resolveMediaSrc(pdfVal, 'pdf');
   if (!src) return '';
-  return `<div class="media-pdf">${title ? `<div class="media-title">${title}</div>` : ''}
+  return `<div class="media-pdf">${title ? `<div class="media-title">${escapeHtml(title)}</div>` : ''}
     <iframe src="${src}" title="attached pdf"></iframe>
     <a class="media-pdf-link" href="${src}" target="_blank" rel="noopener">Open PDF in new tab ↗</a>
   </div>`;
@@ -1153,7 +1183,7 @@ function renderOptionContent(opt) {
     let html = '';
     if (imgVal) {
       const src = resolveMediaSrc(imgVal, 'image');
-      if (src) html += `<img src="${src}" alt="" loading="lazy" class="opt-img">`;
+      if (src) html += `<img src="${src}" alt="" loading="lazy" class="opt-img" onclick="event.stopPropagation();openLightbox('${src.replace(/'/g,"\\'")}')">`;
     }
     if (pdfVal) html += renderPdfBlock(pdfVal);
     if (text) html += `<span class="opt-text-inline">${formatText(String(text))}</span>`;
@@ -1162,7 +1192,7 @@ function renderOptionContent(opt) {
 
   if (looksLikeImageString(opt)) {
     const src = resolveMediaSrc(opt, 'image');
-    return `<img src="${src}" alt="" loading="lazy" class="opt-img">`;
+    return `<img src="${src}" alt="" loading="lazy" class="opt-img" onclick="event.stopPropagation();openLightbox('${src.replace(/'/g,"\\'")}')">`;
   }
 
   return formatText(String(opt ?? ''));
@@ -1438,14 +1468,16 @@ function renderSingleQuestionCard(q, absoluteIndex, color) {
   }
 
   let exHTML = '';
-  if (isSubmitted && q.explanation) {
+  if (isSubmitted && (q.explanation || q.explanationImage || q.explanationPdf)) {
     const isRight = checkIsCorrect(q, selected);
     const cls = isRight ? 'correct' : 'wrong';
     const icon = isRight ? '🎉' : '💡';
     const head = isRight ? 'Correct!' : "Not quite — here's why:";
     exHTML = `<div class="explanation ${cls}">
       <div class="explanation-head">${icon} ${head}</div>
-      <div class="exp-text">${q.explanation}</div>
+      ${q.explanation ? `<div class="exp-text">${q.explanation}</div>` : ''}
+      ${renderImageBlock(q.explanationImage)}
+      ${renderPdfBlock(q.explanationPdf)}
     </div>`;
   }
 
@@ -1489,7 +1521,8 @@ function renderNATHTML(q, isSubmitted) {
     const isRight = checkIsCorrect(q, selected);
     inputCls += isRight ? ' correct' : ' wrong';
     if (!isRight) {
-      correctNoteHTML = `<div class="nat-correct-value">✓ Correct answer: ${q.answer}${q.unit ? ' ' + q.unit : ''}</div>`;
+      correctNoteHTML = `<div class="nat-correct-value">✓ Correct answer: ${q.answer}${q.unit ? ' ' + q.unit : ''}</div>
+        ${renderImageBlock(q.answerImage)}`;
     }
   }
 
@@ -1501,7 +1534,7 @@ function renderNATHTML(q, isSubmitted) {
           class="${inputCls}"
           id="nat-input-${q.id}"
           placeholder="Enter your answer"
-          value="${valueAttr ?? ''}"
+          value="${escapeHtml(valueAttr)}"
           ${isSubmitted ? 'disabled' : ''}
         >
         ${q.unit ? `<span class="nat-unit">${q.unit}</span>` : ''}
@@ -1584,6 +1617,22 @@ function submitAnswer(qid) {
 
   updateChapterProgress(state.activeChapterId);
   renderQuestion();
+}
+
+// ══════════════════════════════════════════
+//  IMAGE LIGHTBOX (click any question/option/concept image to zoom)
+// ══════════════════════════════════════════
+function openLightbox(src) {
+  if (!src) return;
+  const overlay = document.getElementById('lightbox-overlay');
+  const img = document.getElementById('lightbox-img');
+  img.src = src;
+  overlay.classList.add('open');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox-overlay').classList.remove('open');
+  document.getElementById('lightbox-img').src = '';
 }
 
 // ══════════════════════════════════════════
@@ -1718,15 +1767,23 @@ async function resetSqlPlayground() {
 }
 
 // ══════════════════════════════════════════
-//  USER / MODAL
+//  USER / MODAL / SIGN OUT
 // ══════════════════════════════════════════
 function updateUserUI() {
   const u = state.userData;
-  if (!u) return;
   const btn = document.getElementById('user-btn');
-  btn.textContent = u.name ? u.name.charAt(0).toUpperCase() : '?';
-  document.getElementById('dd-name').textContent = u.name || 'Guest';
-  document.getElementById('dd-email').textContent = u.email || '';
+  const guestNote = document.getElementById('dd-guest-note');
+  if (u) {
+    btn.textContent = u.name ? u.name.charAt(0).toUpperCase() : '?';
+    document.getElementById('dd-name').textContent = u.name || 'Guest';
+    document.getElementById('dd-email').textContent = u.email || '';
+    if (guestNote) guestNote.textContent = '';
+  } else {
+    btn.textContent = '?';
+    document.getElementById('dd-name').textContent = 'Guest';
+    document.getElementById('dd-email').textContent = '';
+    if (guestNote) guestNote.textContent = "You're browsing as a guest — your progress won't be saved.";
+  }
 }
 
 function validateModal() {
@@ -1771,6 +1828,34 @@ function submitModal() {
   ajax('api/register', 'POST', data).catch(()=>{});
 }
 
+// Fully signs the visitor out: clears the saved profile, wipes this
+// session's in-progress answers/submissions, and resets the app back
+// to a clean guest state on the home screen (no page reload needed).
+function signOut() {
+  localStorage.removeItem('unic_user');
+  sessionStorage.clear();
+
+  state.userData = null;
+  state.answers = {};
+  state.submitted = {};
+  state.subjectData = null;
+  state.activeChapterId = null;
+  state.questionIndex = 0;
+  state.qtypeFilter = 'ALL';
+  state.sqlDb = null;
+  state.sqlLoadedChapterId = null;
+
+  document.getElementById('user-dropdown').classList.remove('open');
+  updateUserUI();
+  showHome();
+
+  // clear the registration form so a stale name/email doesn't linger
+  ['f-name','f-email','f-mobile'].forEach(id => { document.getElementById(id).value = ''; });
+  document.getElementById('f-source').value = '';
+
+  document.getElementById('modal-overlay').classList.remove('hidden');
+}
+
 // ══════════════════════════════════════════
 //  EVENT BINDINGS
 // ══════════════════════════════════════════
@@ -1778,7 +1863,6 @@ function bindEvents() {
   document.getElementById('modal-submit').addEventListener('click', submitModal);
   document.getElementById('modal-skip').addEventListener('click', () => {
     document.getElementById('modal-overlay').classList.add('hidden');
-    sessionStorage.setItem('unic_modal_dismissed', '1');
   });
   document.getElementById('f-name').addEventListener('keydown', e => { if(e.key==='Enter') submitModal(); });
 
@@ -1798,9 +1882,14 @@ function bindEvents() {
     document.getElementById('user-dropdown').classList.remove('open');
   });
 
-  document.getElementById('dd-signout').addEventListener('click', () => {
-    localStorage.removeItem('unic_user');
-    location.reload();
+  document.getElementById('dd-signout').addEventListener('click', signOut);
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-overlay').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox-overlay') closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
   });
 }
 
