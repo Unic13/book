@@ -340,15 +340,9 @@ tr:hover td{background:#fafafa}
       </div>
 
       <div class="db-tip">
-        <h3>🗄️ Backend: Vercel Serverless + Hasura</h3>
-        <p style="font-size:13px;color:#6b7280;margin-bottom:6px">Data is stored in Postgres via Hasura GraphQL. Already wired up — just configure env vars on Vercel:</p>
-        <code># In Vercel Dashboard → Settings → Environment Variables
-HASURA_GRAPHQL_URL=https://your-app.hasura.app/v1/graphql
-HASURA_ADMIN_SECRET=your-hasura-admin-secret
-ADMIN_KEY=your-admin-password
-
-# Run hasura/migrations/001_init.sql in Hasura Console
-# then track the tables under Data → Track Tables</code>
+        <h3></h3>
+        <p style="font-size:13px;color:#6b7280;margin-bottom:6px"></p>
+        <code></code>
       </div>
     </div>
 
@@ -554,28 +548,14 @@ function switchSection(section) {
   }
 }
 
-// ══════════════════════════════════════════════════════
-//  QUESTION BUILDER
-//  Lets admins create/edit Subjects → Units → Chapters →
-//  Concept (rich content blocks) + Questions (MCQ/MSQ/NAT),
-//  matching the JSON schema used by the main app's
-//  /data/*.json files.
-//
-//  Concept content blocks support these types, matching the
-//  app's rendering schema:
-//    heading, paragraph, note, formula, list, table, syntax, image
-//  "image" blocks may carry an `image` (picture) and/or a `pdf`
-//  field — either a URL/path string, or a base64 data URI
-//  produced automatically when a file is uploaded in the editor.
-//  Questions (MCQ/MSQ/NAT) and each answer option can likewise
-//  carry an image (uploaded as base64) alongside or instead of text.
-// ══════════════════════════════════════════════════════
 
 const BUILTIN_SUBJECTS = [
   { code: 'PH',  subject: 'Physics',     color: '#6C3FF5' },
   { code: 'CH',  subject: 'Chemistry',   color: '#E53E3E' },
   { code: 'MA',  subject: 'Mathematics', color: '#2B6CB0' },
   { code: 'BIO', subject: 'Biology',     color: '#276749' },
+  { code: 'SQL', subject: 'SQL',     color: '#0F9D8C' },
+  { code: 'EXCEL', subject: 'EXCEL',     color: '#217346' },
 ];
 
 const QTYPE_COLORS = { MCQ: '#6C3FF5', MSQ: '#0891b2', NAT: '#d97706' };
@@ -697,7 +677,8 @@ async function loadSubjectIntoBuilder(code) {
 
   // Fall back to bundled static file for the 4 built-in subjects
   if (!loaded) {
-    const fileMap = { PH:'data/physics.json', CH:'data/chemistry.json', MA:'data/mathematics.json', BIO:'data/biology.json' };
+    const fileMap = { PH:'data/physics.json', CH:'data/chemistry.json', MA:'data/mathematics.json', BIO:'data/biology.json'
+                    EXCEL:'data/excel.json', SQL:'data/sql.json'};
     if (fileMap[code]) {
       try { loaded = await ajax(fileMap[code]); } catch {}
     }
