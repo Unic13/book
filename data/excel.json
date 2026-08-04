@@ -12,1047 +12,255 @@
           "id": "excel_u1_c1",
           "title": "Day 1: Introduction to Microsoft Excel",
           "concept": {
-            "title": "Introduction to Microsoft Excel",             
+            "title": "Introduction to Microsoft Excel",
             "body": [
+              { "type": "heading", "text": "1. What is Microsoft Excel?" },
+              { "type": "image", "title": "Microsoft Excel Home Screen", "image": "/data/imagepdf/img6.jpeg" },
+              { "type": "paragraph", "text": "Microsoft Excel is a spreadsheet application developed by Microsoft. It is used to organize, calculate, analyze and visualize data efficiently." },
+              { "type": "paragraph", "text": "Excel is widely used in schools, colleges, businesses, hospitals, banks and government organizations for maintaining records, preparing reports and performing calculations." },
+              { "type": "list", "items": ["Store Data", "Perform Calculations", "Create Reports", "Analyze Data", "Create Charts", "Prepare Dashboards"] },
+              { "type": "note", "text": "Microsoft Excel is one of the world's most widely used spreadsheet applications." },
+              { "type": "heading", "text": "2. Workbook" },
+              { "type": "image", "title": "Workbook and Worksheet", "image": "/data/imagepdf/img5.jpeg" },
+              { "type": "paragraph", "text": "A Workbook is an Excel file. It contains one or more worksheets. The default Excel file extension is .xlsx." },
+              { "type": "syntax", "language": "text", "code": "Student.xlsx\nAttendance.xlsx\nSalary_Report.xlsx" },
+              { "type": "heading", "text": "3. Worksheet" },
+              { "type": "paragraph", "text": "A Worksheet is a single spreadsheet page inside a workbook where users enter and organize data." },
+              { "type": "table", "headers": ["Workbook", "Worksheets"], "rows": [["Student.xlsx", "Sheet1, Sheet2, Sheet3"], ["Attendance.xlsx", "January, February, March"]] },
+              { "type": "heading", "text": "4. Rows and Columns" },
+              { "type": "paragraph", "text": "Rows run horizontally and are identified using numbers. Columns run vertically and are identified using letters." },
+              { "type": "table", "headers": ["Item", "Representation"], "rows": [["Rows", "1,2,3,4..."], ["Columns", "A,B,C,D..."]] },
+              { "type": "heading", "text": "5. Cell and Cell Address" },
+              { "type": "image", "title": "Rows and Columns", "image": "/data/imagepdf/img2.jpeg" },
+              { "type": "paragraph", "text": "A Cell is the intersection of a row and a column. Every cell has a unique address." },
+              { "type": "table", "headers": ["Cell", "Meaning"], "rows": [["A1", "Column A Row 1"], ["C5", "Column C Row 5"], ["D10", "Column D Row 10"]] },
+              { "type": "heading", "text": "6. Ribbon" },
+              { "type": "image", "title": "Ribbon Interface", "image": "/data/imagepdf/img4.jpeg" },
+              { "type": "paragraph", "text": "The Ribbon is the command area located at the top of Excel. It contains all tools required for working with worksheets." },
+              { "type": "table", "headers": ["Tab", "Purpose"], "rows": [["Home", "Formatting, Clipboard, Editing"], ["Insert", "Tables, Charts, Pictures"], ["Page Layout", "Themes and Printing"], ["Formulas", "Functions"], ["Data", "Sorting, Filtering"], ["Review", "Comments, Protection"], ["View", "Zoom, Freeze Panes"]] },
+              { "type": "heading", "text": "7. Formula Bar" },
+              { "type": "paragraph", "text": "The Formula Bar displays the content or formula of the selected cell." },
+              { "type": "syntax", "language": "excel", "code": "=SUM(B2:B10)" },
+              { "type": "heading", "text": "8. Name Box" },
+              { "type": "paragraph", "text": "The Name Box displays the address of the currently selected cell. You can also jump directly to any cell by typing its address." },
+              { "type": "syntax", "language": "text", "code": "A1\nB5\nC10\nD25" },
+              { "type": "heading", "text": "9. Common Keyboard Shortcuts" },
+              { "type": "table", "headers": ["Shortcut", "Purpose"], "rows": [["Ctrl + N", "New Workbook"], ["Ctrl + O", "Open Workbook"], ["Ctrl + S", "Save Workbook"], ["Ctrl + C", "Copy"], ["Ctrl + V", "Paste"], ["Ctrl + X", "Cut"], ["Ctrl + Z", "Undo"], ["Ctrl + Y", "Redo"], ["Ctrl + B", "Bold"]] },
               {
-                "type": "heading",
-                "text": "1. What is Microsoft Excel?"
-              },
-              {
-                "type": "image",
-                "title": "Microsoft Excel Home Screen",
-                "image": "/data/imagepdf/img6.jpeg"
-              },
-              {
-                "type": "paragraph",
-                "text": "Microsoft Excel is a spreadsheet application developed by Microsoft. It is used to organize, calculate, analyze and visualize data efficiently."
-              },
-              {
-                "type": "paragraph",
-                "text": "Excel is widely used in schools, colleges, businesses, hospitals, banks and government organizations for maintaining records, preparing reports and performing calculations."
-              },
-              {
-                "type": "list",
-                "items": [
-                  "Store Data",
-                  "Perform Calculations",
-                  "Create Reports",
-                  "Analyze Data",
-                  "Create Charts",
-                  "Prepare Dashboards"
+                "type": "steps",
+                "title": "How to Create and Save a New Workbook",
+                "steps": [
+                  "Open Microsoft Excel.",
+                  "Click 'Blank Workbook' on the Start screen.",
+                  "Click on a cell and note the change in the Name Box.",
+                  "Press Ctrl + S to save the workbook.",
+                  "Type a file name and click Save."
                 ]
               },
               {
-                "type": "note",
-                "text": "Microsoft Excel is one of the world's most widely used spreadsheet applications."
-              },
-              {
-                "type": "heading",
-                "text": "2. Workbook"
-              },
-              {
-                "type": "image",
-                "title": "Workbook and Worksheet",
-                "image": "/data/imagepdf/img5.jpeg"
-              },
-              {
-                "type": "paragraph",
-                "text": "A Workbook is an Excel file. It contains one or more worksheets. The default Excel file extension is .xlsx."
-              },
-              {
-                "type": "syntax",
-                "language": "text",
-                "code": "Student.xlsx\nAttendance.xlsx\nSalary_Report.xlsx"
-              },
-              {
-                "type": "heading",
-                "text": "3. Worksheet"
-              },
-              {
-                "type": "paragraph",
-                "text": "A Worksheet is a single spreadsheet page inside a workbook where users enter and organize data."
-              },
-              {
-                "type": "table",
-                "headers": ["Workbook", "Worksheets"],
-                "rows": [
-                  ["Student.xlsx", "Sheet1, Sheet2, Sheet3"],
-                  ["Attendance.xlsx", "January, February, March"]
+                "type": "exercise",
+                "title": "Practice Exercise - Explore the Excel Interface",
+                "steps": [
+                  "Open a new blank workbook.",
+                  "Identify and click on the Ribbon, Formula Bar, and Name Box.",
+                  "Type your name into cell A1 and press Enter.",
+                  "Use the Name Box to jump directly to cell D10.",
+                  "Rename Sheet1 to 'MyFirstSheet'.",
+                  "Save the workbook as Excel_Basics.xlsx."
                 ]
               },
-              {
-                "type": "heading",
-                "text": "4. Rows and Columns"
-              },              
-              {
-                "type": "paragraph",
-                "text": "Rows run horizontally and are identified using numbers. Columns run vertically and are identified using letters."
-              },
-              {
-                "type": "table",
-                "headers": ["Item", "Representation"],
-                "rows": [
-                  ["Rows", "1,2,3,4..."],
-                  ["Columns", "A,B,C,D..."]
-                ]
-              },
-              {
-                "type": "heading",
-                "text": "5. Cell and Cell Address"
-              },
-              {
-                "type": "image",
-                "title": "Rows and Columns",
-                "image": "/data/imagepdf/img2.jpeg"
-              },
-              {
-                "type": "paragraph",
-                "text": "A Cell is the intersection of a row and a column. Every cell has a unique address."
-              },
-              {
-                "type": "table",
-                "headers": ["Cell", "Meaning"],
-                "rows": [
-                  ["A1", "Column A Row 1"],
-                  ["C5", "Column C Row 5"],
-                  ["D10", "Column D Row 10"]
-                ]
-              },
-              {
-                "type": "heading",
-                "text": "6. Ribbon"
-              },
-              {
-                "type": "image",
-                "title": "Ribbon Interface",
-                "image": "/data/imagepdf/img4.jpeg"
-              },
-              {
-                "type": "paragraph",
-                "text": "The Ribbon is the command area located at the top of Excel. It contains all tools required for working with worksheets."
-              },
-              {
-                "type": "table",
-                "headers": ["Tab", "Purpose"],
-                "rows": [
-                  ["Home", "Formatting, Clipboard, Editing"],
-                  ["Insert", "Tables, Charts, Pictures"],
-                  ["Page Layout", "Themes and Printing"],
-                  ["Formulas", "Functions"],
-                  ["Data", "Sorting, Filtering"],
-                  ["Review", "Comments, Protection"],
-                  ["View", "Zoom, Freeze Panes"]
-                ]
-              },
-              {
-                "type": "heading",
-                "text": "7. Formula Bar"
-              },
-              {
-                "type": "paragraph",
-                "text": "The Formula Bar displays the content or formula of the selected cell."
-              },
-              {
-                "type": "syntax",
-                "language": "excel",
-                "code": "=SUM(B2:B10)"
-              },
-              {
-                "type": "heading",
-                "text": "8. Name Box"
-              },
-              {
-                "type": "paragraph",
-                "text": "The Name Box displays the address of the currently selected cell. You can also jump directly to any cell by typing its address."
-              },
-              {
-                "type": "syntax",
-                "language": "text",
-                "code": "A1\nB5\nC10\nD25"
-              },
-              {
-                "type": "heading",
-                "text": "9. Common Keyboard Shortcuts"
-              },
-              {
-                "type": "table",
-                "headers": ["Shortcut", "Purpose"],
-                "rows": [
-                  ["Ctrl + N", "New Workbook"],
-                  ["Ctrl + O", "Open Workbook"],
-                  ["Ctrl + S", "Save Workbook"],
-                  ["Ctrl + C", "Copy"],
-                  ["Ctrl + V", "Paste"],
-                  ["Ctrl + X", "Cut"],
-                  ["Ctrl + Z", "Undo"],
-                  ["Ctrl + Y", "Redo"],
-                  ["Ctrl + B", "Bold"]
-                ]
-              },
-              {
-                "type": "note",
-                "text": "Mastering these basics makes learning formulas, functions, charts, Pivot Tables and dashboards much easier."
-              }
+              { "type": "note", "text": "Mastering these basics makes learning formulas, functions, charts, Pivot Tables and dashboards much easier." }
             ]
           },
           "questions": [
-            {
-              "id": "excel_q001",
-              "type": "MCQ",
-              "difficulty_rating": 1,
-              "question": "What is Microsoft Excel primarily used for?",
-              "options": [
-                "Video Editing",
-                "Spreadsheet and Data Analysis",
-                "Photo Editing",
-                "Programming"
-              ],
-              "answer": [1],
-              "explanation": "Microsoft Excel is a spreadsheet application used for storing, organizing, analyzing, and calculating data."
-            },
-            {
-              "id": "excel_q002",
-              "type": "MCQ",
-              "difficulty_rating": 1,
-              "question": "What is an Excel Workbook?",
-              "options": [
-                "A Row",
-                "A Column",
-                "An Excel File",
-                "A Formula"
-              ],
-              "answer": [2],
-              "explanation": "A Workbook is an Excel file that contains one or more worksheets."
-            },
-            {
-              "id": "excel_q003",
-              "type": "MCQ",
-              "difficulty_rating": 1,
-              "question": "Which of the following represents a valid cell address?",
-              "options": [
-                "1A",
-                "A1",
-                "AA",
-                "11"
-              ],
-              "answer": [1],
-              "explanation": "A valid cell address is formed using the column letter followed by the row number."
-            },
-            {
-              "id": "excel_q004",
-              "type": "MCQ",
-              "difficulty_rating": 1,
-              "question": "Rows in Excel are identified using:",
-              "options": [
-                "Letters",
-                "Symbols",
-                "Numbers",
-                "Colors"
-              ],
-              "answer": [2],
-              "explanation": "Rows are numbered 1, 2, 3, and so on."
-            },
-            {
-              "id": "excel_q005",
-              "type": "MCQ",
-              "difficulty_rating": 1,
-              "question": "Columns in Excel are identified using:",
-              "options": [
-                "Numbers",
-                "Letters",
-                "Roman Numerals",
-                "Special Characters"
-              ],
-              "answer": [1],
-              "explanation": "Columns are labeled A, B, C, D, and so on."
-            },
-            {
-              "id": "excel_q006",
-              "type": "MCQ",
-              "difficulty_rating": 2,
-              "question": "What is the intersection of a row and a column called?",
-              "options": [
-                "Table",
-                "Workbook",
-                "Cell",
-                "Worksheet"
-              ],
-              "answer": [2],
-              "explanation": "The intersection of a row and column is called a Cell."
-            },
-            {
-              "id": "excel_q007",
-              "type": "MCQ",
-              "difficulty_rating": 2,
-              "question": "Which Excel component displays formulas and cell contents?",
-              "options": [
-                "Status Bar",
-                "Ribbon",
-                "Formula Bar",
-                "Title Bar"
-              ],
-              "answer": [2],
-              "explanation": "The Formula Bar displays the contents or formula of the active cell."
-            },
-            {
-              "id": "excel_q008",
-              "type": "MCQ",
-              "difficulty_rating": 2,
-              "question": "Which component contains commands like Home, Insert, Formulas, and Data?",
-              "options": [
-                "Worksheet",
-                "Ribbon",
-                "Status Bar",
-                "Name Box"
-              ],
-              "answer": [1],
-              "explanation": "The Ribbon organizes all Excel commands into different tabs."
-            },
-            {
-              "id": "excel_q009",
-              "type": "MCQ",
-              "difficulty_rating": 2,
-              "question": "Which keyboard shortcut saves the current workbook?",
-              "options": [
-                "Ctrl + C",
-                "Ctrl + S",
-                "Ctrl + V",
-                "Ctrl + P"
-              ],
-              "answer": [1],
-              "explanation": "Ctrl + S saves the current workbook."
-            },
-            {
-              "id": "excel_q010",
-              "type": "MCQ",
-              "difficulty_rating": 2,
-              "question": "The Name Box in Excel displays:",
-              "options": [
-                "Workbook Name",
-                "Worksheet Name",
-                "Active Cell Address",
-                "Formula Result"
-              ],
-              "answer": [2],
-              "explanation": "The Name Box displays the address of the currently selected cell, such as A1 or C5."
-            }
+            { "id": "excel_q001", "type": "MCQ", "difficulty_rating": 1, "question": "What is Microsoft Excel primarily used for?", "options": ["Video Editing", "Spreadsheet and Data Analysis", "Photo Editing", "Programming"], "answer": [1], "explanation": "Microsoft Excel is a spreadsheet application used for storing, organizing, analyzing, and calculating data." },
+            { "id": "excel_q002", "type": "MCQ", "difficulty_rating": 1, "question": "What is an Excel Workbook?", "options": ["A Row", "A Column", "An Excel File", "A Formula"], "answer": [2], "explanation": "A Workbook is an Excel file that contains one or more worksheets." },
+            { "id": "excel_q003", "type": "MCQ", "difficulty_rating": 1, "question": "Which of the following represents a valid cell address?", "options": ["1A", "A1", "AA", "11"], "answer": [1], "explanation": "A valid cell address is formed using the column letter followed by the row number." },
+            { "id": "excel_q004", "type": "MCQ", "difficulty_rating": 1, "question": "Rows in Excel are identified using:", "options": ["Letters", "Symbols", "Numbers", "Colors"], "answer": [2], "explanation": "Rows are numbered 1, 2, 3, and so on." },
+            { "id": "excel_q005", "type": "MCQ", "difficulty_rating": 1, "question": "Columns in Excel are identified using:", "options": ["Numbers", "Letters", "Roman Numerals", "Special Characters"], "answer": [1], "explanation": "Columns are labeled A, B, C, D, and so on." },
+            { "id": "excel_q006", "type": "MCQ", "difficulty_rating": 2, "question": "What is the intersection of a row and a column called?", "options": ["Table", "Workbook", "Cell", "Worksheet"], "answer": [2], "explanation": "The intersection of a row and column is called a Cell." },
+            { "id": "excel_q007", "type": "MCQ", "difficulty_rating": 2, "question": "Which Excel component displays formulas and cell contents?", "options": ["Status Bar", "Ribbon", "Formula Bar", "Title Bar"], "answer": [2], "explanation": "The Formula Bar displays the contents or formula of the active cell." },
+            { "id": "excel_q008", "type": "MCQ", "difficulty_rating": 2, "question": "Which component contains commands like Home, Insert, Formulas, and Data?", "options": ["Worksheet", "Ribbon", "Status Bar", "Name Box"], "answer": [1], "explanation": "The Ribbon organizes all Excel commands into different tabs." },
+            { "id": "excel_q009", "type": "MCQ", "difficulty_rating": 2, "question": "Which keyboard shortcut saves the current workbook?", "options": ["Ctrl + C", "Ctrl + S", "Ctrl + V", "Ctrl + P"], "answer": [1], "explanation": "Ctrl + S saves the current workbook." },
+            { "id": "excel_q010", "type": "MCQ", "difficulty_rating": 2, "question": "The Name Box in Excel displays:", "options": ["Workbook Name", "Worksheet Name", "Active Cell Address", "Formula Result"], "answer": [2], "explanation": "The Name Box displays the address of the currently selected cell, such as A1 or C5." }
           ]
         },
         {
-  "id": "excel_u1_c2",
-  "title": "Day 2: Data Entry, Editing, AutoFill and Flash Fill",
-  "concept": {
-    "title": "Entering, Editing and Managing Data in Microsoft Excel",
-    "body": [
-      {
-        "type": "heading",
-        "text": "1. What is Data Entry?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Data Entry is the process of entering information into Microsoft Excel worksheets. Every piece of information entered into Excel is stored inside a cell. Excel supports different types of data such as text, numbers, dates, time, currency, percentages, and formulas."
-      },     
-      {
-        "type": "list",
-        "items": [
-          "Text (Student Name)",
-          "Numbers (Marks, Salary)",
-          "Date (01/01/2026)",
-          "Time (10:30 AM)",
-          "Currency (₹15,000)",
-          "Percentage (95%)",
-          "Formula (=SUM(B2:B10))"
-        ]
-      },
-      {
-        "type": "note",
-        "text": "Every value entered in Excel is stored in a cell identified by its unique cell address such as A1, B5, or C10."
-      },
-
-      {
-        "type": "heading",
-        "text": "2. Methods of Entering Data"
-      },
-      {
-        "type": "paragraph",
-        "text": "There are several ways to enter data into Excel. The easiest method is to click a cell, type the required information, and press Enter."
-      },
-      {
-        "type": "table",
-        "headers": [
-          "Method",
-          "Description"
-        ],
-        "rows": [
-          [
-            "Keyboard",
-            "Type directly into the selected cell."
-          ],
-          [
-            "Formula Bar",
-            "Type or edit data using the Formula Bar."
-          ],
-          [
-            "Copy & Paste",
-            "Paste data copied from another worksheet or application."
-          ],
-          [
-            "Import",
-            "Import data from CSV, Text, or external databases."
+          "id": "excel_u1_c2",
+          "title": "Day 2: Data Entry, Editing, AutoFill and Flash Fill",
+          "concept": {
+            "title": "Entering, Editing and Managing Data in Microsoft Excel",
+            "body": [
+              { "type": "heading", "text": "1. What is Data Entry?" },
+              { "type": "paragraph", "text": "Data Entry is the process of entering information into Microsoft Excel worksheets. Every piece of information entered into Excel is stored inside a cell. Excel supports different types of data such as text, numbers, dates, time, currency, percentages, and formulas." },
+              { "type": "list", "items": ["Text (Student Name)", "Numbers (Marks, Salary)", "Date (01/01/2026)", "Time (10:30 AM)", "Currency (₹15,000)", "Percentage (95%)", "Formula (=SUM(B2:B10))"] },
+              { "type": "note", "text": "Every value entered in Excel is stored in a cell identified by its unique cell address such as A1, B5, or C10." },
+              { "type": "heading", "text": "2. Methods of Entering Data" },
+              { "type": "paragraph", "text": "There are several ways to enter data into Excel. The easiest method is to click a cell, type the required information, and press Enter." },
+              { "type": "table", "headers": ["Method", "Description"], "rows": [["Keyboard", "Type directly into the selected cell."], ["Formula Bar", "Type or edit data using the Formula Bar."], ["Copy & Paste", "Paste data copied from another worksheet or application."], ["Import", "Import data from CSV, Text, or external databases."]] },
+              { "type": "heading", "text": "3. Editing Data" },
+              { "type": "paragraph", "text": "Editing means modifying existing data without deleting the entire worksheet. Excel provides several methods for editing cell contents." },
+              { "type": "list", "items": ["Double-click the cell.", "Press F2 to edit the active cell.", "Edit using the Formula Bar.", "Replace the existing value by typing a new value."] },
+              { "type": "table", "headers": ["Shortcut", "Purpose"], "rows": [["F2", "Edit Active Cell"], ["Delete", "Clear Cell Contents"], ["Ctrl + Z", "Undo Last Action"], ["Ctrl + Y", "Redo Last Action"]] },
+              { "type": "note", "text": "Editing data does not change the worksheet structure. It only changes the contents of the selected cell." },
+              { "type": "heading", "text": "4. AutoFill" },
+              { "type": "paragraph", "text": "AutoFill is a powerful Excel feature that automatically fills cells with a series of values or copies existing values and formulas. It saves time by reducing repetitive typing." },
+              { "type": "list", "items": ["Generate Serial Numbers", "Fill Dates", "Fill Months", "Fill Weekdays", "Copy Formulas", "Copy Formatting"] },
+              { "type": "table", "headers": ["Input", "AutoFill Result"], "rows": [["1, 2", "3, 4, 5, 6..."], ["Monday", "Tuesday, Wednesday..."], ["January", "February, March..."], ["=A1+B1", "Formula copied to next rows"]] },
+              { "type": "tip", "text": "Drag the small square (Fill Handle) located at the bottom-right corner of the selected cell to use AutoFill." },
+              { "type": "steps", "title": "How to Use AutoFill", "steps": ["Type the starting value(s) in a cell (e.g. 1 and 2 in two cells).", "Select both cells.", "Hover over the small square (Fill Handle) at the bottom-right corner.", "Click and drag down or across to fill the series.", "Release the mouse to complete the fill."] },
+              { "type": "heading", "text": "5. Flash Fill" },
+              { "type": "paragraph", "text": "Flash Fill automatically detects patterns in your data and fills the remaining cells without requiring formulas. It is commonly used to split names, combine text, or extract specific information." },
+              { "type": "table", "headers": ["Original Data", "Example Entered", "Flash Fill Output"], "rows": [["John Doe", "John", "John, Alice, David..."], ["John Doe", "Doe", "Doe, Smith, Brown..."], ["john@gmail.com", "john", "alice, david..."]] },
+              { "type": "syntax", "language": "text", "title": "Flash Fill Shortcut", "code": "Ctrl + E" },
+              { "type": "note", "text": "Flash Fill recognizes patterns based on the examples you provide. It does not use formulas." },
+              { "type": "steps", "title": "How to Use Flash Fill", "steps": ["Type the desired output pattern in the first cell (e.g. just the first name).", "Start typing the same pattern in the next cell.", "Press Ctrl + E, or accept the suggested preview.", "Verify the filled data is correct for every row."] },
+              { "type": "heading", "text": "6. Difference Between AutoFill and Flash Fill" },
+              { "type": "table", "headers": ["Feature", "AutoFill", "Flash Fill"], "rows": [["Purpose", "Copies values, formulas or creates series", "Recognizes patterns and fills data"], ["Uses Formula", "Yes", "No"], ["Shortcut", "Drag Fill Handle", "Ctrl + E"], ["Best Used For", "Serial numbers, dates, formulas", "Extracting or formatting text"]] },
+              {
+                "type": "exercise",
+                "title": "Practice Exercise - Student Marks Entry",
+                "steps": [
+                  "Create a worksheet with columns: Roll No, Student Name, Subject, Marks.",
+                  "Use AutoFill to generate Roll Numbers from 1 to 20.",
+                  "Enter 5 full names, then use Flash Fill to extract just the first names into a new column.",
+                  "Copy a marks formula down all 20 rows using AutoFill.",
+                  "Save the workbook as Student_Marks.xlsx."
+                ]
+              },
+              { "type": "heading", "text": "7. Best Practices" },
+              { "type": "list", "items": ["Always verify data after using Flash Fill.", "Use AutoFill for repetitive numeric or date sequences.", "Use Flash Fill for text formatting and extraction.", "Save your workbook regularly.", "Use Undo (Ctrl + Z) if mistakes occur."] },
+              { "type": "summary", "items": ["Data Entry is the process of entering information into Excel cells.", "Editing allows existing data to be modified.", "AutoFill copies values, formulas and creates series automatically.", "Flash Fill recognizes patterns and fills data without formulas.", "AutoFill and Flash Fill improve productivity and reduce manual work."] }
+            ]
+          },
+          "questions": [
+            { "id": "excel_q011", "type": "MCQ", "difficulty_rating": 1, "question": "What is Data Entry in Excel?", "options": ["Creating charts", "Entering information into worksheet cells", "Printing a worksheet", "Deleting rows"], "answer": [1], "explanation": "Data Entry is the process of entering information such as text, numbers, dates, and formulas into Excel cells." },
+            { "id": "excel_q012", "type": "MCQ", "difficulty_rating": 1, "question": "Which of the following are valid types of data in Excel?", "options": ["Text, Numbers, Dates, Formulas", "Images, Videos, Audio, Animation", "HTML, CSS, JavaScript, PHP", "Mouse, Keyboard, Monitor, Printer"], "answer": [0], "explanation": "Excel supports various data types including text, numbers, dates, time, currency, percentages, and formulas." },
+            { "id": "excel_q013", "type": "MCQ", "difficulty_rating": 1, "question": "Which key is used to edit the active cell?", "options": ["F1", "F2", "F3", "F4"], "answer": [1], "explanation": "Pressing F2 allows you to edit the contents of the active cell." },
+            { "id": "excel_q014", "type": "MCQ", "difficulty_rating": 2, "question": "What is the main purpose of AutoFill?", "options": ["Create charts automatically", "Save the workbook", "Copy data, formulas, or create a series automatically", "Print worksheets"], "answer": [2], "explanation": "AutoFill automatically copies values, formulas, and generates sequences such as numbers, dates, and months." },
+            { "id": "excel_q015", "type": "MCQ", "difficulty_rating": 1, "question": "Where is the Fill Handle located?", "options": ["Top-left corner of the worksheet", "Bottom-right corner of the selected cell", "Middle of the Ribbon", "Formula Bar"], "answer": [1], "explanation": "The Fill Handle is the small square located at the bottom-right corner of the selected cell." },
+            { "id": "excel_q016", "type": "MCQ", "difficulty_rating": 2, "question": "What is Flash Fill mainly used for?", "options": ["Creating Pivot Tables", "Recognizing patterns and automatically filling data", "Sorting worksheets", "Calculating formulas"], "answer": [1], "explanation": "Flash Fill automatically recognizes patterns in data and fills the remaining cells without formulas." },
+            { "id": "excel_q017", "type": "MCQ", "difficulty_rating": 1, "question": "Which keyboard shortcut activates Flash Fill?", "options": ["Ctrl + F", "Ctrl + D", "Ctrl + E", "Ctrl + R"], "answer": [2], "explanation": "Ctrl + E is the shortcut key for Flash Fill." },
+            { "id": "excel_q018", "type": "MCQ", "difficulty_rating": 2, "question": "What is the main difference between AutoFill and Flash Fill?", "options": ["AutoFill creates series or copies formulas, while Flash Fill recognizes patterns in data.", "AutoFill edits worksheets, while Flash Fill saves files.", "AutoFill creates charts, while Flash Fill creates tables.", "There is no difference."], "answer": [0], "explanation": "AutoFill copies values, formulas, and sequences, whereas Flash Fill automatically recognizes patterns in text data." },
+            { "id": "excel_q019", "type": "MCQ", "difficulty_rating": 1, "question": "Which keyboard shortcut performs Undo?", "options": ["Ctrl + Y", "Ctrl + U", "Ctrl + Z", "Ctrl + X"], "answer": [2], "explanation": "Ctrl + Z is used to undo the last action performed in Excel." },
+            { "id": "excel_q020", "type": "MCQ", "difficulty_rating": 1, "question": "How do you move to the next column while entering data?", "options": ["Press Enter", "Press Tab", "Press Shift", "Press Esc"], "answer": [1], "explanation": "Pressing the Tab key moves the active cell to the next column." }
           ]
-        ]
-      },
-
-      {
-        "type": "heading",
-        "text": "3. Editing Data"
-      },
-      {
-        "type": "paragraph",
-        "text": "Editing means modifying existing data without deleting the entire worksheet. Excel provides several methods for editing cell contents."
-      },      
-      {
-        "type": "list",
-        "items": [
-          "Double-click the cell.",
-          "Press F2 to edit the active cell.",
-          "Edit using the Formula Bar.",
-          "Replace the existing value by typing a new value."
-        ]
-      },
-      {
-        "type": "table",
-        "headers": [
-          "Shortcut",
-          "Purpose"
-        ],
-        "rows": [
-          [
-            "F2",
-            "Edit Active Cell"
-          ],
-          [
-            "Delete",
-            "Clear Cell Contents"
-          ],
-          [
-            "Ctrl + Z",
-            "Undo Last Action"
-          ],
-          [
-            "Ctrl + Y",
-            "Redo Last Action"
+        },
+        {
+          "id": "excel_u1_c3",
+          "title": "Day 3: Formatting (Fonts, Borders, Colors, Alignment)",
+          "concept": {
+            "title": "Formatting Worksheets in Microsoft Excel",
+            "body": [
+              { "type": "heading", "text": "1. What is Formatting?" },
+              { "type": "paragraph", "text": "Formatting is the process of changing the appearance of data without changing its actual value. It improves readability, makes reports attractive, and helps present information professionally." },
+              { "type": "heading", "text": "2. Font Formatting" },
+              { "type": "paragraph", "text": "Font formatting changes the appearance of text inside a cell. You can change the font style, font size, make text Bold, Italic, Underline, and change the font color." },
+              { "type": "list", "items": ["Change Font Name", "Increase or Decrease Font Size", "Bold (Ctrl+B)", "Italic (Ctrl+I)", "Underline (Ctrl+U)", "Change Font Color"] },
+              { "type": "steps", "title": "How to Change Font Color", "steps": ["Select the cell or range of cells.", "Click the Home tab.", "Locate the Font group.", "Click the Font Color (A) drop-down button.", "Choose the desired color."] },
+              { "type": "note", "text": "Use dark colors for headings and bright colors only to highlight important information." },
+              { "type": "heading", "text": "3. Cell Borders" },
+              { "type": "paragraph", "text": "Borders draw lines around cells to separate and organize data. They make tables easier to read." },
+              { "type": "steps", "title": "How to Apply Borders", "steps": ["Select the required cells.", "Click the Home tab.", "Go to the Font group.", "Click the Borders drop-down button.", "Choose All Borders, Outside Borders, Thick Border, or another border style."] },
+              { "type": "note", "text": "Use 'All Borders' for tables and 'Thick Outside Borders' for highlighting important sections." },
+              { "type": "heading", "text": "4. Fill Color" },
+              { "type": "paragraph", "text": "Fill Color changes the background color of a cell. It is commonly used for headings, totals, warnings, and important information." },
+              { "type": "steps", "title": "How to Apply Fill Color", "steps": ["Select the cells.", "Click the Home tab.", "In the Font group, click the Fill Color (Paint Bucket) button.", "Choose the required background color."] },
+              { "type": "note", "text": "Light colors improve readability. Avoid using too many different colors in the same worksheet." },
+              { "type": "heading", "text": "5. Alignment" },
+              { "type": "paragraph", "text": "Alignment controls how text or numbers appear inside a cell. Data can be aligned horizontally or vertically." },
+              { "type": "list", "items": ["Left Align", "Center Align", "Right Align", "Top Align", "Middle Align", "Bottom Align"] },
+              { "type": "steps", "title": "How to Change Alignment", "steps": ["Select the cells.", "Click the Home tab.", "Go to the Alignment group.", "Click Left, Center, or Right Alignment.", "Use Top, Middle, or Bottom Align if required."] },
+              { "type": "heading", "text": "6. Merge & Center" },
+              { "type": "paragraph", "text": "Merge & Center combines multiple adjacent cells into one cell and places the text in the center. It is commonly used for worksheet titles." },
+              { "type": "steps", "title": "How to Merge Cells", "steps": ["Select the cells.", "Click the Home tab.", "Go to the Alignment group.", "Click Merge & Center."] },
+              { "type": "note", "text": "Avoid merging cells inside data tables because it may affect sorting and filtering." },
+              { "type": "heading", "text": "7. Wrap Text" },
+              { "type": "paragraph", "text": "Wrap Text displays long text on multiple lines within the same cell instead of overflowing into adjacent cells." },
+              { "type": "steps", "title": "How to Wrap Text", "steps": ["Select the required cells.", "Click the Home tab.", "Go to the Alignment group.", "Click Wrap Text."] },
+              { "type": "heading", "text": "8. Format Painter" },
+              { "type": "paragraph", "text": "Format Painter copies the formatting of one cell and applies it to another cell without copying the data." },
+              { "type": "steps", "title": "How to Use Format Painter", "steps": ["Select the formatted cell.", "Click the Home tab.", "Click Format Painter.", "Click or drag over the destination cells."] },
+              { "type": "note", "text": "Double-click Format Painter to apply the same formatting to multiple locations." },
+              { "type": "exercise", "title": "Practice Exercise - Student Report Card", "steps": ["Create a student report card.", "Apply Arial font with size 14.", "Make the title Bold.", "Change the title font color to White.", "Apply Blue Fill Color to the header row.", "Center-align all headings.", "Apply All Borders to the table.", "Merge and Center the worksheet title.", "Use Wrap Text for long headings.", "Use Format Painter to copy the formatting to another table."] }
+            ]
+          },
+          "questions": [
+            { "id": "excel_q021", "type": "MCQ", "difficulty_rating": 1, "question": "What is the purpose of formatting in Excel?", "options": ["Delete data", "Improve appearance and readability", "Print worksheets", "Create formulas"], "answer": [1], "explanation": "Formatting changes the appearance of data without changing its value." },
+            { "id": "excel_q022", "type": "MCQ", "difficulty_rating": 1, "question": "Which tab contains most formatting tools?", "options": ["Insert", "Data", "Home", "Review"], "answer": [2], "explanation": "The Home tab contains Font, Alignment and Number formatting groups." },
+            { "id": "excel_q023", "type": "MCQ", "difficulty_rating": 1, "question": "Which option makes text bold?", "options": ["Italic", "Underline", "Bold", "Wrap Text"], "answer": [2], "explanation": "Bold makes text thicker and more visible." },
+            { "id": "excel_q024", "type": "MCQ", "difficulty_rating": 1, "question": "Borders are mainly used to:", "options": ["Delete cells", "Organize and separate data", "Create formulas", "Insert charts"], "answer": [1], "explanation": "Borders improve table readability." },
+            { "id": "excel_q025", "type": "MCQ", "difficulty_rating": 1, "question": "Which feature changes the background color of a cell?", "options": ["Font Color", "Fill Color", "Border", "Merge"], "answer": [1], "explanation": "Fill Color changes the cell background." },
+            { "id": "excel_q026", "type": "MCQ", "difficulty_rating": 2, "question": "Which alignment places text in the middle of a cell?", "options": ["Left", "Right", "Center", "Top"], "answer": [2], "explanation": "Center alignment positions text in the middle." },
+            { "id": "excel_q027", "type": "MCQ", "difficulty_rating": 2, "question": "Merge & Center is mainly used to:", "options": ["Delete cells", "Combine cells and center text", "Sort data", "Filter data"], "answer": [1], "explanation": "Merge & Center combines selected cells into one." },
+            { "id": "excel_q028", "type": "MCQ", "difficulty_rating": 2, "question": "Wrap Text is used to:", "options": ["Rotate text", "Display long text on multiple lines", "Hide text", "Delete text"], "answer": [1], "explanation": "Wrap Text shows long content within the same cell." },
+            { "id": "excel_q029", "type": "MCQ", "difficulty_rating": 2, "question": "Format Painter is used to:", "options": ["Copy formatting", "Copy formulas", "Copy worksheets", "Copy charts"], "answer": [0], "explanation": "Format Painter copies formatting from one cell to another." },
+            { "id": "excel_q030", "type": "MCQ", "difficulty_rating": 2, "question": "Which feature is commonly used to create a report title across multiple columns?", "options": ["Wrap Text", "Merge & Center", "Borders", "Conditional Formatting"], "answer": [1], "explanation": "Merge & Center combines cells for headings." }
           ]
-        ]
-      },
-
-      {
-        "type": "note",
-        "text": "Editing data does not change the worksheet structure. It only changes the contents of the selected cell."
-      },
-
-      {
-        "type": "heading",
-        "text": "4. AutoFill"
-      },
-      {
-        "type": "paragraph",
-        "text": "AutoFill is a powerful Excel feature that automatically fills cells with a series of values or copies existing values and formulas. It saves time by reducing repetitive typing."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Generate Serial Numbers",
-          "Fill Dates",
-          "Fill Months",
-          "Fill Weekdays",
-          "Copy Formulas",
-          "Copy Formatting"
-        ]
-      },
-      {
-        "type": "table",
-        "headers": [
-          "Input",
-          "AutoFill Result"
-        ],
-        "rows": [
-          [
-            "1, 2",
-            "3, 4, 5, 6..."
-          ],
-          [
-            "Monday",
-            "Tuesday, Wednesday..."
-          ],
-          [
-            "January",
-            "February, March..."
-          ],
-          [
-            "=A1+B1",
-            "Formula copied to next rows"
+        },
+        {
+          "id": "excel_u1_c4",
+          "title": "Day 4: Number Formats, Dates, Time, Currency",
+          "concept": {
+            "title": "Formatting Numbers, Dates, Time and Currency in Microsoft Excel",
+            "body": [
+              { "type": "heading", "text": "1. What is Number Formatting?" },
+              { "type": "paragraph", "text": "Number Formatting changes the appearance of numbers without changing their actual value. It helps present data in a professional and meaningful way." },
+              { "type": "note", "text": "Changing the number format does not change the value stored in the cell. It only changes how the value is displayed." },
+              { "type": "image", "title": "Number Formatting Options", "path": "/imagepdf/day4/number-format.jpeg" },
+              { "type": "heading", "text": "2. Number Format" },
+              { "type": "paragraph", "text": "The Number format displays numeric values with commas, decimal places, and negative number styles. It is commonly used for marks, quantities, salaries, and financial reports." },
+              { "type": "steps", "title": "How to Apply Number Format", "steps": ["Select the required cells.", "Click the Home tab.", "Go to the Number group.", "Click the Number Format drop-down list.", "Choose 'Number'.", "Use Increase Decimal or Decrease Decimal to adjust decimal places."] },
+              { "type": "example", "title": "Example", "before": "12500", "after": "12,500.00" },
+              { "type": "image", "title": "Number Format", "path": "/imagepdf/day4/number-example.jpeg" },
+              { "type": "heading", "text": "3. Date Format" },
+              { "type": "paragraph", "text": "Excel stores dates as serial numbers but displays them in different date formats. Date formatting makes reports easier to read." },
+              { "type": "list", "items": ["10/05/2026", "10-May-2026", "May 10, 2026", "Monday, 10 May 2026"] },
+              { "type": "steps", "title": "How to Apply Date Format", "steps": ["Select the date cells.", "Click the Home tab.", "Go to the Number group.", "Click the Number Format drop-down.", "Select Short Date or Long Date."] },
+              { "type": "note", "text": "Always store dates as real Excel dates instead of typing them as plain text." },
+              { "type": "image", "title": "Date Formatting", "path": "/imagepdf/day4/date-format.jpeg" },
+              { "type": "heading", "text": "4. Time Format" },
+              { "type": "paragraph", "text": "Time formatting is used to display hours, minutes, and seconds. Excel stores time as a fraction of a day." },
+              { "type": "list", "items": ["09:30 AM", "14:45", "10:30:15 PM"] },
+              { "type": "steps", "title": "How to Apply Time Format", "steps": ["Select the cells containing time.", "Click the Home tab.", "Go to the Number group.", "Choose the Time format."] },
+              { "type": "image", "title": "Time Formatting", "path": "/imagepdf/day4/time-format.jpeg" },
+              { "type": "heading", "text": "5. Currency Format" },
+              { "type": "paragraph", "text": "Currency format displays monetary values with currency symbols such as ₹, $, or €. It is commonly used in salary sheets, invoices, and financial reports." },
+              { "type": "steps", "title": "How to Apply Currency Format", "steps": ["Select the amount cells.", "Click the Home tab.", "Go to the Number group.", "Choose Currency or Accounting from the Number Format list.", "Select the required currency symbol."] },
+              { "type": "example", "title": "Example", "before": "25000", "after": "₹25,000.00" },
+              { "type": "note", "text": "Accounting format aligns currency symbols and decimal points, making financial statements easier to read." },
+              { "type": "image", "title": "Currency Formatting", "path": "/imagepdf/day4/currency-format.jpeg" },
+              { "type": "heading", "text": "6. Percentage Format" },
+              { "type": "paragraph", "text": "Percentage format converts decimal values into percentages. It is commonly used for marks, attendance, discounts, growth rates, and profit calculations." },
+              { "type": "steps", "title": "How to Apply Percentage Format", "steps": ["Select the cells.", "Click the Home tab.", "Go to the Number group.", "Click the Percentage (%) button."] },
+              { "type": "example", "title": "Example", "before": "0.85", "after": "85%" },
+              { "type": "image", "title": "Percentage Formatting", "path": "/imagepdf/day4/percentage-format.jpeg" },
+              { "type": "heading", "text": "7. Increase & Decrease Decimal" },
+              { "type": "paragraph", "text": "Excel allows you to increase or decrease the number of decimal places displayed for numeric values." },
+              { "type": "steps", "title": "How to Change Decimal Places", "steps": ["Select the number cells.", "Click the Home tab.", "Go to the Number group.", "Click Increase Decimal or Decrease Decimal."] },
+              { "type": "example", "title": "Example", "before": "25.123456", "after": "25.12" },
+              { "type": "image", "title": "Decimal Options", "path": "/imagepdf/day4/decimal-format.jpeg" },
+              { "type": "heading", "text": "8. Format Cells Dialog Box" },
+              { "type": "paragraph", "text": "The Format Cells dialog box provides advanced formatting options such as Number, Alignment, Font, Border, Fill, and Protection." },
+              { "type": "steps", "title": "How to Open Format Cells", "steps": ["Select the cells.", "Right-click and choose Format Cells.", "OR press Ctrl + 1.", "Select the required category and click OK."] },
+              { "type": "image", "title": "Format Cells Dialog Box", "path": "/imagepdf/day4/format-cells.jpeg" },
+              { "type": "exercise", "title": "Practice Exercise - Employee Salary Register", "steps": ["Create a salary register with Employee ID, Employee Name, Joining Date, Basic Salary, HRA, Bonus, and Gross Salary.", "Apply Number format to numerical columns.", "Apply Currency format (₹) to salary columns.", "Apply Date format to Joining Date.", "Apply Percentage format to Bonus column.", "Increase decimal places to two digits.", "Use Accounting format for Gross Salary.", "Save the workbook as Salary_Register.xlsx."] }
+            ]
+          },
+          "questions": [
+            { "id": "excel_q031", "type": "MCQ", "difficulty_rating": 1, "question": "What is Number Formatting in Excel?", "options": ["Changing the displayed appearance of numbers", "Deleting numbers", "Sorting numbers", "Creating charts"], "answer": [0], "explanation": "Number formatting changes only the display, not the stored value." },
+            { "id": "excel_q032", "type": "MCQ", "difficulty_rating": 1, "question": "Which number format is used for money values?", "options": ["Text", "Currency", "Scientific", "Fraction"], "answer": [1], "explanation": "Currency format displays monetary values with symbols." },
+            { "id": "excel_q033", "type": "MCQ", "difficulty_rating": 1, "question": "Which format is best for storing joining dates?", "options": ["Currency", "Date", "Percentage", "Scientific"], "answer": [1], "explanation": "Date format displays dates correctly." },
+            { "id": "excel_q034", "type": "MCQ", "difficulty_rating": 1, "question": "Which format displays values like 85%?", "options": ["Currency", "Number", "Percentage", "Date"], "answer": [2], "explanation": "Percentage format converts decimal values into percentages." },
+            { "id": "excel_q035", "type": "MCQ", "difficulty_rating": 1, "question": "Time values are displayed using:", "options": ["Date Format", "Time Format", "Scientific", "Accounting"], "answer": [1], "explanation": "Time format displays hours, minutes, and seconds." },
+            { "id": "excel_q036", "type": "MCQ", "difficulty_rating": 2, "question": "Which button controls decimal places?", "options": ["Increase/Decrease Decimal", "Merge", "Wrap Text", "Sort"], "answer": [0], "explanation": "These buttons adjust the number of decimal places." },
+            { "id": "excel_q037", "type": "MCQ", "difficulty_rating": 2, "question": "Which format displays ₹25,000.00?", "options": ["General", "Currency", "Date", "Text"], "answer": [1], "explanation": "Currency format adds the appropriate currency symbol." },
+            { "id": "excel_q038", "type": "MCQ", "difficulty_rating": 2, "question": "Changing number formatting affects:", "options": ["Only the appearance", "The stored value", "Deletes the value", "Formula results"], "answer": [0], "explanation": "Formatting changes only how the value is displayed." },
+            { "id": "excel_q039", "type": "MCQ", "difficulty_rating": 2, "question": "Which worksheet is a good example for practicing Currency formatting?", "options": ["Student Attendance", "Salary Register", "Library List", "Sports Record"], "answer": [1], "explanation": "Salary registers commonly use currency formatting." },
+            { "id": "excel_q040", "type": "MCQ", "difficulty_rating": 2, "question": "Which format would you use for employee joining dates?", "options": ["Currency", "Percentage", "Date", "Scientific"], "answer": [2], "explanation": "Date format is used to display calendar dates." }
           ]
-        ]
-      },
-      {
-        "type": "tip",
-        "text": "Drag the small square (Fill Handle) located at the bottom-right corner of the selected cell to use AutoFill."
-      },
-
-      {
-        "type": "heading",
-        "text": "5. Flash Fill"
-      },
-      {
-        "type": "paragraph",
-        "text": "Flash Fill automatically detects patterns in your data and fills the remaining cells without requiring formulas. It is commonly used to split names, combine text, or extract specific information."
-      },      
-      {
-        "type": "table",
-        "headers": [
-          "Original Data",
-          "Example Entered",
-          "Flash Fill Output"
-        ],
-        "rows": [
-          [
-            "John Doe",
-            "John",
-            "John, Alice, David..."
-          ],
-          [
-            "John Doe",
-            "Doe",
-            "Doe, Smith, Brown..."
-          ],
-          [
-            "john@gmail.com",
-            "john",
-            "alice, david..."
-          ]
-        ]
-      },
-      {
-        "type": "syntax",
-        "language": "text",
-        "title": "Flash Fill Shortcut",
-        "code": "Ctrl + E"
-      },
-      {
-        "type": "note",
-        "text": "Flash Fill recognizes patterns based on the examples you provide. It does not use formulas."
-      },
-
-      {
-        "type": "heading",
-        "text": "6. Difference Between AutoFill and Flash Fill"
-      },
-      {
-        "type": "table",
-        "headers": [
-          "Feature",
-          "AutoFill",
-          "Flash Fill"
-        ],
-        "rows": [
-          [
-            "Purpose",
-            "Copies values, formulas or creates series",
-            "Recognizes patterns and fills data"
-          ],
-          [
-            "Uses Formula",
-            "Yes",
-            "No"
-          ],
-          [
-            "Shortcut",
-            "Drag Fill Handle",
-            "Ctrl + E"
-          ],
-          [
-            "Best Used For",
-            "Serial numbers, dates, formulas",
-            "Extracting or formatting text"
-          ]
-        ]
-      },
-
-      {
-        "type": "heading",
-        "text": "7. Best Practices"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Always verify data after using Flash Fill.",
-          "Use AutoFill for repetitive numeric or date sequences.",
-          "Use Flash Fill for text formatting and extraction.",
-          "Save your workbook regularly.",
-          "Use Undo (Ctrl + Z) if mistakes occur."
-        ]
-      },
-
-      {
-        "type": "summary",
-        "items": [
-          "Data Entry is the process of entering information into Excel cells.",
-          "Editing allows existing data to be modified.",
-          "AutoFill copies values, formulas and creates series automatically.",
-          "Flash Fill recognizes patterns and fills data without formulas.",
-          "AutoFill and Flash Fill improve productivity and reduce manual work."
-        ]
-      }
-    ]
-  },
-  "questions": [
-  {
-    "id": "excel_q011",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "What is Data Entry in Excel?",
-    "options": [
-      "Creating charts",
-      "Entering information into worksheet cells",
-      "Printing a worksheet",
-      "Deleting rows"
-    ],
-    "answer": [1],
-    "explanation": "Data Entry is the process of entering information such as text, numbers, dates, and formulas into Excel cells."
-  },
-  {
-    "id": "excel_q012",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which of the following are valid types of data in Excel?",
-    "options": [
-      "Text, Numbers, Dates, Formulas",
-      "Images, Videos, Audio, Animation",
-      "HTML, CSS, JavaScript, PHP",
-      "Mouse, Keyboard, Monitor, Printer"
-    ],
-    "answer": [0],
-    "explanation": "Excel supports various data types including text, numbers, dates, time, currency, percentages, and formulas."
-  },
-  {
-    "id": "excel_q013",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which key is used to edit the active cell?",
-    "options": [
-      "F1",
-      "F2",
-      "F3",
-      "F4"
-    ],
-    "answer": [1],
-    "explanation": "Pressing F2 allows you to edit the contents of the active cell."
-  },
-  {
-    "id": "excel_q014",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "What is the main purpose of AutoFill?",
-    "options": [
-      "Create charts automatically",
-      "Save the workbook",
-      "Copy data, formulas, or create a series automatically",
-      "Print worksheets"
-    ],
-    "answer": [2],
-    "explanation": "AutoFill automatically copies values, formulas, and generates sequences such as numbers, dates, and months."
-  },
-  {
-    "id": "excel_q015",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Where is the Fill Handle located?",
-    "options": [
-      "Top-left corner of the worksheet",
-      "Bottom-right corner of the selected cell",
-      "Middle of the Ribbon",
-      "Formula Bar"
-    ],
-    "answer": [1],
-    "explanation": "The Fill Handle is the small square located at the bottom-right corner of the selected cell."
-  },
-  {
-    "id": "excel_q016",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "What is Flash Fill mainly used for?",
-    "options": [
-      "Creating Pivot Tables",
-      "Recognizing patterns and automatically filling data",
-      "Sorting worksheets",
-      "Calculating formulas"
-    ],
-    "answer": [1],
-    "explanation": "Flash Fill automatically recognizes patterns in data and fills the remaining cells without formulas."
-  },
-  {
-    "id": "excel_q017",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which keyboard shortcut activates Flash Fill?",
-    "options": [
-      "Ctrl + F",
-      "Ctrl + D",
-      "Ctrl + E",
-      "Ctrl + R"
-    ],
-    "answer": [2],
-    "explanation": "Ctrl + E is the shortcut key for Flash Fill."
-  },
-  {
-    "id": "excel_q018",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "What is the main difference between AutoFill and Flash Fill?",
-    "options": [
-      "AutoFill creates series or copies formulas, while Flash Fill recognizes patterns in data.",
-      "AutoFill edits worksheets, while Flash Fill saves files.",
-      "AutoFill creates charts, while Flash Fill creates tables.",
-      "There is no difference."
-    ],
-    "answer": [0],
-    "explanation": "AutoFill copies values, formulas, and sequences, whereas Flash Fill automatically recognizes patterns in text data."
-  },
-  {
-    "id": "excel_q019",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which keyboard shortcut performs Undo?",
-    "options": [
-      "Ctrl + Y",
-      "Ctrl + U",
-      "Ctrl + Z",
-      "Ctrl + X"
-    ],
-    "answer": [2],
-    "explanation": "Ctrl + Z is used to undo the last action performed in Excel."
-  },
-  {
-    "id": "excel_q020",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "How do you move to the next column while entering data?",
-    "options": [
-      "Press Enter",
-      "Press Tab",
-      "Press Shift",
-      "Press Esc"
-    ],
-    "answer": [1],
-    "explanation": "Pressing the Tab key moves the active cell to the next column."
-  }
-]
-    },
-{
-  "id": "excel_u1_c3",
-  "title": "Day 3: Formatting (Fonts, Borders, Colors, Alignment)",
-  "concept": {
-    "title": "Formatting Worksheets in Microsoft Excel",
-    "content": [
-      {
-        "type": "heading",
-        "text": "1. What is Formatting?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Formatting is the process of changing the appearance of data without changing its actual value. It improves readability, makes reports attractive, and helps present information professionally."
-      },
-      {
-        "type": "heading",
-        "text": "2. Font Formatting"
-      },
-      {
-        "type": "paragraph",
-        "text": "Font formatting changes the appearance of text inside a cell. You can change the font style, font size, make text Bold, Italic, Underline, and change the font color."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Change Font Name",
-          "Increase or Decrease Font Size",
-          "Bold (Ctrl+B)",
-          "Italic (Ctrl+I)",
-          "Underline (Ctrl+U)",
-          "Change Font Color"
-        ]
-      },
-      {
-        "type": "steps",
-        "title": "How to Change Font Color",
-        "steps": [
-          "Select the cell or range of cells.",
-          "Click the Home tab.",
-          "Locate the Font group.",
-          "Click the Font Color (A) drop-down button.",
-          "Choose the desired color."
-        ]
-      },
-      {
-        "type": "note",
-        "text": "Use dark colors for headings and bright colors only to highlight important information."
-      },
-      {
-        "type": "heading",
-        "text": "3. Cell Borders"
-      },
-      {
-        "type": "paragraph",
-        "text": "Borders draw lines around cells to separate and organize data. They make tables easier to read."
-      },
-      {
-        "type": "steps",
-        "title": "How to Apply Borders",
-        "steps": [
-          "Select the required cells.",
-          "Click the Home tab.",
-          "Go to the Font group.",
-          "Click the Borders drop-down button.",
-          "Choose All Borders, Outside Borders, Thick Border, or another border style."
-        ]
-      },
-      {
-        "type": "note",
-        "text": "Use 'All Borders' for tables and 'Thick Outside Borders' for highlighting important sections."
-      },
-      
-      {
-        "type": "heading",
-        "text": "4. Fill Color"
-      },
-      {
-        "type": "paragraph",
-        "text": "Fill Color changes the background color of a cell. It is commonly used for headings, totals, warnings, and important information."
-      },
-      {
-        "type": "steps",
-        "title": "How to Apply Fill Color",
-        "steps": [
-          "Select the cells.",
-          "Click the Home tab.",
-          "In the Font group, click the Fill Color (Paint Bucket) button.",
-          "Choose the required background color."
-        ]
-      },
-      {
-        "type": "note",
-        "text": "Light colors improve readability. Avoid using too many different colors in the same worksheet."
-      },
-     
-      {
-        "type": "heading",
-        "text": "5. Alignment"
-      },
-      {
-        "type": "paragraph",
-        "text": "Alignment controls how text or numbers appear inside a cell. Data can be aligned horizontally or vertically."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Left Align",
-          "Center Align",
-          "Right Align",
-          "Top Align",
-          "Middle Align",
-          "Bottom Align"
-        ]
-      },
-      {
-        "type": "steps",
-        "title": "How to Change Alignment",
-        "steps": [
-          "Select the cells.",
-          "Click the Home tab.",
-          "Go to the Alignment group.",
-          "Click Left, Center, or Right Alignment.",
-          "Use Top, Middle, or Bottom Align if required."
-        ]
-      },
-      
-      {
-        "type": "heading",
-        "text": "6. Merge & Center"
-      },
-      {
-        "type": "paragraph",
-        "text": "Merge & Center combines multiple adjacent cells into one cell and places the text in the center. It is commonly used for worksheet titles."
-      },
-      {
-        "type": "steps",
-        "title": "How to Merge Cells",
-        "steps": [
-          "Select the cells.",
-          "Click the Home tab.",
-          "Go to the Alignment group.",
-          "Click Merge & Center."
-        ]
-      },
-      {
-        "type": "note",
-        "text": "Avoid merging cells inside data tables because it may affect sorting and filtering."
-      },
-      {
-        "type": "heading",
-        "text": "7. Wrap Text"
-      },
-      {
-        "type": "paragraph",
-        "text": "Wrap Text displays long text on multiple lines within the same cell instead of overflowing into adjacent cells."
-      },
-      {
-        "type": "steps",
-        "title": "How to Wrap Text",
-        "steps": [
-          "Select the required cells.",
-          "Click the Home tab.",
-          "Go to the Alignment group.",
-          "Click Wrap Text."
-        ]
-      },
-     
-      {
-        "type": "heading",
-        "text": "8. Format Painter"
-      },
-      {
-        "type": "paragraph",
-        "text": "Format Painter copies the formatting of one cell and applies it to another cell without copying the data."
-      },
-      {
-        "type": "steps",
-        "title": "How to Use Format Painter",
-        "steps": [
-          "Select the formatted cell.",
-          "Click the Home tab.",
-          "Click Format Painter.",
-          "Click or drag over the destination cells."
-        ]
-      },
-      {
-        "type": "note",
-        "text": "Double-click Format Painter to apply the same formatting to multiple locations."
-      },
-           {
-        "type": "exercise",
-        "title": "Practice Exercise - Student Report Card",
-        "steps": [
-          "Create a student report card.",
-          "Apply Arial font with size 14.",
-          "Make the title Bold.",
-          "Change the title font color to White.",
-          "Apply Blue Fill Color to the header row.",
-          "Center-align all headings.",
-          "Apply All Borders to the table.",
-          "Merge and Center the worksheet title.",
-          "Use Wrap Text for long headings.",
-          "Use Format Painter to copy the formatting to another table."
-        ]
-      }
-    ]
-  },
-  "questions":[
-{
-"id":"excel_q021",
-"type":"MCQ",
-"difficulty_rating":1,
-"question":"What is the purpose of formatting in Excel?",
-"options":["Delete data","Improve appearance and readability","Print worksheets","Create formulas"],
-"answer":[1],
-"explanation":"Formatting changes the appearance of data without changing its value."
-},
-{
-"id":"excel_q022",
-"type":"MCQ",
-"difficulty_rating":1,
-"question":"Which tab contains most formatting tools?",
-"options":["Insert","Data","Home","Review"],
-"answer":[2],
-"explanation":"The Home tab contains Font, Alignment and Number formatting groups."
-},
-{
-"id":"excel_q023",
-"type":"MCQ",
-"difficulty_rating":1,
-"question":"Which option makes text bold?",
-"options":["Italic","Underline","Bold","Wrap Text"],
-"answer":[2],
-"explanation":"Bold makes text thicker and more visible."
-},
-{
-"id":"excel_q024",
-"type":"MCQ",
-"difficulty_rating":1,
-"question":"Borders are mainly used to:",
-"options":["Delete cells","Organize and separate data","Create formulas","Insert charts"],
-"answer":[1],
-"explanation":"Borders improve table readability."
-},
-{
-"id":"excel_q025",
-"type":"MCQ",
-"difficulty_rating":1,
-"question":"Which feature changes the background color of a cell?",
-"options":["Font Color","Fill Color","Border","Merge"],
-"answer":[1],
-"explanation":"Fill Color changes the cell background."
-},
-{
-"id":"excel_q026",
-"type":"MCQ",
-"difficulty_rating":2,
-"question":"Which alignment places text in the middle of a cell?",
-"options":["Left","Right","Center","Top"],
-"answer":[2],
-"explanation":"Center alignment positions text in the middle."
-},
-{
-"id":"excel_q027",
-"type":"MCQ",
-"difficulty_rating":2,
-"question":"Merge & Center is mainly used to:",
-"options":["Delete cells","Combine cells and center text","Sort data","Filter data"],
-"answer":[1],
-"explanation":"Merge & Center combines selected cells into one."
-},
-{
-"id":"excel_q028",
-"type":"MCQ",
-"difficulty_rating":2,
-"question":"Wrap Text is used to:",
-"options":["Rotate text","Display long text on multiple lines","Hide text","Delete text"],
-"answer":[1],
-"explanation":"Wrap Text shows long content within the same cell."
-},
-{
-"id":"excel_q029",
-"type":"MCQ",
-"difficulty_rating":2,
-"question":"Format Painter is used to:",
-"options":["Copy formatting","Copy formulas","Copy worksheets","Copy charts"],
-"answer":[0],
-"explanation":"Format Painter copies formatting from one cell to another."
-},
-{
-"id":"excel_q030",
-"type":"MCQ",
-"difficulty_rating":2,
-"question":"Which feature is commonly used to create a report title across multiple columns?",
-"options":["Wrap Text","Merge & Center","Borders","Conditional Formatting"],
-"answer":[1],
-"explanation":"Merge & Center combines cells for headings."
-}
-]
-}   
-        
-
-        
+        }
       ]
-    }    
+    }
   ]
 }
