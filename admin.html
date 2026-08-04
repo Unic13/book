@@ -244,6 +244,23 @@ tr:hover td{background:#fafafa}
 .pv-opt img{max-width:70px;max-height:50px;border-radius:5px;object-fit:cover;flex-shrink:0}
 .pv-explain{font-size:12px;color:#6b7280;background:#f9fafb;border-radius:8px;padding:8px 10px;margin-top:8px}
 
+/* Preview — exercise / steps / video blocks (mirror the learner app's styling) */
+.pv-exercise{margin:0 0 14px;border-radius:10px;border:1.5px solid #fde68a;background:#fffbeb;overflow:hidden}
+.pv-exercise-head{display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fef3c7;border-bottom:1px solid #fde68a}
+.pv-exercise-badge{font-size:10px;font-weight:800;color:#92400e;background:#fde68a;padding:2px 8px;border-radius:20px}
+.pv-exercise-title{font-size:13px;font-weight:700;color:#92400e}
+.pv-exercise ol{list-style:none;counter-reset:pvex;padding:10px 12px;margin:0}
+.pv-exercise li{counter-increment:pvex;position:relative;padding:6px 0 6px 30px;font-size:13px;line-height:1.6;color:#374151;border-bottom:1px dashed #fde68a}
+.pv-exercise li:last-child{border-bottom:none}
+.pv-exercise li::before{content:counter(pvex);position:absolute;left:0;top:5px;width:20px;height:20px;border-radius:6px;background:#f59e0b;color:#fff;font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.pv-steps{margin:0 0 14px}
+.pv-steps-title{font-size:13.5px;font-weight:700;color:#111;margin-bottom:8px}
+.pv-steps ol{list-style:none;counter-reset:pvstep;padding:0;margin:0}
+.pv-steps li{counter-increment:pvstep;display:flex;align-items:flex-start;gap:10px;padding:6px 0;font-size:13px;color:#374151;line-height:1.6}
+.pv-steps li::before{content:counter(pvstep);flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#6C3FF5;color:#fff;font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center}
+.pv-video-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:10px;overflow:hidden;border:1px solid #e5e7eb;background:#000;margin-bottom:12px}
+.pv-video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+
 /* ── Mobile-friendly full page tweaks ── */
 @media (max-width:600px){
   .container{padding:16px 12px}
@@ -562,7 +579,8 @@ const QTYPE_COLORS = { MCQ: '#6C3FF5', MSQ: '#0891b2', NAT: '#d97706' };
 
 const BTYPE_COLORS = {
   heading: '#4f46e5', paragraph: '#6b7280', note: '#7c3aed', formula: '#0891b2',
-  list: '#d97706', table: '#059669', syntax: '#dc2626', image: '#db2777'
+  list: '#d97706', table: '#059669', syntax: '#dc2626', image: '#db2777',
+  exercise: '#f59e0b', steps: '#6C3FF5', video: '#dc2626'
 };
 
 let builder = {
@@ -873,6 +891,9 @@ function renderBuilderEditor() {
           <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('formula')">+ Formula</button>
           <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('syntax')">+ Syntax/Code</button>
           <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('image')">+ Image / PDF</button>
+          <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('video')">▶ Video (YouTube)</button>
+          <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('steps')">+ Steps</button>
+          <button class="b-btn b-btn-outline b-btn-sm" onclick="addBodyItem('exercise')">✏️ Exercise</button>
         </div>
         <div class="b-field-hint">Blocks render top-to-bottom exactly as shown in the app. Use ↑ ↓ to reorder.</div>
       </div>
@@ -924,6 +945,9 @@ function addBodyItem(type) {
   else if (type === 'table') item = { type: 'table', headers: ['Column 1', 'Column 2'], rows: [['', '']] };
   else if (type === 'syntax') item = { type: 'syntax', language: 'text', code: '' };
   else if (type === 'image') item = { type: 'image', title: '', image: '', pdf: '' };
+  else if (type === 'video') item = { type: 'video', title: '', url: '', start: '' };
+  else if (type === 'steps') item = { type: 'steps', title: '', steps: [''], image: '', pdf: '' };
+  else if (type === 'exercise') item = { type: 'exercise', title: '', steps: [''], image: '', pdf: '' };
   else item = { type, text: '' };
 
   chapter.concept.body.push(item);
@@ -943,6 +967,8 @@ function bodyItemSummary(item) {
   if (item.type === 'table') return (item.headers || []).join(' | ') || '(empty table)';
   if (item.type === 'syntax') return item.code || '(empty code)';
   if (item.type === 'image') return item.title || fileLabel(item.image, 'Image') || fileLabel(item.pdf, 'PDF') || '(empty image/pdf)';
+  if (item.type === 'video') return item.title || item.url || '(no video URL)';
+  if (item.type === 'steps' || item.type === 'exercise') return item.title || (item.steps || []).filter(Boolean).join(' → ') || `(empty ${item.type})`;
   return item.text || '(empty)';
 }
 
@@ -1062,6 +1088,49 @@ function renderBodyItemEditor(item, i, container) {
     return;
   }
 
+  if (item.type === 'video') {
+    container.innerHTML = `
+      <div class="b-field"><label>Title / Caption (optional)</label><input type="text" value="${escAttr(item.title || '')}" oninput="updateImageField(${i},'title',this.value)"></div>
+      <div class="b-field">
+        <label>YouTube URL</label>
+        <input type="text" value="${escAttr(item.url || '')}" oninput="updateImageField(${i},'url',this.value)" placeholder="https://www.youtube.com/watch?v=…  or  https://youtu.be/…">
+      </div>
+      <div class="b-field">
+        <label>Start at (optional)</label>
+        <input type="text" value="${escAttr(item.start || '')}" oninput="updateImageField(${i},'start',this.value)" placeholder="e.g. 90  or  1:30">
+        <div class="b-field-hint">Jumps the player straight to that point instead of making learners scrub through the whole video.</div>
+      </div>
+      ${item.url ? `<a href="${escAttr(item.url)}" target="_blank" class="export-btn" style="text-decoration:none;display:inline-block;margin-top:4px">▶ Open video in new tab</a>` : ''}`;
+    return;
+  }
+
+  if (item.type === 'steps' || item.type === 'exercise') {
+    const label = item.type === 'exercise' ? 'Exercise' : 'Steps';
+    let rows = '';
+    (item.steps || []).forEach((s, si) => {
+      rows += `<div class="b-list-item"><textarea rows="1" oninput="updateStepText(${i},${si},this.value)" placeholder="${label} ${si + 1}">${escHtml(s)}</textarea>
+        <button class="b-icon-btn danger b-list-remove" onclick="removeStepAt(${i},${si})">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button></div>`;
+    });
+    container.innerHTML = `
+      <div class="b-field"><label>${label} Title (optional)</label><input type="text" value="${escAttr(item.title || '')}" oninput="updateImageField(${i},'title',this.value)"></div>
+      <div class="b-field">
+        <label>${label} Image (optional)</label>
+        <input type="text" id="img-url-${i}" value="${escAttr(item.image || '')}" oninput="updateImageField(${i},'image',this.value)" placeholder="/data/imagepdf/diagram.jpeg">
+        <div class="b-upload-row">
+          <input type="file" accept="image/*" onchange="handleImageUpload(${i},this)">
+          ${item.image ? `<img src="${escAttr(item.image)}" class="b-thumb" onerror="this.style.display='none'">` : ''}
+        </div>
+      </div>
+      <div class="b-field">
+        <label>${label} Items</label>
+        ${rows}
+        <button class="b-btn b-btn-outline b-btn-sm" onclick="addStepAt(${i})">+ Add ${label.slice(0,-1) || label}</button>
+      </div>`;
+    return;
+  }
+
   container.innerHTML = '<div class="b-field-hint">Unsupported block type.</div>';
 }
 
@@ -1093,6 +1162,33 @@ function removeListItemAt(i, li) {
   const chapter = getActiveChapterObj();
   const item = chapter.concept.body[i];
   item.items.splice(li, 1);
+  renderBodyItemEditor(item, i, document.getElementById(`bbody-${i}`));
+  refreshBodyItemSummary(i);
+  markDirty();
+}
+
+// ── Steps / Exercise item list (shares the same `steps: [...]` shape) ──
+function addStepAt(i) {
+  const chapter = getActiveChapterObj();
+  const item = chapter.concept.body[i];
+  item.steps = item.steps || [];
+  item.steps.push('');
+  renderBodyItemEditor(item, i, document.getElementById(`bbody-${i}`));
+  refreshBodyItemSummary(i);
+  markDirty();
+}
+
+function updateStepText(i, si, val) {
+  const chapter = getActiveChapterObj();
+  chapter.concept.body[i].steps[si] = val;
+  refreshBodyItemSummary(i);
+  markDirty();
+}
+
+function removeStepAt(i, si) {
+  const chapter = getActiveChapterObj();
+  const item = chapter.concept.body[i];
+  item.steps.splice(si, 1);
   renderBodyItemEditor(item, i, document.getElementById(`bbody-${i}`));
   refreshBodyItemSummary(i);
   markDirty();
@@ -1492,6 +1588,23 @@ function downloadSubjectJson() {
 }
 
 // ── Preview modal (Live Preview + Raw JSON, tabbed) ──
+
+// Mirrors the learner app's extractYouTubeId/parseTimeToSeconds so the
+// admin preview shows the exact same embedded player the learner will see.
+function pvExtractYouTubeId(url) {
+  if (!url || typeof url !== 'string') return null;
+  const m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+function pvParseTimeToSeconds(val) {
+  if (val === undefined || val === null || val === '') return 0;
+  if (typeof val === 'number') return Math.max(0, Math.floor(val));
+  const parts = String(val).split(':').map(p => parseInt(p, 10) || 0);
+  let secs = 0;
+  parts.forEach(p => { secs = secs * 60 + p; });
+  return Math.max(0, secs);
+}
+
 function pvBodyItemHtml(item) {
   switch (item.type) {
     case 'heading': return `<div class="pv-h">${escHtml(item.text || '')}</div>`;
@@ -1513,6 +1626,31 @@ function pvBodyItemHtml(item) {
       if (item.image) h += `<div class="pv-img-wrap"><img src="${escAttr(item.image)}" alt="${escAttr(item.title || '')}" onerror="this.parentElement.innerHTML='⚠️ Image failed to load'">${item.title ? `<div class="pv-img-title">${escHtml(item.title)}</div>` : ''}</div>`;
       if (item.pdf) h += `<a class="pv-pdf-link" href="${escAttr(item.pdf)}" target="_blank">📄 ${escHtml(item.title || 'View PDF')}</a>`;
       if (!item.image && !item.pdf) h += `<div class="pv-p" style="color:#9ca3af">(no image or PDF set)</div>`;
+      return h;
+    }
+    case 'video': {
+      const id = pvExtractYouTubeId(item.url);
+      if (!id) {
+        return item.url
+          ? `<a class="pv-pdf-link" href="${escAttr(item.url)}" target="_blank">▶ ${escHtml(item.title || 'Watch video')}</a>`
+          : `<div class="pv-p" style="color:#9ca3af">(no video URL set)</div>`;
+      }
+      const startSecs = pvParseTimeToSeconds(item.start);
+      const src = `https://www.youtube.com/embed/${id}?rel=0${startSecs ? `&start=${startSecs}` : ''}`;
+      return `${item.title ? `<div class="pv-img-title" style="text-align:left;margin-bottom:6px;font-weight:700;color:#374151">${escHtml(item.title)}</div>` : ''}<div class="pv-video-wrap"><iframe src="${src}" allowfullscreen></iframe></div>`;
+    }
+    case 'exercise': {
+      let h = '';
+      if (item.image) h += `<div class="pv-img-wrap"><img src="${escAttr(item.image)}" onerror="this.parentElement.style.display='none'"></div>`;
+      h += `<div class="pv-exercise"><div class="pv-exercise-head"><span class="pv-exercise-badge">✏️ Practice</span>${item.title ? `<span class="pv-exercise-title">${escHtml(item.title)}</span>` : ''}</div>
+        <ol>${(item.steps || []).map(s => `<li>${escHtml(s)}</li>`).join('')}</ol></div>`;
+      return h;
+    }
+    case 'steps': {
+      let h = '';
+      if (item.image) h += `<div class="pv-img-wrap"><img src="${escAttr(item.image)}" onerror="this.parentElement.style.display='none'"></div>`;
+      h += `<div class="pv-steps">${item.title ? `<div class="pv-steps-title">${escHtml(item.title)}</div>` : ''}
+        <ol>${(item.steps || []).map(s => `<li>${escHtml(s)}</li>`).join('')}</ol></div>`;
       return h;
     }
     default: return '';
