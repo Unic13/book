@@ -36,17 +36,22 @@ const GET_ALL = `
 
 const UPSERT = `
   mutation UpsertSubjectContent($object: subject_content_insert_input!) {
-    insert_subject_content_one(
-      object: $object
-      on_conflict: {
-        constraint: subject_content_pkey
-        update_columns: [subject, color, data, updated_at]
-      }
-    ) {
-      code
-      updated_at
+  insert_subject_content_one(
+    object: $object
+    on_conflict: {
+      constraint: subject_content_code_key
+      update_columns: [
+        subject
+        color
+        data
+        updated_at
+      ]
     }
+  ) {
+    code
+    updated_at
   }
+}
 `;
 
 module.exports = async (req, res) => {
