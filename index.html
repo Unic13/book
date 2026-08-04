@@ -1053,16 +1053,17 @@ function renderHomeHTML() {
         <h1>Welcome to ${state.config?.academyName || 'UNIC Academic'}</h1>
         <p>Pick a subject below to Start Learning and Practising</p>
       </div>
-      <div class="alert alert-warning mt-3">
-      <h6 class="mb-2">📌 Learning Platform Notice</h6>
+      <div class="home-grid">${cardsHTML}</div>
+    
+    <div class="alert alert-warning mt-3">
+      <h6 class="mb-2">Learning Platform Notice/Disclaimer:</h6>
       <ul class="mb-0 small">
-        <li>🚧 Some lessons, examples, and quizzes are still under development and will be updated soon.</li>
-        <li>🤖 Parts of this course are generated with AI and may occasionally contain minor mistakes or outdated information.</li>
-        <li>✅ Content is continuously reviewed, corrected, and improved by our team.</li>
+        <li>Some lessons, examples, and quizzes are still under development and will be updated soon.</li>
+        <li>Parts of this course are generated with AI and may occasionally contain minor mistakes or outdated information.</li>
+        <li>Content is continuously reviewed, corrected, and improved by our team.</li>
         <li>🙏 Thank you for your patience and support while we enhance the platform.</li>
       </ul>
     </div>
-      <div class="home-grid">${cardsHTML}</div>
     </div>`;
 }
 
