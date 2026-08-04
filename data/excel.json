@@ -256,7 +256,527 @@
             { "id": "excel_q039", "type": "MCQ", "difficulty_rating": 2, "question": "Which worksheet is a good example for practicing Currency formatting?", "options": ["Student Attendance", "Salary Register", "Library List", "Sports Record"], "answer": [1], "explanation": "Salary registers commonly use currency formatting." },
             { "id": "excel_q040", "type": "MCQ", "difficulty_rating": 2, "question": "Which format would you use for employee joining dates?", "options": ["Currency", "Percentage", "Date", "Scientific"], "answer": [2], "explanation": "Date format is used to display calendar dates." }
           ]
-        }
+        },
+        {
+  "id": "excel_u1_c5",
+  "title": "Day 5: Rows, Columns, Hide/Unhide, Freeze Panes",
+  "concept": {
+    "title": "Managing Rows, Columns and Worksheet Navigation",
+    "body": [
+      {
+        "type": "heading",
+        "text": "1. Understanding Rows and Columns"
+      },
+      {
+        "type": "paragraph",
+        "text": "Rows run horizontally and are identified by numbers (1, 2, 3...). Columns run vertically and are identified by letters (A, B, C...). Every worksheet consists of thousands of rows and columns where data is stored."
+      },
+      
+      {
+        "type": "heading",
+        "text": "2. Insert and Delete Rows & Columns"
+      },
+      {
+        "type": "paragraph",
+        "text": "Excel allows you to insert new rows or columns and delete unwanted ones without affecting the rest of the worksheet."
+      },
+      {
+        "type": "steps",
+        "title": "How to Insert a Row",
+        "steps": [
+          "Select the row number.",
+          "Right-click the row header.",
+          "Click Insert."
+        ]
+      },
+      {
+        "type": "steps",
+        "title": "How to Delete a Row",
+        "steps": [
+          "Select the row.",
+          "Right-click.",
+          "Choose Delete."
+        ]
+      },
+      
+      {
+        "type": "heading",
+        "text": "3. Adjust Row Height and Column Width"
+      },
+      {
+        "type": "paragraph",
+        "text": "Resize rows and columns manually or automatically using AutoFit."
+      },
+      {
+        "type": "steps",
+        "title": "AutoFit Column Width",
+        "steps": [
+          "Select the column.",
+          "Double-click the right border of the column header.",
+          "Excel automatically adjusts the width."
+        ]
+      },
+     
+      {
+        "type": "heading",
+        "text": "4. Hide and Unhide Rows & Columns"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hide rows or columns temporarily without deleting data. Hidden data can be restored anytime."
+      },
+      {
+        "type": "steps",
+        "title": "Hide a Column",
+        "steps": [
+          "Select the column.",
+          "Right-click.",
+          "Click Hide."
+        ]
+      },
+      {
+        "type": "steps",
+        "title": "Unhide a Column",
+        "steps": [
+          "Select the columns on both sides.",
+          "Right-click.",
+          "Choose Unhide."
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Hidden data is still available in formulas and calculations."
+      },
+      {
+        "type": "image",
+        "title": "Hide and Unhide",
+        "path": "/imagepdf/day5/hide-unhide.jpeg"
+      },
+
+      {
+        "type": "heading",
+        "text": "5. Freeze Panes"
+      },
+      {
+        "type": "paragraph",
+        "text": "Freeze Panes keeps selected rows or columns visible while scrolling through large worksheets."
+      },
+      {
+        "type": "steps",
+        "title": "Freeze the Top Row",
+        "steps": [
+          "Click the View tab.",
+          "Choose Freeze Panes.",
+          "Select Freeze Top Row."
+        ]
+      },
+      {
+        "type": "steps",
+        "title": "Freeze the First Column",
+        "steps": [
+          "View → Freeze Panes → Freeze First Column."
+        ]
+      },
+      {
+        "type": "steps",
+        "title": "Freeze Both Rows and Columns",
+        "steps": [
+          "Select the cell below the row and to the right of the column you want to freeze.",
+          "View → Freeze Panes → Freeze Panes."
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Freeze Panes is especially useful for attendance sheets, mark sheets, and large reports."
+      },
+      
+      {
+        "type": "exercise",
+        "title": "Practice Exercise - Student Attendance Sheet",
+        "steps": [
+          "Create an attendance sheet.",
+          "Insert two new columns.",
+          "Adjust the column width.",
+          "Hide the Mobile Number column.",
+          "Unhide the Mobile Number column.",
+          "Freeze the header row.",
+          "Freeze the first column.",
+          "Save the workbook as Attendance_Sheet.xlsx."
+        ]
+      }     
+    ]
+  },
+"questions": [
+  {
+    "id": "excel_q041",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Rows in Microsoft Excel are identified by:",
+    "options": ["Letters", "Numbers", "Symbols", "Colors"],
+    "answer": [1],
+    "explanation": "Rows are numbered 1, 2, 3, and so on."
+  },
+  {
+    "id": "excel_q042",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Columns in Microsoft Excel are identified by:",
+    "options": ["Numbers", "Letters", "Roman Numerals", "Special Characters"],
+    "answer": [1],
+    "explanation": "Columns are labeled A, B, C, D, etc."
+  },
+  {
+    "id": "excel_q043",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which option temporarily hides selected rows or columns without deleting them?",
+    "options": ["Delete", "Hide", "Remove", "Clear"],
+    "answer": [1],
+    "explanation": "Hide temporarily removes rows or columns from view without deleting data."
+  },
+  {
+    "id": "excel_q044",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "To display hidden columns again, you should:",
+    "options": [
+      "Delete the worksheet",
+      "Use Unhide",
+      "Insert a new column",
+      "Refresh the workbook"
+    ],
+    "answer": [1],
+    "explanation": "Use the Unhide option to display hidden rows or columns."
+  },
+  {
+    "id": "excel_q045",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Freeze Panes is available under which tab?",
+    "options": ["Home", "Insert", "View", "Data"],
+    "answer": [2],
+    "explanation": "Freeze Panes is located in the View tab."
+  },
+  {
+    "id": "excel_q046",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is the purpose of Freeze Panes?",
+    "options": [
+      "Delete rows",
+      "Lock rows and columns while scrolling",
+      "Hide worksheets",
+      "Protect the workbook"
+    ],
+    "answer": [1],
+    "explanation": "Freeze Panes keeps selected rows and columns visible while scrolling."
+  },
+  {
+    "id": "excel_q047",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which option automatically adjusts the width of a column to fit its content?",
+    "options": ["Merge", "AutoFit", "Wrap Text", "Freeze"],
+    "answer": [1],
+    "explanation": "AutoFit resizes the column based on its contents."
+  },
+  {
+    "id": "excel_q048",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "To freeze both rows and columns, you should first:",
+    "options": [
+      "Select the entire worksheet",
+      "Select the cell below the row and to the right of the column to freeze",
+      "Hide the worksheet",
+      "Click Save"
+    ],
+    "answer": [1],
+    "explanation": "Select the appropriate cell before choosing Freeze Panes."
+  },
+  {
+    "id": "excel_q049",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which feature is most useful while viewing a large attendance sheet?",
+    "options": [
+      "Word Wrap",
+      "Freeze Panes",
+      "AutoSum",
+      "Spell Check"
+    ],
+    "answer": [1],
+    "explanation": "Freeze Panes keeps headers visible while scrolling."
+  },
+  {
+    "id": "excel_q050",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Hiding a row will:",
+    "options": [
+      "Delete the data permanently",
+      "Remove formulas",
+      "Temporarily hide the data",
+      "Lock the worksheet"
+    ],
+    "answer": [2],
+    "explanation": "Hidden rows remain in the worksheet and can be restored anytime."
+  }
+]
+},
+
+
+{
+  "id": "excel_u1_c6",
+  "title": "Day 6: Page Layout, Print Area, Headers and Footers",
+  "concept": {
+    "title": "Preparing Worksheets for Printing",
+    "body": [
+      {
+        "type": "heading",
+        "text": "1. Page Layout"
+      },
+      {
+        "type": "paragraph",
+        "text": "The Page Layout tab allows you to control how your worksheet appears when printed. You can change margins, orientation, paper size, themes, and scaling."
+      },   
+
+      {
+        "type": "heading",
+        "text": "2. Margins"
+      },
+      {
+        "type": "paragraph",
+        "text": "Margins determine the blank space around the edges of a printed page."
+      },
+      {
+        "type": "steps",
+        "title": "Change Margins",
+        "steps": [
+          "Open the Page Layout tab.",
+          "Click Margins.",
+          "Choose Normal, Wide, Narrow or Custom Margins."
+        ]
+      },
+     
+      {
+        "type": "heading",
+        "text": "3. Orientation and Paper Size"
+      },
+      {
+        "type": "paragraph",
+        "text": "Orientation changes the page between Portrait and Landscape. Paper Size selects A4, Letter, Legal, and other sizes."
+      },
+      {
+        "type": "steps",
+        "title": "Change Orientation",
+        "steps": [
+          "Page Layout → Orientation.",
+          "Choose Portrait or Landscape."
+        ]
+      },
+     
+      {
+        "type": "heading",
+        "text": "4. Print Area"
+      },
+      {
+        "type": "paragraph",
+        "text": "Print Area allows only selected cells to be printed instead of the entire worksheet."
+      },
+      {
+        "type": "steps",
+        "title": "Set Print Area",
+        "steps": [
+          "Select the required cells.",
+          "Page Layout → Print Area.",
+          "Click Set Print Area."
+        ]
+      },
+      
+      {
+        "type": "heading",
+        "text": "5. Headers and Footers"
+      },
+      {
+        "type": "paragraph",
+        "text": "Headers appear at the top of every printed page, while footers appear at the bottom. They usually contain page numbers, file names, dates, or organization names."
+      },
+      {
+        "type": "steps",
+        "title": "Insert Header & Footer",
+        "steps": [
+          "Insert → Header & Footer.",
+          "Type the required text.",
+          "Add page numbers or dates if required."
+        ]
+      },
+     
+      {
+        "type": "heading",
+        "text": "6. Print Preview"
+      },
+      {
+        "type": "paragraph",
+        "text": "Print Preview allows you to check how the worksheet will appear before printing."
+      },
+      {
+        "type": "steps",
+        "title": "Open Print Preview",
+        "steps": [
+          "Click File.",
+          "Choose Print.",
+          "Review the preview window before printing."
+        ]
+      },
+     
+      {
+        "type": "exercise",
+        "title": "Practice Exercise - Print Ready Report",
+        "steps": [
+          "Create a student marks report.",
+          "Apply Landscape orientation.",
+          "Set paper size to A4.",
+          "Set Print Area.",
+          "Add a header with the school name.",
+          "Add page numbers in the footer.",
+          "Check Print Preview.",
+          "Save as Student_Report.xlsx."
+        ]
+      }
+      
+    ]
+  },
+  "questions": [
+  {
+    "id": "excel_q051",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which tab is used to change page margins and orientation?",
+    "options": ["Home", "Insert", "Page Layout", "View"],
+    "answer": [2],
+    "explanation": "The Page Layout tab contains page setup options."
+  },
+  {
+    "id": "excel_q052",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which page orientation is best for wide tables?",
+    "options": ["Portrait", "Landscape", "Vertical", "Normal"],
+    "answer": [1],
+    "explanation": "Landscape provides more horizontal space."
+  },
+  {
+    "id": "excel_q053",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is the purpose of Print Area?",
+    "options": [
+      "Hide data",
+      "Print only selected cells",
+      "Delete blank cells",
+      "Protect the worksheet"
+    ],
+    "answer": [1],
+    "explanation": "Print Area specifies the range that should be printed."
+  },
+  {
+    "id": "excel_q054",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Headers appear:",
+    "options": [
+      "At the bottom of the page",
+      "At the top of each printed page",
+      "Inside the worksheet",
+      "Only on the first page"
+    ],
+    "answer": [1],
+    "explanation": "Headers are printed at the top of every page."
+  },
+  {
+    "id": "excel_q055",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Footers are displayed:",
+    "options": [
+      "At the bottom of printed pages",
+      "At the top of worksheets",
+      "Only in formulas",
+      "Inside cells"
+    ],
+    "answer": [0],
+    "explanation": "Footers appear at the bottom of every printed page."
+  },
+  {
+    "id": "excel_q056",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which option lets you check the worksheet before printing?",
+    "options": [
+      "Print Preview",
+      "Format Painter",
+      "Freeze Panes",
+      "AutoFill"
+    ],
+    "answer": [0],
+    "explanation": "Print Preview displays how the worksheet will appear when printed."
+  },
+  {
+    "id": "excel_q057",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which paper size is commonly used in India?",
+    "options": ["Letter", "Legal", "A4", "A3"],
+    "answer": [2],
+    "explanation": "A4 is the standard paper size used for most office documents."
+  },
+  {
+    "id": "excel_q058",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which keyboard shortcut opens the Print window in Excel?",
+    "options": [
+      "Ctrl + P",
+      "Ctrl + S",
+      "Ctrl + O",
+      "Ctrl + N"
+    ],
+    "answer": [0],
+    "explanation": "Ctrl + P opens the Print dialog with Print Preview."
+  },
+  {
+    "id": "excel_q059",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which option is commonly added to the footer of a report?",
+    "options": [
+      "Formula",
+      "Page Number",
+      "Worksheet Color",
+      "Comments"
+    ],
+    "answer": [1],
+    "explanation": "Page numbers are commonly placed in footers."
+  },
+  {
+    "id": "excel_q060",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Before printing a report, the best practice is to:",
+    "options": [
+      "Delete empty rows",
+      "Use Print Preview",
+      "Hide all columns",
+      "Merge every cell"
+    ],
+    "answer": [1],
+    "explanation": "Print Preview helps verify page layout, margins, headers, and formatting before printing."
+  }
+]
+}
+
+        
       ]
     }
   ]
