@@ -1,9 +1,9 @@
 {
   "academyName": "UNIC Academic",
-  "tagline": "Master concepts. Ace exams.",
+  "tagline": "Master concepts.",
   "logoText": "UNIC",
-  "adminEmail": "admin@unicacademic.in",
-  "subjects": ["PH", "CH", "MA", "BIO","SQL","EXCEL","R","PY"],
+  "adminEmail": "https://unicexamschool.vercel.app/",
+  "subjects": ["PH", "CH", "MA", "BIO","SQL","EXCEL","R","PY","MAP"],
   "howDidYouFindUs": [
     "Google Search",
     "YouTube",
