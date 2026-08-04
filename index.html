@@ -742,7 +742,7 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
 
       <div class="login-status" id="login-status"></div>
 
-      <button class="btn-modal" id="modal-submit">Start Practising →</button>
+      <button class="btn-modal" id="modal-submit">Start Learning and Practising →</button>
       <button class="btn-skip" id="modal-skip">Skip for now</button>
     </div>
   </div>
@@ -1043,7 +1043,7 @@ function renderHomeHTML() {
       <button class="home-card" onclick="switchSubject('${code}')">
         <div class="home-card-icon" style="background:${s.color}">${s.emoji}</div>
         <div class="home-card-label">${s.label}</div>
-        <div class="home-card-cta" style="color:${s.color}">Start practising →</div>
+        <div class="home-card-cta" style="color:${s.color}">Start Learning and Practising →</div>
       </button>`;
   }).join('');
 
@@ -1051,8 +1051,17 @@ function renderHomeHTML() {
     <div class="fade-in">
       <div class="home-hero">
         <h1>Welcome to ${state.config?.academyName || 'UNIC Academic'}</h1>
-        <p>Pick a subject below to start practising</p>
+        <p>Pick a subject below to Start Learning and Practising</p>
       </div>
+      <div class="alert alert-warning mt-3">
+      <h6 class="mb-2">📌 Learning Platform Notice</h6>
+      <ul class="mb-0 small">
+        <li>🚧 Some lessons, examples, and quizzes are still under development and will be updated soon.</li>
+        <li>🤖 Parts of this course are generated with AI and may occasionally contain minor mistakes or outdated information.</li>
+        <li>✅ Content is continuously reviewed, corrected, and improved by our team.</li>
+        <li>🙏 Thank you for your patience and support while we enhance the platform.</li>
+      </ul>
+    </div>
       <div class="home-grid">${cardsHTML}</div>
     </div>`;
 }
