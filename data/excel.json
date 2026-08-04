@@ -748,7 +748,308 @@
     "explanation": "Pressing the Tab key moves the active cell to the next column."
   }
 ]
-    }
+    },
+{
+  "id": "excel_u1_c3",
+  "title": "Day 3: Formatting (Fonts, Borders, Colors, Alignment)",
+  "concept": {
+    "title": "Formatting Worksheets in Microsoft Excel",
+    "content": [
+      {
+        "type": "heading",
+        "text": "1. What is Formatting?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Formatting is the process of changing the appearance of data without changing its actual value. It improves readability, makes reports attractive, and helps present information professionally."
+      },
+      {
+        "type": "heading",
+        "text": "2. Font Formatting"
+      },
+      {
+        "type": "paragraph",
+        "text": "Font formatting changes the appearance of text inside a cell. You can change the font style, font size, make text Bold, Italic, Underline, and change the font color."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Change Font Name",
+          "Increase or Decrease Font Size",
+          "Bold (Ctrl+B)",
+          "Italic (Ctrl+I)",
+          "Underline (Ctrl+U)",
+          "Change Font Color"
+        ]
+      },
+      {
+        "type": "steps",
+        "title": "How to Change Font Color",
+        "steps": [
+          "Select the cell or range of cells.",
+          "Click the Home tab.",
+          "Locate the Font group.",
+          "Click the Font Color (A) drop-down button.",
+          "Choose the desired color."
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Use dark colors for headings and bright colors only to highlight important information."
+      },
+      {
+        "type": "heading",
+        "text": "3. Cell Borders"
+      },
+      {
+        "type": "paragraph",
+        "text": "Borders draw lines around cells to separate and organize data. They make tables easier to read."
+      },
+      {
+        "type": "steps",
+        "title": "How to Apply Borders",
+        "steps": [
+          "Select the required cells.",
+          "Click the Home tab.",
+          "Go to the Font group.",
+          "Click the Borders drop-down button.",
+          "Choose All Borders, Outside Borders, Thick Border, or another border style."
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Use 'All Borders' for tables and 'Thick Outside Borders' for highlighting important sections."
+      },
+      
+      {
+        "type": "heading",
+        "text": "4. Fill Color"
+      },
+      {
+        "type": "paragraph",
+        "text": "Fill Color changes the background color of a cell. It is commonly used for headings, totals, warnings, and important information."
+      },
+      {
+        "type": "steps",
+        "title": "How to Apply Fill Color",
+        "steps": [
+          "Select the cells.",
+          "Click the Home tab.",
+          "In the Font group, click the Fill Color (Paint Bucket) button.",
+          "Choose the required background color."
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Light colors improve readability. Avoid using too many different colors in the same worksheet."
+      },
+     
+      {
+        "type": "heading",
+        "text": "5. Alignment"
+      },
+      {
+        "type": "paragraph",
+        "text": "Alignment controls how text or numbers appear inside a cell. Data can be aligned horizontally or vertically."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Left Align",
+          "Center Align",
+          "Right Align",
+          "Top Align",
+          "Middle Align",
+          "Bottom Align"
+        ]
+      },
+      {
+        "type": "steps",
+        "title": "How to Change Alignment",
+        "steps": [
+          "Select the cells.",
+          "Click the Home tab.",
+          "Go to the Alignment group.",
+          "Click Left, Center, or Right Alignment.",
+          "Use Top, Middle, or Bottom Align if required."
+        ]
+      },
+      
+      {
+        "type": "heading",
+        "text": "6. Merge & Center"
+      },
+      {
+        "type": "paragraph",
+        "text": "Merge & Center combines multiple adjacent cells into one cell and places the text in the center. It is commonly used for worksheet titles."
+      },
+      {
+        "type": "steps",
+        "title": "How to Merge Cells",
+        "steps": [
+          "Select the cells.",
+          "Click the Home tab.",
+          "Go to the Alignment group.",
+          "Click Merge & Center."
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Avoid merging cells inside data tables because it may affect sorting and filtering."
+      },
+      {
+        "type": "heading",
+        "text": "7. Wrap Text"
+      },
+      {
+        "type": "paragraph",
+        "text": "Wrap Text displays long text on multiple lines within the same cell instead of overflowing into adjacent cells."
+      },
+      {
+        "type": "steps",
+        "title": "How to Wrap Text",
+        "steps": [
+          "Select the required cells.",
+          "Click the Home tab.",
+          "Go to the Alignment group.",
+          "Click Wrap Text."
+        ]
+      },
+     
+      {
+        "type": "heading",
+        "text": "8. Format Painter"
+      },
+      {
+        "type": "paragraph",
+        "text": "Format Painter copies the formatting of one cell and applies it to another cell without copying the data."
+      },
+      {
+        "type": "steps",
+        "title": "How to Use Format Painter",
+        "steps": [
+          "Select the formatted cell.",
+          "Click the Home tab.",
+          "Click Format Painter.",
+          "Click or drag over the destination cells."
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Double-click Format Painter to apply the same formatting to multiple locations."
+      },
+           {
+        "type": "exercise",
+        "title": "Practice Exercise - Student Report Card",
+        "steps": [
+          "Create a student report card.",
+          "Apply Arial font with size 14.",
+          "Make the title Bold.",
+          "Change the title font color to White.",
+          "Apply Blue Fill Color to the header row.",
+          "Center-align all headings.",
+          "Apply All Borders to the table.",
+          "Merge and Center the worksheet title.",
+          "Use Wrap Text for long headings.",
+          "Use Format Painter to copy the formatting to another table."
+        ]
+      }
+    ]
+  },
+  "questions":[
+{
+"id":"excel_q021",
+"type":"MCQ",
+"difficulty_rating":1,
+"question":"What is the purpose of formatting in Excel?",
+"options":["Delete data","Improve appearance and readability","Print worksheets","Create formulas"],
+"answer":[1],
+"explanation":"Formatting changes the appearance of data without changing its value."
+},
+{
+"id":"excel_q022",
+"type":"MCQ",
+"difficulty_rating":1,
+"question":"Which tab contains most formatting tools?",
+"options":["Insert","Data","Home","Review"],
+"answer":[2],
+"explanation":"The Home tab contains Font, Alignment and Number formatting groups."
+},
+{
+"id":"excel_q023",
+"type":"MCQ",
+"difficulty_rating":1,
+"question":"Which option makes text bold?",
+"options":["Italic","Underline","Bold","Wrap Text"],
+"answer":[2],
+"explanation":"Bold makes text thicker and more visible."
+},
+{
+"id":"excel_q024",
+"type":"MCQ",
+"difficulty_rating":1,
+"question":"Borders are mainly used to:",
+"options":["Delete cells","Organize and separate data","Create formulas","Insert charts"],
+"answer":[1],
+"explanation":"Borders improve table readability."
+},
+{
+"id":"excel_q025",
+"type":"MCQ",
+"difficulty_rating":1,
+"question":"Which feature changes the background color of a cell?",
+"options":["Font Color","Fill Color","Border","Merge"],
+"answer":[1],
+"explanation":"Fill Color changes the cell background."
+},
+{
+"id":"excel_q026",
+"type":"MCQ",
+"difficulty_rating":2,
+"question":"Which alignment places text in the middle of a cell?",
+"options":["Left","Right","Center","Top"],
+"answer":[2],
+"explanation":"Center alignment positions text in the middle."
+},
+{
+"id":"excel_q027",
+"type":"MCQ",
+"difficulty_rating":2,
+"question":"Merge & Center is mainly used to:",
+"options":["Delete cells","Combine cells and center text","Sort data","Filter data"],
+"answer":[1],
+"explanation":"Merge & Center combines selected cells into one."
+},
+{
+"id":"excel_q028",
+"type":"MCQ",
+"difficulty_rating":2,
+"question":"Wrap Text is used to:",
+"options":["Rotate text","Display long text on multiple lines","Hide text","Delete text"],
+"answer":[1],
+"explanation":"Wrap Text shows long content within the same cell."
+},
+{
+"id":"excel_q029",
+"type":"MCQ",
+"difficulty_rating":2,
+"question":"Format Painter is used to:",
+"options":["Copy formatting","Copy formulas","Copy worksheets","Copy charts"],
+"answer":[0],
+"explanation":"Format Painter copies formatting from one cell to another."
+},
+{
+"id":"excel_q030",
+"type":"MCQ",
+"difficulty_rating":2,
+"question":"Which feature is commonly used to create a report title across multiple columns?",
+"options":["Wrap Text","Merge & Center","Borders","Conditional Formatting"],
+"answer":[1],
+"explanation":"Merge & Center combines cells for headings."
+}
+]
+}   
+        
 
         
       ]
