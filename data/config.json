@@ -3,7 +3,7 @@
   "tagline": "Master concepts. Ace exams.",
   "logoText": "UNIC",
   "adminEmail": "admin@unicacademic.in",
-  "subjects": ["PH", "CH", "MA", "BIO","SQL","EXCEL"],
+  "subjects": ["PH", "CH", "MA", "BIO","SQL","EXCEL","R","PY"],
   "howDidYouFindUs": [
     "Google Search",
     "YouTube",
