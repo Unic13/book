@@ -346,12 +346,7 @@
       {
         "type": "note",
         "text": "Hidden data is still available in formulas and calculations."
-      },
-      {
-        "type": "image",
-        "title": "Hide and Unhide",
-        "path": "/imagepdf/day5/hide-unhide.jpeg"
-      },
+      },    
 
       {
         "type": "heading",
