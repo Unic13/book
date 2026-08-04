@@ -471,7 +471,7 @@ async function login() {
 async function loadStats() {
   try {
     const r = await ajax(`api/admin?key=${encodeURIComponent(adminKey)}&type=registrations`);
-    const a = await ajax(`api/admin?key=${encodeURIComponent(adminKey)}&type=attempts`);
+    const a = await ajax(`api/admin?key=${encodeURIComponent(adminKey)}&type=attempts1`);
     document.getElementById('stat-regs').textContent = r.count ?? '—';
     document.getElementById('stat-attempts').textContent = a.count ?? '—';
     if (a.records && a.records.length) {
@@ -595,7 +595,7 @@ async function initBuilder() {
   builder.subjects = [...BUILTIN_SUBJECTS];
 
   try {
-    const res = await ajax(`api/content`);
+    const res = await ajax(`api/content1`);
     if (res && res.subjects) {
       res.subjects.forEach(s => {
         if (!builder.subjects.find(b => b.code === s.code)) {
@@ -671,7 +671,7 @@ async function loadSubjectIntoBuilder(code) {
 
   // Try live content from Hasura first
   try {
-    const res = await ajax(`api/content?code=${code}`);
+    const res = await ajax(`api/content1?code=${code}`);
     if (res && res.data && res.data.units) loaded = res.data;
   } catch {}
 
@@ -1454,7 +1454,7 @@ async function saveSubjectContent() {
   setBuilderStatus('Saving…', '');
 
   try {
-    const res = await ajax(`api/content?key=${encodeURIComponent(adminKey)}`, 'POST', {
+    const res = await ajax(`api/content1?key=${encodeURIComponent(adminKey)}`, 'POST', {
       key: adminKey,
       code: builder.activeData.code,
       subject: builder.activeData.subject,
