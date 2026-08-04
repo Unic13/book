@@ -1552,7 +1552,7 @@ async function saveSubjectContent() {
   setBuilderStatus('Saving…', '');
 
   try {
-    const res = await ajax(`api/content1?key=${encodeURIComponent(adminKey)}`, 'POST', {
+    const res = await ajax(`api/content?key=${encodeURIComponent(adminKey)}`, 'POST', {
       key: adminKey,
       code: builder.activeData.code,
       subject: builder.activeData.subject,
