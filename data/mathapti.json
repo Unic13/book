@@ -38,7 +38,7 @@
               {
                 "type": "syntax",
                 "language": "text",
-                "formulas": "HCF of 12 and 18:\n12 = 2 x 2 x 3\n18 = 2 x 3 x 3\nHCF = 2 x 3 = 6"
+                "code": "HCF of 12 and 18:\n12 = 2 x 2 x 3\n18 = 2 x 3 x 3\nHCF = 2 x 3 = 6"
               },
               {
                 "type": "heading",
