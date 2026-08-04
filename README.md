@@ -77,11 +77,6 @@ Or connect the repo via the Vercel dashboard (Import Project → select repo).
 
 Go to Project → Settings → Environment Variables and add:
 
-| Key | Value |
-|---|---|
-| `HASURA_GRAPHQL_URL` | `https://your-app.hasura.app/v1/graphql` |
-| `HASURA_ADMIN_SECRET` | your Hasura admin secret |
-| `ADMIN_KEY` | a password of your choice for `admin.html` |
 
 Redeploy after adding env vars so the functions pick them up.
 
