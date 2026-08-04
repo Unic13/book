@@ -573,6 +573,8 @@ const BUILTIN_SUBJECTS = [
   { code: 'BIO', subject: 'Biology',     color: '#276749' },
   { code: 'SQL', subject: 'SQL',     color: '#0F9D8C' },
   { code: 'EXCEL', subject: 'EXCEL',     color: '#217346' },
+  { code: 'R', subject: 'R Program',     color: '#1F65B7' },
+  { code: 'PY', subject: 'Python',     color: '#3776AB' },
 ];
 
 const QTYPE_COLORS = { MCQ: '#6C3FF5', MSQ: '#0891b2', NAT: '#d97706' };
@@ -696,7 +698,7 @@ async function loadSubjectIntoBuilder(code) {
   // Fall back to bundled static file for the 4 built-in subjects
   if (!loaded) {
     const fileMap = { PH:'data/physics.json', CH:'data/chemistry.json', MA:'data/mathematics.json', BIO:'data/biology.json',
-                    EXCEL:'data/excel.json', SQL:'data/sql.json'};
+                    EXCEL:'data/excel.json', SQL:'data/sql.json', R:'data/rprog.json', PY:'data/python.json' };
     if (fileMap[code]) {
       try { loaded = await ajax(fileMap[code]); } catch {}
     }
