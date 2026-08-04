@@ -212,113 +212,32 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 .concept-table td,.concept-table th{border-bottom:1px solid #e5e7eb}
 .table-wrapper{overflow-x:auto}
 
-.concept-exercise {
-  margin: 18px 0;
-  padding: 18px 20px;
-  background: #fffaf0;
-  border: 1px solid #f3d9a4;
-  border-left: 4px solid #e8a33d;
-  border-radius: 8px;
-}
+/* Exercise block — a boxed, numbered practice-book style list */
+.concept-exercise{margin:16px 0;border-radius:12px;border:1.5px solid #fde68a;background:#fffbeb;overflow:hidden}
+.exercise-header{display:flex;align-items:center;gap:10px;padding:12px 16px;background:#fef3c7;border-bottom:1px solid #fde68a}
+.exercise-badge{font-size:11px;font-weight:800;color:#92400e;background:#fde68a;padding:3px 10px;border-radius:20px;letter-spacing:.03em;flex-shrink:0}
+.exercise-title{font-size:14.5px;font-weight:700;color:#92400e}
+.exercise-list{list-style:none;counter-reset:ex-counter;padding:14px 16px;margin:0}
+.exercise-item{counter-increment:ex-counter;position:relative;padding:8px 0 8px 36px;font-size:14.5px;line-height:1.7;color:#374151;border-bottom:1px dashed #fde68a}
+.exercise-item:last-child{border-bottom:none}
+.exercise-item::before{content:counter(ex-counter);position:absolute;left:0;top:7px;width:24px;height:24px;border-radius:7px;background:#f59e0b;color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
 
-.exercise-header {
-  margin-bottom: 10px;
-}
+/* Steps block — a vertical numbered walkthrough with a connecting rail */
+.concept-steps{margin:16px 0}
+.steps-title{font-size:15px;font-weight:700;color:#111;margin-bottom:10px}
+.steps-list{list-style:none;counter-reset:step-counter;padding:0;margin:0;position:relative}
+.steps-list::before{content:'';position:absolute;left:15px;top:6px;bottom:6px;width:2px;background:#e5e7eb}
+.steps-item{counter-increment:step-counter;display:flex;align-items:flex-start;gap:14px;padding:9px 0;position:relative}
+.steps-number{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;z-index:1}
+.steps-number::before{content:counter(step-counter)}
+.steps-text{font-size:14.5px;line-height:1.75;color:#374151;padding-top:5px}
 
-.exercise-badge {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: #92600c;
-  background: #fbe6bf;
-  padding: 3px 9px;
-  border-radius: 999px;
-  margin-bottom: 6px;
-}
+/* YouTube / video block */
+.media-video{margin:14px 0}
+.video-frame-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;background:#000}
+.video-frame-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.media-video-link{margin:14px 0}
 
-.exercise-title {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #4a3208;
-  margin-top: 4px;
-}
-
-.exercise-list {
-  margin: 10px 0 0;
-  padding-left: 22px;
-}
-
-.exercise-item {
-  color: #4a3208;
-  line-height: 1.65;
-  font-size: 0.95rem;
-  margin-bottom: 6px;
-}
-
-.exercise-item::marker {
-  font-weight: 700;
-  color: #e8a33d;
-}
-
-  .concept-steps {
-  margin: 16px 0;
-  padding: 16px 18px;
-  background: #f8f9fb;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-}
-
-.steps-title {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #1f2937;
-  margin-bottom: 10px;
-}
-
-.steps-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  counter-reset: step-counter;
-}
-
-.steps-item {
-  counter-increment: step-counter;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 8px 0;
-  border-bottom: 1px dashed #e5e7eb;
-}
-
-.steps-item:last-child {
-  border-bottom: none;
-}
-
-.steps-number::before {
-  content: counter(step-counter);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #4f46e5;
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.steps-text {
-  padding-top: 2px;
-  color: #374151;
-  line-height: 1.5;
-  font-size: 0.95rem;
-}
-  
 /* ─── Question type tabs ─── */
 .qtype-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
 .qtype-tab{
@@ -816,9 +735,8 @@ const SUBJECTS = {
   SQL: { label:'SQL',         emoji:'⛁', color:'#0F9D8C', file:'data/sql.json' },
   EXCEL: { label:'EXCEL',     emoji:'𝄜', color:'#217346', file:'data/excel.json' },
   PY:  { label:'Python',      emoji:'🐍', color:'#3776AB', file:'data/python.json' },
-  R:  { label:'R Program',      emoji:'R', color:'#1F65B7', file:'data/rprog.json' },
+  R:  { label:'R Program',    emoji:'R', color:'#1F65B7', file:'data/rprog.json' },
 };
-
 // Each subject's root JSON can EITHER:
 //  (a) go straight to the old format — { subject, units:[...] } — in which
 //      case clicking the subject opens chapters directly (fully backward compatible), OR
@@ -948,7 +866,7 @@ async function init() {
   try {
     state.config = await ajax('data/config.json');
   } catch {
-    state.config = { academyName:'UNIC Academic', logoText:'UN', subjects:['PH','CH','MA','BIO','SQL','EXCEL','PY','R'], howDidYouFindUs:['Google','Friend','YouTube','Other'] };
+    state.config = { academyName:'UNIC Academic', logoText:'UN', subjects:['PH','CH','MA','BIO','SQL','EXCEL','PY', 'R'], howDidYouFindUs:['Google','Friend','YouTube','Other'] };
   }
 
   document.title = state.config.academyName + ' — Practice Portal';
@@ -1043,7 +961,7 @@ function renderHomeHTML() {
       <button class="home-card" onclick="switchSubject('${code}')">
         <div class="home-card-icon" style="background:${s.color}">${s.emoji}</div>
         <div class="home-card-label">${s.label}</div>
-        <div class="home-card-cta" style="color:${s.color}">Start Learning and Practising →</div>
+        <div class="home-card-cta" style="color:${s.color}">Start Learning & Practice →</div>
       </button>`;
   }).join('');
 
@@ -1051,19 +969,24 @@ function renderHomeHTML() {
     <div class="fade-in">
       <div class="home-hero">
         <h1>Welcome to ${state.config?.academyName || 'UNIC Academic'}</h1>
-        <p>Pick a subject below to Start Learning and Practising</p>
+        <p>Pick a subject below to start practising</p>
       </div>
       <div class="home-grid">${cardsHTML}</div>
-    
-    <div class="alert alert-warning mt-3">
-      <h6 class="mb-2">Learning Platform Notice/Disclaimer:</h6>
-      <ul class="mb-0 small">
-        <li>Some lessons, examples, and quizzes are still under development and will be updated soon.</li>
-        <li>Parts of this course are generated with AI and may occasionally contain minor mistakes or outdated information.</li>
-        <li>Content is continuously reviewed, corrected, and improved by our team.</li>
-        <li>🙏 Thank you for your patience and support while we enhance the platform.</li>
-      </ul>
-    </div>
+   
+ <div style="margin-top:15px;padding:16px 20px;background:#fff8e1;border:1px solid #ffe082;border-left:5px solid #f9a825;border-radius:8px;color:#5f4500;font-family:Arial,sans-serif;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+    <h6 style="margin:0 0 10px;font-size:16px;font-weight:600;color:#8a6d00;">
+        Learning Platform Notice / Disclaimer
+    </h6>
+
+    <ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.8;">
+        <li>Some lessons, examples, practice exercises, and quizzes are currently under development and will be updated soon.</li>
+        <li>Parts of this course have been generated with AI assistance and may occasionally contain minor errors, omissions, or outdated information.</li>
+        <li>Our team continuously reviews, verifies, and improves the content to ensure accuracy and quality.</li>
+        <li>Please use this platform as a learning resource and report any issues or suggestions for improvement.</li>
+        <li>Thank you for your patience, understanding, and continued support while we enhance the learning experience.</li>
+    </ul>
+</div>
+
     </div>`;
 }
 
@@ -1492,6 +1415,43 @@ function renderPdfBlock(pdfVal, title = '') {
   </div>`;
 }
 
+// Pulls the 11-char video ID out of any common YouTube URL shape
+// (watch?v=, youtu.be/, /embed/, /shorts/) — returns null if it's not YouTube.
+function extractYouTubeId(url) {
+  if (!url || typeof url !== 'string') return null;
+  const m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+
+// Accepts a start time as a plain number of seconds (30) or "mm:ss" / "hh:mm:ss" (e.g. "1:30").
+function parseTimeToSeconds(val) {
+  if (val === undefined || val === null || val === '') return 0;
+  if (typeof val === 'number') return Math.max(0, Math.floor(val));
+  const parts = String(val).split(':').map(p => parseInt(p, 10) || 0);
+  let secs = 0;
+  parts.forEach(p => { secs = secs * 60 + p; });
+  return Math.max(0, secs);
+}
+
+// Renders a responsive, embedded YouTube player. "start" lets a lesson
+// jump straight to the relevant moment (e.g. start: "2:15") instead of
+// making the learner scrub through the whole video.
+function renderVideoBlock(url, title = '', start) {
+  if (!url) return '';
+  const id = extractYouTubeId(url);
+  if (!id) {
+    // Not a recognizable YouTube link — fall back to a plain "watch" link
+    // rather than silently dropping it.
+    return `<div class="media-video-link"><a href="${escapeHtml(url)}" target="_blank" rel="noopener" class="media-pdf-link">▶ ${escapeHtml(title || 'Watch video')}</a></div>`;
+  }
+  const startSecs = parseTimeToSeconds(start);
+  const src = `https://www.youtube.com/embed/${id}?rel=0${startSecs ? `&start=${startSecs}` : ''}`;
+  return `<div class="media-video">
+    ${title ? `<div class="media-title">${escapeHtml(title)}</div>` : ''}
+    <div class="video-frame-wrap"><iframe src="${src}" title="${escapeHtml(title || 'video')}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+  </div>`;
+}
+
 // Renders the content of a single answer OPTION. Supports three shapes:
 //   1. Plain string of text                     -> "Paris"
 //   2. Plain string that is itself an image ref  -> "data:image/png;base64,…" or "options/img1.png"
@@ -1569,40 +1529,46 @@ function renderConceptBody(body = []) {
         case "pdf":
           return renderPdfBlock(item.src || item.pdf || item.path || item.url, item.title);
 
-        case "steps":
-          return `
-            <div class="concept-steps">
-              ${item.title ? `<div class="steps-title">${formatText(item.title)}</div>` : ""}
-              <ol class="steps-list">
-                ${item.steps
-                  .map(
-                    (s) => `
-                      <li class="steps-item">
-                        <span class="steps-number"></span>
-                        <span class="steps-text">${formatText(s)}</span>
-                      </li>
-                    `
-                  )
-                  .join("")}
-              </ol>
-            </div>
-          `;
+        case "video":
+          return renderVideoBlock(item.url || item.src || item.youtube, item.title, item.start || item.startAt);
+
         case "exercise":
           return `
-            <div class="concept-exercise">
-              <div class="exercise-header">
-                <span class="exercise-badge">✏️ Practice</span>
-                ${item.title ? `<div class="exercise-title">${formatText(item.title)}</div>` : ""}
-              </div>
-              <ol class="exercise-list">
-                ${item.steps
-                  .map(
-                    (s) => `<li class="exercise-item">${formatText(s)}</li>`
-                  )
-                  .join("")}
-              </ol>
-            </div>
-          `;
+    ${renderImageBlock(item.image, '')}${renderPdfBlock(item.pdf, '')}
+    <div class="concept-exercise">
+      <div class="exercise-header">
+        <span class="exercise-badge">✏️ Practice</span>
+        ${item.title ? `<div class="exercise-title">${formatText(item.title)}</div>` : ""}
+      </div>
+      <ol class="exercise-list">
+        ${item.steps
+          .map(
+            (s) => `<li class="exercise-item">${formatText(s)}</li>`
+          )
+          .join("")}
+      </ol>
+    </div>
+  `;
+
+        case "steps":
+          return `
+    ${renderImageBlock(item.image, '')}${renderPdfBlock(item.pdf, '')}
+    <div class="concept-steps">
+      ${item.title ? `<div class="steps-title">${formatText(item.title)}</div>` : ""}
+      <ol class="steps-list">
+        ${item.steps
+          .map(
+            (s) => `
+              <li class="steps-item">
+                <span class="steps-number"></span>
+                <span class="steps-text">${formatText(s)}</span>
+              </li>
+            `
+          )
+          .join("")}
+      </ol>
+    </div>
+  `;
 
         case "table":
           return `
