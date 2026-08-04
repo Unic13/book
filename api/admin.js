@@ -4,7 +4,7 @@
 
 const { hasuraRequest } = require('../lib/hasura');
 
-const ADMIN_KEY = process.env.ADMIN_KEY || 'unic_admin_2024';
+const ADMIN_KEY = process.env.ADMIN_KEY;
 
 const GET_REGISTRATIONS = `
   query GetRegistrations($limit: Int!, $offset: Int!) {
