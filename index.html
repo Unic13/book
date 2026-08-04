@@ -438,6 +438,40 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
 }
 .btn-skip:hover{color:#6b7280}
 
+/* Modal register/login mode toggle */
+.modal-mode-tabs{display:flex;gap:8px;margin-bottom:18px}
+.mode-tab{
+  flex:1;padding:9px 6px;border-radius:9px;border:1.5px solid #e5e7eb;
+  background:#f9fafb;font-size:11px;font-weight:700;color:#6b7280;
+  cursor:pointer;font-family:inherit;transition:all var(--trans)
+}
+.mode-tab.active{background:#7c3aed;color:#fff;border-color:transparent;box-shadow:0 3px 10px rgba(124,58,237,.3)}
+.login-status{font-size:12px;text-align:center;margin:-4px 0 12px;line-height:1.5;min-height:0}
+.login-status.err-msg{color:#ef4444}
+.login-status.ok-msg{color:#16a34a}
+
+/* Category / sub-topic picker (class-board, libraries, SQL topics, Excel levels...) */
+.back-link{
+  display:inline-flex;align-items:center;gap:5px;background:none;border:none;
+  cursor:pointer;font-size:13px;font-weight:700;color:#6b7280;padding:6px 4px;
+  margin-bottom:10px;transition:color var(--trans)
+}
+.back-link:hover{color:#111}
+.category-group{margin-bottom:24px}
+.category-group-title{
+  font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+  color:#9ca3af;margin-bottom:10px
+}
+#sidebar-category-nav{padding:8px 12px 2px}
+#sidebar-category-nav.hidden{display:none}
+#sidebar-back-btn{
+  width:100%;display:flex;align-items:center;gap:6px;
+  padding:8px 10px;border-radius:9px;border:1.5px dashed #e5e7eb;
+  background:none;color:#6b7280;font-size:11px;font-weight:700;
+  cursor:pointer;transition:all var(--trans);text-align:left
+}
+#sidebar-back-btn:hover{background:#f9fafb;color:#111;border-color:#d1d5db}
+
 /* ─── Empty state ─── */
 .empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:240px;color:#9ca3af;gap:10px;text-align:center}
 .empty-icon{font-size:40px}
@@ -570,29 +604,36 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
     <div class="modal-body">
       <div class="modal-logo" id="modal-logo">UN</div>
       <h1 class="modal-title" id="modal-title">Welcome to UNIC Academic</h1>
-      <p class="modal-sub">Enter your details to save progress &amp; get updates.<br><em>All fields are optional.</em></p>
+      <p class="modal-sub" id="modal-sub">Enter your details to save progress &amp; get updates.<br><em>All fields are optional.</em></p>
 
-      <div class="field">
+      <div class="modal-mode-tabs">
+        <button type="button" class="mode-tab active" id="mode-register-btn" onclick="setModalMode('register')">New here? Register</button>
+        <button type="button" class="mode-tab" id="mode-login-btn" onclick="setModalMode('login')">Already registered? Log in</button>
+      </div>
+
+      <div class="field" id="field-name">
         <label>Full Name</label>
         <input type="text" id="f-name" placeholder="e.g. Muthu Raj">
         <div class="errmsg" id="err-name"></div>
       </div>
       <div class="field">
-        <label>Email Address</label>
+        <label id="f-email-label">Email Address</label>
         <input type="email" id="f-email" placeholder="you@example.com">
         <div class="errmsg" id="err-email"></div>
       </div>
-      <div class="field">
+      <div class="field" id="field-mobile">
         <label>Mobile Number</label>
         <input type="tel" id="f-mobile" placeholder="9655168622">
         <div class="errmsg" id="err-mobile"></div>
       </div>
-      <div class="field">
+      <div class="field" id="field-source">
   <label for="f-source">How Did You Find Us?</label>
   <select id="f-source">
     <option value="">Select one</option>    
   </select>
 </div>
+
+      <div class="login-status" id="login-status"></div>
 
       <button class="btn-modal" id="modal-submit">Start Practising →</button>
       <button class="btn-skip" id="modal-skip">Skip for now</button>
@@ -640,6 +681,9 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
     <!-- Sidebar -->
     <aside id="sidebar">
       <div id="sidebar-subject-header">Subject</div>
+      <div id="sidebar-category-nav" class="hidden">
+        <button id="sidebar-back-btn" onclick="backToCategories()">← <span id="sidebar-back-label">Change Class / Topic</span></button>
+      </div>
       <div id="sidebar-tree"></div>
     </aside>
 
@@ -664,7 +708,21 @@ const SUBJECTS = {
   BIO: { label:'Biology',     emoji:'🧬', color:'#16a34a', file:'data/biology.json' },
   SQL: { label:'SQL',         emoji:'⛁', color:'#0F9D8C', file:'data/sql.json' },
   EXCEL: { label:'EXCEL',     emoji:'𝄜', color:'#217346', file:'data/excel.json' },
+  PY:  { label:'Python',      emoji:'🐍', color:'#3776AB', file:'data/python.json' },
 };
+
+// Each subject's root JSON can EITHER:
+//  (a) go straight to the old format — { subject, units:[...] } — in which
+//      case clicking the subject opens chapters directly (fully backward compatible), OR
+//  (b) list sub-topics first — { subject, categories:[...] } — e.g. Class 6–12 x
+//      CBSE/State Board for Physics/Chemistry/Maths/Biology, libraries for Python
+//      (NumPy, Pandas...), analysis topics for SQL, and skill levels for Excel.
+//      Each category is { id, title, subtitle?, icon?, group?, file? or units? }.
+//      "group" (optional) is used to cluster cards under a heading, e.g. "CBSE" vs "State Board".
+//      "file" points to that category's own { subject, units:[...] } JSON; or the
+//      units can be embedded directly on the category via "units".
+// Root JSON is cached per-subject-code so switching back and forth doesn't refetch.
+const subjectRootCache = {};
 
 const LABELS = ['A','B','C','D','E'];
 const BATCH_SIZE = 3;
@@ -703,10 +761,12 @@ function getActivePlayground() {
 
 // ── State ──
 let state = {
-  view: 'home',
+  view: 'home', // 'home' | 'categories' | 'subject'
   config: null,
   activeSubject: 'PH',
-  subjectData: null,
+  subjectMeta: null,       // root JSON for the active subject when it has "categories"
+  activeCategoryId: null,  // which category (class/board, library, topic...) is loaded
+  subjectData: null,       // the actual { subject, units:[...] } currently on screen
   activeChapterId: null,
   questionIndex: 0,
   answers: {},
@@ -719,6 +779,7 @@ let state = {
   sqlDb: null,
   sqlJsLoading: null,
   sqlLoadedChapterId: null,
+  modalMode: 'register', // 'register' | 'login'
 };
 
 
@@ -779,7 +840,7 @@ async function init() {
   try {
     state.config = await ajax('data/config.json');
   } catch {
-    state.config = { academyName:'UNIC Academic', logoText:'UN', subjects:['PH','CH','MA','BIO','SQL','EXCEL'], howDidYouFindUs:['Google','Friend','YouTube','Other'] };
+    state.config = { academyName:'UNIC Academic', logoText:'UN', subjects:['PH','CH','MA','BIO','SQL','EXCEL','PY'], howDidYouFindUs:['Google','Friend','YouTube','Other'] };
   }
 
   document.title = state.config.academyName + ' — Practice Portal';
@@ -888,41 +949,170 @@ function renderHomeHTML() {
     </div>`;
 }
 
-async function loadSubject(code) {
+function showLoader() {
   document.getElementById('question-wrap').innerHTML = '<div id="loader"><div class="spinner"></div></div>';
   const spinnerEl = document.querySelector('#loader .spinner');
   if (spinnerEl) spinnerEl.style.borderTopColor = subjectColor();
+}
 
-  let loaded = null;
+// Loads a subject's root JSON (api/content11 first, then the static file),
+// with a small in-memory cache so re-visiting a subject doesn't refetch.
+async function fetchJSON(remoteQuery, staticFile) {
+  if (remoteQuery) {
+    try {
+      const remote = await ajax(remoteQuery);
+      if (remote && remote.data && (remote.data.units || remote.data.categories)) {
+        return remote.data;
+      }
+    } catch { /* fall through to static file */ }
+  }
+  return ajax(staticFile);
+}
 
-  try {
-    const remote = await ajax(`api/content11?code=${code}`);
-    if (remote && remote.data && remote.data.units) {
-      loaded = remote.data;
-    }
-  } catch { /* fall through to static file */ }
+// Entry point when a subject is opened (from Home or the top tabs). Decides
+// whether to show a category picker (Class 6–12 x Board for PH/CH/MA/BIO,
+// libraries for Python, topics for SQL, skill levels for Excel) or, for
+// subjects/files still using the old flat format, go straight to chapters.
+async function loadSubjectRoot(code) {
+  showLoader();
 
+  let loaded = subjectRootCache[code];
   if (!loaded) {
     try {
-      loaded = await ajax(SUBJECTS[code].file);
+      loaded = await fetchJSON(`api/content11?code=${code}`, SUBJECTS[code].file);
     } catch {
       document.getElementById('question-wrap').innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><p>Failed to load subject data</p></div>';
       return;
     }
+    subjectRootCache[code] = loaded;
   }
 
+  if (loaded && Array.isArray(loaded.categories) && loaded.categories.length) {
+    state.subjectMeta = loaded;
+    state.subjectData = null;
+    state.activeCategoryId = null;
+    state.view = 'categories';
+    state.sidebarOpen = false;
+    document.getElementById('sidebar').classList.add('closed');
+    renderCategoriesHTML();
+  } else {
+    state.subjectMeta = null;
+    state.view = 'subject';
+    state.sidebarOpen = true;
+    document.getElementById('sidebar').classList.remove('closed');
+    applySubjectData(loaded);
+  }
+  updateActiveTabs();
+}
+
+// Renders the sub-topic picker grid: Class 6–12 (CBSE / State Board) for
+// Physics/Chemistry/Maths/Biology, libraries for Python, analysis topics for
+// SQL, skill levels for Excel — grouped under a heading when categories
+// share a "group" (e.g. "CBSE" vs "State Board").
+function renderCategoriesHTML() {
+  const wrap = document.getElementById('question-wrap');
+  const meta = state.subjectMeta;
+  const s = SUBJECTS[state.activeSubject];
+  const color = s.color;
+  const cats = meta?.categories || [];
+
+  const groups = {};
+  let hasGroups = false;
+  cats.forEach(c => {
+    const g = c.group || '';
+    if (g) hasGroups = true;
+    (groups[g] ||= []).push(c);
+  });
+
+  const cardHTML = c => `
+      <button class="home-card" onclick="loadCategory('${c.id}')">
+        <div class="home-card-icon" style="background:${color}">${c.icon || '📘'}</div>
+        <div class="home-card-label">${c.title}</div>
+        <div class="home-card-cta" style="color:${color}">${c.subtitle || 'Start practising →'}</div>
+      </button>`;
+
+  const bodyHTML = cats.length
+    ? (hasGroups
+        ? Object.keys(groups).map(g => `
+            <div class="category-group">
+              ${g ? `<div class="category-group-title">${g}</div>` : ''}
+              <div class="home-grid">${groups[g].map(cardHTML).join('')}</div>
+            </div>`).join('')
+        : `<div class="home-grid">${cats.map(cardHTML).join('')}</div>`)
+    : '<div class="empty"><div class="empty-icon">📭</div><p>No topics available yet</p></div>';
+
+  wrap.innerHTML = `
+    <div class="fade-in">
+      <button class="back-link" onclick="showHome()">← All subjects</button>
+      <div class="home-hero">
+        <h1>${s.emoji} ${meta?.subject || s.label}</h1>
+        <p>Choose a topic to start practising</p>
+      </div>
+      ${bodyHTML}
+    </div>`;
+}
+
+// Loads one category's questions — either embedded on the category
+// ("units") or fetched from its own file — and hands off to applySubjectData.
+async function loadCategory(catId) {
+  const cat = (state.subjectMeta?.categories || []).find(c => c.id === catId);
+  if (!cat) return;
+
+  showLoader();
+
+  let loaded = null;
+  if (cat.units) {
+    loaded = { subject: state.subjectMeta.subject, units: cat.units, playground: cat.playground };
+  } else if (cat.file) {
+    try {
+      loaded = await ajax(cat.file);
+      if (!loaded.subject) loaded.subject = `${state.subjectMeta.subject} — ${cat.title}`;
+    } catch {
+      document.getElementById('question-wrap').innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><p>Failed to load this topic\'s data</p></div>';
+      return;
+    }
+  }
+
+  if (!loaded || !loaded.units) {
+    document.getElementById('question-wrap').innerHTML = '<div class="empty"><div class="empty-icon">📭</div><p>No questions available for this topic yet</p></div>';
+    return;
+  }
+
+  state.activeCategoryId = cat.id;
+  state.view = 'subject';
+  state.sidebarOpen = true;
+  document.getElementById('sidebar').classList.remove('closed');
+  applySubjectData(loaded);
+}
+
+// Shared by both the legacy (no-categories) flow and the category flow:
+// takes a loaded { subject, units:[...] } object and renders chapters.
+function applySubjectData(loaded) {
   state.subjectData = loaded;
+  state.answers = {};
+  state.submitted = {};
+  state.qtypeFilter = 'ALL';
+  state.conceptOpen = true;
+  state.questionIndex = 0;
 
   const firstChapter = state.subjectData.units?.[0]?.chapters?.[0];
-  if (firstChapter) {
-    state.activeChapterId = firstChapter.id;
-    state.questionIndex = 0;
-    state.qtypeFilter = 'ALL';
-    state.conceptOpen = true;
-  }
+  state.activeChapterId = firstChapter ? firstChapter.id : null;
 
   buildSidebar();
   renderQuestion();
+}
+
+// Jumps back from chapters to the category picker for the current subject
+// (used by the sidebar "← Change Class / Topic" button).
+function backToCategories() {
+  if (!state.subjectMeta) { showHome(); return; }
+  state.view = 'categories';
+  state.subjectData = null;
+  state.activeCategoryId = null;
+  state.sidebarOpen = false;
+  document.getElementById('sidebar').classList.add('closed');
+  renderCategoriesHTML();
+  updateActiveTabs();
 }
 
 // ══════════════════════════════════════════
@@ -936,6 +1126,8 @@ function buildSidebar() {
   hdr.textContent = data.subject;
   hdr.style.color = color;
   hdr.style.background = hex2rgba(color, .06);
+
+  updateSidebarBackButton();
 
   const tree = document.getElementById('sidebar-tree');
   tree.innerHTML = '';
@@ -991,6 +1183,21 @@ function updateSidebarActive() {
   });
 }
 
+// Shows the "← Change Class / Topic" shortcut in the sidebar whenever the
+// active subject actually has a category picker (Class/Board, library, etc.)
+function updateSidebarBackButton() {
+  const row = document.getElementById('sidebar-category-nav');
+  if (!row) return;
+  const cats = state.subjectMeta?.categories;
+  if (cats && cats.length) {
+    row.classList.remove('hidden');
+    const cat = cats.find(c => c.id === state.activeCategoryId);
+    document.getElementById('sidebar-back-label').textContent = cat ? `Change (${cat.title})` : 'Change Class / Topic';
+  } else {
+    row.classList.add('hidden');
+  }
+}
+
 function updateChapterProgress(chapterId) {
   const allChapters = getAllChapters();
   const ch = allChapters.find(c => c.id === chapterId);
@@ -1038,21 +1245,20 @@ function getTypeCounts() {
 }
 
 function switchSubject(code) {
-  const sameSubjectAlreadyOpen = state.view === 'subject' && code === state.activeSubject;
-  state.view = 'subject';
-  state.sidebarOpen = true;
-  document.getElementById('sidebar').classList.remove('closed');
-  updateActiveTabs();
-  if (sameSubjectAlreadyOpen) return;
+  const sameSubjectAlreadyActive = state.view !== 'home' && code === state.activeSubject;
+
+  // Clicking the currently-open subject again is a shortcut back to its
+  // category picker (Class/Board, library, topic...) rather than a no-op.
+  if (sameSubjectAlreadyActive) {
+    if (state.subjectMeta?.categories?.length) {
+      backToCategories();
+    }
+    return;
+  }
 
   state.activeSubject = code;
-  state.answers = {};
-  state.submitted = {};
-  state.qtypeFilter = 'ALL';
-  state.conceptOpen = true;
-  state.questionIndex = 0;
-  updateActiveTabs();
-  loadSubject(code);
+  state.activeCategoryId = null;
+  loadSubjectRoot(code);
 }
 
 function selectChapter(chapterId) {
@@ -1786,9 +1992,28 @@ function updateUserUI() {
   }
 }
 
+// Switches the welcome modal between "Register" (new visitor, all fields)
+// and "Log In" (returning visitor — just their email, to pull up the
+// profile they registered earlier so their attempts keep tracking to them).
+function setModalMode(mode) {
+  state.modalMode = mode;
+  document.getElementById('mode-register-btn').classList.toggle('active', mode === 'register');
+  document.getElementById('mode-login-btn').classList.toggle('active', mode === 'login');
+  document.getElementById('field-name').style.display = mode === 'register' ? '' : 'none';
+  document.getElementById('field-mobile').style.display = mode === 'register' ? '' : 'none';
+  document.getElementById('field-source').style.display = mode === 'register' ? '' : 'none';
+  document.getElementById('f-email-label').textContent = mode === 'register' ? 'Email Address' : 'Your Registered Email';
+  document.getElementById('modal-sub').innerHTML = mode === 'register'
+    ? 'Enter your details to save progress &amp; get updates.<br><em>All fields are optional.</em>'
+    : 'Enter the email you registered with to pick up your saved progress.';
+  document.getElementById('modal-submit').textContent = mode === 'register' ? 'Start Practising →' : 'Log In →';
+  const statusEl = document.getElementById('login-status');
+  statusEl.textContent = '';
+  statusEl.className = 'login-status';
+}
+
 function validateModal() {
   let ok = true;
-  const name = document.getElementById('f-name').value.trim();
   const email = document.getElementById('f-email').value.trim();
   const mobile = document.getElementById('f-mobile').value.trim();
 
@@ -1812,20 +2037,88 @@ function validateModal() {
   return ok;
 }
 
-function submitModal() {
+// Dispatches the modal's single submit button to register or log in,
+// depending on which mode tab is currently selected.
+function handleModalSubmit() {
+  if (state.modalMode === 'login') {
+    handleLogin();
+  } else {
+    submitModal();
+  }
+}
+
+async function submitModal() {
   if (!validateModal()) return;
-  const data = {
+  const formData = {
     name: document.getElementById('f-name').value.trim(),
     email: document.getElementById('f-email').value.trim(),
     mobile: document.getElementById('f-mobile').value.trim(),
     source: document.getElementById('f-source').value,
-    timestamp: new Date().toISOString()
   };
-  state.userData = data;
-  localStorage.setItem('unic_user', JSON.stringify(data));
+
+  // Sign them in immediately with what they typed so the UI feels instant...
+  const optimistic = { ...formData, timestamp: new Date().toISOString() };
+  state.userData = optimistic;
+  localStorage.setItem('unic_user', JSON.stringify(optimistic));
   updateUserUI();
   document.getElementById('modal-overlay').classList.add('hidden');
-  ajax('api/register', 'POST', data).catch(()=>{});
+
+  // ...then reconcile with the server's canonical record. api/register
+  // doubles as login: if this email already has a profile, it comes back
+  // as a normal success with their ORIGINAL name/mobile/source — "welcome
+  // back" — rather than a 409 error, so re-registering just logs them in.
+  try {
+    const res = await ajax('api/register', 'POST', formData);
+    if (res && res.success && res.data) {
+      state.userData = res.data;
+      localStorage.setItem('unic_user', JSON.stringify(res.data));
+      updateUserUI();
+    }
+  } catch { /* offline / server hiccup — keep the optimistic local profile */ }
+}
+
+// Looks up an already-registered visitor by email so their attempts keep
+// tracking to the same profile (e.g. on a new device/browser). Falls back
+// to a clear message pointing them at Register if no backend/profile is found.
+async function handleLogin() {
+  const email = document.getElementById('f-email').value.trim();
+  const statusEl = document.getElementById('login-status');
+  document.getElementById('f-email').classList.remove('err');
+  statusEl.textContent = '';
+  statusEl.className = 'login-status';
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    document.getElementById('f-email').classList.add('err');
+    statusEl.textContent = 'Enter a valid email to log in.';
+    statusEl.classList.add('err-msg');
+    return;
+  }
+
+  const btn = document.getElementById('modal-submit');
+  btn.disabled = true;
+  const originalLabel = btn.textContent;
+  btn.textContent = 'Checking…';
+
+  try {
+    // api/register doubles as login: sending just an email (no name) tells
+    // it to look up and return an existing profile instead of creating one.
+    const res = await ajax('api/register', 'POST', { email });
+    if (res && res.success && res.data) {
+      state.userData = res.data;
+      localStorage.setItem('unic_user', JSON.stringify(res.data));
+      updateUserUI();
+      document.getElementById('modal-overlay').classList.add('hidden');
+    } else {
+      statusEl.textContent = 'No saved profile found for that email — you can register instead.';
+      statusEl.classList.add('err-msg');
+    }
+  } catch {
+    statusEl.textContent = "Couldn't reach the server to log in. Please try again, or register instead.";
+    statusEl.classList.add('err-msg');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalLabel;
+  }
 }
 
 // Fully signs the visitor out: clears the saved profile, wipes this
@@ -1852,6 +2145,7 @@ function signOut() {
   // clear the registration form so a stale name/email doesn't linger
   ['f-name','f-email','f-mobile'].forEach(id => { document.getElementById(id).value = ''; });
   document.getElementById('f-source').value = '';
+  setModalMode('register');
 
   document.getElementById('modal-overlay').classList.remove('hidden');
 }
@@ -1860,11 +2154,12 @@ function signOut() {
 //  EVENT BINDINGS
 // ══════════════════════════════════════════
 function bindEvents() {
-  document.getElementById('modal-submit').addEventListener('click', submitModal);
+  document.getElementById('modal-submit').addEventListener('click', handleModalSubmit);
   document.getElementById('modal-skip').addEventListener('click', () => {
     document.getElementById('modal-overlay').classList.add('hidden');
   });
-  document.getElementById('f-name').addEventListener('keydown', e => { if(e.key==='Enter') submitModal(); });
+  document.getElementById('f-name').addEventListener('keydown', e => { if(e.key==='Enter') handleModalSubmit(); });
+  document.getElementById('f-email').addEventListener('keydown', e => { if(e.key==='Enter') handleModalSubmit(); });
 
   document.getElementById('brand-home-btn').addEventListener('click', showHome);
   document.getElementById('home-nav-btn').addEventListener('click', showHome);
