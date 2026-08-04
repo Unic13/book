@@ -101,7 +101,7 @@ module.exports = async (req, res) => {
         phone: r.phone,
         howkonw: r.howkonw,
         ipaddress: r.ip,
-        timestamp: r.created_at,
+        timestamp: new Date(r.created_at).toLocaleString(),
       })),
     });
   } catch (err) {
