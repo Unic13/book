@@ -107,7 +107,7 @@
               { "type": "paragraph", "text": "AutoFill is a powerful Excel feature that automatically fills cells with a series of values or copies existing values and formulas. It saves time by reducing repetitive typing." },
               { "type": "list", "items": ["Generate Serial Numbers", "Fill Dates", "Fill Months", "Fill Weekdays", "Copy Formulas", "Copy Formatting"] },
               { "type": "table", "headers": ["Input", "AutoFill Result"], "rows": [["1, 2", "3, 4, 5, 6..."], ["Monday", "Tuesday, Wednesday..."], ["January", "February, March..."], ["=A1+B1", "Formula copied to next rows"]] },
-              { "type": "tip", "text": "Drag the small square (Fill Handle) located at the bottom-right corner of the selected cell to use AutoFill." },
+              { "type": "note", "text": "Drag the small square (Fill Handle) located at the bottom-right corner of the selected cell to use AutoFill." },
               { "type": "steps", "title": "How to Use AutoFill", "steps": ["Type the starting value(s) in a cell (e.g. 1 and 2 in two cells).", "Select both cells.", "Hover over the small square (Fill Handle) at the bottom-right corner.", "Click and drag down or across to fill the series.", "Release the mouse to complete the fill."] },
               { "type": "heading", "text": "5. Flash Fill" },
               { "type": "paragraph", "text": "Flash Fill automatically detects patterns in your data and fills the remaining cells without requiring formulas. It is commonly used to split names, combine text, or extract specific information." },
@@ -984,7 +984,7 @@
   ]
 },
 {
-  "type": "tip",
+  "type": "note",
   "text": "Shortcut: Select a cell reference inside a formula and press F4 to quickly add or remove the $ symbol."
 },
 {
@@ -1061,7 +1061,7 @@
   ]
 },
 {
-  "type": "tip",
+  "type": "note",
   "text": "Most Excel operations such as formatting, formulas, sorting, filtering, and chart creation require selecting the correct range of cells first."
 },
 {
