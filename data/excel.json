@@ -552,8 +552,6 @@
   }
 ]
 },
-
-
 {
   "id": "excel_u1_c6",
   "title": "Day 6: Page Layout, Print Area, Headers and Footers (Ctrl+P)",
@@ -871,13 +869,13 @@
 },
          {
           "id": "excel_u1_c7",
-          "title": "Ref. Topic 1: Cell References",
+          "title": "Ref. Topic 1: Cell",
           "concept": {
             "title": "Cell Address, Cell References, Relative Reference, Absolute Reference, Mixed Reference",
             "body": [
               {
   "type": "heading",
-  "text": "5. Cell Address and Cell References"
+  "text": "1. Cell Address and Cell References"
 },
 {
   "type": "paragraph",
@@ -886,7 +884,7 @@
 {
   "type": "image",
   "title": "Cell Address Example",
-  "path": "/imagepdf/day1/cell-reference.jpeg"
+  "image": "/imagepdf/day1/cell-reference.jpeg"
 },
 {
   "type": "table",
@@ -909,7 +907,7 @@
 },
 {
   "type": "heading",
-  "text": "6. Types of Cell References"
+  "text": "2. Types of Cell References"
 },
 {
   "type": "paragraph",
@@ -935,7 +933,7 @@
 },
 {
   "type": "heading",
-  "text": "7. Absolute Reference ($)"
+  "text": "3. Absolute Reference ($)"
 },
 {
   "type": "paragraph",
@@ -966,7 +964,7 @@
 },
 {
   "type": "heading",
-  "text": "8. Shortcut Key for Absolute Reference"
+  "text": "4. Shortcut Key for Absolute Reference"
 },
 {
   "type": "paragraph",
@@ -1006,7 +1004,7 @@
 },
               {
   "type": "heading",
-  "text": "7. Selecting Cells and Cell Ranges"
+  "text": "5. Selecting Cells and Cell Ranges"
 },
 {
   "type": "paragraph",
@@ -1223,7 +1221,7 @@
     "explanation": "Using $F$1 locks both the row and column so every copied formula always refers to the GST value in cell F1."
   }
 ]
-        },
+        }
 
         
       ]
