@@ -1928,7 +1928,7 @@ function submitAnswer(qid) {
 
   if (state.userData) {
     const isCorrect = checkIsCorrect(q, selected);
-    ajax('api/attempt11', 'POST', {
+    ajax('api/attempt', 'POST', {
       userId: state.userData.email || state.userData.name || 'guest',
       questionId: q.id,
       subject: state.activeSubject,
