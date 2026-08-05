@@ -84,7 +84,7 @@ module.exports = async (req, res) => {
           selected: a.selected,
           correct: a.correct,
           isCorrect: a.is_correct,
-          timestamp: a.created_at,
+          timestamp: new Date(a.created_at).toLocaleString(),
         })),
       });
     }
