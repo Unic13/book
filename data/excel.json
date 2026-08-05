@@ -181,21 +181,21 @@
               { "type": "heading", "text": "8. Format Painter" },
               { "type": "paragraph", "text": "Format Painter copies the formatting of one cell and applies it to another cell without copying the data." },
               {
-              "type": "table",
-              "headers": ["Shortcut", "Purpose"],
-              "rows": [
-                ["Ctrl + B", "Bold selected cells/text"],
-                ["Ctrl + I", "Italic"],
-                ["Ctrl + U", "Underline"],
-                ["Ctrl + Shift + >", "Increase Font Size"],
-                ["Ctrl + Shift + <", "Decrease Font Size"],              
-                ["Alt + Enter", "Wrap Text (Insert a new line within the same cell)"]
-                ["Alt + H, A, L", "Left Align"],
-                ["Alt + H, A, C", "Center Align"],
-                ["Alt + H, A, R", "Right Align"],
-                ["Alt + H, A, T", "Top Align"],
-                ["Alt + H, A, M", "Middle Align"],
-                ["Alt + H, A, B", "Bottom Align"],
+                "type": "table",
+                "headers": ["Shortcut", "Purpose"],
+                "rows": [
+                  ["Ctrl + B", "Bold selected cells/text"],
+                  ["Ctrl + I", "Italic"],
+                  ["Ctrl + U", "Underline"],
+                  ["Ctrl + Shift + >", "Increase Font Size"],
+                  ["Ctrl + Shift + <", "Decrease Font Size"],
+                  ["Alt + Enter", "Wrap Text (Insert a new line within the same cell)"],
+                  ["Alt + H, A, L", "Left Align"],
+                  ["Alt + H, A, C", "Center Align"],
+                  ["Alt + H, A, R", "Right Align"],
+                  ["Alt + H, A, T", "Top Align"],
+                  ["Alt + H, A, M", "Middle Align"],
+                  ["Alt + H, A, B", "Bottom Align"]
                 ]
               },
               { "type": "steps", "title": "How to Use Format Painter", "steps": ["Select the formatted cell.", "Click the Home tab.", "Click Format Painter.", "Click or drag over the destination cells."] },
