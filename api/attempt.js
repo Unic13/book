@@ -122,7 +122,7 @@ module.exports = async (req, res) => {
 
       const ip = getClientIp(req);
       const isGuest = !userId || userId === 'guest' || userId === 'anonymous';
-      const location = isGuest ? await getLocationFromIp(ip) : null;
+      const location = await getLocationFromIp(ip) || null;
 
       const data = await hasuraRequest(INSERT_ATTEMPT, {
         object: {
