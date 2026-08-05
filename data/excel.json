@@ -868,7 +868,362 @@
     "explanation": "Print Preview helps verify page layout, margins, headers, and formatting before printing."
   }
 ]
+},
+         {
+          "id": "excel_u1_c7",
+          "title": "Ref. Topic 1: Cell References",
+          "concept": {
+            "title": "Cell Address, Cell References, Relative Reference, Absolute Reference, Mixed Reference",
+            "body": [
+              {
+  "type": "heading",
+  "text": "5. Cell Address and Cell References"
+},
+{
+  "type": "paragraph",
+  "text": "A cell is the intersection of a row and a column. Every cell has a unique address called a Cell Reference. Excel uses cell references in formulas instead of typing actual values. This makes formulas dynamic because they automatically update when the data changes."
+},
+{
+  "type": "image",
+  "title": "Cell Address Example",
+  "path": "/imagepdf/day1/cell-reference.jpeg"
+},
+{
+  "type": "table",
+  "headers": [
+    "Cell",
+    "Column",
+    "Row",
+    "Cell Address"
+  ],
+  "rows": [
+    ["A1", "A", "1", "A1"],
+    ["B5", "B", "5", "B5"],
+    ["C10", "C", "10", "C10"],
+    ["F20", "F", "20", "F20"]
+  ]
+},
+{
+  "type": "note",
+  "text": "Cell references make formulas flexible. If the value in a referenced cell changes, Excel automatically recalculates the result."
+},
+{
+  "type": "heading",
+  "text": "6. Types of Cell References"
+},
+{
+  "type": "paragraph",
+  "text": "Excel provides three types of cell references: Relative, Absolute, and Mixed references."
+},
+{
+  "type": "table",
+  "headers": [
+    "Reference Type",
+    "Example",
+    "Behavior"
+  ],
+  "rows": [
+    ["Relative", "A1", "Changes when copied"],
+    ["Absolute", "$A$1", "Row and column remain fixed"],
+    ["Mixed", "$A1 or A$1", "Either row or column remains fixed"]
+  ]
+},
+{
+  "type": "image",
+  "title": "Relative vs Absolute Reference",
+  "path": "/imagepdf/day1/reference-types.jpeg"
+},
+{
+  "type": "heading",
+  "text": "7. Absolute Reference ($)"
+},
+{
+  "type": "paragraph",
+  "text": "The dollar sign ($) locks the row, the column, or both. This is useful when copying formulas that should always refer to the same cell."
+},
+{
+  "type": "table",
+  "headers": [
+    "Reference",
+    "Meaning"
+  ],
+  "rows": [
+    ["A1", "Relative Reference"],
+    ["$A$1", "Lock both row and column"],
+    ["$A1", "Lock column only"],
+    ["A$1", "Lock row only"]
+  ]
+},
+{
+  "type": "example",
+  "title": "Example",
+  "before": "=B2*C2",
+  "after": "=B2*$F$1"
+},
+{
+  "type": "paragraph",
+  "text": "In the example above, cell F1 contains the GST or Tax Rate. Even when the formula is copied to other rows, Excel always uses F1 because it is locked using $."
+},
+{
+  "type": "heading",
+  "text": "8. Shortcut Key for Absolute Reference"
+},
+{
+  "type": "paragraph",
+  "text": "While editing a formula, place the cursor on the cell reference and press the F4 key to cycle through the different reference types."
+},
+{
+  "type": "table",
+  "headers": [
+    "Press F4",
+    "Result"
+  ],
+  "rows": [
+    ["1st Press", "$A$1"],
+    ["2nd Press", "A$1"],
+    ["3rd Press", "$A1"],
+    ["4th Press", "A1"]
+  ]
+},
+{
+  "type": "tip",
+  "text": "Shortcut: Select a cell reference inside a formula and press F4 to quickly add or remove the $ symbol."
+},
+{
+  "type": "warning",
+  "text": "On some laptops, you may need to press Fn + F4 instead of F4."
+},
+{
+  "type": "exercise",
+  "title": "Practice",
+  "steps": [
+    "Enter numbers in cells B2:B6.",
+    "Enter a tax rate (18%) in cell F1.",
+    "Create the formula =B2*$F$1.",
+    "Copy the formula down to the remaining rows.",
+    "Observe that the reference to F1 remains fixed."
+  ]
+},
+              {
+  "type": "heading",
+  "text": "7. Selecting Cells and Cell Ranges"
+},
+{
+  "type": "paragraph",
+  "text": "Before creating formulas or formatting data, you need to know how to select cells and ranges. A range is a group of one or more cells. Excel allows you to select a single cell, multiple adjacent cells, entire rows, entire columns, or multiple non-adjacent cells."
+},
+{
+  "type": "image",
+  "title": "Selecting Cells and Ranges",
+  "path": "/imagepdf/day1/select-range.jpeg"
+},
+{
+  "type": "table",
+  "headers": [
+    "Selection",
+    "Example",
+    "Description"
+  ],
+  "rows": [
+    ["Single Cell", "A1", "Select only one cell."],
+    ["Cell Range", "A1:D10", "Select multiple adjacent cells."],
+    ["Entire Row", "5:5", "Select the complete row 5."],
+    ["Entire Column", "B:B", "Select the complete column B."],
+    ["Multiple Cells", "A1,C3,E5", "Select non-adjacent cells by holding Ctrl."]
+  ]
+},
+{
+  "type": "heading",
+  "text": "How to Select Different Types of Data"
+},
+{
+  "type": "steps",
+  "title": "Selecting Cells",
+  "steps": [
+    "Click any cell to select it.",
+    "Click and drag the mouse to select multiple adjacent cells.",
+    "Hold the Ctrl key and click individual cells to select non-adjacent cells.",
+    "Click a row number to select the entire row.",
+    "Click a column letter to select the entire column.",
+    "Press Ctrl + A to select the entire worksheet."
+  ]
+},
+{
+  "type": "table",
+  "headers": [
+    "Shortcut",
+    "Action"
+  ],
+  "rows": [
+    ["Ctrl + A", "Select entire worksheet"],
+    ["Shift + Arrow Keys", "Extend the selection"],
+    ["Ctrl + Shift + Arrow", "Select data until the last used cell"],
+    ["Ctrl + Click", "Select multiple non-adjacent cells"],
+    ["Shift + Click", "Select a continuous range"]
+  ]
+},
+{
+  "type": "tip",
+  "text": "Most Excel operations such as formatting, formulas, sorting, filtering, and chart creation require selecting the correct range of cells first."
+},
+{
+  "type": "exercise",
+  "title": "Practice",
+  "steps": [
+    "Select cell C5.",
+    "Select the range A1:E10.",
+    "Select the entire row 8.",
+    "Select the entire column D.",
+    "Hold Ctrl and select cells A1, C3, and E5.",
+    "Press Ctrl + A to select the complete worksheet."
+  ]
 }
+            ]
+          },
+          "questions": 
+           [
+  {
+    "id": "excel_q061",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "What is the intersection of a row and a column called?",
+    "options": [
+      "Worksheet",
+      "Workbook",
+      "Cell",
+      "Range"
+    ],
+    "answer": [2],
+    "explanation": "The intersection of a row and a column is called a cell."
+  },
+  {
+    "id": "excel_q062",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which of the following is a valid cell address?",
+    "options": [
+      "1A",
+      "AA",
+      "B5",
+      "5B1"
+    ],
+    "answer": [2],
+    "explanation": "A valid cell address consists of a column letter followed by a row number."
+  },
+  {
+    "id": "excel_q063",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Why are cell references used in Excel formulas?",
+    "options": [
+      "To change font style",
+      "To automatically update calculations when data changes",
+      "To print worksheets",
+      "To create charts"
+    ],
+    "answer": [1],
+    "explanation": "Cell references make formulas dynamic. If the referenced value changes, Excel recalculates the result automatically."
+  },
+  {
+    "id": "excel_q064",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which of the following is a Relative Reference?",
+    "options": [
+      "$A$1",
+      "$A1",
+      "A$1",
+      "A1"
+    ],
+    "answer": [3],
+    "explanation": "A1 is a relative reference and changes automatically when copied."
+  },
+  {
+    "id": "excel_q065",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which reference keeps both the row and column fixed when copied?",
+    "options": [
+      "A1",
+      "$A1",
+      "A$1",
+      "$A$1"
+    ],
+    "answer": [3],
+    "explanation": "The reference $A$1 locks both the column and row."
+  },
+  {
+    "id": "excel_q066",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What does the '$' symbol do in an Excel formula?",
+    "options": [
+      "Deletes a cell",
+      "Locks a row, column, or both",
+      "Creates a worksheet",
+      "Formats numbers"
+    ],
+    "answer": [1],
+    "explanation": "The dollar sign ($) creates an absolute or mixed reference by locking rows and/or columns."
+  },
+  {
+    "id": "excel_q067",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which shortcut key cycles through Relative, Absolute, and Mixed references while editing a formula?",
+    "options": [
+      "F1",
+      "F2",
+      "F4",
+      "F5"
+    ],
+    "answer": [2],
+    "explanation": "Pressing F4 cycles through A1 → $A$1 → A$1 → $A1."
+  },
+  {
+    "id": "excel_q068",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which reference locks only the column?",
+    "options": [
+      "$A1",
+      "A$1",
+      "$A$1",
+      "A1"
+    ],
+    "answer": [0],
+    "explanation": "In $A1, the column is fixed while the row changes."
+  },
+  {
+    "id": "excel_q069",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which reference locks only the row?",
+    "options": [
+      "$A1",
+      "A1",
+      "$A$1",
+      "A$1"
+    ],
+    "answer": [3],
+    "explanation": "In A$1, the row is fixed while the column changes."
+  },
+  {
+    "id": "excel_q070",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Cell F1 contains the GST rate. Which formula ensures that the GST cell remains fixed when copied down?",
+    "options": [
+      "=B2*F1",
+      "=B2*$F$1",
+      "=$B2*F1",
+      "=B2*$F1"
+    ],
+    "answer": [1],
+    "explanation": "Using $F$1 locks both the row and column so every copied formula always refers to the GST value in cell F1."
+  }
+]
+        },
 
         
       ]
