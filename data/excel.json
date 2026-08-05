@@ -270,7 +270,7 @@
                   ["Ctrl + Shift + #", "Date Format"],
                   ["Ctrl + Shift + @", "Time Format"],
                   ["Alt + H, 9", "Increase Decimal Places"],
-                  ["Alt + H, 0", "Decrease Decimal Places"],
+                  ["Alt + H, 0", "Decrease Decimal Places"]
                 ]
               },
               { "type": "exercise", "title": "Practice Exercise - Employee Salary Register", "steps": ["Create a salary register with Employee ID, Employee Name, Joining Date, Basic Salary, HRA, Bonus, and Gross Salary.", "Apply Number format to numerical columns.", "Apply Currency format (₹) to salary columns.", "Apply Date format to Joining Date.", "Apply Percentage format to Bonus column.", "Increase decimal places to two digits.", "Use Accounting format for Gross Salary.", "Save the workbook as Salary_Register.xlsx."] }
