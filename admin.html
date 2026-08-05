@@ -488,7 +488,7 @@ async function login() {
 async function loadStats() {
   try {
     const r = await ajax(`api/admin?key=${encodeURIComponent(adminKey)}&type=registrations`);
-    const a = await ajax(`api/admin?key=${encodeURIComponent(adminKey)}&type=attempts1`);
+    const a = await ajax(`api/admin?key=${encodeURIComponent(adminKey)}&type=attempts`);
     document.getElementById('stat-regs').textContent = r.count ?? '—';
     document.getElementById('stat-attempts').textContent = a.count ?? '—';
     if (a.records && a.records.length) {
