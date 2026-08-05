@@ -555,7 +555,7 @@
 
 {
   "id": "excel_u1_c6",
-  "title": "Day 6: Page Layout, Print Area, Headers and Footers",
+  "title": "Day 6: Page Layout, Print Area, Headers and Footers (Ctrl+P)",
   "concept": {
     "title": "Preparing Worksheets for Printing",
     "body": [
@@ -638,10 +638,76 @@
           "Add page numbers or dates if required."
         ]
       },
+      {
+        "type": "heading",
+        "text": "6. Repeat Row and Column Headings"
+      },
+      {
+        "type": "paragraph",
+        "text": "Repeat Row and Column Headings allow the same row or column to appear on every printed page. This is useful for large worksheets where data extends across multiple pages."
+      },
+      {
+        "type": "steps",
+        "title": "Repeat the Top Row on Every Printed Page",
+        "steps": [
+          "Click the Page Layout tab.",
+          "Click Print Titles.",
+          "In the 'Rows to repeat at top' box, click the selection button.",
+          "Select the row(s) to repeat (for example, $1:$1).",
+          "Click OK."
+        ]
+      },
+      {
+        "type": "steps",
+        "title": "Repeat the Left Column on Every Printed Page",
+        "steps": [
+          "Click the Page Layout tab.",
+          "Click Print Titles.",
+          "In the 'Columns to repeat at left' box, click the selection button.",
+          "Select the column(s) to repeat (for example, $A:$A).",
+          "Click OK."
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Repeating row and column headings makes printed reports easier to read, especially when they span multiple pages."
+      },
+      {
+        "type": "heading",
+        "text": "7. Page Numbers"
+      },
+      {
+        "type": "paragraph",
+        "text": "Page numbers help identify the order of printed pages. You can display page numbers in the header or footer."
+      },
+      {
+        "type": "steps",
+        "title": "Insert Page Number (1, 2, 3...)",
+        "steps": [
+          "Click the Insert tab.",
+          "Click Header & Footer.",
+          "Click inside the Header or Footer area.",
+          "On the Header & Footer tab, click Page Number.",
+          "Click anywhere outside the header or footer to finish."
+        ]
+      },
+      {
+        "type": "steps",
+        "title": "Insert Page Number in '1/2' Format",
+        "steps": [
+          "Click the Insert tab.",
+          "Click Header & Footer.",
+          "Click inside the Header or Footer area.",
+          "Insert the Page Number field.",
+          "Type ' of ' after the page number.",
+          "Click Number of Pages.",
+          "The page number will appear in the format '1 of 2', '2 of 2', and so on."
+        ]
+      },
      
       {
         "type": "heading",
-        "text": "6. Print Preview"
+        "text": "8. Print Preview"
       },
       {
         "type": "paragraph",
