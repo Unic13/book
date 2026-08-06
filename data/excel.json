@@ -869,7 +869,7 @@
 },
          {
           "id": "excel_u1_c7",
-          "title": "Ref. Topic 1: Cell",
+          "title": "Formula Basics, Relative & Absolute References",
           "concept": {
             "title": "Cell Address, Cell References, Relative Reference, Absolute Reference, Mixed Reference",
             "body": [
@@ -1222,9 +1222,543 @@
   }
 ]
         }
+         
+      ]
+    },
+{
+      "id": "excel_u2",
+      "title": "Week 2: Excel Formulas & Functions",
+      "chapters": [
+        {
+          "id": "excel_u2_c1",
+          "title": "Day 1: Introduction to Excel Functions",
+          "concept": {
+            "title": "Introduction to Microsoft Excel",
+            "body": [
+                {
+                    "type": "heading",
+                    "text": "1. Introduction to Excel Functions"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Excel provides built-in functions that perform calculations automatically. Instead of manually adding or calculating values, functions help save time, reduce errors, and improve productivity. Functions are commonly used in schools, businesses, banks, hospitals, and research organizations."
+                  },
+                  {
+                    "type": "note",
+                    "text": "A function always begins with an equal sign (=), followed by the function name and the cell range enclosed in parentheses."
+                  },
+                  {
+                    "type": "image",
+                    "title": "Excel Function Library",
+                    "image": "/data/imagepdf/forumal-excel.png"
+                  },
 
-        
+                  {
+                    "type": "heading",
+                    "text": "2. Sample Student Marks Data"
+                  },
+                  {
+                    "type": "table",
+                    "title": "Student Marks",
+                    "headers": [
+                      "",
+                      "A",
+                      "B",
+                      "C",
+                      "D",
+                      "E",
+                      "F",
+                      "G"
+                    ],
+                    "rows": [
+                      [
+                        1,
+                        "Roll No",
+                        "Student Name",
+                        "Tamil",
+                        "English",
+                        "Maths",
+                        "Science",
+                        "Social"
+                      ],
+                      [2,101,"S-1",85,78,92,88,80],
+                      [3,102,"S-2",91,89,95,94,90],
+                      [4,103,"S-3",70,68,75,72,69],
+                      [5,104,"S-4",88,84,90,91,86],
+                      [6,105,"S-5",60,72,65,70,68]
+                    ]
+                  },
+                  {
+                  "type":"heading",
+                  "text":"3. SUM() Function"
+                },
+                {
+                  "type":"paragraph",
+                  "text":"The SUM() function adds all numeric values in a selected range. It is one of the most frequently used functions in Excel."
+                },
+                {
+                  "type":"table",
+                  "headers":["Purpose","Syntax","Example"],
+                  "rows":[
+                    ["Adds numbers together","=SUM(number1, number2, ...)","=SUM(C2:G2)"]
+                  ]
+                },
+                {
+                  "type":"syntax",
+                  "code":"=SUM(C2:G2)"
+                },
+                {
+                  "type":"example",
+                  "title":"Student Total Marks",
+                  "before":"85 + 78 + 92 + 88 + 80",
+                  "after":"=SUM(C2:G2) → 423"
+                },
+                {
+                  "type":"note",
+                  "text":"Instead of typing every number, simply select the range C2:G2."
+                },
+                {
+                  "type":"heading",
+                  "text":"4. AVERAGE() Function"
+                },
+                {
+                  "type":"paragraph",
+                  "text":"The AVERAGE() function calculates the arithmetic mean of the selected values."
+                },
+                {
+                  "type":"table",
+                  "headers":["Purpose","Syntax","Example"],
+                  "rows":[
+                    ["Calculates average marks","=AVERAGE(range)","=AVERAGE(C2:G2)"]
+                  ]
+                },
+                {
+                  "type":"syntax",
+                  "code":"=AVERAGE(C2:G2)"
+                },
+                {
+                  "type":"example",
+                  "title":"Average Marks",
+                  "before":"(85+78+92+88+80)/5",
+                  "after":"=AVERAGE(C2:G2) → 84.6"
+                },
+                {
+                  "type":"note",
+                  "text":"Average is commonly used to calculate percentages and GPA."
+                },
+                {
+                "type":"heading",
+                "text":"5. MAX() Function"
+              },
+              {
+                "type":"paragraph",
+                "text":"MAX() returns the highest value from a selected range."
+              },
+              {
+                "type":"table",
+                "headers":["Purpose","Syntax","Example"],
+                "rows":[
+                  ["Find highest mark","=MAX(range)","=MAX(C2:G2)"]
+                ]
+              },
+              {
+                "type":"syntax",
+                "code":"=MAX(C2:G2)"
+              },
+              {
+                "type":"example",
+                "title":"Highest Mark",
+                "before":"85,78,92,88,80",
+                "after":"92"
+              },
+              {
+                "type":"note",
+                "text":"Useful for finding the highest sales, marks, salary, or profit."
+              },
+              {
+                "type":"heading",
+                "text":"6. MIN() Function"
+              },
+              {
+                "type":"paragraph",
+                "text":"MIN() returns the smallest value from the selected range."
+              },
+              {
+                "type":"table",
+                "headers":["Purpose","Syntax","Example"],
+                "rows":[
+                  ["Find lowest mark","=MIN(range)","=MIN(C2:G2)"]
+                ]
+              },
+              {
+                "type":"syntax",
+                "code":"=MIN(C2:G2)"
+              },
+              {
+                "type":"example",
+                "title":"Lowest Mark",
+                "before":"85,78,92,88,80",
+                "after":"78"
+              },
+              {
+                "type":"note",
+                "text":"Used to identify the minimum value in reports."
+              },
+              {
+                "type":"heading",
+                "text":"7. COUNT() Function"
+              },
+              {
+                "type":"paragraph",
+                "text":"COUNT() counts only numeric cells. Blank cells and text values are ignored."
+              },
+              {
+                "type":"table",
+                "headers":["Purpose","Syntax","Example"],
+                "rows":[
+                  ["Count numeric values","=COUNT(range)","=COUNT(C2:G2)"]
+                ]
+              },
+              {
+                "type":"syntax",
+                "code":"=COUNT(C2:G2)"
+              },
+              {
+                "type":"example",
+                "title":"Number of Subjects",
+                "before":"85,78,92,88,80",
+                "after":"5"
+              },
+              {
+                "type":"note",
+                "text":"COUNT() counts only numbers. To count text values, use COUNTA()."
+              },
+              {
+                "type":"heading",
+                "text":"8. Comparison of Functions"
+              },
+              {
+                "type":"table",
+                "headers":[
+                  "Function",
+                  "Purpose",
+                  "Example Formula",
+                  "Result"
+                ],
+                "rows":[
+                  ["SUM()","Adds all numbers","=SUM(C2:G2)","423"],
+                  ["AVERAGE()","Calculates mean","=AVERAGE(C2:G2)","84.6"],
+                  ["MAX()","Returns highest value","=MAX(C2:G2)","92"],
+                  ["MIN()","Returns lowest value","=MIN(C2:G2)","78"],
+                  ["COUNT()","Counts numeric cells","=COUNT(C2:G2)","5"]
+                ]
+              },
+              {
+                  "type": "table",
+                  "title": "Summary of Excel Functions",
+                  "headers": [
+                    "Function",
+                    "Excel Formula",
+                    "Mathematical Formula",
+                    "Example",
+                    "Purpose"
+                  ],
+                  "rows": [
+                    [
+                      "SUM()",
+                      "=SUM(C2:G2)",
+                      "Total = x₁ + x₂ + x₃ + ... + xₙ",
+                      "85 + 78 + 92 + 88 + 80 = 423",
+                      "Calculates the total of all selected numbers."
+                    ],
+                    [
+                      "AVERAGE()",
+                      "=AVERAGE(C2:G2)",
+                      "Average = (x₁ + x₂ + ... + xₙ) ÷ n",
+                      "(85 + 78 + 92 + 88 + 80) ÷ 5 = 84.6",
+                      "Calculates the average (mean) of all selected numbers."
+                    ],
+                    [
+                      "MAX()",
+                      "=MAX(C2:G2)",
+                      "Maximum = Largest(x₁, x₂, ..., xₙ)",
+                      "Largest of (85, 78, 92, 88, 80) = 92",
+                      "Returns the highest value in the selected range."
+                    ],
+                    [
+                      "MIN()",
+                      "=MIN(C2:G2)",
+                      "Minimum = Smallest(x₁, x₂, ..., xₙ)",
+                      "Smallest of (85, 78, 92, 88, 80) = 78",
+                      "Returns the lowest value in the selected range."
+                    ],
+                    [
+                      "COUNT()",
+                      "=COUNT(C2:G2)",
+                      "Count = Number of Numeric Values",
+                      "85, 78, 92, 88, 80 → 5 values",
+                      "Counts only the cells containing numeric values."
+                    ]
+                  ]
+                },
+
+              {
+              "type":"exercise",
+              "title":"Student Marks Report",
+              "steps":[
+                "Enter the sample student marks.",
+                "Calculate the Total using SUM().",
+                "Calculate the Average using AVERAGE().",
+                "Find the Highest Mark using MAX().",
+                "Find the Lowest Mark using MIN().",
+                "Count the number of subject marks using COUNT()."
+              ]
+            }
+
+            ]
+          },
+          "questions": 
+          [
+  {
+    "id": "excel_q071",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which symbol must every Excel function begin with?",
+    "options": ["+", "-", "=", "*"],
+    "answer": [2],
+    "explanation": "Every Excel function begins with the equal (=) sign."
+  },
+  {
+    "id": "excel_q072",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function is used to add numbers together?",
+    "options": ["COUNT()", "SUM()", "AVERAGE()", "MAX()"],
+    "answer": [1],
+    "explanation": "SUM() adds all numbers in the selected range."
+  },
+  {
+    "id": "excel_q073",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function calculates the average of selected numbers?",
+    "options": ["MIN()", "MAX()", "AVERAGE()", "COUNT()"],
+    "answer": [2],
+    "explanation": "AVERAGE() returns the arithmetic mean."
+  },
+  {
+    "id": "excel_q074",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function returns the highest value?",
+    "options": ["MAX()", "MIN()", "SUM()", "COUNT()"],
+    "answer": [0],
+    "explanation": "MAX() returns the largest number."
+  },
+  {
+    "id": "excel_q075",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function returns the smallest value?",
+    "options": ["SUM()", "AVERAGE()", "MIN()", "COUNT()"],
+    "answer": [2],
+    "explanation": "MIN() returns the smallest number."
+  },
+  {
+    "id": "excel_q076",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function counts only numeric cells?",
+    "options": ["COUNTA()", "COUNT()", "SUM()", "MAX()"],
+    "answer": [1],
+    "explanation": "COUNT() counts only cells containing numbers."
+  },
+  {
+    "id": "excel_q077",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula calculates the total marks from C2 to G2?",
+    "options": ["=SUM(C2:G2)", "=TOTAL(C2:G2)", "=ADD(C2:G2)", "=COUNT(C2:G2)"],
+    "answer": [0],
+    "explanation": "SUM() adds all values within the specified range."
+  },
+  {
+    "id": "excel_q078",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula calculates the average marks?",
+    "options": ["=SUM(C2:G2)", "=AVERAGE(C2:G2)", "=COUNT(C2:G2)", "=MAX(C2:G2)"],
+    "answer": [1],
+    "explanation": "AVERAGE() calculates the arithmetic mean."
+  },
+  {
+    "id": "excel_q079",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula returns the highest mark?",
+    "options": ["=MIN(C2:G2)", "=MAX(C2:G2)", "=COUNT(C2:G2)", "=SUM(C2:G2)"],
+    "answer": [1],
+    "explanation": "MAX() returns the highest value in the range."
+  },
+  {
+    "id": "excel_q080",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula returns the lowest mark?",
+    "options": ["=MAX(C2:G2)", "=AVERAGE(C2:G2)", "=MIN(C2:G2)", "=COUNT(C2:G2)"],
+    "answer": [2],
+    "explanation": "MIN() returns the lowest value."
+  },
+  {
+    "id": "excel_q081",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is the result of =COUNT(C2:G2) if five subject marks are entered?",
+    "options": ["4", "5", "6", "0"],
+    "answer": [1],
+    "explanation": "COUNT() counts all numeric values in the range."
+  },
+  {
+    "id": "excel_q082",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which function is commonly used to calculate students' total marks?",
+    "options": ["MIN()", "SUM()", "MAX()", "COUNT()"],
+    "answer": [1],
+    "explanation": "SUM() is used to calculate total marks."
+  },
+  {
+    "id": "excel_q083",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which function is useful for finding the class topper's highest score?",
+    "options": ["COUNT()", "SUM()", "MAX()", "AVERAGE()"],
+    "answer": [2],
+    "explanation": "MAX() returns the highest score."
+  },
+  {
+    "id": "excel_q084",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which function helps identify the lowest mark in a class?",
+    "options": ["SUM()", "MIN()", "AVERAGE()", "COUNT()"],
+    "answer": [1],
+    "explanation": "MIN() returns the smallest value."
+  },
+  {
+    "id": "excel_q085",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which Excel feature quickly inserts the SUM function?",
+    "options": ["AutoFill", "Flash Fill", "AutoSum", "Fill Handle"],
+    "answer": [2],
+    "explanation": "AutoSum automatically inserts the SUM() function."
+  },
+  {
+    "id": "excel_q086",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "What does the formula =SUM(A1:A5) calculate?",
+    "options": [
+      "Average of A1 to A5",
+      "Highest value",
+      "Total of A1 to A5",
+      "Number of cells"
+    ],
+    "answer": [2],
+    "explanation": "SUM() adds all numbers in the selected range."
+  },
+  {
+    "id": "excel_q087",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "What is the result of =AVERAGE(10,20,30)?",
+    "options": ["20", "30", "60", "10"],
+    "answer": [0],
+    "explanation": "(10+20+30)/3 = 20."
+  },
+  {
+    "id": "excel_q088",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "What does =MAX(45,89,67,91) return?",
+    "options": ["45", "67", "89", "91"],
+    "answer": [3],
+    "explanation": "91 is the highest number."
+  },
+  {
+    "id": "excel_q089",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "What does =MIN(45,89,67,91) return?",
+    "options": ["45", "67", "89", "91"],
+    "answer": [0],
+    "explanation": "45 is the smallest number."
+  },
+  {
+    "id": "excel_q090",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "How many numbers does =COUNT(12,15,20,25) return?",
+    "options": ["2", "3", "4", "5"],
+    "answer": [2],
+    "explanation": "COUNT() returns the number of numeric values, which is 4."
+  },
+  {
+    "id": "excel_q091",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which function ignores text values and counts only numbers?",
+    "options": ["COUNTA()", "COUNT()", "SUM()", "AVERAGE()"],
+    "answer": [1],
+    "explanation": "COUNT() ignores text and counts only numeric cells."
+  },
+  {
+    "id": "excel_q092",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which function would you use to calculate the average monthly sales?",
+    "options": ["SUM()", "COUNT()", "AVERAGE()", "MAX()"],
+    "answer": [2],
+    "explanation": "AVERAGE() calculates the mean value."
+  },
+  {
+    "id": "excel_q093",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which function is most suitable for finding the highest employee salary?",
+    "options": ["MIN()", "COUNT()", "MAX()", "SUM()"],
+    "answer": [2],
+    "explanation": "MAX() returns the largest value."
+  },
+  {
+    "id": "excel_q094",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which function is most suitable for finding the minimum temperature recorded?",
+    "options": ["MIN()", "SUM()", "AVERAGE()", "COUNT()"],
+    "answer": [0],
+    "explanation": "MIN() finds the lowest value."
+  },
+  {
+    "id": "excel_q095",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which combination of functions can generate a complete student marks summary?",
+    "options": [
+      "SUM(), AVERAGE(), MAX(), MIN(), COUNT()",
+      "IF(), VLOOKUP(), CONCAT()",
+      "LEFT(), RIGHT(), MID()",
+      "TODAY(), NOW(), DATE()"
+    ],
+    "answer": [0],
+    "explanation": "These five functions together provide total, average, highest, lowest, and the count of marks, making them ideal for student mark analysis."
+  }
+]
+        }
       ]
     }
+
+
   ]
 }
