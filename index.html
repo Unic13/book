@@ -27,6 +27,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
   --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
   --shadow-md:0 4px 12px rgba(0,0,0,.1);
   --trans:.15s ease;
+  --notes-bg:#F3EEFF;--notes-bg-soft:#FAF7FF;--ink-blue:#1E3A8A;
 }
 
 /* ─── Layout ─── */
@@ -150,30 +151,31 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 /* ─── Concept Panel ─── */
 #question-wrap{max-width:760px;margin:0 auto}
 .concept-card{
-  background:#fff;border-radius:var(--radius-lg);border:1px solid #e5e7eb;
+  background:var(--notes-bg-soft);border-radius:var(--radius-lg);border:1px solid #e3d9fb;
   box-shadow:var(--shadow);overflow:hidden;margin-bottom:22px
 }
 .concept-header{
   display:flex;align-items:center;gap:12px;
   padding:16px 22px;cursor:pointer;user-select:none;
-  border-bottom:1px solid transparent;transition:border-color var(--trans)
+  border-bottom:1px solid transparent;transition:border-color var(--trans);
+  background:var(--notes-bg)
 }
-.concept-header.open{border-bottom-color:#f3f4f6}
+.concept-header.open{border-bottom-color:#e3d9fb}
 .concept-icon{
   width:40px;height:40px;border-radius:11px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;font-size:19px;color:#fff
 }
 .concept-title-wrap{flex:1;min-width:0}
-.concept-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
-.concept-title{font-size:18px;font-weight:700;color:#111;margin-top:2px;line-height:1.3}
+.concept-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.75;color:var(--ink-blue)}
+.concept-title{font-size:18px;font-weight:700;color:var(--ink-blue);margin-top:2px;line-height:1.3}
 .concept-chevron{width:20px;height:20px;color:#9ca3af;flex-shrink:0;transition:transform .25s ease}
 .concept-chevron.open{transform:rotate(180deg)}
-.concept-body{padding:0 24px 24px;display:none}
+.concept-body{padding:0 24px 24px;display:none;background:var(--notes-bg-soft)}
 .concept-body.open{display:block;animation:fadeUp .2s ease-out}
 .concept-para{font-size:15.5px;line-height:1.9;color:#374151;margin-bottom:15px}
 .concept-para:last-child{margin-bottom:0}
-.concept-para strong{color:#111;font-weight:700}
-.concept-heading{font-size:16.5px;font-weight:700;color:#111;margin:16px 0 8px}
+.concept-para strong{color:var(--ink-blue);font-weight:700}
+.concept-heading{font-size:16.5px;font-weight:700;color:var(--ink-blue);margin:16px 0 8px}
 .concept-list{margin:6px 0 14px 20px;padding:0}
 .concept-list li{margin-bottom:9px;line-height:1.8;font-size:15px;color:#374151}
 .concept-note{
@@ -224,7 +226,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 
 /* Steps block — a vertical numbered walkthrough with a connecting rail */
 .concept-steps{margin:16px 0}
-.steps-title{font-size:15px;font-weight:700;color:#111;margin-bottom:10px}
+.steps-title{font-size:15px;font-weight:700;color:var(--ink-blue);margin-bottom:10px}
 .steps-list{list-style:none;counter-reset:step-counter;padding:0;margin:0;position:relative}
 .steps-list::before{content:'';position:absolute;left:15px;top:6px;bottom:6px;width:2px;background:#e5e7eb}
 .steps-item{counter-increment:step-counter;display:flex;align-items:flex-start;gap:14px;padding:9px 0;position:relative}
@@ -508,14 +510,14 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
   cursor:pointer;padding:4px 6px;border-radius:9px;transition:background var(--trans)
 }
 #brand-home-btn:hover{background:#f3f4f6}
-#home-nav-btn{
+#home-nav-btn,#dashboard-nav-btn{
   display:flex;align-items:center;gap:6px;
   padding:6px 13px;border-radius:9px;border:1.5px solid #e5e7eb;
   background:#fff;color:#6b7280;font-size:13px;font-weight:700;
   cursor:pointer;transition:all var(--trans);white-space:nowrap
 }
-#home-nav-btn:hover{background:#f9fafb;border-color:#d1d5db;color:#111}
-#home-nav-btn.active{background:var(--brand);border-color:transparent;color:#fff}
+#home-nav-btn:hover,#dashboard-nav-btn:hover{background:#f9fafb;border-color:#d1d5db;color:#111}
+#home-nav-btn.active,#dashboard-nav-btn.active{background:var(--brand);border-color:transparent;color:#fff}
 
 /* ─── Home page (card grid) ─── */
 .home-hero{text-align:center;margin:10px 0 26px}
@@ -570,6 +572,36 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
   display:flex;align-items:center;justify-content:center;transition:background var(--trans)
 }
 #lightbox-close:hover{background:rgba(255,255,255,.25)}
+
+/* ─── Dashboard ─── */
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:22px}
+.dash-stat-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:var(--radius-lg);padding:18px;box-shadow:var(--shadow)}
+.dash-stat-label{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9ca3af;margin-bottom:8px}
+.dash-stat-value{font-size:26px;font-weight:800;color:var(--ink-blue)}
+.dash-stat-sub{font-size:12px;color:#9ca3af;margin-top:4px}
+.dash-section{background:#fff;border:1px solid #e5e7eb;border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:20px 22px;margin-bottom:20px}
+.dash-section-title{font-size:16px;font-weight:700;color:var(--ink-blue);margin-bottom:14px}
+.dash-subject-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #f3f4f6}
+.dash-subject-row:last-child{border-bottom:none}
+.dash-subject-name{width:110px;font-size:13px;font-weight:700;color:#374151;flex-shrink:0}
+.dash-subject-bar-track{flex:1;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden}
+.dash-subject-bar-fill{height:100%;border-radius:4px}
+.dash-subject-pct{width:70px;text-align:right;font-size:12.5px;color:#6b7280;font-weight:600;flex-shrink:0}
+.dash-week-chart{display:flex;align-items:flex-end;gap:8px;height:120px;padding-top:10px}
+.dash-week-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;justify-content:flex-end;height:100%}
+.dash-week-bar-wrap{flex:1;display:flex;align-items:flex-end;width:100%;justify-content:center}
+.dash-week-bar{width:60%;border-radius:5px 5px 0 0;min-height:3px}
+.dash-week-day{font-size:10.5px;color:#9ca3af;font-weight:600}
+.feedback-form{display:flex;flex-direction:column;gap:12px}
+.feedback-stars{display:flex;gap:6px}
+.feedback-star{font-size:26px;cursor:pointer;color:#e5e7eb;transition:color var(--trans)}
+.feedback-star.active{color:#f59e0b}
+.feedback-textarea{width:100%;min-height:90px;resize:vertical;padding:12px 14px;border-radius:11px;border:1.5px solid #e5e7eb;font-family:inherit;font-size:13.5px;outline:none}
+.feedback-textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(108,63,245,.12)}
+.feedback-msg{font-size:12.5px;font-weight:600;margin-top:2px}
+.feedback-msg.ok{color:#16a34a}
+.feedback-msg.err{color:#ef4444}
+.dash-guest-note{background:#fff8db;border-left:4px solid #facc15;border-radius:8px;padding:14px 16px;color:#6b5500;font-size:13.5px;line-height:1.7;margin-bottom:20px}
 
 @media(max-width:640px){
   .q-media{padding:0 16px 6px}
@@ -686,6 +718,7 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
       <span id="brand-name">UNIC Academic</span>
     </button>
     <button id="home-nav-btn" title="Go to home">🏠 <span>Home</span></button>
+    <button id="dashboard-nav-btn" title="Your practice dashboard">📊 <span>Dashboard</span></button>
     <nav id="subject-tabs"></nav>
     <div style="position:relative">
       <button id="user-btn">?</button>
@@ -738,23 +771,11 @@ const SUBJECTS = {
   R:  { label:'R Program',    emoji:'R', color:'#1F65B7', file:'data/rprog.json' },
   MAP:  { label:'Math Aptitude',    emoji:'📐', color:'#B7791F', file:'data/mathapti.json' },
 };
-// Each subject's root JSON can EITHER:
-//  (a) go straight to the old format — { subject, units:[...] } — in which
-//      case clicking the subject opens chapters directly (fully backward compatible), OR
-//  (b) list sub-topics first — { subject, categories:[...] } — e.g. Class 6–12 x
-//      CBSE/State Board for Physics/Chemistry/Maths/Biology, libraries for Python
-//      (NumPy, Pandas...), analysis topics for SQL, and skill levels for Excel.
-//      Each category is { id, title, subtitle?, icon?, group?, file? or units? }.
-//      "group" (optional) is used to cluster cards under a heading, e.g. "CBSE" vs "State Board".
-//      "file" points to that category's own { subject, units:[...] } JSON; or the
-//      units can be embedded directly on the category via "units".
-// Root JSON is cached per-subject-code so switching back and forth doesn't refetch.
 const subjectRootCache = {};
 
 const LABELS = ['A','B','C','D','E'];
 const BATCH_SIZE = 3;
 
-// ── SQL Playground fallback (used only if a chapter has no playground config) ──
 const DEFAULT_SQL_SCHEMA = `CREATE TABLE Student (
   Roll_No INT PRIMARY KEY,
   Name VARCHAR(30),
@@ -788,12 +809,12 @@ function getActivePlayground() {
 
 // ── State ──
 let state = {
-  view: 'home', // 'home' | 'categories' | 'subject'
+  view: 'home', // 'home' | 'categories' | 'subject' | 'dashboard'
   config: null,
   activeSubject: 'PH',
-  subjectMeta: null,       // root JSON for the active subject when it has "categories"
-  activeCategoryId: null,  // which category (class/board, library, topic...) is loaded
-  subjectData: null,       // the actual { subject, units:[...] } currently on screen
+  subjectMeta: null,
+  activeCategoryId: null,
+  subjectData: null,
   activeChapterId: null,
   questionIndex: 0,
   answers: {},
@@ -806,7 +827,10 @@ let state = {
   sqlDb: null,
   sqlJsLoading: null,
   sqlLoadedChapterId: null,
-  modalMode: 'register', // 'register' | 'login'
+  modalMode: 'register',
+  dashboardStats: null,
+  feedbackStats: null,
+  feedbackRating: 0,
 };
 
 
@@ -890,8 +914,6 @@ async function init() {
 
   showHome();
 
-  // Show the welcome/registration modal once, right away, only for
-  // signed-out visitors — no more silent 2-minute timer.
   if (!state.userData) {
     document.getElementById('modal-overlay').classList.remove('hidden');
   }
@@ -920,11 +942,11 @@ function buildSubjectTabs() {
 
 function updateActiveTabs() {
   const color = subjectColor();
-  const onHome = state.view === 'home';
+  const onHome = state.view === 'home' || state.view === 'dashboard';
   document.querySelectorAll('.subj-tab').forEach(btn => {
     const code = btn.dataset.code;
     const s = SUBJECTS[code];
-    if (!onHome && code === state.activeSubject) {
+    if (state.view === 'subject' && code === state.activeSubject) {
       btn.style.background = s.color;
       btn.style.color = '#fff';
       btn.style.borderColor = 'transparent';
@@ -937,7 +959,9 @@ function updateActiveTabs() {
     }
   });
   const homeBtn = document.getElementById('home-nav-btn');
-  if (homeBtn) homeBtn.classList.toggle('active', onHome);
+  if (homeBtn) homeBtn.classList.toggle('active', state.view === 'home');
+  const dashBtn = document.getElementById('dashboard-nav-btn');
+  if (dashBtn) dashBtn.classList.toggle('active', state.view === 'dashboard');
   document.getElementById('sidebar-subject-header').style.color = color;
 }
 
@@ -997,8 +1021,6 @@ function showLoader() {
   if (spinnerEl) spinnerEl.style.borderTopColor = subjectColor();
 }
 
-// Loads a subject's root JSON (api/content11 first, then the static file),
-// with a small in-memory cache so re-visiting a subject doesn't refetch.
 async function fetchJSON(remoteQuery, staticFile) {
   if (remoteQuery) {
     try {
@@ -1011,10 +1033,6 @@ async function fetchJSON(remoteQuery, staticFile) {
   return ajax(staticFile);
 }
 
-// Entry point when a subject is opened (from Home or the top tabs). Decides
-// whether to show a category picker (Class 6–12 x Board for PH/CH/MA/BIO,
-// libraries for Python, topics for SQL, skill levels for Excel) or, for
-// subjects/files still using the old flat format, go straight to chapters.
 async function loadSubjectRoot(code) {
   showLoader();
 
@@ -1047,10 +1065,6 @@ async function loadSubjectRoot(code) {
   updateActiveTabs();
 }
 
-// Renders the sub-topic picker grid: Class 6–12 (CBSE / State Board) for
-// Physics/Chemistry/Maths/Biology, libraries for Python, analysis topics for
-// SQL, skill levels for Excel — grouped under a heading when categories
-// share a "group" (e.g. "CBSE" vs "State Board").
 function renderCategoriesHTML() {
   const wrap = document.getElementById('question-wrap');
   const meta = state.subjectMeta;
@@ -1094,8 +1108,6 @@ function renderCategoriesHTML() {
     </div>`;
 }
 
-// Loads one category's questions — either embedded on the category
-// ("units") or fetched from its own file — and hands off to applySubjectData.
 async function loadCategory(catId) {
   const cat = (state.subjectMeta?.categories || []).find(c => c.id === catId);
   if (!cat) return;
@@ -1127,8 +1139,6 @@ async function loadCategory(catId) {
   applySubjectData(loaded);
 }
 
-// Shared by both the legacy (no-categories) flow and the category flow:
-// takes a loaded { subject, units:[...] } object and renders chapters.
 function applySubjectData(loaded) {
   state.subjectData = loaded;
   state.answers = {};
@@ -1144,8 +1154,6 @@ function applySubjectData(loaded) {
   renderQuestion();
 }
 
-// Jumps back from chapters to the category picker for the current subject
-// (used by the sidebar "← Change Class / Topic" button).
 function backToCategories() {
   if (!state.subjectMeta) { showHome(); return; }
   state.view = 'categories';
@@ -1225,8 +1233,6 @@ function updateSidebarActive() {
   });
 }
 
-// Shows the "← Change Class / Topic" shortcut in the sidebar whenever the
-// active subject actually has a category picker (Class/Board, library, etc.)
 function updateSidebarBackButton() {
   const row = document.getElementById('sidebar-category-nav');
   if (!row) return;
@@ -1287,10 +1293,8 @@ function getTypeCounts() {
 }
 
 function switchSubject(code) {
-  const sameSubjectAlreadyActive = state.view !== 'home' && code === state.activeSubject;
+  const sameSubjectAlreadyActive = state.view === 'subject' && code === state.activeSubject;
 
-  // Clicking the currently-open subject again is a shortcut back to its
-  // category picker (Class/Board, library, topic...) rather than a no-op.
   if (sameSubjectAlreadyActive) {
     if (state.subjectMeta?.categories?.length) {
       backToCategories();
@@ -1370,7 +1374,7 @@ function formatText(text = "") {
 }
 
 // ══════════════════════════════════════════
-//  MEDIA (image / pdf) — driven by an "image" / "pdf" key in the JSON.
+//  MEDIA (image / pdf)
 // ══════════════════════════════════════════
 function resolveMediaSrc(val, kind) {
   if (!val || typeof val !== 'string') return '';
@@ -1382,11 +1386,6 @@ function resolveMediaSrc(val, kind) {
   return `data:${mime};base64,${v}`;
 }
 
-// Heuristic: does this bare string look like it's actually an image
-// reference (path/filename/data-uri/raw base64) rather than plain
-// answer text? Used so option arrays of plain strings keep working
-// exactly as before, while option strings that are clearly images
-// get rendered as <img> instead of dumped as raw text.
 function looksLikeImageString(v) {
   if (typeof v !== 'string') return false;
   const s = v.trim();
@@ -1394,7 +1393,6 @@ function looksLikeImageString(v) {
   if (s.startsWith('data:image')) return true;
   if (/^(https?:)?\/\//.test(s) && /\.(png|jpe?g|gif|webp|svg|bmp)(\?.*)?$/i.test(s)) return true;
   if (/^(\.{0,2}\/)?[\w\-\/]+\.(png|jpe?g|gif|webp|svg|bmp)$/i.test(s)) return true;
-  // Raw base64 payload (no scheme, no spaces, long, base64 charset only)
   if (s.length > 100 && !/\s/.test(s) && /^[A-Za-z0-9+/=]+$/.test(s)) return true;
   return false;
 }
@@ -1416,15 +1414,12 @@ function renderPdfBlock(pdfVal, title = '') {
   </div>`;
 }
 
-// Pulls the 11-char video ID out of any common YouTube URL shape
-// (watch?v=, youtu.be/, /embed/, /shorts/) — returns null if it's not YouTube.
 function extractYouTubeId(url) {
   if (!url || typeof url !== 'string') return null;
   const m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
   return m ? m[1] : null;
 }
 
-// Accepts a start time as a plain number of seconds (30) or "mm:ss" / "hh:mm:ss" (e.g. "1:30").
 function parseTimeToSeconds(val) {
   if (val === undefined || val === null || val === '') return 0;
   if (typeof val === 'number') return Math.max(0, Math.floor(val));
@@ -1434,15 +1429,10 @@ function parseTimeToSeconds(val) {
   return Math.max(0, secs);
 }
 
-// Renders a responsive, embedded YouTube player. "start" lets a lesson
-// jump straight to the relevant moment (e.g. start: "2:15") instead of
-// making the learner scrub through the whole video.
 function renderVideoBlock(url, title = '', start) {
   if (!url) return '';
   const id = extractYouTubeId(url);
   if (!id) {
-    // Not a recognizable YouTube link — fall back to a plain "watch" link
-    // rather than silently dropping it.
     return `<div class="media-video-link"><a href="${escapeHtml(url)}" target="_blank" rel="noopener" class="media-pdf-link">▶ ${escapeHtml(title || 'Watch video')}</a></div>`;
   }
   const startSecs = parseTimeToSeconds(start);
@@ -1453,13 +1443,6 @@ function renderVideoBlock(url, title = '', start) {
   </div>`;
 }
 
-// Renders the content of a single answer OPTION. Supports three shapes:
-//   1. Plain string of text                     -> "Paris"
-//   2. Plain string that is itself an image ref  -> "data:image/png;base64,…" or "options/img1.png"
-//   3. Object with optional text + image/src/path/url key
-//      -> { "text": "Diagram B", "image": "…" }  or  { "image": "…" } (image-only option)
-// This mirrors how q.image/q.pdf already work for the question stem,
-// and keeps the option box from breaking layout by capping image size.
 function renderOptionContent(opt) {
   if (opt && typeof opt === 'object' && !Array.isArray(opt)) {
     const text = opt.text ?? opt.label ?? '';
@@ -1507,6 +1490,13 @@ function renderConceptBody(body = []) {
           `;
 
         case "note":
+          return `
+            <div class="concept-note">
+              💡 ${formatText(item.text)}
+            </div>
+          `;
+
+         case "tip":
           return `
             <div class="concept-note">
               💡 ${formatText(item.text)}
@@ -1571,9 +1561,44 @@ function renderConceptBody(body = []) {
     </div>
   `;
 
+  case "example":
+  return `
+    ${renderImageBlock(item.image, '')}
+    ${renderPdfBlock(item.pdf, '')}
+
+    <div class="concept-example">
+      ${item.title ? `<div class="example-title">${formatText(item.title)}</div>` : ""}
+
+      <div class="example-box">
+        <div><strong>Input:</strong> ${formatText(item.before)}</div>
+
+        ${
+          item.steps
+            ? `
+            <ol class="steps-list mt-2">
+              ${item.steps
+                .map(
+                  step => `
+                  <li class="steps-item">
+                    <span class="steps-text">${formatText(step)}</span>
+                  </li>`
+                )
+                .join("")}
+            </ol>`
+            : ""
+        }
+
+        <div class="mt-2">
+          <strong>Result:</strong> ${formatText(item.after)}
+        </div>
+      </div>
+    </div>
+  `;
+
         case "table":
           return `
             <div class="table-wrapper">
+            ${item.title ? `<h5">${formatText(item.title)}</h5>` : ""}
             <table class="concept-table">
               <thead>
                 <tr>
@@ -1628,7 +1653,7 @@ function renderConceptHTML(chapter, color) {
       <div class="concept-header${openCls}" onclick="toggleConcept()">
         <div class="concept-icon" style="background:${color}">💡</div>
         <div class="concept-title-wrap">
-          <div class="concept-eyebrow" style="color:${color}">Concept</div>
+          <div class="concept-eyebrow">Concept</div>
           <div class="concept-title">${c.title}</div>
         </div>
         <svg class="concept-chevron${openCls}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -1946,7 +1971,7 @@ function submitAnswer(qid) {
 }
 
 // ══════════════════════════════════════════
-//  IMAGE LIGHTBOX (click any question/option/concept image to zoom)
+//  IMAGE LIGHTBOX
 // ══════════════════════════════════════════
 function openLightbox(src) {
   if (!src) return;
@@ -2093,6 +2118,194 @@ async function resetSqlPlayground() {
 }
 
 // ══════════════════════════════════════════
+//  DASHBOARD — user stats + feedback form
+// ══════════════════════════════════════════
+async function showDashboard() {
+  state.view = 'dashboard';
+  state.sidebarOpen = false;
+  document.getElementById('sidebar').classList.add('closed');
+  updateActiveTabs();
+  renderDashboardHTML(); // render immediately with loader, then fill in
+
+  if (state.userData) {
+    const userId = state.userData.email || state.userData.name;
+    try {
+      const res = await ajax(`api/stats?userId=${encodeURIComponent(userId)}`);
+      if (res && res.success) state.dashboardStats = res.data;
+    } catch { /* leave dashboardStats as-is; UI shows a friendly fallback */ }
+  }
+
+  try {
+    const res = await ajax('api/feedback');
+    if (res && res.success) state.feedbackStats = res.data;
+  } catch { /* fine — feedback stats are optional */ }
+
+  renderDashboardHTML();
+}
+
+function subjectLabelFor(code) {
+  // SUBJECTS is keyed by the same subject CODE (e.g. "PH", "SQL") that
+  // api/attempt.js stores in attempts.subject — this is the lookup the
+  // dashboard uses to turn a code into a name/color/emoji.
+  return SUBJECTS[code] || { label: code, color: '#9ca3af', emoji: '📘' };
+}
+
+function renderDashboardHTML() {
+  const wrap = document.getElementById('question-wrap');
+
+  if (!state.userData) {
+    wrap.innerHTML = `
+      <div class="fade-in">
+        <div class="home-hero"><h1>📊 Your Dashboard</h1><p>Practice time, accuracy, and feedback — all in one place</p></div>
+        <div class="dash-guest-note">
+          You're browsing as a guest, so there's no saved practice history to show yet.
+          <button class="back-link" style="margin:8px 0 0" onclick="document.getElementById('modal-overlay').classList.remove('hidden')">→ Register or log in to start tracking your stats</button>
+        </div>
+        ${renderFeedbackSectionHTML()}
+      </div>`;
+    return;
+  }
+
+  if (!state.dashboardStats) {
+    wrap.innerHTML = `<div class="fade-in"><div class="home-hero"><h1>📊 Your Dashboard</h1></div><div id="loader"><div class="spinner"></div></div></div>`;
+    return;
+  }
+
+  const s = state.dashboardStats;
+  const t = s.totals;
+  const w = s.weekTotals;
+
+  const statCardsHTML = `
+    <div class="dash-grid">
+      <div class="dash-stat-card">
+        <div class="dash-stat-label">Total Attempted</div>
+        <div class="dash-stat-value">${t.attempts}</div>
+        <div class="dash-stat-sub">all-time questions</div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-stat-label">Correct</div>
+        <div class="dash-stat-value" style="color:#16a34a">${t.correct}</div>
+        <div class="dash-stat-sub">${t.accuracy}% accuracy</div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-stat-label">Wrong</div>
+        <div class="dash-stat-value" style="color:#ef4444">${t.wrong}</div>
+        <div class="dash-stat-sub">keep practising</div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-stat-label">This Week</div>
+        <div class="dash-stat-value">${w.attempts}</div>
+        <div class="dash-stat-sub">~${w.minutesPracticed} min practised</div>
+      </div>
+    </div>`;
+
+  const maxSubjAttempts = Math.max(1, ...s.bySubject.map(x => x.attempts));
+  const bySubjectHTML = s.bySubject.length ? s.bySubject.map(row => {
+    const meta = subjectLabelFor(row.subject);
+    const widthPct = Math.round((row.attempts / maxSubjAttempts) * 100);
+    return `
+      <div class="dash-subject-row">
+        <div class="dash-subject-name">${meta.emoji} ${meta.label}</div>
+        <div class="dash-subject-bar-track"><div class="dash-subject-bar-fill" style="width:${widthPct}%;background:${meta.color}"></div></div>
+        <div class="dash-subject-pct">${row.correct}/${row.attempts} (${row.accuracy}%)</div>
+      </div>`;
+  }).join('') : '<div class="empty" style="height:100px"><div class="empty-icon">📭</div><p>No attempts yet — go practice a chapter!</p></div>';
+
+  const maxDayAttempts = Math.max(1, ...s.last7Days.map(d => d.attempts));
+  const weekChartHTML = `
+    <div class="dash-week-chart">
+      ${s.last7Days.map(d => {
+        const h = d.attempts ? Math.max(6, Math.round((d.attempts / maxDayAttempts) * 100)) : 4;
+        const dayLabel = new Date(d.date + 'T00:00:00').toLocaleDateString(undefined, { weekday: 'short' });
+        return `
+          <div class="dash-week-col">
+            <div class="dash-week-bar-wrap"><div class="dash-week-bar" style="height:${h}%;background:var(--ink-blue)" title="${d.attempts} attempts, ${d.correct} correct, ~${d.minutesPracticed} min"></div></div>
+            <div class="dash-week-day">${dayLabel}</div>
+          </div>`;
+      }).join('')}
+    </div>`;
+
+  wrap.innerHTML = `
+    <div class="fade-in">
+      <div class="home-hero"><h1>📊 Your Dashboard</h1><p>Hi ${escapeHtml(state.userData.name || 'there')} — here's how your practice is going</p></div>
+      ${statCardsHTML}
+      <div class="dash-section">
+        <div class="dash-section-title">Accuracy by Subject</div>
+        ${bySubjectHTML}
+      </div>
+      <div class="dash-section">
+        <div class="dash-section-title">Last 7 Days</div>
+        ${weekChartHTML}
+      </div>
+      ${renderFeedbackSectionHTML()}
+    </div>`;
+}
+
+function renderFeedbackSectionHTML() {
+  const fb = state.feedbackStats;
+  const starsHTML = [1,2,3,4,5].map(n =>
+    `<span class="feedback-star${n <= state.feedbackRating ? ' active' : ''}" onclick="setFeedbackRating(${n})">★</span>`
+  ).join('');
+
+  const statsHTML = fb ? `
+    <div class="dash-stat-sub" style="margin-bottom:14px">
+      ⭐ ${fb.averageRating || '—'} average from ${fb.count} response${fb.count === 1 ? '' : 's'} so far
+    </div>` : '';
+
+  return `
+    <div class="dash-section">
+      <div class="dash-section-title">Share Feedback</div>
+      ${statsHTML}
+      <div class="feedback-form">
+        <div class="feedback-stars">${starsHTML}</div>
+        <textarea class="feedback-textarea" id="feedback-message" placeholder="What's working well? What should we improve?"></textarea>
+        <button class="btn btn-primary" style="max-width:200px" onclick="submitFeedback()">Submit Feedback</button>
+        <div class="feedback-msg" id="feedback-msg"></div>
+      </div>
+    </div>`;
+}
+
+function setFeedbackRating(n) {
+  state.feedbackRating = n;
+  document.querySelectorAll('.feedback-star').forEach((el, i) => el.classList.toggle('active', i < n));
+}
+
+async function submitFeedback() {
+  const msgEl = document.getElementById('feedback-msg');
+  const textEl = document.getElementById('feedback-message');
+  if (!state.feedbackRating) {
+    msgEl.textContent = 'Please pick a star rating first.';
+    msgEl.className = 'feedback-msg err';
+    return;
+  }
+  try {
+    const res = await ajax('api/feedback', 'POST', {
+      userId: state.userData ? (state.userData.email || state.userData.name) : 'guest',
+      subject: state.activeSubject || null,
+      rating: state.feedbackRating,
+      message: textEl.value.trim(),
+    });
+    if (res && res.success) {
+      msgEl.textContent = 'Thanks — your feedback was submitted!';
+      msgEl.className = 'feedback-msg ok';
+      state.feedbackRating = 0;
+      textEl.value = '';
+      document.querySelectorAll('.feedback-star').forEach(el => el.classList.remove('active'));
+      try {
+        const stats = await ajax('api/feedback');
+        if (stats && stats.success) { state.feedbackStats = stats.data; renderDashboardHTML(); }
+      } catch {}
+    } else {
+      msgEl.textContent = 'Could not submit feedback — please try again.';
+      msgEl.className = 'feedback-msg err';
+    }
+  } catch {
+    msgEl.textContent = 'Network error — please try again.';
+    msgEl.className = 'feedback-msg err';
+  }
+}
+
+// ══════════════════════════════════════════
 //  USER / MODAL / SIGN OUT
 // ══════════════════════════════════════════
 function updateUserUI() {
@@ -2112,9 +2325,6 @@ function updateUserUI() {
   }
 }
 
-// Switches the welcome modal between "Register" (new visitor, all fields)
-// and "Log In" (returning visitor — just their email, to pull up the
-// profile they registered earlier so their attempts keep tracking to them).
 function setModalMode(mode) {
   state.modalMode = mode;
   document.getElementById('mode-register-btn').classList.toggle('active', mode === 'register');
@@ -2157,8 +2367,6 @@ function validateModal() {
   return ok;
 }
 
-// Dispatches the modal's single submit button to register or log in,
-// depending on which mode tab is currently selected.
 function handleModalSubmit() {
   if (state.modalMode === 'login') {
     handleLogin();
@@ -2176,17 +2384,12 @@ async function submitModal() {
     source: document.getElementById('f-source').value,
   };
 
-  // Sign them in immediately with what they typed so the UI feels instant...
   const optimistic = { ...formData, timestamp: new Date().toISOString() };
   state.userData = optimistic;
   localStorage.setItem('unic_user', JSON.stringify(optimistic));
   updateUserUI();
   document.getElementById('modal-overlay').classList.add('hidden');
 
-  // ...then reconcile with the server's canonical record. api/register
-  // doubles as login: if this email already has a profile, it comes back
-  // as a normal success with their ORIGINAL name/mobile/source — "welcome
-  // back" — rather than a 409 error, so re-registering just logs them in.
   try {
     const res = await ajax('api/register', 'POST', formData);
     if (res && res.success && res.data) {
@@ -2195,11 +2398,10 @@ async function submitModal() {
       updateUserUI();
     }
   } catch { /* offline / server hiccup — keep the optimistic local profile */ }
+
+  if (state.view === 'dashboard') showDashboard();
 }
 
-// Looks up an already-registered visitor by email so their attempts keep
-// tracking to the same profile (e.g. on a new device/browser). Falls back
-// to a clear message pointing them at Register if no backend/profile is found.
 async function handleLogin() {
   const email = document.getElementById('f-email').value.trim();
   const statusEl = document.getElementById('login-status');
@@ -2220,14 +2422,13 @@ async function handleLogin() {
   btn.textContent = 'Checking…';
 
   try {
-    // api/register doubles as login: sending just an email (no name) tells
-    // it to look up and return an existing profile instead of creating one.
     const res = await ajax('api/register', 'POST', { email });
     if (res && res.success && res.data) {
       state.userData = res.data;
       localStorage.setItem('unic_user', JSON.stringify(res.data));
       updateUserUI();
       document.getElementById('modal-overlay').classList.add('hidden');
+      if (state.view === 'dashboard') showDashboard();
     } else {
       statusEl.textContent = 'No saved profile found for that email — you can register instead.';
       statusEl.classList.add('err-msg');
@@ -2241,9 +2442,6 @@ async function handleLogin() {
   }
 }
 
-// Fully signs the visitor out: clears the saved profile, wipes this
-// session's in-progress answers/submissions, and resets the app back
-// to a clean guest state on the home screen (no page reload needed).
 function signOut() {
   localStorage.removeItem('unic_user');
   sessionStorage.clear();
@@ -2257,12 +2455,12 @@ function signOut() {
   state.qtypeFilter = 'ALL';
   state.sqlDb = null;
   state.sqlLoadedChapterId = null;
+  state.dashboardStats = null;
 
   document.getElementById('user-dropdown').classList.remove('open');
   updateUserUI();
   showHome();
 
-  // clear the registration form so a stale name/email doesn't linger
   ['f-name','f-email','f-mobile'].forEach(id => { document.getElementById(id).value = ''; });
   document.getElementById('f-source').value = '';
   setModalMode('register');
@@ -2283,6 +2481,7 @@ function bindEvents() {
 
   document.getElementById('brand-home-btn').addEventListener('click', showHome);
   document.getElementById('home-nav-btn').addEventListener('click', showHome);
+  document.getElementById('dashboard-nav-btn').addEventListener('click', showDashboard);
 
   document.getElementById('sidebar-toggle').addEventListener('click', () => {
     state.sidebarOpen = !state.sidebarOpen;
