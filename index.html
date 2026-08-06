@@ -651,6 +651,110 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
   .concept-title{font-size:14.5px}
   .q-text{font-size:14px}
 }
+/* ===============================
+   Example Block
+================================= */
+.concept-example{
+    margin:20px 0;
+    border:1px solid #dbeafe;
+    border-left:6px solid #2563eb;
+    border-radius:10px;
+    background:#f8fbff;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.example-title{
+    background:#2563eb;
+    color:#fff;
+    padding:10px 16px;
+    font-size:1rem;
+    font-weight:600;
+}
+
+.example-box{
+    padding:18px;
+    line-height:1.7;
+    color:#374151;
+}
+
+.example-box strong{
+    color:#111827;
+}
+
+/* Input / Output */
+.example-input,
+.example-output{
+    padding:10px 14px;
+    border-radius:8px;
+    margin:10px 0;
+    font-family:Consolas, Monaco, monospace;
+    word-break:break-word;
+}
+
+.example-input{
+    background:#eef6ff;
+    border:1px solid #bfdbfe;
+}
+
+.example-output{
+    background:#ecfdf5;
+    border:1px solid #86efac;
+    color:#166534;
+    font-weight:600;
+}
+
+/* Steps */
+.example-box .steps-list{
+    margin:15px 0;
+    padding-left:22px;
+}
+
+.example-box .steps-item{
+    margin-bottom:8px;
+}
+
+.example-box .steps-text{
+    display:inline-block;
+    line-height:1.6;
+}
+
+/* Formula Highlight */
+.example-formula{
+    margin-top:15px;
+    padding:12px 15px;
+    background:#1e293b;
+    color:#fff;
+    border-radius:8px;
+    font-family:Consolas, Monaco, monospace;
+    overflow-x:auto;
+}
+
+/* Result Badge */
+.example-result{
+    display:inline-block;
+    margin-top:12px;
+    padding:8px 16px;
+    background:#22c55e;
+    color:#fff;
+    border-radius:20px;
+    font-weight:600;
+}
+
+/* Mobile */
+@media (max-width:768px){
+
+    .example-title{
+        font-size:.95rem;
+        padding:10px 12px;
+    }
+
+    .example-box{
+        padding:14px;
+    }
+
+}
+  
 </style>
 </head>
 <body>
@@ -997,6 +1101,16 @@ function renderHomeHTML() {
         <p>Pick a subject below to start practising</p>
       </div>
       <div class="home-grid">${cardsHTML}</div>
+
+      <div style="margin-top:15px;padding:16px 20px;background:#fff8e1;border:1px solid #ffe082;border-left:5px solid #f9a825;border-radius:8px;color:#5f4500;font-family:Arial,sans-serif;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+  <strong>📢 Information</strong><br><br>
+
+  Click the <strong>Dashboard</strong> button to track your learning progress, quiz results, and completion status.
+
+  <br><br>
+
+  If you find any errors or have suggestions for improving the course content, examples, or quizzes, please send us your feedback. Your input helps us continuously enhance the platform and provide a better learning experience for all learners.
+</div>
    
  <div style="margin-top:15px;padding:16px 20px;background:#fff8e1;border:1px solid #ffe082;border-left:5px solid #f9a825;border-radius:8px;color:#5f4500;font-family:Arial,sans-serif;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
     <h6 style="margin:0 0 10px;font-size:16px;font-weight:600;color:#8a6d00;">
@@ -2259,7 +2373,7 @@ function renderFeedbackSectionHTML() {
       <div class="feedback-form">
         <div class="feedback-stars">${starsHTML}</div>
         <textarea class="feedback-textarea" id="feedback-message" placeholder="What's working well? What should we improve?"></textarea>
-        <button class="btn btn-primary" style="max-width:200px" onclick="submitFeedback()">Submit Feedback</button>
+        <button style="max-width:200px" onclick="submitFeedback()">Submit Feedback</button>
         <div class="feedback-msg" id="feedback-msg"></div>
       </div>
     </div>`;
