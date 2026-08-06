@@ -1337,11 +1337,20 @@
                   "code":"=AVERAGE(C2:G2)"
                 },
                 {
-                  "type":"example",
-                  "title":"Average Marks",
-                  "before":"(85+78+92+88+80)/5",
-                  "after":"=AVERAGE(C2:G2) → 84.6"
-                },
+                "type": "example",
+                "title": "Average Marks Example",
+                "before": "85, 78, 92, 88, 80",
+                "after": "84.6",
+                "steps": [
+                  "Step 1: Add all numbers.",
+                  "85 + 78 + 92 + 88 + 80 = 423",
+                  "Step 2: Count the number of values.",
+                  "There are 5 subjects.",
+                  "Step 3: Divide the total by the count.",
+                  "423 ÷ 5 = 84.6",
+                  "Excel Formula: =AVERAGE(C2:G2)"
+                ]
+              },
                 {
                   "type":"note",
                   "text":"Average is commonly used to calculate percentages and GPA."
@@ -1395,10 +1404,17 @@
                 "code":"=MIN(C2:G2)"
               },
               {
-                "type":"example",
-                "title":"Lowest Mark",
-                "before":"85,78,92,88,80",
-                "after":"78"
+                "type": "example",
+                "title": "Lowest Mark Example",
+                "before": "85, 78, 92, 88, 80",
+                "after": "78",
+                "steps": [
+                  "Step 1: Read all the values in the selected range (85, 78, 92, 88, 80).",
+                  "Step 2: Compare each value one by one.",
+                  "Step 3: Identify the smallest number.",
+                  "Step 4: The smallest value is 78.",
+                  "Excel Formula: =MIN(C2:G2)"
+                ]
               },
               {
                 "type":"note",
