@@ -881,11 +881,25 @@
   "type": "paragraph",
   "text": "A cell is the intersection of a row and a column. Every cell has a unique address called a Cell Reference. Excel uses cell references in formulas instead of typing actual values. This makes formulas dynamic because they automatically update when the data changes."
 },
-{
-  "type": "image",
-  "title": "Cell Address Example",
-  "image": "/imagepdf/day1/cell-reference.jpeg"
-},
+{ "type": "list", "title":"Examples for Cell Address:", "items": ["A1 → Column A, Row 1", "C5 → Column C, Row 5", "F10 → Column F, Row 10"] },    
+
+ {
+  "type": "table",
+  "title":"Examples for Cell Reference:",
+  "headers": [
+    "",
+    "A",
+    "B",
+    "C",    
+  ],
+  "rows": [
+    ["1", "10", "20", "=A1+B1"],    
+  ]
+},  
+              {
+                "type":"syntax",
+                "code":"Formula in C1:\n=A1+B1\nA1 and B1 are cell references."
+              },
 {
   "type": "table",
   "headers": [
@@ -926,18 +940,50 @@
     ["Mixed", "$A1 or A$1", "Either row or column remains fixed"]
   ]
 },
-{
-  "type": "image",
-  "title": "Relative vs Absolute Reference",
-  "path": "/imagepdf/day1/reference-types.jpeg"
-},
-{
+ {
   "type": "heading",
-  "text": "3. Absolute Reference ($)"
+  "text": "3. Relative Reference"
 },
 {
   "type": "paragraph",
-  "text": "The dollar sign ($) locks the row, the column, or both. This is useful when copying formulas that should always refer to the same cell."
+  "text": "A Relative Reference changes automatically when a formula is copied to another cell. This is the default reference type used by Excel."
+},
+{
+  "type": "table",
+  "headers": [
+    "Cell",
+    "Formula",
+    "Copied To",
+    "Resulting Formula"
+  ],
+  "rows": [
+    ["C2", "=A2+B2", "C3", "=A3+B3"],
+    ["C3", "=A3+B3", "C4", "=A4+B4"],
+    ["C4", "=A4+B4", "C5", "=A5+B5"]
+  ]
+},
+{
+  "type": "note",
+  "text": "Notice that A2 becomes A3 and B2 becomes B3 when the formula is copied. Excel automatically adjusts the row numbers."
+},
+{
+  "type": "exercise",
+  "title": "Practice",
+  "steps": [
+    "Enter values in cells A2:A5.",
+    "Enter values in cells B2:B5.",
+    "In cell C2, type =A2+B2.",
+    "Copy the formula down to C5.",
+    "Observe how Excel automatically changes the cell references."
+  ]
+},             
+{
+  "type": "heading",
+  "text": "4. Absolute Reference ($)"
+},
+{
+  "type": "paragraph",
+  "text": "An Absolute Reference keeps a cell fixed when a formula is copied. Use the dollar sign ($) before the column, row, or both to lock the reference."
 },
 {
   "type": "table",
@@ -960,11 +1006,36 @@
 },
 {
   "type": "paragraph",
-  "text": "In the example above, cell F1 contains the GST or Tax Rate. Even when the formula is copied to other rows, Excel always uses F1 because it is locked using $."
+  "text": "Suppose F1 contains the GST rate (18%). When the formula =B2*$F$1 is copied down, B2 changes to B3, B4, and so on, but $F$1 always remains fixed."
+},
+ {
+  "type": "heading",
+  "text": "5. Mixed Reference"
 },
 {
+  "type": "paragraph",
+  "text": "A Mixed Reference locks either the row or the column, but not both. It is useful when copying formulas across rows and columns."
+},
+{
+  "type": "table",
+  "headers": [
+    "Reference",
+    "Locked",
+    "Example Use"
+  ],
+  "rows": [
+    ["$A1", "Column only", "Copy formula across columns"],
+    ["A$1", "Row only", "Copy formula down rows"]
+  ]
+},
+
+{
+  "type": "note",
+  "text": "Mixed references are commonly used in multiplication tables, price lists, and matrix calculations."
+}             
+{
   "type": "heading",
-  "text": "4. Shortcut Key for Absolute Reference"
+  "text": "6. Shortcut Key for Absolute Reference"
 },
 {
   "type": "paragraph",
@@ -1004,16 +1075,11 @@
 },
               {
   "type": "heading",
-  "text": "5. Selecting Cells and Cell Ranges"
+  "text": "7. Selecting Cells and Cell Ranges"
 },
 {
   "type": "paragraph",
   "text": "Before creating formulas or formatting data, you need to know how to select cells and ranges. A range is a group of one or more cells. Excel allows you to select a single cell, multiple adjacent cells, entire rows, entire columns, or multiple non-adjacent cells."
-},
-{
-  "type": "image",
-  "title": "Selecting Cells and Ranges",
-  "path": "/imagepdf/day1/select-range.jpeg"
 },
 {
   "type": "table",
