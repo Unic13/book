@@ -1545,6 +1545,11 @@ function renderConceptBody(body = []) {
 
         case "list":
           return `
+            ${
+                item.title
+                  ? `<div class="syntax-title">${item.title}</div>`
+                  : ""
+              }
             <ul class="concept-list">
               ${item.items
                 .map((i) => `<li>${formatText(i)}</li>`)
