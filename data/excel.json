@@ -874,51 +874,51 @@
             "title": "Cell Address, Cell References, Relative Reference, Absolute Reference, Mixed Reference",
             "body": [
               {
-  "type": "heading",
-  "text": "1. Cell Address and Cell References"
-},
-{
-  "type": "paragraph",
-  "text": "A cell is the intersection of a row and a column. Every cell has a unique address called a Cell Reference. Excel uses cell references in formulas instead of typing actual values. This makes formulas dynamic because they automatically update when the data changes."
-},
-{ "type": "list", "title":"Examples for Cell Address:", "items": ["A1 → Column A, Row 1", "C5 → Column C, Row 5", "F10 → Column F, Row 10"] },    
+            "type": "heading",
+            "text": "1. Cell Address and Cell References"
+          },
+          {
+            "type": "paragraph",
+            "text": "A cell is the intersection of a row and a column. Every cell has a unique address called a Cell Reference. Excel uses cell references in formulas instead of typing actual values. This makes formulas dynamic because they automatically update when the data changes."
+          },
+        { "type": "list", "title":"Examples for Cell Address:", "items": ["A1 → Column A, Row 1", "C5 → Column C, Row 5", "F10 → Column F, Row 10"] },    
 
- {
-  "type": "table",
-  "title":"Examples for Cell Reference:",
-  "headers": [
-    "",
-    "A",
-    "B",
-    "C",    
-  ],
-  "rows": [
-    ["1", "10", "20", "=A1+B1"],    
-  ]
-},  
+             {
+              "type": "table",
+              "title":"Examples for Cell Reference:",
+              "headers": [
+                "",
+                "A",
+                "B",
+                "C",    
+              ],
+              "rows": [
+                [1, 10, 20, "=A1+B1"],    
+              ]
+            },  
               {
-                "type":"syntax",
-                "code":"Formula in C1:\n=A1+B1\nA1 and B1 are cell references."
+                "type": "syntax",
+                "code": "Formula in C1:\n\n=A1+B1\n\nA1 and B1 are cell references."
               },
-{
-  "type": "table",
-  "headers": [
-    "Cell",
-    "Column",
-    "Row",
-    "Cell Address"
-  ],
-  "rows": [
-    ["A1", "A", "1", "A1"],
-    ["B5", "B", "5", "B5"],
-    ["C10", "C", "10", "C10"],
-    ["F20", "F", "20", "F20"]
-  ]
-},
-{
-  "type": "note",
-  "text": "Cell references make formulas flexible. If the value in a referenced cell changes, Excel automatically recalculates the result."
-},
+            {
+              "type": "table",
+              "headers": [
+                "Cell",
+                "Column",
+                "Row",
+                "Cell Address"
+              ],
+              "rows": [
+                ["A1", "A", "1", "A1"],
+                ["B5", "B", "5", "B5"],
+                ["C10", "C", "10", "C10"],
+                ["F20", "F", "20", "F20"]
+              ]
+            },
+            {
+              "type": "note",
+              "text": "Cell references make formulas flexible. If the value in a referenced cell changes, Excel automatically recalculates the result."
+            },
 {
   "type": "heading",
   "text": "2. Types of Cell References"
