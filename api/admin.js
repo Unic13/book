@@ -84,7 +84,7 @@ module.exports = async (req, res) => {
           selected: a.selected,
           correct: a.correct,
           isCorrect: a.is_correct,
-          timestamp: new Date(a.created_at).toLocaleString(),
+          timestamp: new Date(a.created_at).toLocaleString("en-IN", {timeZone: "Asia/Kolkata", }),
         })),
       });
     }
@@ -101,7 +101,7 @@ module.exports = async (req, res) => {
         phone: r.phone,
         howkonw: r.howkonw,
         ipaddress: r.ip,
-        timestamp: new Date(r.created_at).toLocaleString(),
+        timestamp:  new Date(r.created_at).toLocaleString("en-IN", {timeZone: "Asia/Kolkata", }),
       })),
     });
   } catch (err) {
