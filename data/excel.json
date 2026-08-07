@@ -224,12 +224,12 @@
             "body": [
               { "type": "heading", "text": "1. What is Number Formatting?" },
               { "type": "paragraph", "text": "Number Formatting changes the appearance of numbers without changing their actual value. It helps present data in a professional and meaningful way." },
-              { "type": "note", "text": "Changing the number format does not change the value stored in the cell. It only changes how the value is displayed." },            
+              { "type": "note", "text": "Changing the number format does not change the value stored in the cell. It only changes how the value is displayed." },
               { "type": "heading", "text": "2. Number Format" },
               { "type": "paragraph", "text": "The Number format displays numeric values with commas, decimal places, and negative number styles. It is commonly used for marks, quantities, salaries, and financial reports." },
               { "type": "steps", "title": "How to Apply Number Format", "steps": ["Select the required cells.", "Click the Home tab.", "Go to the Number group.", "Click the Number Format drop-down list.", "Choose 'Number'.", "Use Increase Decimal or Decrease Decimal to adjust decimal places."] },
-              { "type": "example", "title": "Example", "before": "12500", "after": "12,500.00" },   
-               { "type": "image", "title": "Number Formatting", "image": "/data/imagepdf/numberfromat.png" },
+              { "type": "example", "title": "Example", "before": "12500", "after": "12,500.00" },
+              { "type": "image", "title": "Number Formatting", "image": "/data/imagepdf/numberfromat.png" },
               { "type": "heading", "text": "3. Date Format" },
               { "type": "paragraph", "text": "Excel stores dates as serial numbers but displays them in different date formats. Date formatting makes reports easier to read." },
               { "type": "list", "items": ["10/05/2026", "10-May-2026", "May 10, 2026", "Monday, 10 May 2026"] },
@@ -259,7 +259,7 @@
               { "type": "image", "title": "Decimal Options", "image": "/data/imagepdf/fotmperc.png" },
               { "type": "heading", "text": "8. Format Cells Dialog Box" },
               { "type": "paragraph", "text": "The Format Cells dialog box provides advanced formatting options such as Number, Alignment, Font, Border, Fill, and Protection." },
-              { "type": "steps", "title": "How to Open Format Cells", "steps": ["Select the cells.", "Right-click and choose Format Cells.", "OR press Ctrl + 1.", "Select the required category and click OK."] },  
+              { "type": "steps", "title": "How to Open Format Cells", "steps": ["Select the cells.", "Right-click and choose Format Cells.", "OR press Ctrl + 1.", "Select the required category and click OK."] },
               {
                 "type": "table",
                 "headers": ["Shortcut", "Purpose"],
@@ -291,1007 +291,157 @@
           ]
         },
         {
-  "id": "excel_u1_c5",
-  "title": "Day 5: Rows, Columns, Hide/Unhide, Freeze Panes",
-  "concept": {
-    "title": "Managing Rows, Columns and Worksheet Navigation",
-    "body": [
-      {
-        "type": "heading",
-        "text": "1. Understanding Rows and Columns"
-      },
-      {
-        "type": "paragraph",
-        "text": "Rows run horizontally and are identified by numbers (1, 2, 3...). Columns run vertically and are identified by letters (A, B, C...). Every worksheet consists of thousands of rows and columns where data is stored."
-      },
-      
-      {
-        "type": "heading",
-        "text": "2. Insert and Delete Rows & Columns"
-      },
-      {
-        "type": "paragraph",
-        "text": "Excel allows you to insert new rows or columns and delete unwanted ones without affecting the rest of the worksheet."
-      },
-      {
-        "type": "steps",
-        "title": "How to Insert a Row",
-        "steps": [
-          "Select the row number.",
-          "Right-click the row header.",
-          "Click Insert."
-        ]
-      },
-      {
-        "type": "steps",
-        "title": "How to Delete a Row",
-        "steps": [
-          "Select the row.",
-          "Right-click.",
-          "Choose Delete."
-        ]
-      },
-      
-      {
-        "type": "heading",
-        "text": "3. Adjust Row Height and Column Width"
-      },
-      {
-        "type": "paragraph",
-        "text": "Resize rows and columns manually or automatically using AutoFit."
-      },
-      {
-        "type": "steps",
-        "title": "AutoFit Column Width",
-        "steps": [
-          "Select the column.",
-          "Double-click the right border of the column header.",
-          "Excel automatically adjusts the width."
-        ]
-      },
-     
-      {
-        "type": "heading",
-        "text": "4. Hide and Unhide Rows & Columns"
-      },
-      {
-        "type": "paragraph",
-        "text": "Hide rows or columns temporarily without deleting data. Hidden data can be restored anytime."
-      },
-      {
-        "type": "steps",
-        "title": "Hide a Column",
-        "steps": [
-          "Select the column.",
-          "Right-click.",
-          "Click Hide."
-        ]
-      },
-      {
-        "type": "steps",
-        "title": "Unhide a Column",
-        "steps": [
-          "Select the columns on both sides.",
-          "Right-click.",
-          "Choose Unhide."
-        ]
-      },
-      {
-        "type": "note",
-        "text": "Hidden data is still available in formulas and calculations."
-      },    
-
-      {
-        "type": "heading",
-        "text": "5. Freeze Panes"
-      },
-      {
-        "type": "paragraph",
-        "text": "Freeze Panes keeps selected rows or columns visible while scrolling through large worksheets."
-      },
-      {
-        "type": "steps",
-        "title": "Freeze the Top Row",
-        "steps": [
-          "Click the View tab.",
-          "Choose Freeze Panes.",
-          "Select Freeze Top Row."
-        ]
-      },
-      {
-        "type": "steps",
-        "title": "Freeze the First Column",
-        "steps": [
-          "View → Freeze Panes → Freeze First Column."
-        ]
-      },
-      {
-        "type": "steps",
-        "title": "Freeze Both Rows and Columns",
-        "steps": [
-          "Select the cell below the row and to the right of the column you want to freeze.",
-          "View → Freeze Panes → Freeze Panes."
-        ]
-      },
-      {
-        "type": "note",
-        "text": "Freeze Panes is especially useful for attendance sheets, mark sheets, and large reports."
-      },
-      
-      {
-        "type": "exercise",
-        "title": "Practice Exercise - Student Attendance Sheet",
-        "steps": [
-          "Create an attendance sheet.",
-          "Insert two new columns.",
-          "Adjust the column width.",
-          "Hide the Mobile Number column.",
-          "Unhide the Mobile Number column.",
-          "Freeze the header row.",
-          "Freeze the first column.",
-          "Save the workbook as Attendance_Sheet.xlsx."
-        ]
-      }     
-    ]
-  },
-"questions": [
-  {
-    "id": "excel_q041",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Rows in Microsoft Excel are identified by:",
-    "options": ["Letters", "Numbers", "Symbols", "Colors"],
-    "answer": [1],
-    "explanation": "Rows are numbered 1, 2, 3, and so on."
-  },
-  {
-    "id": "excel_q042",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Columns in Microsoft Excel are identified by:",
-    "options": ["Numbers", "Letters", "Roman Numerals", "Special Characters"],
-    "answer": [1],
-    "explanation": "Columns are labeled A, B, C, D, etc."
-  },
-  {
-    "id": "excel_q043",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which option temporarily hides selected rows or columns without deleting them?",
-    "options": ["Delete", "Hide", "Remove", "Clear"],
-    "answer": [1],
-    "explanation": "Hide temporarily removes rows or columns from view without deleting data."
-  },
-  {
-    "id": "excel_q044",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "To display hidden columns again, you should:",
-    "options": [
-      "Delete the worksheet",
-      "Use Unhide",
-      "Insert a new column",
-      "Refresh the workbook"
-    ],
-    "answer": [1],
-    "explanation": "Use the Unhide option to display hidden rows or columns."
-  },
-  {
-    "id": "excel_q045",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Freeze Panes is available under which tab?",
-    "options": ["Home", "Insert", "View", "Data"],
-    "answer": [2],
-    "explanation": "Freeze Panes is located in the View tab."
-  },
-  {
-    "id": "excel_q046",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "What is the purpose of Freeze Panes?",
-    "options": [
-      "Delete rows",
-      "Lock rows and columns while scrolling",
-      "Hide worksheets",
-      "Protect the workbook"
-    ],
-    "answer": [1],
-    "explanation": "Freeze Panes keeps selected rows and columns visible while scrolling."
-  },
-  {
-    "id": "excel_q047",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which option automatically adjusts the width of a column to fit its content?",
-    "options": ["Merge", "AutoFit", "Wrap Text", "Freeze"],
-    "answer": [1],
-    "explanation": "AutoFit resizes the column based on its contents."
-  },
-  {
-    "id": "excel_q048",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "To freeze both rows and columns, you should first:",
-    "options": [
-      "Select the entire worksheet",
-      "Select the cell below the row and to the right of the column to freeze",
-      "Hide the worksheet",
-      "Click Save"
-    ],
-    "answer": [1],
-    "explanation": "Select the appropriate cell before choosing Freeze Panes."
-  },
-  {
-    "id": "excel_q049",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which feature is most useful while viewing a large attendance sheet?",
-    "options": [
-      "Word Wrap",
-      "Freeze Panes",
-      "AutoSum",
-      "Spell Check"
-    ],
-    "answer": [1],
-    "explanation": "Freeze Panes keeps headers visible while scrolling."
-  },
-  {
-    "id": "excel_q050",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Hiding a row will:",
-    "options": [
-      "Delete the data permanently",
-      "Remove formulas",
-      "Temporarily hide the data",
-      "Lock the worksheet"
-    ],
-    "answer": [2],
-    "explanation": "Hidden rows remain in the worksheet and can be restored anytime."
-  }
-]
-},
-{
-  "id": "excel_u1_c6",
-  "title": "Day 6: Page Layout, Print Area, Headers and Footers (Ctrl+P)",
-  "concept": {
-    "title": "Preparing Worksheets for Printing",
-    "body": [
-      {
-        "type": "heading",
-        "text": "1. Page Layout"
-      },
-      {
-        "type": "paragraph",
-        "text": "The Page Layout tab allows you to control how your worksheet appears when printed. You can change margins, orientation, paper size, themes, and scaling."
-      },   
-
-      {
-        "type": "heading",
-        "text": "2. Margins"
-      },
-      {
-        "type": "paragraph",
-        "text": "Margins determine the blank space around the edges of a printed page."
-      },
-      {
-        "type": "steps",
-        "title": "Change Margins",
-        "steps": [
-          "Open the Page Layout tab.",
-          "Click Margins.",
-          "Choose Normal, Wide, Narrow or Custom Margins."
-        ]
-      },
-     
-      {
-        "type": "heading",
-        "text": "3. Orientation and Paper Size"
-      },
-      {
-        "type": "paragraph",
-        "text": "Orientation changes the page between Portrait and Landscape. Paper Size selects A4, Letter, Legal, and other sizes."
-      },
-      {
-        "type": "steps",
-        "title": "Change Orientation",
-        "steps": [
-          "Page Layout → Orientation.",
-          "Choose Portrait or Landscape."
-        ]
-      },
-     
-      {
-        "type": "heading",
-        "text": "4. Print Area"
-      },
-      {
-        "type": "paragraph",
-        "text": "Print Area allows only selected cells to be printed instead of the entire worksheet."
-      },
-      {
-        "type": "steps",
-        "title": "Set Print Area",
-        "steps": [
-          "Select the required cells.",
-          "Page Layout → Print Area.",
-          "Click Set Print Area."
-        ]
-      },
-      
-      {
-        "type": "heading",
-        "text": "5. Headers and Footers"
-      },
-      {
-        "type": "paragraph",
-        "text": "Headers appear at the top of every printed page, while footers appear at the bottom. They usually contain page numbers, file names, dates, or organization names."
-      },
-      {
-        "type": "steps",
-        "title": "Insert Header & Footer",
-        "steps": [
-          "Insert → Header & Footer.",
-          "Type the required text.",
-          "Add page numbers or dates if required."
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "6. Repeat Row and Column Headings"
-      },
-      {
-        "type": "paragraph",
-        "text": "Repeat Row and Column Headings allow the same row or column to appear on every printed page. This is useful for large worksheets where data extends across multiple pages."
-      },
-      {
-        "type": "steps",
-        "title": "Repeat the Top Row on Every Printed Page",
-        "steps": [
-          "Click the Page Layout tab.",
-          "Click Print Titles.",
-          "In the 'Rows to repeat at top' box, click the selection button.",
-          "Select the row(s) to repeat (for example, $1:$1).",
-          "Click OK."
-        ]
-      },
-      {
-        "type": "steps",
-        "title": "Repeat the Left Column on Every Printed Page",
-        "steps": [
-          "Click the Page Layout tab.",
-          "Click Print Titles.",
-          "In the 'Columns to repeat at left' box, click the selection button.",
-          "Select the column(s) to repeat (for example, $A:$A).",
-          "Click OK."
-        ]
-      },
-      {
-        "type": "note",
-        "text": "Repeating row and column headings makes printed reports easier to read, especially when they span multiple pages."
-      },
-      {
-        "type": "heading",
-        "text": "7. Page Numbers"
-      },
-      {
-        "type": "paragraph",
-        "text": "Page numbers help identify the order of printed pages. You can display page numbers in the header or footer."
-      },
-      {
-        "type": "steps",
-        "title": "Insert Page Number (1, 2, 3...)",
-        "steps": [
-          "Click the Insert tab.",
-          "Click Header & Footer.",
-          "Click inside the Header or Footer area.",
-          "On the Header & Footer tab, click Page Number.",
-          "Click anywhere outside the header or footer to finish."
-        ]
-      },
-      {
-        "type": "steps",
-        "title": "Insert Page Number in '1/2' Format",
-        "steps": [
-          "Click the Insert tab.",
-          "Click Header & Footer.",
-          "Click inside the Header or Footer area.",
-          "Insert the Page Number field.",
-          "Type ' of ' after the page number.",
-          "Click Number of Pages.",
-          "The page number will appear in the format '1 of 2', '2 of 2', and so on."
-        ]
-      },
-     
-      {
-        "type": "heading",
-        "text": "8. Print Preview"
-      },
-      {
-        "type": "paragraph",
-        "text": "Print Preview allows you to check how the worksheet will appear before printing."
-      },
-      {
-        "type": "steps",
-        "title": "Open Print Preview",
-        "steps": [
-          "Click File.",
-          "Choose Print.",
-          "Review the preview window before printing."
-        ]
-      },
-     
-      {
-        "type": "exercise",
-        "title": "Practice Exercise - Print Ready Report",
-        "steps": [
-          "Create a student marks report.",
-          "Apply Landscape orientation.",
-          "Set paper size to A4.",
-          "Set Print Area.",
-          "Add a header with the school name.",
-          "Add page numbers in the footer.",
-          "Check Print Preview.",
-          "Save as Student_Report.xlsx."
-        ]
-      }
-      
-    ]
-  },
-  "questions": [
-  {
-    "id": "excel_q051",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which tab is used to change page margins and orientation?",
-    "options": ["Home", "Insert", "Page Layout", "View"],
-    "answer": [2],
-    "explanation": "The Page Layout tab contains page setup options."
-  },
-  {
-    "id": "excel_q052",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which page orientation is best for wide tables?",
-    "options": ["Portrait", "Landscape", "Vertical", "Normal"],
-    "answer": [1],
-    "explanation": "Landscape provides more horizontal space."
-  },
-  {
-    "id": "excel_q053",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "What is the purpose of Print Area?",
-    "options": [
-      "Hide data",
-      "Print only selected cells",
-      "Delete blank cells",
-      "Protect the worksheet"
-    ],
-    "answer": [1],
-    "explanation": "Print Area specifies the range that should be printed."
-  },
-  {
-    "id": "excel_q054",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Headers appear:",
-    "options": [
-      "At the bottom of the page",
-      "At the top of each printed page",
-      "Inside the worksheet",
-      "Only on the first page"
-    ],
-    "answer": [1],
-    "explanation": "Headers are printed at the top of every page."
-  },
-  {
-    "id": "excel_q055",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Footers are displayed:",
-    "options": [
-      "At the bottom of printed pages",
-      "At the top of worksheets",
-      "Only in formulas",
-      "Inside cells"
-    ],
-    "answer": [0],
-    "explanation": "Footers appear at the bottom of every printed page."
-  },
-  {
-    "id": "excel_q056",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which option lets you check the worksheet before printing?",
-    "options": [
-      "Print Preview",
-      "Format Painter",
-      "Freeze Panes",
-      "AutoFill"
-    ],
-    "answer": [0],
-    "explanation": "Print Preview displays how the worksheet will appear when printed."
-  },
-  {
-    "id": "excel_q057",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which paper size is commonly used in India?",
-    "options": ["Letter", "Legal", "A4", "A3"],
-    "answer": [2],
-    "explanation": "A4 is the standard paper size used for most office documents."
-  },
-  {
-    "id": "excel_q058",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Which keyboard shortcut opens the Print window in Excel?",
-    "options": [
-      "Ctrl + P",
-      "Ctrl + S",
-      "Ctrl + O",
-      "Ctrl + N"
-    ],
-    "answer": [0],
-    "explanation": "Ctrl + P opens the Print dialog with Print Preview."
-  },
-  {
-    "id": "excel_q059",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which option is commonly added to the footer of a report?",
-    "options": [
-      "Formula",
-      "Page Number",
-      "Worksheet Color",
-      "Comments"
-    ],
-    "answer": [1],
-    "explanation": "Page numbers are commonly placed in footers."
-  },
-  {
-    "id": "excel_q060",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Before printing a report, the best practice is to:",
-    "options": [
-      "Delete empty rows",
-      "Use Print Preview",
-      "Hide all columns",
-      "Merge every cell"
-    ],
-    "answer": [1],
-    "explanation": "Print Preview helps verify page layout, margins, headers, and formatting before printing."
-  }
-]
-},
-         {
+          "id": "excel_u1_c5",
+          "title": "Day 5: Rows, Columns, Hide/Unhide, Freeze Panes",
+          "concept": {
+            "title": "Managing Rows, Columns and Worksheet Navigation",
+            "body": [
+              { "type": "heading", "text": "1. Understanding Rows and Columns" },
+              { "type": "paragraph", "text": "Rows run horizontally and are identified by numbers (1, 2, 3...). Columns run vertically and are identified by letters (A, B, C...). Every worksheet consists of thousands of rows and columns where data is stored." },
+              { "type": "heading", "text": "2. Insert and Delete Rows & Columns" },
+              { "type": "paragraph", "text": "Excel allows you to insert new rows or columns and delete unwanted ones without affecting the rest of the worksheet." },
+              { "type": "steps", "title": "How to Insert a Row", "steps": ["Select the row number.", "Right-click the row header.", "Click Insert."] },
+              { "type": "steps", "title": "How to Delete a Row", "steps": ["Select the row.", "Right-click.", "Choose Delete."] },
+              { "type": "heading", "text": "3. Adjust Row Height and Column Width" },
+              { "type": "paragraph", "text": "Resize rows and columns manually or automatically using AutoFit." },
+              { "type": "steps", "title": "AutoFit Column Width", "steps": ["Select the column.", "Double-click the right border of the column header.", "Excel automatically adjusts the width."] },
+              { "type": "heading", "text": "4. Hide and Unhide Rows & Columns" },
+              { "type": "paragraph", "text": "Hide rows or columns temporarily without deleting data. Hidden data can be restored anytime." },
+              { "type": "steps", "title": "Hide a Column", "steps": ["Select the column.", "Right-click.", "Click Hide."] },
+              { "type": "steps", "title": "Unhide a Column", "steps": ["Select the columns on both sides.", "Right-click.", "Choose Unhide."] },
+              { "type": "note", "text": "Hidden data is still available in formulas and calculations." },
+              { "type": "heading", "text": "5. Freeze Panes" },
+              { "type": "paragraph", "text": "Freeze Panes keeps selected rows or columns visible while scrolling through large worksheets." },
+              { "type": "steps", "title": "Freeze the Top Row", "steps": ["Click the View tab.", "Choose Freeze Panes.", "Select Freeze Top Row."] },
+              { "type": "steps", "title": "Freeze the First Column", "steps": ["View → Freeze Panes → Freeze First Column."] },
+              { "type": "steps", "title": "Freeze Both Rows and Columns", "steps": ["Select the cell below the row and to the right of the column you want to freeze.", "View → Freeze Panes → Freeze Panes."] },
+              { "type": "note", "text": "Freeze Panes is especially useful for attendance sheets, mark sheets, and large reports." },
+              { "type": "exercise", "title": "Practice Exercise - Student Attendance Sheet", "steps": ["Create an attendance sheet.", "Insert two new columns.", "Adjust the column width.", "Hide the Mobile Number column.", "Unhide the Mobile Number column.", "Freeze the header row.", "Freeze the first column.", "Save the workbook as Attendance_Sheet.xlsx."] }
+            ]
+          },
+          "questions": [
+            { "id": "excel_q041", "type": "MCQ", "difficulty_rating": 1, "question": "Rows in Microsoft Excel are identified by:", "options": ["Letters", "Numbers", "Symbols", "Colors"], "answer": [1], "explanation": "Rows are numbered 1, 2, 3, and so on." },
+            { "id": "excel_q042", "type": "MCQ", "difficulty_rating": 1, "question": "Columns in Microsoft Excel are identified by:", "options": ["Numbers", "Letters", "Roman Numerals", "Special Characters"], "answer": [1], "explanation": "Columns are labeled A, B, C, D, etc." },
+            { "id": "excel_q043", "type": "MCQ", "difficulty_rating": 2, "question": "Which option temporarily hides selected rows or columns without deleting them?", "options": ["Delete", "Hide", "Remove", "Clear"], "answer": [1], "explanation": "Hide temporarily removes rows or columns from view without deleting data." },
+            { "id": "excel_q044", "type": "MCQ", "difficulty_rating": 2, "question": "To display hidden columns again, you should:", "options": ["Delete the worksheet", "Use Unhide", "Insert a new column", "Refresh the workbook"], "answer": [1], "explanation": "Use the Unhide option to display hidden rows or columns." },
+            { "id": "excel_q045", "type": "MCQ", "difficulty_rating": 2, "question": "Freeze Panes is available under which tab?", "options": ["Home", "Insert", "View", "Data"], "answer": [2], "explanation": "Freeze Panes is located in the View tab." },
+            { "id": "excel_q046", "type": "MCQ", "difficulty_rating": 2, "question": "What is the purpose of Freeze Panes?", "options": ["Delete rows", "Lock rows and columns while scrolling", "Hide worksheets", "Protect the workbook"], "answer": [1], "explanation": "Freeze Panes keeps selected rows and columns visible while scrolling." },
+            { "id": "excel_q047", "type": "MCQ", "difficulty_rating": 2, "question": "Which option automatically adjusts the width of a column to fit its content?", "options": ["Merge", "AutoFit", "Wrap Text", "Freeze"], "answer": [1], "explanation": "AutoFit resizes the column based on its contents." },
+            { "id": "excel_q048", "type": "MCQ", "difficulty_rating": 3, "question": "To freeze both rows and columns, you should first:", "options": ["Select the entire worksheet", "Select the cell below the row and to the right of the column to freeze", "Hide the worksheet", "Click Save"], "answer": [1], "explanation": "Select the appropriate cell before choosing Freeze Panes." },
+            { "id": "excel_q049", "type": "MCQ", "difficulty_rating": 2, "question": "Which feature is most useful while viewing a large attendance sheet?", "options": ["Word Wrap", "Freeze Panes", "AutoSum", "Spell Check"], "answer": [1], "explanation": "Freeze Panes keeps headers visible while scrolling." },
+            { "id": "excel_q050", "type": "MCQ", "difficulty_rating": 2, "question": "Hiding a row will:", "options": ["Delete the data permanently", "Remove formulas", "Temporarily hide the data", "Lock the worksheet"], "answer": [2], "explanation": "Hidden rows remain in the worksheet and can be restored anytime." }
+          ]
+        },
+        {
+          "id": "excel_u1_c6",
+          "title": "Day 6: Page Layout, Print Area, Headers and Footers (Ctrl+P)",
+          "concept": {
+            "title": "Preparing Worksheets for Printing",
+            "body": [
+              { "type": "heading", "text": "1. Page Layout" },
+              { "type": "paragraph", "text": "The Page Layout tab allows you to control how your worksheet appears when printed. You can change margins, orientation, paper size, themes, and scaling." },
+              { "type": "heading", "text": "2. Margins" },
+              { "type": "paragraph", "text": "Margins determine the blank space around the edges of a printed page." },
+              { "type": "steps", "title": "Change Margins", "steps": ["Open the Page Layout tab.", "Click Margins.", "Choose Normal, Wide, Narrow or Custom Margins."] },
+              { "type": "heading", "text": "3. Orientation and Paper Size" },
+              { "type": "paragraph", "text": "Orientation changes the page between Portrait and Landscape. Paper Size selects A4, Letter, Legal, and other sizes." },
+              { "type": "steps", "title": "Change Orientation", "steps": ["Page Layout → Orientation.", "Choose Portrait or Landscape."] },
+              { "type": "heading", "text": "4. Print Area" },
+              { "type": "paragraph", "text": "Print Area allows only selected cells to be printed instead of the entire worksheet." },
+              { "type": "steps", "title": "Set Print Area", "steps": ["Select the required cells.", "Page Layout → Print Area.", "Click Set Print Area."] },
+              { "type": "heading", "text": "5. Headers and Footers" },
+              { "type": "paragraph", "text": "Headers appear at the top of every printed page, while footers appear at the bottom. They usually contain page numbers, file names, dates, or organization names." },
+              { "type": "steps", "title": "Insert Header & Footer", "steps": ["Insert → Header & Footer.", "Type the required text.", "Add page numbers or dates if required."] },
+              { "type": "heading", "text": "6. Repeat Row and Column Headings" },
+              { "type": "paragraph", "text": "Repeat Row and Column Headings allow the same row or column to appear on every printed page. This is useful for large worksheets where data extends across multiple pages." },
+              { "type": "steps", "title": "Repeat the Top Row on Every Printed Page", "steps": ["Click the Page Layout tab.", "Click Print Titles.", "In the 'Rows to repeat at top' box, click the selection button.", "Select the row(s) to repeat (for example, $1:$1).", "Click OK."] },
+              { "type": "steps", "title": "Repeat the Left Column on Every Printed Page", "steps": ["Click the Page Layout tab.", "Click Print Titles.", "In the 'Columns to repeat at left' box, click the selection button.", "Select the column(s) to repeat (for example, $A:$A).", "Click OK."] },
+              { "type": "note", "text": "Repeating row and column headings makes printed reports easier to read, especially when they span multiple pages." },
+              { "type": "heading", "text": "7. Page Numbers" },
+              { "type": "paragraph", "text": "Page numbers help identify the order of printed pages. You can display page numbers in the header or footer." },
+              { "type": "steps", "title": "Insert Page Number (1, 2, 3...)", "steps": ["Click the Insert tab.", "Click Header & Footer.", "Click inside the Header or Footer area.", "On the Header & Footer tab, click Page Number.", "Click anywhere outside the header or footer to finish."] },
+              { "type": "steps", "title": "Insert Page Number in '1/2' Format", "steps": ["Click the Insert tab.", "Click Header & Footer.", "Click inside the Header or Footer area.", "Insert the Page Number field.", "Type ' of ' after the page number.", "Click Number of Pages.", "The page number will appear in the format '1 of 2', '2 of 2', and so on."] },
+              { "type": "heading", "text": "8. Print Preview" },
+              { "type": "paragraph", "text": "Print Preview allows you to check how the worksheet will appear before printing." },
+              { "type": "steps", "title": "Open Print Preview", "steps": ["Click File.", "Choose Print.", "Review the preview window before printing."] },
+              { "type": "exercise", "title": "Practice Exercise - Print Ready Report", "steps": ["Create a student marks report.", "Apply Landscape orientation.", "Set paper size to A4.", "Set Print Area.", "Add a header with the school name.", "Add page numbers in the footer.", "Check Print Preview.", "Save as Student_Report.xlsx."] }
+            ]
+          },
+          "questions": [
+            { "id": "excel_q051", "type": "MCQ", "difficulty_rating": 1, "question": "Which tab is used to change page margins and orientation?", "options": ["Home", "Insert", "Page Layout", "View"], "answer": [2], "explanation": "The Page Layout tab contains page setup options." },
+            { "id": "excel_q052", "type": "MCQ", "difficulty_rating": 1, "question": "Which page orientation is best for wide tables?", "options": ["Portrait", "Landscape", "Vertical", "Normal"], "answer": [1], "explanation": "Landscape provides more horizontal space." },
+            { "id": "excel_q053", "type": "MCQ", "difficulty_rating": 2, "question": "What is the purpose of Print Area?", "options": ["Hide data", "Print only selected cells", "Delete blank cells", "Protect the worksheet"], "answer": [1], "explanation": "Print Area specifies the range that should be printed." },
+            { "id": "excel_q054", "type": "MCQ", "difficulty_rating": 2, "question": "Headers appear:", "options": ["At the bottom of the page", "At the top of each printed page", "Inside the worksheet", "Only on the first page"], "answer": [1], "explanation": "Headers are printed at the top of every page." },
+            { "id": "excel_q055", "type": "MCQ", "difficulty_rating": 2, "question": "Footers are displayed:", "options": ["At the bottom of printed pages", "At the top of worksheets", "Only in formulas", "Inside cells"], "answer": [0], "explanation": "Footers appear at the bottom of every printed page." },
+            { "id": "excel_q056", "type": "MCQ", "difficulty_rating": 2, "question": "Which option lets you check the worksheet before printing?", "options": ["Print Preview", "Format Painter", "Freeze Panes", "AutoFill"], "answer": [0], "explanation": "Print Preview displays how the worksheet will appear when printed." },
+            { "id": "excel_q057", "type": "MCQ", "difficulty_rating": 2, "question": "Which paper size is commonly used in India?", "options": ["Letter", "Legal", "A4", "A3"], "answer": [2], "explanation": "A4 is the standard paper size used for most office documents." },
+            { "id": "excel_q058", "type": "MCQ", "difficulty_rating": 3, "question": "Which keyboard shortcut opens the Print window in Excel?", "options": ["Ctrl + P", "Ctrl + S", "Ctrl + O", "Ctrl + N"], "answer": [0], "explanation": "Ctrl + P opens the Print dialog with Print Preview." },
+            { "id": "excel_q059", "type": "MCQ", "difficulty_rating": 2, "question": "Which option is commonly added to the footer of a report?", "options": ["Formula", "Page Number", "Worksheet Color", "Comments"], "answer": [1], "explanation": "Page numbers are commonly placed in footers." },
+            { "id": "excel_q060", "type": "MCQ", "difficulty_rating": 3, "question": "Before printing a report, the best practice is to:", "options": ["Delete empty rows", "Use Print Preview", "Hide all columns", "Merge every cell"], "answer": [1], "explanation": "Print Preview helps verify page layout, margins, headers, and formatting before printing." }
+          ]
+        },
+        {
           "id": "excel_u1_c7",
           "title": "Formula Basics, Relative & Absolute References",
           "concept": {
             "title": "Cell Address, Cell References, Relative Reference, Absolute Reference, Mixed Reference",
             "body": [
-              {
-            "type": "heading",
-            "text": "1. Cell Address and Cell References"
-          },
-          {
-            "type": "paragraph",
-            "text": "A cell is the intersection of a row and a column. Every cell has a unique address called a Cell Reference. Excel uses cell references in formulas instead of typing actual values. This makes formulas dynamic because they automatically update when the data changes."
-          },
-              {
-              "type": "table",
-                "title":"Examples for Cell Address:",
-              "headers": [
-                "Cell",
-                "Column",
-                "Row",
-                "Cell Address"
-              ],
-              "rows": [
-                ["A1", "A", "1", "A1"],
-                ["B5", "B", "5", "B5"],
-                ["C10", "C", "10", "C10"],
-                ["F20", "F", "20", "F20"]
-              ]
-            },
-        { "type": "list", "items": ["A1 → Column A, Row 1", "C5 → Column C, Row 5", "F10 → Column F, Row 10"] },
-        {
-              "type": "table",
-              "title":"Examples for Cell Reference:",
-              "headers": [
-                "",
-                "A",
-                "B",
-                "C"    
-              ],
-              "rows": [
-                [1, 10, 20, "=A1+B1"]    
-              ]
-            },  
-              {
-                "type": "syntax",
-                "code": "Formula in C1:\n\n=A1+B1\n\nA1 and B1 are cell references."
-              },            
-            {
-              "type": "note",
-              "text": "Cell references make formulas flexible. If the value in a referenced cell changes, Excel automatically recalculates the result."
-            },
-{
-  "type": "heading",
-  "text": "2. Types of Cell References"
-},
-{
-  "type": "paragraph",
-  "text": "Excel provides three types of cell references: Relative, Absolute, and Mixed references."
-},
-{
-  "type": "table",
-  "headers": [
-    "Reference Type",
-    "Example",
-    "Behavior"
-  ],
-  "rows": [
-    ["Relative", "A1", "Changes when copied"],
-    ["Absolute", "$A$1", "Row and column remain fixed"],
-    ["Mixed", "$A1 or A$1", "Either row or column remains fixed"]
-  ]
-},
- {
-  "type": "heading",
-  "text": "3. Relative Reference"
-},
-{
-  "type": "paragraph",
-  "text": "A Relative Reference changes automatically when a formula is copied to another cell. This is the default reference type used by Excel."
-},
-{
-  "type": "table",
-  "headers": [
-    "Cell",
-    "Formula",
-    "Copied To",
-    "Resulting Formula"
-  ],
-  "rows": [
-    ["C2", "=A2+B2", "C3", "=A3+B3"],
-    ["C3", "=A3+B3", "C4", "=A4+B4"],
-    ["C4", "=A4+B4", "C5", "=A5+B5"]
-  ]
-},
-{
-  "type": "note",
-  "text": "Notice that A2 becomes A3 and B2 becomes B3 when the formula is copied. Excel automatically adjusts the row numbers."
-},
-{
-  "type": "exercise",
-  "title": "Practice",
-  "steps": [
-    "Enter values in cells A2:A5.",
-    "Enter values in cells B2:B5.",
-    "In cell C2, type =A2+B2.",
-    "Copy the formula down to C5.",
-    "Observe how Excel automatically changes the cell references."
-  ]
-},             
-{
-  "type": "heading",
-  "text": "4. Absolute Reference ($)"
-},
-{
-  "type": "paragraph",
-  "text": "An Absolute Reference keeps a cell fixed when a formula is copied. Use the dollar sign ($) before the column, row, or both to lock the reference."
-},
-{
-  "type": "table",
-  "headers": [
-    "Reference",
-    "Meaning"
-  ],
-  "rows": [
-    ["A1", "Relative Reference"],
-    ["$A$1", "Lock both row and column"],
-    ["$A1", "Lock column only"],
-    ["A$1", "Lock row only"]
-  ]
-},
-{
-  "type": "example",
-  "title": "GST Calculation",
-  "before": "=B2*C2",
-  "after": "=B2*$F$1"
-},
-{
-  "type": "paragraph",
-  "text": "Suppose F1 contains the GST rate (18%). When the formula =B2*$F$1 is copied down, B2 changes to B3, B4, and so on, but $F$1 always remains fixed."
-},
- {
-  "type": "heading",
-  "text": "5. Mixed Reference"
-},
-{
-  "type": "paragraph",
-  "text": "A Mixed Reference locks either the row or the column, but not both. It is useful when copying formulas across rows and columns."
-},
-{
-  "type": "table",
-  "headers": [
-    "Reference",
-    "Locked",
-    "Example Use"
-  ],
-  "rows": [
-    ["$A1", "Column only", "Copy formula across columns"],
-    ["A$1", "Row only", "Copy formula down rows"]
-  ]
-},
-
-{
-  "type": "note",
-  "text": "Mixed references are commonly used in multiplication tables, price lists, and matrix calculations."
-},             
-{
-  "type": "heading",
-  "text": "6. Shortcut Key for Absolute Reference"
-},
-{
-  "type": "paragraph",
-  "text": "While editing a formula, place the cursor on the cell reference and press the F4 key to cycle through the different reference types."
-},
-{
-  "type": "table",
-  "headers": [
-    "Press F4",
-    "Result"
-  ],
-  "rows": [
-    ["1st Press", "$A$1"],
-    ["2nd Press", "A$1"],
-    ["3rd Press", "$A1"],
-    ["4th Press", "A1"]
-  ]
-},
-{
-  "type": "note",
-  "text": "Shortcut: Select a cell reference inside a formula and press F4 to quickly add or remove the $ symbol."
-},
-{
-  "type": "warning",
-  "text": "On some laptops, you may need to press Fn + F4 instead of F4."
-},
-{
-  "type": "exercise",
-  "title": "Practice",
-  "steps": [
-    "Enter numbers in cells B2:B6.",
-    "Enter a tax rate (18%) in cell F1.",
-    "Create the formula =B2*$F$1.",
-    "Copy the formula down to the remaining rows.",
-    "Observe that the reference to F1 remains fixed."
-  ]
-},
-              {
-  "type": "heading",
-  "text": "7. Selecting Cells and Cell Ranges"
-},
-{
-  "type": "paragraph",
-  "text": "Before creating formulas or formatting data, you need to know how to select cells and ranges. A range is a group of one or more cells. Excel allows you to select a single cell, multiple adjacent cells, entire rows, entire columns, or multiple non-adjacent cells."
-},
-{
-  "type": "table",
-  "headers": [
-    "Selection",
-    "Example",
-    "Description"
-  ],
-  "rows": [
-    ["Single Cell", "A1", "Select only one cell."],
-    ["Cell Range", "A1:D10", "Select multiple adjacent cells."],
-    ["Entire Row", "5:5", "Select the complete row 5."],
-    ["Entire Column", "B:B", "Select the complete column B."],
-    ["Multiple Cells", "A1,C3,E5", "Select non-adjacent cells by holding Ctrl."]
-  ]
-},
-{
-  "type": "heading",
-  "text": "How to Select Different Types of Data"
-},
-{
-  "type": "steps",
-  "title": "Selecting Cells",
-  "steps": [
-    "Click any cell to select it.",
-    "Click and drag the mouse to select multiple adjacent cells.",
-    "Hold the Ctrl key and click individual cells to select non-adjacent cells.",
-    "Click a row number to select the entire row.",
-    "Click a column letter to select the entire column.",
-    "Press Ctrl + A to select the entire worksheet."
-  ]
-},
-{
-  "type": "table",
-  "headers": [
-    "Shortcut",
-    "Action"
-  ],
-  "rows": [
-    ["Ctrl + A", "Select entire worksheet"],
-    ["Shift + Arrow Keys", "Extend the selection"],
-    ["Ctrl + Shift + Arrow", "Select data until the last used cell"],
-    ["Ctrl + Click", "Select multiple non-adjacent cells"],
-    ["Shift + Click", "Select a continuous range"]
-  ]
-},
-{
-  "type": "note",
-  "text": "Most Excel operations such as formatting, formulas, sorting, filtering, and chart creation require selecting the correct range of cells first."
-},
-{
-  "type": "exercise",
-  "title": "Practice",
-  "steps": [
-    "Select cell C5.",
-    "Select the range A1:E10.",
-    "Select the entire row 8.",
-    "Select the entire column D.",
-    "Hold Ctrl and select cells A1, C3, and E5.",
-    "Press Ctrl + A to select the complete worksheet."
-  ]
-}
+              { "type": "heading", "text": "1. Cell Address and Cell References" },
+              { "type": "paragraph", "text": "A cell is the intersection of a row and a column. Every cell has a unique address called a Cell Reference. Excel uses cell references in formulas instead of typing actual values. This makes formulas dynamic because they automatically update when the data changes." },
+              { "type": "table", "title": "Examples for Cell Address:", "headers": ["Cell", "Column", "Row", "Cell Address"], "rows": [["A1", "A", "1", "A1"], ["B5", "B", "5", "B5"], ["C10", "C", "10", "C10"], ["F20", "F", "20", "F20"]] },
+              { "type": "list", "items": ["A1 → Column A, Row 1", "C5 → Column C, Row 5", "F10 → Column F, Row 10"] },
+              { "type": "table", "title": "Examples for Cell Reference:", "headers": ["", "A", "B", "C"], "rows": [[1, 10, 20, "=A1+B1"]] },
+              { "type": "syntax", "code": "Formula in C1:\n\n=A1+B1\n\nA1 and B1 are cell references." },
+              { "type": "note", "text": "Cell references make formulas flexible. If the value in a referenced cell changes, Excel automatically recalculates the result." },
+              { "type": "heading", "text": "2. Types of Cell References" },
+              { "type": "paragraph", "text": "Excel provides three types of cell references: Relative, Absolute, and Mixed references." },
+              { "type": "table", "headers": ["Reference Type", "Example", "Behavior"], "rows": [["Relative", "A1", "Changes when copied"], ["Absolute", "$A$1", "Row and column remain fixed"], ["Mixed", "$A1 or A$1", "Either row or column remains fixed"]] },
+              { "type": "heading", "text": "3. Relative Reference" },
+              { "type": "paragraph", "text": "A Relative Reference changes automatically when a formula is copied to another cell. This is the default reference type used by Excel." },
+              { "type": "table", "headers": ["Cell", "Formula", "Copied To", "Resulting Formula"], "rows": [["C2", "=A2+B2", "C3", "=A3+B3"], ["C3", "=A3+B3", "C4", "=A4+B4"], ["C4", "=A4+B4", "C5", "=A5+B5"]] },
+              { "type": "note", "text": "Notice that A2 becomes A3 and B2 becomes B3 when the formula is copied. Excel automatically adjusts the row numbers." },
+              { "type": "exercise", "title": "Practice", "steps": ["Enter values in cells A2:A5.", "Enter values in cells B2:B5.", "In cell C2, type =A2+B2.", "Copy the formula down to C5.", "Observe how Excel automatically changes the cell references."] },
+              { "type": "heading", "text": "4. Absolute Reference ($)" },
+              { "type": "paragraph", "text": "An Absolute Reference keeps a cell fixed when a formula is copied. Use the dollar sign ($) before the column, row, or both to lock the reference." },
+              { "type": "table", "headers": ["Reference", "Meaning"], "rows": [["A1", "Relative Reference"], ["$A$1", "Lock both row and column"], ["$A1", "Lock column only"], ["A$1", "Lock row only"]] },
+              { "type": "example", "title": "GST Calculation", "before": "=B2*C2", "after": "=B2*$F$1" },
+              { "type": "paragraph", "text": "Suppose F1 contains the GST rate (18%). When the formula =B2*$F$1 is copied down, B2 changes to B3, B4, and so on, but $F$1 always remains fixed." },
+              { "type": "heading", "text": "5. Mixed Reference" },
+              { "type": "paragraph", "text": "A Mixed Reference locks either the row or the column, but not both. It is useful when copying formulas across rows and columns." },
+              { "type": "table", "headers": ["Reference", "Locked", "Example Use"], "rows": [["$A1", "Column only", "Copy formula across columns"], ["A$1", "Row only", "Copy formula down rows"]] },
+              { "type": "note", "text": "Mixed references are commonly used in multiplication tables, price lists, and matrix calculations." },
+              { "type": "heading", "text": "6. Shortcut Key for Absolute Reference" },
+              { "type": "paragraph", "text": "While editing a formula, place the cursor on the cell reference and press the F4 key to cycle through the different reference types." },
+              { "type": "table", "headers": ["Press F4", "Result"], "rows": [["1st Press", "$A$1"], ["2nd Press", "A$1"], ["3rd Press", "$A1"], ["4th Press", "A1"]] },
+              { "type": "note", "text": "Shortcut: Select a cell reference inside a formula and press F4 to quickly add or remove the $ symbol." },
+              { "type": "warning", "text": "On some laptops, you may need to press Fn + F4 instead of F4." },
+              { "type": "exercise", "title": "Practice", "steps": ["Enter numbers in cells B2:B6.", "Enter a tax rate (18%) in cell F1.", "Create the formula =B2*$F$1.", "Copy the formula down to the remaining rows.", "Observe that the reference to F1 remains fixed."] },
+              { "type": "heading", "text": "7. Selecting Cells and Cell Ranges" },
+              { "type": "paragraph", "text": "Before creating formulas or formatting data, you need to know how to select cells and ranges. A range is a group of one or more cells. Excel allows you to select a single cell, multiple adjacent cells, entire rows, entire columns, or multiple non-adjacent cells." },
+              { "type": "table", "headers": ["Selection", "Example", "Description"], "rows": [["Single Cell", "A1", "Select only one cell."], ["Cell Range", "A1:D10", "Select multiple adjacent cells."], ["Entire Row", "5:5", "Select the complete row 5."], ["Entire Column", "B:B", "Select the complete column B."], ["Multiple Cells", "A1,C3,E5", "Select non-adjacent cells by holding Ctrl."]] },
+              { "type": "heading", "text": "How to Select Different Types of Data" },
+              { "type": "steps", "title": "Selecting Cells", "steps": ["Click any cell to select it.", "Click and drag the mouse to select multiple adjacent cells.", "Hold the Ctrl key and click individual cells to select non-adjacent cells.", "Click a row number to select the entire row.", "Click a column letter to select the entire column.", "Press Ctrl + A to select the entire worksheet."] },
+              { "type": "table", "headers": ["Shortcut", "Action"], "rows": [["Ctrl + A", "Select entire worksheet"], ["Shift + Arrow Keys", "Extend the selection"], ["Ctrl + Shift + Arrow", "Select data until the last used cell"], ["Ctrl + Click", "Select multiple non-adjacent cells"], ["Shift + Click", "Select a continuous range"]] },
+              { "type": "note", "text": "Most Excel operations such as formatting, formulas, sorting, filtering, and chart creation require selecting the correct range of cells first." },
+              { "type": "exercise", "title": "Practice", "steps": ["Select cell C5.", "Select the range A1:E10.", "Select the entire row 8.", "Select the entire column D.", "Hold Ctrl and select cells A1, C3, and E5.", "Press Ctrl + A to select the complete worksheet."] }
             ]
           },
-          "questions": 
-           [
-  {
-    "id": "excel_q061",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "What is the intersection of a row and a column called?",
-    "options": [
-      "Worksheet",
-      "Workbook",
-      "Cell",
-      "Range"
-    ],
-    "answer": [2],
-    "explanation": "The intersection of a row and a column is called a cell."
-  },
-  {
-    "id": "excel_q062",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which of the following is a valid cell address?",
-    "options": [
-      "1A",
-      "AA",
-      "B5",
-      "5B1"
-    ],
-    "answer": [2],
-    "explanation": "A valid cell address consists of a column letter followed by a row number."
-  },
-  {
-    "id": "excel_q063",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Why are cell references used in Excel formulas?",
-    "options": [
-      "To change font style",
-      "To automatically update calculations when data changes",
-      "To print worksheets",
-      "To create charts"
-    ],
-    "answer": [1],
-    "explanation": "Cell references make formulas dynamic. If the referenced value changes, Excel recalculates the result automatically."
-  },
-  {
-    "id": "excel_q064",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which of the following is a Relative Reference?",
-    "options": [
-      "$A$1",
-      "$A1",
-      "A$1",
-      "A1"
-    ],
-    "answer": [3],
-    "explanation": "A1 is a relative reference and changes automatically when copied."
-  },
-  {
-    "id": "excel_q065",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which reference keeps both the row and column fixed when copied?",
-    "options": [
-      "A1",
-      "$A1",
-      "A$1",
-      "$A$1"
-    ],
-    "answer": [3],
-    "explanation": "The reference $A$1 locks both the column and row."
-  },
-  {
-    "id": "excel_q066",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "What does the '$' symbol do in an Excel formula?",
-    "options": [
-      "Deletes a cell",
-      "Locks a row, column, or both",
-      "Creates a worksheet",
-      "Formats numbers"
-    ],
-    "answer": [1],
-    "explanation": "The dollar sign ($) creates an absolute or mixed reference by locking rows and/or columns."
-  },
-  {
-    "id": "excel_q067",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Which shortcut key cycles through Relative, Absolute, and Mixed references while editing a formula?",
-    "options": [
-      "F1",
-      "F2",
-      "F4",
-      "F5"
-    ],
-    "answer": [2],
-    "explanation": "Pressing F4 cycles through A1 → $A$1 → A$1 → $A1."
-  },
-  {
-    "id": "excel_q068",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Which reference locks only the column?",
-    "options": [
-      "$A1",
-      "A$1",
-      "$A$1",
-      "A1"
-    ],
-    "answer": [0],
-    "explanation": "In $A1, the column is fixed while the row changes."
-  },
-  {
-    "id": "excel_q069",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Which reference locks only the row?",
-    "options": [
-      "$A1",
-      "A1",
-      "$A$1",
-      "A$1"
-    ],
-    "answer": [3],
-    "explanation": "In A$1, the row is fixed while the column changes."
-  },
-  {
-    "id": "excel_q070",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Cell F1 contains the GST rate. Which formula ensures that the GST cell remains fixed when copied down?",
-    "options": [
-      "=B2*F1",
-      "=B2*$F$1",
-      "=$B2*F1",
-      "=B2*$F1"
-    ],
-    "answer": [1],
-    "explanation": "Using $F$1 locks both the row and column so every copied formula always refers to the GST value in cell F1."
-  }
-]
+          "questions": [
+            { "id": "excel_q061", "type": "MCQ", "difficulty_rating": 1, "question": "What is the intersection of a row and a column called?", "options": ["Worksheet", "Workbook", "Cell", "Range"], "answer": [2], "explanation": "The intersection of a row and a column is called a cell." },
+            { "id": "excel_q062", "type": "MCQ", "difficulty_rating": 1, "question": "Which of the following is a valid cell address?", "options": ["1A", "AA", "B5", "5B1"], "answer": [2], "explanation": "A valid cell address consists of a column letter followed by a row number." },
+            { "id": "excel_q063", "type": "MCQ", "difficulty_rating": 2, "question": "Why are cell references used in Excel formulas?", "options": ["To change font style", "To automatically update calculations when data changes", "To print worksheets", "To create charts"], "answer": [1], "explanation": "Cell references make formulas dynamic. If the referenced value changes, Excel recalculates the result automatically." },
+            { "id": "excel_q064", "type": "MCQ", "difficulty_rating": 2, "question": "Which of the following is a Relative Reference?", "options": ["$A$1", "$A1", "A$1", "A1"], "answer": [3], "explanation": "A1 is a relative reference and changes automatically when copied." },
+            { "id": "excel_q065", "type": "MCQ", "difficulty_rating": 2, "question": "Which reference keeps both the row and column fixed when copied?", "options": ["A1", "$A1", "A$1", "$A$1"], "answer": [3], "explanation": "The reference $A$1 locks both the column and row." },
+            { "id": "excel_q066", "type": "MCQ", "difficulty_rating": 2, "question": "What does the '$' symbol do in an Excel formula?", "options": ["Deletes a cell", "Locks a row, column, or both", "Creates a worksheet", "Formats numbers"], "answer": [1], "explanation": "The dollar sign ($) creates an absolute or mixed reference by locking rows and/or columns." },
+            { "id": "excel_q067", "type": "MCQ", "difficulty_rating": 3, "question": "Which shortcut key cycles through Relative, Absolute, and Mixed references while editing a formula?", "options": ["F1", "F2", "F4", "F5"], "answer": [2], "explanation": "Pressing F4 cycles through A1 → $A$1 → A$1 → $A1." },
+            { "id": "excel_q068", "type": "MCQ", "difficulty_rating": 3, "question": "Which reference locks only the column?", "options": ["$A1", "A$1", "$A$1", "A1"], "answer": [0], "explanation": "In $A1, the column is fixed while the row changes." },
+            { "id": "excel_q069", "type": "MCQ", "difficulty_rating": 3, "question": "Which reference locks only the row?", "options": ["$A1", "A1", "$A$1", "A$1"], "answer": [3], "explanation": "In A$1, the row is fixed while the column changes." },
+            { "id": "excel_q070", "type": "MCQ", "difficulty_rating": 3, "question": "Cell F1 contains the GST rate. Which formula ensures that the GST cell remains fixed when copied down?", "options": ["=B2*F1", "=B2*$F$1", "=$B2*F1", "=B2*$F1"], "answer": [1], "explanation": "Using $F$1 locks both the row and column so every copied formula always refers to the GST value in cell F1." }
+          ]
         }
-         
       ]
     },
-{
+    {
       "id": "excel_u2",
       "title": "Week 2: Excel Formulas & Functions",
       "chapters": [
@@ -1301,1420 +451,263 @@
           "concept": {
             "title": "Introduction to Microsoft Excel",
             "body": [
-                {
-                    "type": "heading",
-                    "text": "1. Introduction to Excel Functions"
-                  },
-                  {
-                    "type": "paragraph",
-                    "text": "Excel provides built-in functions that perform calculations automatically. Instead of manually adding or calculating values, functions help save time, reduce errors, and improve productivity. Functions are commonly used in schools, businesses, banks, hospitals, and research organizations."
-                  },
-                  {
-                    "type": "note",
-                    "text": "A function always begins with an equal sign (=), followed by the function name and the cell range enclosed in parentheses."
-                  },
-                  {
-                    "type": "image",
-                    "title": "Excel Function Library",
-                    "image": "/data/imagepdf/forumal-excel.png"
-                  },
-
-                  {
-                    "type": "heading",
-                    "text": "2. Sample Student Marks Data"
-                  },
-                  {
-                    "type": "table",
-                    "title": "Student Marks",
-                    "headers": [
-                      "",
-                      "A",
-                      "B",
-                      "C",
-                      "D",
-                      "E",
-                      "F",
-                      "G"
-                    ],
-                    "rows": [
-                      [
-                        1,
-                        "Roll No",
-                        "Student Name",
-                        "Tamil",
-                        "English",
-                        "Maths",
-                        "Science",
-                        "Social"
-                      ],
-                      [2,101,"S-1",85,78,92,88,80],
-                      [3,102,"S-2",91,89,95,94,90],
-                      [4,103,"S-3",70,68,75,72,69],
-                      [5,104,"S-4",88,84,90,91,86],
-                      [6,105,"S-5",60,72,65,70,68]
-                    ]
-                  },
-                  {
-                  "type":"heading",
-                  "text":"3. SUM() Function"
-                },
-                {
-                  "type":"paragraph",
-                  "text":"The SUM() function adds all numeric values in a selected range. It is one of the most frequently used functions in Excel."
-                },
-                {
-                  "type":"table",
-                  "headers":["Purpose","Syntax","Example"],
-                  "rows":[
-                    ["Adds numbers together","=SUM(number1, number2, ...)","=SUM(C2:G2)"]
-                  ]
-                },
-                {
-                  "type":"syntax",
-                  "code":"=SUM(C2:G2)"
-                },
-                {
-                  "type":"example",
-                  "title":"Student Total Marks",
-                  "before":"85 + 78 + 92 + 88 + 80",
-                  "after":"=SUM(C2:G2) → 423"
-                },
-                {
-                  "type":"note",
-                  "text":"Instead of typing every number, simply select the range C2:G2."
-                },
-                {
-                  "type":"heading",
-                  "text":"4. AVERAGE() Function"
-                },
-                {
-                  "type":"paragraph",
-                  "text":"The AVERAGE() function calculates the arithmetic mean of the selected values."
-                },
-                {
-                  "type":"table",
-                  "headers":["Purpose","Syntax","Example"],
-                  "rows":[
-                    ["Calculates average marks","=AVERAGE(range)","=AVERAGE(C2:G2)"]
-                  ]
-                },
-                {
-                  "type":"syntax",
-                  "code":"=AVERAGE(C2:G2)"
-                },
-                {
-                "type": "example",
-                "title": "Average Marks Example",
-                "before": "85, 78, 92, 88, 80",
-                "after": "84.6",
-                "steps": [
-                  "Step 1: Add all numbers.",
-                  "85 + 78 + 92 + 88 + 80 = 423",
-                  "Step 2: Count the number of values.",
-                  "There are 5 subjects.",
-                  "Step 3: Divide the total by the count.",
-                  "423 ÷ 5 = 84.6",
-                  "Excel Formula: =AVERAGE(C2:G2)"
-                ]
-              },
-                {
-                  "type":"note",
-                  "text":"Average is commonly used to calculate percentages and GPA."
-                },
-                {
-                "type":"heading",
-                "text":"5. MAX() Function"
-              },
-              {
-                "type":"paragraph",
-                "text":"MAX() returns the highest value from a selected range."
-              },
-              {
-                "type":"table",
-                "headers":["Purpose","Syntax","Example"],
-                "rows":[
-                  ["Find highest mark","=MAX(range)","=MAX(C2:G2)"]
-                ]
-              },
-              {
-                "type":"syntax",
-                "code":"=MAX(C2:G2)"
-              },
-              {
-                "type":"example",
-                "title":"Highest Mark",
-                "before":"85,78,92,88,80",
-                "after":"92"
-              },
-              {
-                "type":"note",
-                "text":"Useful for finding the highest sales, marks, salary, or profit."
-              },
-              {
-                "type":"heading",
-                "text":"6. MIN() Function"
-              },
-              {
-                "type":"paragraph",
-                "text":"MIN() returns the smallest value from the selected range."
-              },
-              {
-                "type":"table",
-                "headers":["Purpose","Syntax","Example"],
-                "rows":[
-                  ["Find lowest mark","=MIN(range)","=MIN(C2:G2)"]
-                ]
-              },
-              {
-                "type":"syntax",
-                "code":"=MIN(C2:G2)"
-              },
-              {
-                "type": "example",
-                "title": "Lowest Mark Example",
-                "before": "85, 78, 92, 88, 80",
-                "after": "78",
-                "steps": [
-                  "Step 1: Read all the values in the selected range (85, 78, 92, 88, 80).",
-                  "Step 2: Compare each value one by one.",
-                  "Step 3: Identify the smallest number.",
-                  "Step 4: The smallest value is 78.",
-                  "Excel Formula: =MIN(C2:G2)"
-                ]
-              },
-              {
-                "type":"note",
-                "text":"Used to identify the minimum value in reports."
-              },
-              {
-                "type":"heading",
-                "text":"7. COUNT() Function"
-              },
-              {
-                "type":"paragraph",
-                "text":"COUNT() counts only numeric cells. Blank cells and text values are ignored."
-              },
-              {
-                "type":"table",
-                "headers":["Purpose","Syntax","Example"],
-                "rows":[
-                  ["Count numeric values","=COUNT(range)","=COUNT(C2:G2)"]
-                ]
-              },
-              {
-                "type":"syntax",
-                "code":"=COUNT(C2:G2)"
-              },
-              {
-                "type":"example",
-                "title":"Number of Subjects",
-                "before":"85,78,92,88,80",
-                "after":"5"
-              },
-              {
-                "type":"note",
-                "text":"COUNT() counts only numbers. To count text values, use COUNTA()."
-              },
-              {
-                "type":"heading",
-                "text":"8. Comparison of Functions"
-              },
-              {
-                "type":"table",
-                "headers":[
-                  "Function",
-                  "Purpose",
-                  "Example Formula",
-                  "Result"
-                ],
-                "rows":[
-                  ["SUM()","Adds all numbers","=SUM(C2:G2)","423"],
-                  ["AVERAGE()","Calculates mean","=AVERAGE(C2:G2)","84.6"],
-                  ["MAX()","Returns highest value","=MAX(C2:G2)","92"],
-                  ["MIN()","Returns lowest value","=MIN(C2:G2)","78"],
-                  ["COUNT()","Counts numeric cells","=COUNT(C2:G2)","5"]
-                ]
-              },
-              {
-                  "type": "table",
-                  "title": "Summary of Excel Functions",
-                  "headers": [
-                    "Function",
-                    "Excel Formula",
-                    "Mathematical Formula",
-                    "Example",
-                    "Purpose"
-                  ],
-                  "rows": [
-                    [
-                      "SUM()",
-                      "=SUM(C2:G2)",
-                      "Total = x₁ + x₂ + x₃ + ... + xₙ",
-                      "85 + 78 + 92 + 88 + 80 = 423",
-                      "Calculates the total of all selected numbers."
-                    ],
-                    [
-                      "AVERAGE()",
-                      "=AVERAGE(C2:G2)",
-                      "Average = (x₁ + x₂ + ... + xₙ) ÷ n",
-                      "(85 + 78 + 92 + 88 + 80) ÷ 5 = 84.6",
-                      "Calculates the average (mean) of all selected numbers."
-                    ],
-                    [
-                      "MAX()",
-                      "=MAX(C2:G2)",
-                      "Maximum = Largest(x₁, x₂, ..., xₙ)",
-                      "Largest of (85, 78, 92, 88, 80) = 92",
-                      "Returns the highest value in the selected range."
-                    ],
-                    [
-                      "MIN()",
-                      "=MIN(C2:G2)",
-                      "Minimum = Smallest(x₁, x₂, ..., xₙ)",
-                      "Smallest of (85, 78, 92, 88, 80) = 78",
-                      "Returns the lowest value in the selected range."
-                    ],
-                    [
-                      "COUNT()",
-                      "=COUNT(C2:G2)",
-                      "Count = Number of Numeric Values",
-                      "85, 78, 92, 88, 80 → 5 values",
-                      "Counts only the cells containing numeric values."
-                    ]
-                  ]
-                },
-
-              {
-              "type":"exercise",
-              "title":"Student Marks Report",
-              "steps":[
-                "Enter the sample student marks.",
-                "Calculate the Total using SUM().",
-                "Calculate the Average using AVERAGE().",
-                "Find the Highest Mark using MAX().",
-                "Find the Lowest Mark using MIN().",
-                "Count the number of subject marks using COUNT()."
-              ]
-            }
-
+              { "type": "heading", "text": "1. Introduction to Excel Functions" },
+              { "type": "paragraph", "text": "Excel provides built-in functions that perform calculations automatically. Instead of manually adding or calculating values, functions help save time, reduce errors, and improve productivity. Functions are commonly used in schools, businesses, banks, hospitals, and research organizations." },
+              { "type": "note", "text": "A function always begins with an equal sign (=), followed by the function name and the cell range enclosed in parentheses." },
+              { "type": "image", "title": "Excel Function Library", "image": "/data/imagepdf/forumal-excel.png" },
+              { "type": "heading", "text": "2. Sample Student Marks Data" },
+              { "type": "table", "title": "Student Marks", "headers": ["", "A", "B", "C", "D", "E", "F", "G"], "rows": [
+                [1, "Roll No", "Student Name", "Tamil", "English", "Maths", "Science", "Social"],
+                [2, 101, "S-1", 85, 78, 92, 88, 80],
+                [3, 102, "S-2", 91, 89, 95, 94, 90],
+                [4, 103, "S-3", 70, 68, 75, 72, 69],
+                [5, 104, "S-4", 88, 84, 90, 91, 86],
+                [6, 105, "S-5", 60, 72, 65, 70, 68]
+              ] },
+              { "type": "heading", "text": "3. SUM() Function" },
+              { "type": "paragraph", "text": "The SUM() function adds all numeric values in a selected range. It is one of the most frequently used functions in Excel." },
+              { "type": "table", "headers": ["Purpose", "Syntax", "Example"], "rows": [["Adds numbers together", "=SUM(number1, number2, ...)", "=SUM(C2:G2)"]] },
+              { "type": "syntax", "code": "=SUM(C2:G2)" },
+              { "type": "example", "title": "Student Total Marks", "before": "85 + 78 + 92 + 88 + 80", "after": "=SUM(C2:G2) → 423" },
+              { "type": "note", "text": "Instead of typing every number, simply select the range C2:G2." },
+              { "type": "heading", "text": "4. AVERAGE() Function" },
+              { "type": "paragraph", "text": "The AVERAGE() function calculates the arithmetic mean of the selected values." },
+              { "type": "table", "headers": ["Purpose", "Syntax", "Example"], "rows": [["Calculates average marks", "=AVERAGE(range)", "=AVERAGE(C2:G2)"]] },
+              { "type": "syntax", "code": "=AVERAGE(C2:G2)" },
+              { "type": "example", "title": "Average Marks Example", "before": "85, 78, 92, 88, 80", "after": "84.6", "steps": ["Step 1: Add all numbers.", "85 + 78 + 92 + 88 + 80 = 423", "Step 2: Count the number of values.", "There are 5 subjects.", "Step 3: Divide the total by the count.", "423 ÷ 5 = 84.6", "Excel Formula: =AVERAGE(C2:G2)"] },
+              { "type": "note", "text": "Average is commonly used to calculate percentages and GPA." },
+              { "type": "heading", "text": "5. MAX() Function" },
+              { "type": "paragraph", "text": "MAX() returns the highest value from a selected range." },
+              { "type": "table", "headers": ["Purpose", "Syntax", "Example"], "rows": [["Find highest mark", "=MAX(range)", "=MAX(C2:G2)"]] },
+              { "type": "syntax", "code": "=MAX(C2:G2)" },
+              { "type": "example", "title": "Highest Mark", "before": "85,78,92,88,80", "after": "92" },
+              { "type": "note", "text": "Useful for finding the highest sales, marks, salary, or profit." },
+              { "type": "heading", "text": "6. MIN() Function" },
+              { "type": "paragraph", "text": "MIN() returns the smallest value from the selected range." },
+              { "type": "table", "headers": ["Purpose", "Syntax", "Example"], "rows": [["Find lowest mark", "=MIN(range)", "=MIN(C2:G2)"]] },
+              { "type": "syntax", "code": "=MIN(C2:G2)" },
+              { "type": "example", "title": "Lowest Mark Example", "before": "85, 78, 92, 88, 80", "after": "78", "steps": ["Step 1: Read all the values in the selected range (85, 78, 92, 88, 80).", "Step 2: Compare each value one by one.", "Step 3: Identify the smallest number.", "Step 4: The smallest value is 78.", "Excel Formula: =MIN(C2:G2)"] },
+              { "type": "note", "text": "Used to identify the minimum value in reports." },
+              { "type": "heading", "text": "7. COUNT() Function" },
+              { "type": "paragraph", "text": "COUNT() counts only numeric cells. Blank cells and text values are ignored." },
+              { "type": "table", "headers": ["Purpose", "Syntax", "Example"], "rows": [["Count numeric values", "=COUNT(range)", "=COUNT(C2:G2)"]] },
+              { "type": "syntax", "code": "=COUNT(C2:G2)" },
+              { "type": "example", "title": "Number of Subjects", "before": "85,78,92,88,80", "after": "5" },
+              { "type": "note", "text": "COUNT() counts only numbers. To count text values, use COUNTA()." },
+              { "type": "heading", "text": "8. Comparison of Functions" },
+              { "type": "table", "headers": ["Function", "Purpose", "Example Formula", "Result"], "rows": [
+                ["SUM()", "Adds all numbers", "=SUM(C2:G2)", "423"],
+                ["AVERAGE()", "Calculates mean", "=AVERAGE(C2:G2)", "84.6"],
+                ["MAX()", "Returns highest value", "=MAX(C2:G2)", "92"],
+                ["MIN()", "Returns lowest value", "=MIN(C2:G2)", "78"],
+                ["COUNT()", "Counts numeric cells", "=COUNT(C2:G2)", "5"]
+              ] },
+              { "type": "table", "title": "Summary of Excel Functions", "headers": ["Function", "Excel Formula", "Mathematical Formula", "Example", "Purpose"], "rows": [
+                ["SUM()", "=SUM(C2:G2)", "Total = x₁ + x₂ + x₃ + ... + xₙ", "85 + 78 + 92 + 88 + 80 = 423", "Calculates the total of all selected numbers."],
+                ["AVERAGE()", "=AVERAGE(C2:G2)", "Average = (x₁ + x₂ + ... + xₙ) ÷ n", "(85 + 78 + 92 + 88 + 80) ÷ 5 = 84.6", "Calculates the average (mean) of all selected numbers."],
+                ["MAX()", "=MAX(C2:G2)", "Maximum = Largest(x₁, x₂, ..., xₙ)", "Largest of (85, 78, 92, 88, 80) = 92", "Returns the highest value in the selected range."],
+                ["MIN()", "=MIN(C2:G2)", "Minimum = Smallest(x₁, x₂, ..., xₙ)", "Smallest of (85, 78, 92, 88, 80) = 78", "Returns the lowest value in the selected range."],
+                ["COUNT()", "=COUNT(C2:G2)", "Count = Number of Numeric Values", "85, 78, 92, 88, 80 → 5 values", "Counts only the cells containing numeric values."]
+              ] },
+              { "type": "exercise", "title": "Student Marks Report", "steps": ["Enter the sample student marks.", "Calculate the Total using SUM().", "Calculate the Average using AVERAGE().", "Find the Highest Mark using MAX().", "Find the Lowest Mark using MIN().", "Count the number of subject marks using COUNT()."] }
             ]
           },
-          "questions": 
-          [
-  {
-    "id": "excel_q071",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which symbol must every Excel function begin with?",
-    "options": ["+", "-", "=", "*"],
-    "answer": [2],
-    "explanation": "Every Excel function begins with the equal (=) sign."
-  },
-  {
-    "id": "excel_q072",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which function is used to add numbers together?",
-    "options": ["COUNT()", "SUM()", "AVERAGE()", "MAX()"],
-    "answer": [1],
-    "explanation": "SUM() adds all numbers in the selected range."
-  },
-  {
-    "id": "excel_q073",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which function calculates the average of selected numbers?",
-    "options": ["MIN()", "MAX()", "AVERAGE()", "COUNT()"],
-    "answer": [2],
-    "explanation": "AVERAGE() returns the arithmetic mean."
-  },
-  {
-    "id": "excel_q074",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which function returns the highest value?",
-    "options": ["MAX()", "MIN()", "SUM()", "COUNT()"],
-    "answer": [0],
-    "explanation": "MAX() returns the largest number."
-  },
-  {
-    "id": "excel_q075",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which function returns the smallest value?",
-    "options": ["SUM()", "AVERAGE()", "MIN()", "COUNT()"],
-    "answer": [2],
-    "explanation": "MIN() returns the smallest number."
-  },
-  {
-    "id": "excel_q076",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which function counts only numeric cells?",
-    "options": ["COUNTA()", "COUNT()", "SUM()", "MAX()"],
-    "answer": [1],
-    "explanation": "COUNT() counts only cells containing numbers."
-  },
-  {
-    "id": "excel_q077",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which formula calculates the total marks from C2 to G2?",
-    "options": ["=SUM(C2:G2)", "=TOTAL(C2:G2)", "=ADD(C2:G2)", "=COUNT(C2:G2)"],
-    "answer": [0],
-    "explanation": "SUM() adds all values within the specified range."
-  },
-  {
-    "id": "excel_q078",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which formula calculates the average marks?",
-    "options": ["=SUM(C2:G2)", "=AVERAGE(C2:G2)", "=COUNT(C2:G2)", "=MAX(C2:G2)"],
-    "answer": [1],
-    "explanation": "AVERAGE() calculates the arithmetic mean."
-  },
-  {
-    "id": "excel_q079",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which formula returns the highest mark?",
-    "options": ["=MIN(C2:G2)", "=MAX(C2:G2)", "=COUNT(C2:G2)", "=SUM(C2:G2)"],
-    "answer": [1],
-    "explanation": "MAX() returns the highest value in the range."
-  },
-  {
-    "id": "excel_q080",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which formula returns the lowest mark?",
-    "options": ["=MAX(C2:G2)", "=AVERAGE(C2:G2)", "=MIN(C2:G2)", "=COUNT(C2:G2)"],
-    "answer": [2],
-    "explanation": "MIN() returns the lowest value."
-  },
-  {
-    "id": "excel_q081",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "What is the result of =COUNT(C2:G2) if five subject marks are entered?",
-    "options": ["4", "5", "6", "0"],
-    "answer": [1],
-    "explanation": "COUNT() counts all numeric values in the range."
-  },
-  {
-    "id": "excel_q082",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which function is commonly used to calculate students' total marks?",
-    "options": ["MIN()", "SUM()", "MAX()", "COUNT()"],
-    "answer": [1],
-    "explanation": "SUM() is used to calculate total marks."
-  },
-  {
-    "id": "excel_q083",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which function is useful for finding the class topper's highest score?",
-    "options": ["COUNT()", "SUM()", "MAX()", "AVERAGE()"],
-    "answer": [2],
-    "explanation": "MAX() returns the highest score."
-  },
-  {
-    "id": "excel_q084",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which function helps identify the lowest mark in a class?",
-    "options": ["SUM()", "MIN()", "AVERAGE()", "COUNT()"],
-    "answer": [1],
-    "explanation": "MIN() returns the smallest value."
-  },
-  {
-    "id": "excel_q085",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which Excel feature quickly inserts the SUM function?",
-    "options": ["AutoFill", "Flash Fill", "AutoSum", "Fill Handle"],
-    "answer": [2],
-    "explanation": "AutoSum automatically inserts the SUM() function."
-  },
-  {
-    "id": "excel_q086",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "What does the formula =SUM(A1:A5) calculate?",
-    "options": [
-      "Average of A1 to A5",
-      "Highest value",
-      "Total of A1 to A5",
-      "Number of cells"
-    ],
-    "answer": [2],
-    "explanation": "SUM() adds all numbers in the selected range."
-  },
-  {
-    "id": "excel_q087",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "What is the result of =AVERAGE(10,20,30)?",
-    "options": ["20", "30", "60", "10"],
-    "answer": [0],
-    "explanation": "(10+20+30)/3 = 20."
-  },
-  {
-    "id": "excel_q088",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "What does =MAX(45,89,67,91) return?",
-    "options": ["45", "67", "89", "91"],
-    "answer": [3],
-    "explanation": "91 is the highest number."
-  },
-  {
-    "id": "excel_q089",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "What does =MIN(45,89,67,91) return?",
-    "options": ["45", "67", "89", "91"],
-    "answer": [0],
-    "explanation": "45 is the smallest number."
-  },
-  {
-    "id": "excel_q090",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "How many numbers does =COUNT(12,15,20,25) return?",
-    "options": ["2", "3", "4", "5"],
-    "answer": [2],
-    "explanation": "COUNT() returns the number of numeric values, which is 4."
-  },
-  {
-    "id": "excel_q091",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Which function ignores text values and counts only numbers?",
-    "options": ["COUNTA()", "COUNT()", "SUM()", "AVERAGE()"],
-    "answer": [1],
-    "explanation": "COUNT() ignores text and counts only numeric cells."
-  },
-  {
-    "id": "excel_q092",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Which function would you use to calculate the average monthly sales?",
-    "options": ["SUM()", "COUNT()", "AVERAGE()", "MAX()"],
-    "answer": [2],
-    "explanation": "AVERAGE() calculates the mean value."
-  },
-  {
-    "id": "excel_q093",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Which function is most suitable for finding the highest employee salary?",
-    "options": ["MIN()", "COUNT()", "MAX()", "SUM()"],
-    "answer": [2],
-    "explanation": "MAX() returns the largest value."
-  },
-  {
-    "id": "excel_q094",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Which function is most suitable for finding the minimum temperature recorded?",
-    "options": ["MIN()", "SUM()", "AVERAGE()", "COUNT()"],
-    "answer": [0],
-    "explanation": "MIN() finds the lowest value."
-  },
-  {
-    "id": "excel_q095",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Which combination of functions can generate a complete student marks summary?",
-    "options": [
-      "SUM(), AVERAGE(), MAX(), MIN(), COUNT()",
-      "IF(), VLOOKUP(), CONCAT()",
-      "LEFT(), RIGHT(), MID()",
-      "TODAY(), NOW(), DATE()"
-    ],
-    "answer": [0],
-    "explanation": "These five functions together provide total, average, highest, lowest, and the count of marks, making them ideal for student mark analysis."
-  }
-]
+          "questions": [
+            { "id": "excel_q071", "type": "MCQ", "difficulty_rating": 1, "question": "Which symbol must every Excel function begin with?", "options": ["+", "-", "=", "*"], "answer": [2], "explanation": "Every Excel function begins with the equal (=) sign." },
+            { "id": "excel_q072", "type": "MCQ", "difficulty_rating": 1, "question": "Which function is used to add numbers together?", "options": ["COUNT()", "SUM()", "AVERAGE()", "MAX()"], "answer": [1], "explanation": "SUM() adds all numbers in the selected range." },
+            { "id": "excel_q073", "type": "MCQ", "difficulty_rating": 1, "question": "Which function calculates the average of selected numbers?", "options": ["MIN()", "MAX()", "AVERAGE()", "COUNT()"], "answer": [2], "explanation": "AVERAGE() returns the arithmetic mean." },
+            { "id": "excel_q074", "type": "MCQ", "difficulty_rating": 1, "question": "Which function returns the highest value?", "options": ["MAX()", "MIN()", "SUM()", "COUNT()"], "answer": [0], "explanation": "MAX() returns the largest number." },
+            { "id": "excel_q075", "type": "MCQ", "difficulty_rating": 1, "question": "Which function returns the smallest value?", "options": ["SUM()", "AVERAGE()", "MIN()", "COUNT()"], "answer": [2], "explanation": "MIN() returns the smallest number." },
+            { "id": "excel_q076", "type": "MCQ", "difficulty_rating": 1, "question": "Which function counts only numeric cells?", "options": ["COUNTA()", "COUNT()", "SUM()", "MAX()"], "answer": [1], "explanation": "COUNT() counts only cells containing numbers." },
+            { "id": "excel_q077", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula calculates the total marks from C2 to G2?", "options": ["=SUM(C2:G2)", "=TOTAL(C2:G2)", "=ADD(C2:G2)", "=COUNT(C2:G2)"], "answer": [0], "explanation": "SUM() adds all values within the specified range." },
+            { "id": "excel_q078", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula calculates the average marks?", "options": ["=SUM(C2:G2)", "=AVERAGE(C2:G2)", "=COUNT(C2:G2)", "=MAX(C2:G2)"], "answer": [1], "explanation": "AVERAGE() calculates the arithmetic mean." },
+            { "id": "excel_q079", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula returns the highest mark?", "options": ["=MIN(C2:G2)", "=MAX(C2:G2)", "=COUNT(C2:G2)", "=SUM(C2:G2)"], "answer": [1], "explanation": "MAX() returns the highest value in the range." },
+            { "id": "excel_q080", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula returns the lowest mark?", "options": ["=MAX(C2:G2)", "=AVERAGE(C2:G2)", "=MIN(C2:G2)", "=COUNT(C2:G2)"], "answer": [2], "explanation": "MIN() returns the lowest value." },
+            { "id": "excel_q081", "type": "MCQ", "difficulty_rating": 2, "question": "What is the result of =COUNT(C2:G2) if five subject marks are entered?", "options": ["4", "5", "6", "0"], "answer": [1], "explanation": "COUNT() counts all numeric values in the range." },
+            { "id": "excel_q082", "type": "MCQ", "difficulty_rating": 2, "question": "Which function is commonly used to calculate students' total marks?", "options": ["MIN()", "SUM()", "MAX()", "COUNT()"], "answer": [1], "explanation": "SUM() is used to calculate total marks." },
+            { "id": "excel_q083", "type": "MCQ", "difficulty_rating": 2, "question": "Which function is useful for finding the class topper's highest score?", "options": ["COUNT()", "SUM()", "MAX()", "AVERAGE()"], "answer": [2], "explanation": "MAX() returns the highest score." },
+            { "id": "excel_q084", "type": "MCQ", "difficulty_rating": 2, "question": "Which function helps identify the lowest mark in a class?", "options": ["SUM()", "MIN()", "AVERAGE()", "COUNT()"], "answer": [1], "explanation": "MIN() returns the smallest value." },
+            { "id": "excel_q085", "type": "MCQ", "difficulty_rating": 2, "question": "Which Excel feature quickly inserts the SUM function?", "options": ["AutoFill", "Flash Fill", "AutoSum", "Fill Handle"], "answer": [2], "explanation": "AutoSum automatically inserts the SUM() function." },
+            { "id": "excel_q086", "type": "MCQ", "difficulty_rating": 3, "question": "What does the formula =SUM(A1:A5) calculate?", "options": ["Average of A1 to A5", "Highest value", "Total of A1 to A5", "Number of cells"], "answer": [2], "explanation": "SUM() adds all numbers in the selected range." },
+            { "id": "excel_q087", "type": "MCQ", "difficulty_rating": 3, "question": "What is the result of =AVERAGE(10,20,30)?", "options": ["20", "30", "60", "10"], "answer": [0], "explanation": "(10+20+30)/3 = 20." },
+            { "id": "excel_q088", "type": "MCQ", "difficulty_rating": 3, "question": "What does =MAX(45,89,67,91) return?", "options": ["45", "67", "89", "91"], "answer": [3], "explanation": "91 is the highest number." },
+            { "id": "excel_q089", "type": "MCQ", "difficulty_rating": 3, "question": "What does =MIN(45,89,67,91) return?", "options": ["45", "67", "89", "91"], "answer": [0], "explanation": "45 is the smallest number." },
+            { "id": "excel_q090", "type": "MCQ", "difficulty_rating": 3, "question": "How many numbers does =COUNT(12,15,20,25) return?", "options": ["2", "3", "4", "5"], "answer": [2], "explanation": "COUNT() returns the number of numeric values, which is 4." },
+            { "id": "excel_q091", "type": "MCQ", "difficulty_rating": 3, "question": "Which function ignores text values and counts only numbers?", "options": ["COUNTA()", "COUNT()", "SUM()", "AVERAGE()"], "answer": [1], "explanation": "COUNT() ignores text and counts only numeric cells." },
+            { "id": "excel_q092", "type": "MCQ", "difficulty_rating": 3, "question": "Which function would you use to calculate the average monthly sales?", "options": ["SUM()", "COUNT()", "AVERAGE()", "MAX()"], "answer": [2], "explanation": "AVERAGE() calculates the mean value." },
+            { "id": "excel_q093", "type": "MCQ", "difficulty_rating": 3, "question": "Which function is most suitable for finding the highest employee salary?", "options": ["MIN()", "COUNT()", "MAX()", "SUM()"], "answer": [2], "explanation": "MAX() returns the largest value." },
+            { "id": "excel_q094", "type": "MCQ", "difficulty_rating": 3, "question": "Which function is most suitable for finding the minimum temperature recorded?", "options": ["MIN()", "SUM()", "AVERAGE()", "COUNT()"], "answer": [0], "explanation": "MIN() finds the lowest value." },
+            { "id": "excel_q095", "type": "MCQ", "difficulty_rating": 3, "question": "Which combination of functions can generate a complete student marks summary?", "options": ["SUM(), AVERAGE(), MAX(), MIN(), COUNT()", "IF(), VLOOKUP(), CONCAT()", "LEFT(), RIGHT(), MID()", "TODAY(), NOW(), DATE()"], "answer": [0], "explanation": "These five functions together provide total, average, highest, lowest, and the count of marks, making them ideal for student mark analysis." }
+          ]
         },
-
-
-
-{
+        {
           "id": "excel_u2_ref",
           "title": "ARRAYFORMULA",
           "concept": {
             "title": "ARRAYFORMULA",
-            "body": [              
-                  {
-                    "type": "heading",
-                    "text": "1. ARRAYFORMULA() in Google Sheets"
-                  },
-                  {
-                    "type": "paragraph",
-                    "text": "ARRAYFORMULA() is a Google Sheets function that allows a single formula to process multiple rows or columns automatically. Instead of copying a formula down every row, ARRAYFORMULA() applies the formula to the entire range and automatically includes newly added rows."
-                  },                  
-                  {
-                    "type": "heading",
-                    "text": "2. Why Use ARRAYFORMULA()?"
-                  },
-                  {
-                    "type": "list",
-                    "items": [
-                      "Apply one formula to an entire column.",
-                      "No need to drag formulas.",
-                      "Automatically calculates new rows.",
-                      "Reduces manual work.",
-                      "Makes worksheets dynamic and easier to maintain."
-                    ]
-                  },
-                  {
-                    "type": "heading",
-                    "text": "3. Syntax"
-                  },
-                  {
-                    "type": "syntax",
-                    "code": "=ARRAYFORMULA(formula)"
-                  },
-                  {
-                    "type": "heading",
-                    "text": "4. Google Sheets Example"
-                  },
-                  {
-                    "type": "example",
-                    "title": "Pass / Fail Result",
-                    "before": "Marks are available in cells B2:B10.",
-                    "steps": [
-                      "ARRAYFORMULA checks every value in B2:B10.",
-                      "If the mark is greater than or equal to 50, it returns PASS.",
-                      "Otherwise, it returns FAIL.",
-                      "Only one formula is required for the entire column."
-                    ],
-                    "formula": "=ARRAYFORMULA(IF(B2:B10>=50,\"PASS\",\"FAIL\"))",
-                    "after": "The Result column is automatically filled for every student."
-                  },
-                  {
-                    "type": "heading",
-                    "text": "5. Ignore Blank Rows"
-                  },
-                  {
-                    "type": "example",
-                    "title": "Prevent Empty Rows Showing FAIL",
-                    "before": "Some rows do not contain marks.",
-                    "steps": [
-                      "Check whether the cell is blank.",
-                      "If blank, return an empty value.",
-                      "Otherwise, calculate PASS or FAIL."
-                    ],
-                    "formula": "=ARRAYFORMULA(IF(B2:B10=\"\",\"\",IF(B2:B10>=50,\"PASS\",\"FAIL\")))",
-                    "after": "Blank rows remain empty."
-                  },
-                  {
-                    "type": "heading",
-                    "text": "6. ARRAYFORMULA() in Microsoft Excel"
-                  },
-                  {
-                    "type": "paragraph",
-                    "text": "Microsoft Excel does not provide an ARRAYFORMULA() function like Google Sheets. Similar functionality can be achieved using Excel Tables, Dynamic Array functions (Excel 2021 / Microsoft 365), or keyboard shortcuts such as Ctrl + Enter."
-                  },
-                
-                  {
-                    "type": "heading",
-                    "text": "7. Excel Alternatives"
-                  },
-                  {
-                    "type": "table",
-                    "headers": [
-                      "Method",
-                      "Shortcut / Function",
-                      "Purpose"
-                    ],
-                    "rows": [
-                      [
-                        "Excel Table",
-                        "Ctrl + T",
-                        "Automatically copies formulas to new rows."
-                      ],
-                      [
-                        "Fill Multiple Cells",
-                        "Ctrl + Enter",
-                        "Applies the same formula to all selected cells."
-                      ],
-                      [
-                        "Fill Down",
-                        "Ctrl + D",
-                        "Copies the formula from the cell above."
-                      ],
-                      [
-                        "Dynamic Arrays",
-                        "FILTER(), SORT(), UNIQUE(), SEQUENCE()",
-                        "Automatically spill results into multiple cells."
-                      ]
-                    ]
-                  },
-                  {
-                    "type": "heading",
-                    "text": "8. Google Sheets vs Microsoft Excel"
-                  },
-                  {
-                    "type": "table",
-                    "title": "Comparison",
-                    "headers": [
-                      "Feature",
-                      "Google Sheets",
-                      "Microsoft Excel"
-                    ],
-                    "rows": [
-                      [
-                        "ARRAYFORMULA() Function",
-                        "Available",
-                        "Not Available"
-                      ],
-                      [
-                        "Apply Formula to Entire Column",
-                        "Automatic",
-                        "Use Excel Table (Ctrl + T)"
-                      ],
-                      [
-                        "Fill Multiple Cells",
-                        "Automatic",
-                        "Ctrl + Enter"
-                      ],
-                      [
-                        "Dynamic Array Support",
-                        "Built into ARRAYFORMULA()",
-                        "Available in Excel 2021 / Microsoft 365"
-                      ],
-                      [
-                        "Auto Update New Rows",
-                        "Yes",
-                        "Yes (Using Excel Tables)"
-                      ],
-                      [
-                        "Best Practice",
-                        "Use ARRAYFORMULA()",
-                        "Use Excel Tables + Dynamic Arrays"
-                      ]
-                    ]
-                  },
-                  {
-                    "type": "tip",
-                    "title": "Teacher's Tip",
-                    "text": "Teach students both methods. Use ARRAYFORMULA() when working in Google Sheets. In Microsoft Excel, use Excel Tables (Ctrl + T), Ctrl + Enter, or Dynamic Array functions depending on the Excel version."
-                  },
-                  {
-                    "type": "note",
-                    "text": "ARRAYFORMULA() is exclusive to Google Sheets. Although Excel does not have the same function, modern versions such as Excel 2021 and Microsoft 365 provide Dynamic Array functions that offer similar capabilities."
-                  }
-                ]
-              },
-"questions":[
-  {
-    "id": "excel_q111",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "What is the primary purpose of ARRAYFORMULA() in Google Sheets?",
-    "options": [
-      "To format cells",
-      "To apply a formula to multiple cells automatically",
-      "To create charts",
-      "To sort data"
-    ],
-    "answer": [1],
-    "explanation": "ARRAYFORMULA() applies a single formula to an entire range of cells automatically."
-  },
-  {
-    "id": "excel_q112",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "Which application provides the ARRAYFORMULA() function?",
-    "options": [
-      "Microsoft Excel",
-      "Google Sheets",
-      "LibreOffice Calc",
-      "WPS Spreadsheet"
-    ],
-    "answer": [1],
-    "explanation": "ARRAYFORMULA() is a built-in function available in Google Sheets."
-  },
-  {
-    "id": "excel_q113",
-    "type": "MCQ",
-    "difficulty_rating": 1,
-    "question": "What is the correct syntax of ARRAYFORMULA()?",
-    "options": [
-      "ARRAY(formula)",
-      "ARRAYFORMULA(formula)",
-      "FORMULAARRAY(formula)",
-      "FORMULA()"
-    ],
-    "answer": [1],
-    "explanation": "The correct syntax is =ARRAYFORMULA(formula)."
-  },
-  {
-    "id": "excel_q114",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which formula returns PASS or FAIL for an entire column?",
-    "options": [
-      "=IF(B2>=50,\"PASS\",\"FAIL\")",
-      "=ARRAYFORMULA(IF(B2:B>=50,\"PASS\",\"FAIL\"))",
-      "=SUM(B2:B)",
-      "=COUNT(B2:B)"
-    ],
-    "answer": [1],
-    "explanation": "ARRAYFORMULA() processes the entire range B2:B."
-  },
-  {
-    "id": "excel_q115",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "What happens when new rows are added below an ARRAYFORMULA()?",
-    "options": [
-      "Nothing happens",
-      "The formula automatically calculates the new rows",
-      "The formula is deleted",
-      "The sheet becomes read-only"
-    ],
-    "answer": [1],
-    "explanation": "ARRAYFORMULA() automatically extends calculations to new rows."
-  },
-  {
-    "id": "excel_q116",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which symbol is commonly used to represent an entire column in Google Sheets?",
-    "options": [
-      "A1",
-      "A:A",
-      "1:A",
-      "A-1"
-    ],
-    "answer": [1],
-    "explanation": "A:A or A2:A refers to an entire column or a column starting from a specific row."
-  },
-  {
-    "id": "excel_q117",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which function is commonly combined with ARRAYFORMULA() to evaluate conditions?",
-    "options": [
-      "SUM()",
-      "IF()",
-      "COUNT()",
-      "MAX()"
-    ],
-    "answer": [1],
-    "explanation": "ARRAYFORMULA() is frequently used together with IF() for conditional calculations."
-  },
-  {
-    "id": "excel_q118",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which formula prevents blank rows from showing FAIL?",
-    "options": [
-      "=ARRAYFORMULA(IF(B2:B>=50,\"PASS\",\"FAIL\"))",
-      "=ARRAYFORMULA(IF(B2:B=\"\",\"\",IF(B2:B>=50,\"PASS\",\"FAIL\")))",
-      "=IF(B2>=50,\"PASS\",\"FAIL\")",
-      "=COUNTIF(B2:B,\">50\")"
-    ],
-    "answer": [1],
-    "explanation": "The first IF() checks for blank cells before evaluating PASS or FAIL."
-  },
-  {
-    "id": "excel_q119",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Does Microsoft Excel have an ARRAYFORMULA() function?",
-    "options": [
-      "Yes",
-      "No",
-      "Only in Excel 2016",
-      "Only in Excel 2019"
-    ],
-    "answer": [1],
-    "explanation": "Excel does not have an ARRAYFORMULA() function."
-  },
-  {
-    "id": "excel_q120",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which Excel feature automatically copies formulas to new rows?",
-    "options": [
-      "Pivot Table",
-      "Excel Table (Ctrl + T)",
-      "Chart",
-      "Freeze Panes"
-    ],
-    "answer": [1],
-    "explanation": "Excel Tables automatically extend formulas to newly added rows."
-  },
-  {
-    "id": "excel_q121",
-    "type": "MCQ",
-    "difficulty_rating": 2,
-    "question": "Which shortcut fills the same formula into all selected cells in Excel?",
-    "options": [
-      "Ctrl + D",
-      "Ctrl + Enter",
-      "Ctrl + Shift + Enter",
-      "Ctrl + F"
-    ],
-    "answer": [1],
-    "explanation": "Ctrl + Enter enters the same formula into all selected cells."
-  },
-  {
-    "id": "excel_q122",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Which Excel versions support Dynamic Array functions like FILTER() and SORT()?",
-    "options": [
-      "Excel 2010",
-      "Excel 2013",
-      "Excel 2021 and Microsoft 365",
-      "Excel 2007"
-    ],
-    "answer": [2],
-    "explanation": "Dynamic Array functions are available in Excel 2021 and Microsoft 365."
-  },
-  {
-    "id": "excel_q123",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "What is the main advantage of ARRAYFORMULA()?",
-    "options": [
-      "Makes charts colorful",
-      "Reduces the need to copy formulas manually",
-      "Deletes duplicate rows",
-      "Prints worksheets"
-    ],
-    "answer": [1],
-    "explanation": "ARRAYFORMULA() allows one formula to calculate an entire range."
-  },
-  {
-    "id": "excel_q124",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Which of the following is a Dynamic Array function in Microsoft Excel?",
-    "options": [
-      "FILTER()",
-      "VLOOKUP()",
-      "SUMIF()",
-      "ROUND()"
-    ],
-    "answer": [0],
-    "explanation": "FILTER() is one of the Dynamic Array functions introduced in Excel 365 and Excel 2021."
-  },
-  {
-    "id": "excel_q125",
-    "type": "MCQ",
-    "difficulty_rating": 3,
-    "question": "Which statement best describes ARRAYFORMULA()?",
-    "options": [
-      "It works only with numbers.",
-      "It can process an entire range using a single formula.",
-      "It creates Pivot Tables automatically.",
-      "It is used only for formatting."
-    ],
-    "answer": [1],
-    "explanation": "ARRAYFORMULA() applies one formula across multiple cells or ranges automatically."
-  }
-]
-            
+            "body": [
+              { "type": "heading", "text": "1. ARRAYFORMULA() in Google Sheets" },
+              { "type": "paragraph", "text": "ARRAYFORMULA() is a Google Sheets function that allows a single formula to process multiple rows or columns automatically. Instead of copying a formula down every row, ARRAYFORMULA() applies the formula to the entire range and automatically includes newly added rows." },
+              { "type": "heading", "text": "2. Why Use ARRAYFORMULA()?" },
+              { "type": "list", "items": ["Apply one formula to an entire column.", "No need to drag formulas.", "Automatically calculates new rows.", "Reduces manual work.", "Makes worksheets dynamic and easier to maintain."] },
+              { "type": "heading", "text": "3. Syntax" },
+              { "type": "syntax", "code": "=ARRAYFORMULA(formula)" },
+              { "type": "heading", "text": "4. Google Sheets Example" },
+              { "type": "example", "title": "Pass / Fail Result", "before": "Marks are available in cells B2:B10.", "steps": ["ARRAYFORMULA checks every value in B2:B10.", "If the mark is greater than or equal to 50, it returns PASS.", "Otherwise, it returns FAIL.", "Only one formula is required for the entire column."], "formula": "=ARRAYFORMULA(IF(B2:B10>=50,\"PASS\",\"FAIL\"))", "after": "The Result column is automatically filled for every student." },
+              { "type": "heading", "text": "5. Ignore Blank Rows" },
+              { "type": "example", "title": "Prevent Empty Rows Showing FAIL", "before": "Some rows do not contain marks.", "steps": ["Check whether the cell is blank.", "If blank, return an empty value.", "Otherwise, calculate PASS or FAIL."], "formula": "=ARRAYFORMULA(IF(B2:B10=\"\",\"\",IF(B2:B10>=50,\"PASS\",\"FAIL\")))", "after": "Blank rows remain empty." },
+              { "type": "heading", "text": "6. ARRAYFORMULA() in Microsoft Excel" },
+              { "type": "paragraph", "text": "Microsoft Excel does not provide an ARRAYFORMULA() function like Google Sheets. Similar functionality can be achieved using Excel Tables, Dynamic Array functions (Excel 2021 / Microsoft 365), or keyboard shortcuts such as Ctrl + Enter." },
+              { "type": "heading", "text": "7. Excel Alternatives" },
+              { "type": "table", "headers": ["Method", "Shortcut / Function", "Purpose"], "rows": [
+                ["Excel Table", "Ctrl + T", "Automatically copies formulas to new rows."],
+                ["Fill Multiple Cells", "Ctrl + Enter", "Applies the same formula to all selected cells."],
+                ["Fill Down", "Ctrl + D", "Copies the formula from the cell above."],
+                ["Dynamic Arrays", "FILTER(), SORT(), UNIQUE(), SEQUENCE()", "Automatically spill results into multiple cells."]
+              ] },
+              { "type": "heading", "text": "8. Google Sheets vs Microsoft Excel" },
+              { "type": "table", "title": "Comparison", "headers": ["Feature", "Google Sheets", "Microsoft Excel"], "rows": [
+                ["ARRAYFORMULA() Function", "Available", "Not Available"],
+                ["Apply Formula to Entire Column", "Automatic", "Use Excel Table (Ctrl + T)"],
+                ["Fill Multiple Cells", "Automatic", "Ctrl + Enter"],
+                ["Dynamic Array Support", "Built into ARRAYFORMULA()", "Available in Excel 2021 / Microsoft 365"],
+                ["Auto Update New Rows", "Yes", "Yes (Using Excel Tables)"],
+                ["Best Practice", "Use ARRAYFORMULA()", "Use Excel Tables + Dynamic Arrays"]
+              ] },
+              { "type": "tip", "title": "Teacher's Tip", "text": "Teach students both methods. Use ARRAYFORMULA() when working in Google Sheets. In Microsoft Excel, use Excel Tables (Ctrl + T), Ctrl + Enter, or Dynamic Array functions depending on the Excel version." },
+              { "type": "note", "text": "ARRAYFORMULA() is exclusive to Google Sheets. Although Excel does not have the same function, modern versions such as Excel 2021 and Microsoft 365 provide Dynamic Array functions that offer similar capabilities." }
+            ]
           },
-
-{
+          "questions": [
+            { "id": "excel_q111", "type": "MCQ", "difficulty_rating": 1, "question": "What is the primary purpose of ARRAYFORMULA() in Google Sheets?", "options": ["To format cells", "To apply a formula to multiple cells automatically", "To create charts", "To sort data"], "answer": [1], "explanation": "ARRAYFORMULA() applies a single formula to an entire range of cells automatically." },
+            { "id": "excel_q112", "type": "MCQ", "difficulty_rating": 1, "question": "Which application provides the ARRAYFORMULA() function?", "options": ["Microsoft Excel", "Google Sheets", "LibreOffice Calc", "WPS Spreadsheet"], "answer": [1], "explanation": "ARRAYFORMULA() is a built-in function available in Google Sheets." },
+            { "id": "excel_q113", "type": "MCQ", "difficulty_rating": 1, "question": "What is the correct syntax of ARRAYFORMULA()?", "options": ["ARRAY(formula)", "ARRAYFORMULA(formula)", "FORMULAARRAY(formula)", "FORMULA()"], "answer": [1], "explanation": "The correct syntax is =ARRAYFORMULA(formula)." },
+            { "id": "excel_q114", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula returns PASS or FAIL for an entire column?", "options": ["=IF(B2>=50,\"PASS\",\"FAIL\")", "=ARRAYFORMULA(IF(B2:B>=50,\"PASS\",\"FAIL\"))", "=SUM(B2:B)", "=COUNT(B2:B)"], "answer": [1], "explanation": "ARRAYFORMULA() processes the entire range B2:B." },
+            { "id": "excel_q115", "type": "MCQ", "difficulty_rating": 2, "question": "What happens when new rows are added below an ARRAYFORMULA()?", "options": ["Nothing happens", "The formula automatically calculates the new rows", "The formula is deleted", "The sheet becomes read-only"], "answer": [1], "explanation": "ARRAYFORMULA() automatically extends calculations to new rows." },
+            { "id": "excel_q116", "type": "MCQ", "difficulty_rating": 2, "question": "Which symbol is commonly used to represent an entire column in Google Sheets?", "options": ["A1", "A:A", "1:A", "A-1"], "answer": [1], "explanation": "A:A or A2:A refers to an entire column or a column starting from a specific row." },
+            { "id": "excel_q117", "type": "MCQ", "difficulty_rating": 2, "question": "Which function is commonly combined with ARRAYFORMULA() to evaluate conditions?", "options": ["SUM()", "IF()", "COUNT()", "MAX()"], "answer": [1], "explanation": "ARRAYFORMULA() is frequently used together with IF() for conditional calculations." },
+            { "id": "excel_q118", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula prevents blank rows from showing FAIL?", "options": ["=ARRAYFORMULA(IF(B2:B>=50,\"PASS\",\"FAIL\"))", "=ARRAYFORMULA(IF(B2:B=\"\",\"\",IF(B2:B>=50,\"PASS\",\"FAIL\")))", "=IF(B2>=50,\"PASS\",\"FAIL\")", "=COUNTIF(B2:B,\">50\")"], "answer": [1], "explanation": "The first IF() checks for blank cells before evaluating PASS or FAIL." },
+            { "id": "excel_q119", "type": "MCQ", "difficulty_rating": 2, "question": "Does Microsoft Excel have an ARRAYFORMULA() function?", "options": ["Yes", "No", "Only in Excel 2016", "Only in Excel 2019"], "answer": [1], "explanation": "Excel does not have an ARRAYFORMULA() function." },
+            { "id": "excel_q120", "type": "MCQ", "difficulty_rating": 2, "question": "Which Excel feature automatically copies formulas to new rows?", "options": ["Pivot Table", "Excel Table (Ctrl + T)", "Chart", "Freeze Panes"], "answer": [1], "explanation": "Excel Tables automatically extend formulas to newly added rows." },
+            { "id": "excel_q121", "type": "MCQ", "difficulty_rating": 2, "question": "Which shortcut fills the same formula into all selected cells in Excel?", "options": ["Ctrl + D", "Ctrl + Enter", "Ctrl + Shift + Enter", "Ctrl + F"], "answer": [1], "explanation": "Ctrl + Enter enters the same formula into all selected cells." },
+            { "id": "excel_q122", "type": "MCQ", "difficulty_rating": 3, "question": "Which Excel versions support Dynamic Array functions like FILTER() and SORT()?", "options": ["Excel 2010", "Excel 2013", "Excel 2021 and Microsoft 365", "Excel 2007"], "answer": [2], "explanation": "Dynamic Array functions are available in Excel 2021 and Microsoft 365." },
+            { "id": "excel_q123", "type": "MCQ", "difficulty_rating": 3, "question": "What is the main advantage of ARRAYFORMULA()?", "options": ["Makes charts colorful", "Reduces the need to copy formulas manually", "Deletes duplicate rows", "Prints worksheets"], "answer": [1], "explanation": "ARRAYFORMULA() allows one formula to calculate an entire range." },
+            { "id": "excel_q124", "type": "MCQ", "difficulty_rating": 3, "question": "Which of the following is a Dynamic Array function in Microsoft Excel?", "options": ["FILTER()", "VLOOKUP()", "SUMIF()", "ROUND()"], "answer": [0], "explanation": "FILTER() is one of the Dynamic Array functions introduced in Excel 365 and Excel 2021." },
+            { "id": "excel_q125", "type": "MCQ", "difficulty_rating": 3, "question": "Which statement best describes ARRAYFORMULA()?", "options": ["It works only with numbers.", "It can process an entire range using a single formula.", "It creates Pivot Tables automatically.", "It is used only for formatting."], "answer": [1], "explanation": "ARRAYFORMULA() applies one formula across multiple cells or ranges automatically." }
+          ]
+        },
+        {
           "id": "excel_u2_c2",
           "title": "Day 2: IF() and Nested IF() and IFS()",
           "concept": {
             "title": "Function: IF(), Nested IF() and IFS()",
             "body": [
-              {
-                "type": "heading",
-                "text": "1. What is a Condition?"
-              },
-              {
-                "type": "paragraph",
-                "text": "A condition is a test that checks whether something is TRUE or FALSE. Excel evaluates the condition first and then performs different actions based on the result."
-              },
-              
-              {
-                "type": "note",
-                "text": "Think of IF() as asking a question. If the answer is TRUE, Excel performs one action. Otherwise, it performs another action."
-              },
-              {
-                "type": "heading",
-                "text": "2. Real-Life Examples"
-              },
-              {
-                "type": "table",
-                "headers":[
-                  "Situation",
-                  "Condition",
-                  "TRUE",
-                  "FALSE"
-                ],
-                "rows":[
-                  [
-                    "Exam Result",
-                    "Marks >= 35",
-                    "Pass",
-                    "Fail"
-                  ],
-                  [
-                    "Voting",
-                    "Age >= 18",
-                    "Eligible",
-                    "Not Eligible"
-                  ],
-                  [
-                    "Salary Bonus",
-                    "Sales >= 100000",
-                    "Bonus",
-                    "No Bonus"
-                  ],
-                  [
-                    "Attendance",
-                    "Attendance >= 75%",
-                    "Allowed",
-                    "Not Allowed"
-                  ]
-                ]
-              },
-              {
-              "type":"heading",
-              "text":"3. Comparison Operators"
-              },
-              {
-                "type":"table",
-                "headers":[
-                  "Operator",
-                  "Meaning",
-                  "Example"
-                ],
-                "rows":[
-                  [">","Greater Than","80 > 50"],
-                  ["<","Less Than","20 < 35"],
-                  [">=","Greater Than or Equal","35 >= 35"],
-                  ["<=","Less Than or Equal","60 <= 100"],
-                  ["=","Equal To","A1=100"],
-                  ["<>","Not Equal To","A1<>100"]
-                ]
-              },
-              {
-              "type":"heading",
-              "text":"4. IF() Function"
-            },
-            {
-              "type":"paragraph",
-              "text":"The IF() function checks whether a condition is TRUE or FALSE. Depending on the result, Excel returns one value if TRUE and another value if FALSE."
-            },
-            {
-              "type":"syntax",
-              "code":"Syntax:\n\n=IF(logical_test, value_if_true, value_if_false)"
-            },
-            {
-              "type":"table",
-              "headers":[
-                "Argument",
-                "Meaning"
-              ],
-              "rows":[
-                ["logical_test","Condition to check"],
-                ["value_if_true","Returned when TRUE"],
-                ["value_if_false","Returned when FALSE"]
-              ]
-            },
-            {
-            "type":"table",
-            "title":"Student Result Calculation",
-            "headers":[
-              "",
-              "A",              
-              "B",
-              "C"
-            ],
-            "rows":[
-              [
-              1,
-              "Roll No",              
-              "Total Marks",
-              "Result"
-            ],
-              [2,101,95,"=IF(B2>=35,\"Pass\",\"Fail\")"],
-              [3,102,82,""],
-              [4,103,74,""],
-              [5,104,68,""],
-              [6,105,58,""],
-              [7,106,46,""],
-              [8,107,32,""]
+              { "type": "heading", "text": "1. What is a Condition?" },
+              { "type": "paragraph", "text": "A condition is a test that checks whether something is TRUE or FALSE. Excel evaluates the condition first and then performs different actions based on the result." },
+              { "type": "note", "text": "Think of IF() as asking a question. If the answer is TRUE, Excel performs one action. Otherwise, it performs another action." },
+              { "type": "heading", "text": "2. Real-Life Examples" },
+              { "type": "table", "headers": ["Situation", "Condition", "TRUE", "FALSE"], "rows": [
+                ["Exam Result", "Marks >= 35", "Pass", "Fail"],
+                ["Voting", "Age >= 18", "Eligible", "Not Eligible"],
+                ["Salary Bonus", "Sales >= 100000", "Bonus", "No Bonus"],
+                ["Attendance", "Attendance >= 75%", "Allowed", "Not Allowed"]
+              ] },
+              { "type": "heading", "text": "3. Comparison Operators" },
+              { "type": "table", "headers": ["Operator", "Meaning", "Example"], "rows": [
+                [">", "Greater Than", "80 > 50"],
+                ["<", "Less Than", "20 < 35"],
+                [">=", "Greater Than or Equal", "35 >= 35"],
+                ["<=", "Less Than or Equal", "60 <= 100"],
+                ["=", "Equal To", "A1=100"],
+                ["<>", "Not Equal To", "A1<>100"]
+              ] },
+              { "type": "heading", "text": "4. IF() Function" },
+              { "type": "paragraph", "text": "The IF() function checks whether a condition is TRUE or FALSE. Depending on the result, Excel returns one value if TRUE and another value if FALSE." },
+              { "type": "syntax", "code": "Syntax:\n\n=IF(logical_test, value_if_true, value_if_false)" },
+              { "type": "table", "headers": ["Argument", "Meaning"], "rows": [["logical_test", "Condition to check"], ["value_if_true", "Returned when TRUE"], ["value_if_false", "Returned when FALSE"]] },
+              { "type": "table", "title": "Student Result Calculation", "headers": ["", "A", "B", "C"], "rows": [
+                [1, "Roll No", "Total Marks", "Result"],
+                [2, 101, 95, "=IF(B2>=35,\"Pass\",\"Fail\")"],
+                [3, 102, 82, ""],
+                [4, 103, 74, ""],
+                [5, 104, 68, ""],
+                [6, 105, 58, ""],
+                [7, 106, 46, ""],
+                [8, 107, 32, ""]
+              ] },
+              { "type": "example", "title": "Pass or Fail", "before": "Student Marks = 72", "steps": ["Step 1: Check whether marks are greater than or equal to 35.", "Step 2: If TRUE, return Pass.", "Step 3: Otherwise return Fail.", "Formula =IF(B2>=35,\"Pass\",\"Fail\")"], "after": "Result = Pass" },
+              { "type": "heading", "text": "5. Nested IF() Function" },
+              { "type": "paragraph", "text": "Nested IF means placing one IF() function inside another IF() function to test multiple conditions." },
+              { "type": "syntax", "code": "=IF(C2>=90,\"A+\",IF(C2>=80,\"A\",IF(C2>=70,\"B\",IF(C2>=60,\"C\",IF(C2>=50,\"D\",IF(C2>=35,\"E\",\"Fail\"))))))" },
+              { "type": "table", "title": "Student Grade Calculation", "headers": ["Roll No", "Student", "Total Marks", "Grade"], "rows": [
+                [101, "Student-1", 95, ""],
+                [102, "Student-2", 82, ""],
+                [103, "Student-3", 74, ""],
+                [104, "Student-4", 68, ""],
+                [105, "Student-5", 58, ""],
+                [106, "Student-6", 46, ""],
+                [107, "Student-7", 32, ""]
+              ] },
+              { "type": "table", "title": "Grade Criteria", "headers": ["Marks", "Grade"], "rows": [
+                ["90 - 100", "A+"],
+                ["80 - 89", "A"],
+                ["70 - 79", "B"],
+                ["60 - 69", "C"],
+                ["50 - 59", "D"],
+                ["35 - 49", "E"],
+                ["Below 35", "Fail"]
+              ] },
+              { "type": "example", "title": "Nested IF Example", "before": "Marks = 82", "steps": ["Is 82 >= 90? No", "Is 82 >= 80? Yes", "Return Grade A", "Remaining conditions are skipped"], "after": "Grade = A" },
+              { "type": "exercise", "title": "Practice Exercise", "steps": ["Enter the sample student marks.", "Write the IF() formula to display Pass or Fail.", "Create the Nested IF() formula for Grade.", "Copy the formula to remaining students.", "Verify the grade for every student."] },
+              { "type": "exercise", "title": "Use the IF() Function to Determine the Student's Class", "description": "Write a Nested IF() formula to classify students as First Class, Second Class, Third Class, or '-' based on their percentage." },
+              { "type": "table", "title": "Student Marks and Classification", "headers": ["Name", "Maths", "Physics", "Chemistry", "Total Marks (Out of 300)", "Percentage", "Result"], "rows": [
+                ["Muthu 1", "85", "78", "90", "253", "84%", "Third Class"],
+                ["Muthu 2", "92", "88", "94", "274", "91%", "First Class"],
+                ["Muthu 3", "78", "82", "80", "240", "80%", "Third Class"],
+                ["Muthu 4", "90", "85", "88", "263", "88%", "Second Class"],
+                ["Muthu 5", "75", "80", "77", "232", "77%", "-"]
+              ] },
+              { "type": "heading", "text": "Formula" },
+              { "type": "syntax", "code": "=IF(F2>=90%,\"First Class\",IF(F2>=85%,\"Second Class\",IF(F2>=80%,\"Third Class\",\"-\")))" },
+              { "type": "heading", "text": "How the Formula Works" },
+              { "type": "steps", "title": "Execution Flow", "steps": [
+                "Step 1: Excel checks whether the Percentage is greater than or equal to 90%.",
+                "If TRUE, Excel returns \"First Class\" and stops checking the remaining conditions.",
+                "If FALSE, Excel checks whether the Percentage is greater than or equal to 85%.",
+                "If TRUE, Excel returns \"Second Class\" and stops.",
+                "If FALSE, Excel checks whether the Percentage is greater than or equal to 80%.",
+                "If TRUE, Excel returns \"Third Class\".",
+                "If none of the above conditions are TRUE, Excel returns \"-\"."
+              ] },
+              { "type": "steps", "title": "Decision Flow", "steps": [
+                "Percentage ≥ 90% ? → First Class",
+                "Else → Percentage ≥ 85% ? → Second Class",
+                "Else → Percentage ≥ 80% ? → Third Class",
+                "Else → Return \"-\""
+              ] },
+              { "type": "example", "title": "Example 1 (88%)", "before": "Percentage = 88%", "steps": ["Is 88% ≥ 90%? → No", "Is 88% ≥ 85%? → Yes", "Return \"Second Class\".", "Excel stops checking further conditions."], "after": "Result = Second Class" },
+              { "type": "example", "title": "Example 2 (77%)", "before": "Percentage = 77%", "steps": ["Is 77% ≥ 90%? → No", "Is 77% ≥ 85%? → No", "Is 77% ≥ 80%? → No", "Return \"-\"."], "after": "Result = -" },
+              { "type": "table", "title": "Classification Rules", "headers": ["Percentage", "Classification"], "rows": [
+                ["90% and Above", "First Class"],
+                ["85% to 89.99%", "Second Class"],
+                ["80% to 84.99%", "Third Class"],
+                ["Below 80%", "-"]
+              ] },
+              { "type": "tip", "title": "Important Note", "text": "Nested IF() evaluates conditions from left to right. As soon as a condition is TRUE, Excel returns the corresponding result and ignores all remaining IF() conditions." }
             ]
           },
-
-            {
-              "type":"example",
-              "title":"Pass or Fail",
-              "before":"Student Marks = 72",
-              "steps":[
-                "Step 1: Check whether marks are greater than or equal to 35.",
-                "Step 2: If TRUE, return Pass.",
-                "Step 3: Otherwise return Fail.",
-                "Formula =IF(B2>=35,\"Pass\",\"Fail\")"
-              ],
-              "after":"Result = Pass"
-            },
-            {
-              "type":"heading",
-              "text":"5. Nested IF() Function"
-            },
-            {
-              "type":"paragraph",
-              "text":"Nested IF means placing one IF() function inside another IF() function to test multiple conditions."
-            },
-            {
-              "type":"syntax",
-              "code":"=IF(C2>=90,\"A+\",IF(C2>=80,\"A\",IF(C2>=70,\"B\",IF(C2>=60,\"C\",IF(C2>=50,\"D\",IF(C2>=35,\"E\",\"Fail\"))))))"
-            },
-            {
-              "type":"table",
-              "title":"Student Grade Calculation",
-              "headers":[
-                "Roll No",
-                "Student",
-                "Total Marks",
-                "Grade"
-              ],
-              "rows":[
-                [101,"Student-1",95,""],
-                [102,"Student-2",82,""],
-                [103,"Student-3",74,""],
-                [104,"Student-4",68,""],
-                [105,"Student-5",58,""],
-                [106,"Student-6",46,""],
-                [107,"Student-7",32,""]
-              ]
-            },
-            {
-              "type":"table",
-              "title":"Grade Criteria",
-              "headers":[
-                "Marks",
-                "Grade"
-              ],
-              "rows":[
-                ["90 - 100","A+"],
-                ["80 - 89","A"],
-                ["70 - 79","B"],
-                ["60 - 69","C"],
-                ["50 - 59","D"],
-                ["35 - 49","E"],
-                ["Below 35","Fail"]
-              ]
-            },
-            {
-              "type":"example",
-              "title":"Nested IF Example",
-              "before":"Marks = 82",
-              "steps":[
-                "Is 82 >= 90? No",
-                "Is 82 >= 80? Yes",
-                "Return Grade A",
-                "Remaining conditions are skipped"
-              ],
-              "after":"Grade = A"
-            },
-            {
-              "type":"exercise",
-              "title":"Practice Exercise",
-              "steps":[
-                "Enter the sample student marks.",
-                "Write the IF() formula to display Pass or Fail.",
-                "Create the Nested IF() formula for Grade.",
-                "Copy the formula to remaining students.",
-                "Verify the grade for every student."
-              ]
-            },
-            {
-  "type": "exercise",
-  "title": "Use the IF() Function to Determine the Students Class",
-  "description": "Write a Nested IF() formula to classify students as First Class, Second Class, Third Class, or '-' based on their percentage."
-},
-{
-  "type": "table",
-  "title": "Student Marks and Classification",
-  "headers": [
-    "Name",
-    "Maths",
-    "Physics",
-    "Chemistry",
-    "Total Marks (Out of 300)",
-    "Percentage",
-    "Result"
-  ],
-  "rows": [
-    [
-      "Muthu 1",
-      "85",
-      "78",
-      "90",
-      "253",
-      "84%",
-      "Third Class"
-    ],
-    [
-      "Muthu 2",
-      "92",
-      "88",
-      "94",
-      "274",
-      "91%",
-      "First Class"
-    ],
-    [
-      "Muthu 3",
-      "78",
-      "82",
-      "80",
-      "240",
-      "80%",
-      "Third Class"
-    ],
-    [
-      "Muthu 4",
-      "90",
-      "85",
-      "88",
-      "263",
-      "88%",
-      "Second Class"
-    ],
-    [
-      "Muthu 5",
-      "75",
-      "80",
-      "77",
-      "232",
-      "77%",
-      "-"
-    ]
-  ]
-},
-{
-  "type": "heading",
-  "text": "Formula"
-},
-{
-  "type": "syntax",
-  "code": "=IF(F2>=90%,\"First Class\",IF(F2>=85%,\"Second Class\",IF(F2>=80%,\"Third Class\",\"-\")))"
-},
-{
-  "type": "heading",
-  "text": "How the Formula Works"
-},
-{
-  "type": "steps",
-  "title": "Execution Flow",
-  "steps": [
-    "Step 1: Excel checks whether the Percentage is greater than or equal to 90%.",
-    "If TRUE, Excel returns \"First Class\" and stops checking the remaining conditions.",
-    "If FALSE, Excel checks whether the Percentage is greater than or equal to 85%.",
-    "If TRUE, Excel returns \"Second Class\" and stops.",
-    "If FALSE, Excel checks whether the Percentage is greater than or equal to 80%.",
-    "If TRUE, Excel returns \"Third Class\".",
-    "If none of the above conditions are TRUE, Excel returns \"-\"."
-  ]
-},
-{
-  "type": "steps",
-  "title": "Decision Flow",
-  "steps": [
-    "Percentage ≥ 90% ? → First Class",
-    "Else → Percentage ≥ 85% ? → Second Class",
-    "Else → Percentage ≥ 80% ? → Third Class",
-    "Else → Return \"-\""
-  ]
-},
-{
-  "type": "example",
-  "title": "Example 1 (88%)",
-  "before": "Percentage = 88%",
-  "steps": [
-    "Is 88% ≥ 90%? → No",
-    "Is 88% ≥ 85%? → Yes",
-    "Return \"Second Class\".",
-    "Excel stops checking further conditions."
-  ],
-  "after": "Result = Second Class"
-},
-{
-  "type": "example",
-  "title": "Example 2 (77%)",
-  "before": "Percentage = 77%",
-  "steps": [
-    "Is 77% ≥ 90%? → No",
-    "Is 77% ≥ 85%? → No",
-    "Is 77% ≥ 80%? → No",
-    "Return \"-\"."
-  ],
-  "after": "Result = -"
-},
-{
-  "type": "table",
-  "title": "Classification Rules",
-  "headers": [
-    "Percentage",
-    "Classification"
-  ],
-  "rows": [
-    [
-      "90% and Above",
-      "First Class"
-    ],
-    [
-      "85% to 89.99%",
-      "Second Class"
-    ],
-    [
-      "80% to 84.99%",
-      "Third Class"
-    ],
-    [
-      "Below 80%",
-      "-"
-    ]
-  ]
-},
-{
-  "type": "tip",
-  "title": "Important Note",
-  "text": "Nested IF() evaluates conditions from left to right. As soon as a condition is TRUE, Excel returns the corresponding result and ignores all remaining IF() conditions."
-}
-            
-
-                  ]
-                },
-                "questions": 
-                [
-                    {
-                "id": "excel_q096",
-                "type": "MCQ",
-                "difficulty_rating": 1,
-                "question": "What is the primary purpose of the IF() function in Excel?",
-                "options": [
-                  "To add numbers",
-                  "To test a condition and return different results",
-                  "To count cells",
-                  "To format worksheets"
-                ],
-                "answer": [1],
-                "explanation": "The IF() function checks whether a condition is TRUE or FALSE and returns one value if TRUE and another if FALSE."
-              },
-              {
-                "id": "excel_q097",
-                "type": "MCQ",
-                "difficulty_rating": 1,
-                "question": "Which symbol is commonly used to test whether two values are equal in an IF() function?",
-                "options": [
-                  ">",
-                  "<",
-                  "=",
-                  "<>"
-                ],
-                "answer": [2],
-                "explanation": "The '=' operator checks whether two values are equal."
-              },
-              {
-                "id": "excel_q098",
-                "type": "MCQ",
-                "difficulty_rating": 1,
-                "question": "Which formula displays 'Pass' if marks are 35 or above?",
-                "options": [
-                  "=IF(B2>=35,\"Pass\",\"Fail\")",
-                  "=SUM(B2>=35)",
-                  "=COUNT(B2)",
-                  "=AVERAGE(B2)"
-                ],
-                "answer": [0],
-                "explanation": "The IF() function evaluates the condition and returns Pass or Fail."
-              },
-              {
-                "id": "excel_q099",
-                "type": "MCQ",
-                "difficulty_rating": 1,
-                "question": "What does the logical test in an IF() function return?",
-                "options": [
-                  "Number",
-                  "TRUE or FALSE",
-                  "Text only",
-                  "Formula"
-                ],
-                "answer": [1],
-                "explanation": "The logical test always evaluates to either TRUE or FALSE."
-              },
-              {
-                "id": "excel_q100",
-                "type": "MCQ",
-                "difficulty_rating": 1,
-                "question": "Which comparison operator means 'Greater Than or Equal To'?",
-                "options": [
-                  ">",
-                  "<=",
-                  ">=",
-                  "="
-                ],
-                "answer": [2],
-                "explanation": "The operator '>=' checks whether a value is greater than or equal to another value."
-              },
-              {
-                "id": "excel_q101",
-                "type": "MCQ",
-                "difficulty_rating": 2,
-                "question": "What will =IF(50>=35,\"Pass\",\"Fail\") return?",
-                "options": [
-                  "Fail",
-                  "TRUE",
-                  "Pass",
-                  "35"
-                ],
-                "answer": [2],
-                "explanation": "Since 50 is greater than 35, the formula returns 'Pass'."
-              },
-              {
-                "id": "excel_q102",
-                "type": "MCQ",
-                "difficulty_rating": 2,
-                "question": "What will =IF(20>=35,\"Pass\",\"Fail\") return?",
-                "options": [
-                  "TRUE",
-                  "Pass",
-                  "20",
-                  "Fail"
-                ],
-                "answer": [3],
-                "explanation": "20 is less than 35, so the condition is FALSE and Excel returns 'Fail'."
-              },
-              {
-                "id": "excel_q103",
-                "type": "MCQ",
-                "difficulty_rating": 2,
-                "question": "Nested IF() is mainly used to:",
-                "options": [
-                  "Add multiple numbers",
-                  "Check multiple conditions",
-                  "Print worksheets",
-                  "Format cells"
-                ],
-                "answer": [1],
-                "explanation": "Nested IF() evaluates multiple conditions one after another."
-              }
-                ]
-              }
-
-
+          "questions": [
+            { "id": "excel_q096", "type": "MCQ", "difficulty_rating": 1, "question": "What is the primary purpose of the IF() function in Excel?", "options": ["To add numbers", "To test a condition and return different results", "To count cells", "To format worksheets"], "answer": [1], "explanation": "The IF() function checks whether a condition is TRUE or FALSE and returns one value if TRUE and another if FALSE." },
+            { "id": "excel_q097", "type": "MCQ", "difficulty_rating": 1, "question": "Which symbol is commonly used to test whether two values are equal in an IF() function?", "options": [">", "<", "=", "<>"], "answer": [2], "explanation": "The '=' operator checks whether two values are equal." },
+            { "id": "excel_q098", "type": "MCQ", "difficulty_rating": 1, "question": "Which formula displays 'Pass' if marks are 35 or above?", "options": ["=IF(B2>=35,\"Pass\",\"Fail\")", "=SUM(B2>=35)", "=COUNT(B2)", "=AVERAGE(B2)"], "answer": [0], "explanation": "The IF() function evaluates the condition and returns Pass or Fail." },
+            { "id": "excel_q099", "type": "MCQ", "difficulty_rating": 1, "question": "What does the logical test in an IF() function return?", "options": ["Number", "TRUE or FALSE", "Text only", "Formula"], "answer": [1], "explanation": "The logical test always evaluates to either TRUE or FALSE." },
+            { "id": "excel_q100", "type": "MCQ", "difficulty_rating": 1, "question": "Which comparison operator means 'Greater Than or Equal To'?", "options": [">", "<=", ">=", "="], "answer": [2], "explanation": "The operator '>=' checks whether a value is greater than or equal to another value." },
+            { "id": "excel_q101", "type": "MCQ", "difficulty_rating": 2, "question": "What will =IF(50>=35,\"Pass\",\"Fail\") return?", "options": ["Fail", "TRUE", "Pass", "35"], "answer": [2], "explanation": "Since 50 is greater than 35, the formula returns 'Pass'." },
+            { "id": "excel_q102", "type": "MCQ", "difficulty_rating": 2, "question": "What will =IF(20>=35,\"Pass\",\"Fail\") return?", "options": ["TRUE", "Pass", "20", "Fail"], "answer": [3], "explanation": "20 is less than 35, so the condition is FALSE and Excel returns 'Fail'." },
+            { "id": "excel_q103", "type": "MCQ", "difficulty_rating": 2, "question": "Nested IF() is mainly used to:", "options": ["Add multiple numbers", "Check multiple conditions", "Print worksheets", "Format cells"], "answer": [1], "explanation": "Nested IF() evaluates multiple conditions one after another." }
+          ]
+        }
       ]
     }
-
-
   ]
 }
