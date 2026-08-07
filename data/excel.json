@@ -2007,13 +2007,222 @@
                     "type": "note",
                     "text": "ARRAYFORMULA() is exclusive to Google Sheets. Although Excel does not have the same function, modern versions such as Excel 2021 and Microsoft 365 provide Dynamic Array functions that offer similar capabilities."
                   }
-                ]
+                ],
+                "questions":[
+  {
+    "id": "excel_q111",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "What is the primary purpose of ARRAYFORMULA() in Google Sheets?",
+    "options": [
+      "To format cells",
+      "To apply a formula to multiple cells automatically",
+      "To create charts",
+      "To sort data"
+    ],
+    "answer": [1],
+    "explanation": "ARRAYFORMULA() applies a single formula to an entire range of cells automatically."
+  },
+  {
+    "id": "excel_q112",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which application provides the ARRAYFORMULA() function?",
+    "options": [
+      "Microsoft Excel",
+      "Google Sheets",
+      "LibreOffice Calc",
+      "WPS Spreadsheet"
+    ],
+    "answer": [1],
+    "explanation": "ARRAYFORMULA() is a built-in function available in Google Sheets."
+  },
+  {
+    "id": "excel_q113",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "What is the correct syntax of ARRAYFORMULA()?",
+    "options": [
+      "ARRAY(formula)",
+      "ARRAYFORMULA(formula)",
+      "FORMULAARRAY(formula)",
+      "FORMULA()"
+    ],
+    "answer": [1],
+    "explanation": "The correct syntax is =ARRAYFORMULA(formula)."
+  },
+  {
+    "id": "excel_q114",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula returns PASS or FAIL for an entire column?",
+    "options": [
+      "=IF(B2>=50,\"PASS\",\"FAIL\")",
+      "=ARRAYFORMULA(IF(B2:B>=50,\"PASS\",\"FAIL\"))",
+      "=SUM(B2:B)",
+      "=COUNT(B2:B)"
+    ],
+    "answer": [1],
+    "explanation": "ARRAYFORMULA() processes the entire range B2:B."
+  },
+  {
+    "id": "excel_q115",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What happens when new rows are added below an ARRAYFORMULA()?",
+    "options": [
+      "Nothing happens",
+      "The formula automatically calculates the new rows",
+      "The formula is deleted",
+      "The sheet becomes read-only"
+    ],
+    "answer": [1],
+    "explanation": "ARRAYFORMULA() automatically extends calculations to new rows."
+  },
+  {
+    "id": "excel_q116",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which symbol is commonly used to represent an entire column in Google Sheets?",
+    "options": [
+      "A1",
+      "A:A",
+      "1:A",
+      "A-1"
+    ],
+    "answer": [1],
+    "explanation": "A:A or A2:A refers to an entire column or a column starting from a specific row."
+  },
+  {
+    "id": "excel_q117",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which function is commonly combined with ARRAYFORMULA() to evaluate conditions?",
+    "options": [
+      "SUM()",
+      "IF()",
+      "COUNT()",
+      "MAX()"
+    ],
+    "answer": [1],
+    "explanation": "ARRAYFORMULA() is frequently used together with IF() for conditional calculations."
+  },
+  {
+    "id": "excel_q118",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula prevents blank rows from showing FAIL?",
+    "options": [
+      "=ARRAYFORMULA(IF(B2:B>=50,\"PASS\",\"FAIL\"))",
+      "=ARRAYFORMULA(IF(B2:B=\"\",\"\",IF(B2:B>=50,\"PASS\",\"FAIL\")))",
+      "=IF(B2>=50,\"PASS\",\"FAIL\")",
+      "=COUNTIF(B2:B,\">50\")"
+    ],
+    "answer": [1],
+    "explanation": "The first IF() checks for blank cells before evaluating PASS or FAIL."
+  },
+  {
+    "id": "excel_q119",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Does Microsoft Excel have an ARRAYFORMULA() function?",
+    "options": [
+      "Yes",
+      "No",
+      "Only in Excel 2016",
+      "Only in Excel 2019"
+    ],
+    "answer": [1],
+    "explanation": "Excel does not have an ARRAYFORMULA() function."
+  },
+  {
+    "id": "excel_q120",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which Excel feature automatically copies formulas to new rows?",
+    "options": [
+      "Pivot Table",
+      "Excel Table (Ctrl + T)",
+      "Chart",
+      "Freeze Panes"
+    ],
+    "answer": [1],
+    "explanation": "Excel Tables automatically extend formulas to newly added rows."
+  },
+  {
+    "id": "excel_q121",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which shortcut fills the same formula into all selected cells in Excel?",
+    "options": [
+      "Ctrl + D",
+      "Ctrl + Enter",
+      "Ctrl + Shift + Enter",
+      "Ctrl + F"
+    ],
+    "answer": [1],
+    "explanation": "Ctrl + Enter enters the same formula into all selected cells."
+  },
+  {
+    "id": "excel_q122",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which Excel versions support Dynamic Array functions like FILTER() and SORT()?",
+    "options": [
+      "Excel 2010",
+      "Excel 2013",
+      "Excel 2021 and Microsoft 365",
+      "Excel 2007"
+    ],
+    "answer": [2],
+    "explanation": "Dynamic Array functions are available in Excel 2021 and Microsoft 365."
+  },
+  {
+    "id": "excel_q123",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "What is the main advantage of ARRAYFORMULA()?",
+    "options": [
+      "Makes charts colorful",
+      "Reduces the need to copy formulas manually",
+      "Deletes duplicate rows",
+      "Prints worksheets"
+    ],
+    "answer": [1],
+    "explanation": "ARRAYFORMULA() allows one formula to calculate an entire range."
+  },
+  {
+    "id": "excel_q124",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which of the following is a Dynamic Array function in Microsoft Excel?",
+    "options": [
+      "FILTER()",
+      "VLOOKUP()",
+      "SUMIF()",
+      "ROUND()"
+    ],
+    "answer": [0],
+    "explanation": "FILTER() is one of the Dynamic Array functions introduced in Excel 365 and Excel 2021."
+  },
+  {
+    "id": "excel_q125",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which statement best describes ARRAYFORMULA()?",
+    "options": [
+      "It works only with numbers.",
+      "It can process an entire range using a single formula.",
+      "It creates Pivot Tables automatically.",
+      "It is used only for formatting."
+    ],
+    "answer": [1],
+    "explanation": "ARRAYFORMULA() applies one formula across multiple cells or ranges automatically."
+  }
+]
             
           }
         },
-
-        
-
 
 {
           "id": "excel_u2_c2",
