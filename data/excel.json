@@ -1846,8 +1846,7 @@
           "title": "ARRAYFORMULA",
           "concept": {
             "title": "ARRAYFORMULA",
-            "body": [
-              [
+            "body": [              
                   {
                     "type": "heading",
                     "text": "1. ARRAYFORMULA() in Google Sheets"
@@ -1855,12 +1854,7 @@
                   {
                     "type": "paragraph",
                     "text": "ARRAYFORMULA() is a Google Sheets function that allows a single formula to process multiple rows or columns automatically. Instead of copying a formula down every row, ARRAYFORMULA() applies the formula to the entire range and automatically includes newly added rows."
-                  },
-                  {
-                    "type": "image",
-                    "title": "Google Sheets ARRAYFORMULA",
-                    "path": "/imagepdf/day10/arrayformula-google.jpeg"
-                  },
+                  },                  
                   {
                     "type": "heading",
                     "text": "2. Why Use ARRAYFORMULA()?"
@@ -2014,7 +2008,7 @@
                     "text": "ARRAYFORMULA() is exclusive to Google Sheets. Although Excel does not have the same function, modern versions such as Excel 2021 and Microsoft 365 provide Dynamic Array functions that offer similar capabilities."
                   }
                 ]
-            ]
+            
           }
         },
 
