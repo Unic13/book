@@ -541,7 +541,7 @@
           ]
         },
         {
-          "id": "excel_u2_ref",
+          "id": "excel_u2_c2",
           "title": "ARRAYFORMULA",
           "concept": {
             "title": "ARRAYFORMULA",
@@ -597,10 +597,10 @@
           ]
         },
         {
-          "id": "excel_u2_c2",
-          "title": "Day 2: IF() and Nested IF() and IFS()",
+          "id": "excel_u2_c3",
+          "title": "Day 2: IF() and Nested IF()",
           "concept": {
-            "title": "Function: IF(), Nested IF() and IFS()",
+            "title": "Function: IF(), Nested IF()",
             "body": [
               { "type": "heading", "text": "1. What is a Condition?" },
               { "type": "paragraph", "text": "A condition is a test that checks whether something is TRUE or FALSE. Excel evaluates the condition first and then performs different actions based on the result." },
