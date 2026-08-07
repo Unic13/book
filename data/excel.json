@@ -627,6 +627,13 @@
                 ["=", "Equal To", "A1=100"],
                 ["<>", "Not Equal To", "A1<>100"]
               ] },
+              {
+                "type": "video",
+                "title": "Comparison Operators",
+                "url": "https://youtu.be/ixzapYnPZXg",
+                "start": ""
+              },
+              
               { "type": "heading", "text": "4. IF() Function" },
               { "type": "paragraph", "text": "The IF() function checks whether a condition is TRUE or FALSE. Depending on the result, Excel returns one value if TRUE and another value if FALSE." },
               { "type": "syntax", "code": "Syntax:\n\n=IF(logical_test, value_if_true, value_if_false)" },
