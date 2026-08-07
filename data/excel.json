@@ -47,7 +47,7 @@
               { "type": "heading", "text": "9. Common Keyboard Shortcuts" },
               { "type": "table", "headers": ["Shortcut", "Purpose"], "rows": [["Ctrl + N", "New Workbook"], ["Ctrl + O", "Open Workbook"], ["Ctrl + S", "Save Workbook"], ["Ctrl + C", "Copy"], ["Ctrl + V", "Paste"], ["Ctrl + X", "Cut"], ["Ctrl + Z", "Undo"], ["Ctrl + Y", "Redo"], ["Ctrl + B", "Bold"]] },
               {
-                "type": "steps",
+                "type": "exercise",
                 "title": "How to Create and Save a New Workbook",
                 "steps": [
                   "Open Microsoft Excel.",
