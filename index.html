@@ -230,7 +230,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 .steps-list{list-style:none;counter-reset:step-counter;padding:0;margin:0;position:relative}
 .steps-list::before{content:'';position:absolute;left:15px;top:6px;bottom:6px;width:2px;background:#e5e7eb}
 .steps-item{counter-increment:step-counter;display:flex;align-items:flex-start;gap:14px;padding:9px 0;position:relative}
-.steps-number{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;z-index:1}
+.steps-number{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;z-index:1}
 .steps-number::before{content:counter(step-counter)}
 .steps-text{font-size:14.5px;line-height:1.75;color:#374151;padding-top:5px}
 
@@ -650,32 +650,6 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
   .btn{padding:10px 12px;font-size:12.5px}
   .concept-title{font-size:14.5px}
   .q-text{font-size:14px}
-}
-/* ===============================
-   Example Block
-================================= */
-.concept-example{
-    margin:20px 0;   
-    border-left:1px solid #2563eb;
-    border-radius:10px;    
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,.05);
-    padding:3px;
-}
-
-/* Steps */
-.example-box .steps-list{
-    margin:4px 0;
-    padding-left:22px;
-}
-
-.example-box .steps-item{
-    margin-bottom:4px;
-}
-
-.example-box .steps-text{
-    display:inline-block;
-    line-height:1;
 }
 
 /* Formula Highlight */
