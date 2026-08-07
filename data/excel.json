@@ -598,9 +598,9 @@
         },
         {
           "id": "excel_u2_c3",
-          "title": "Day 2: IF() and Nested IF()",
+          "title": "Day 2: IF() and Nested IF() and IFS()",
           "concept": {
-            "title": "Function: IF(), Nested IF()",
+            "title": "Function: IF(), Nested IF() and IFS()",
             "body": [
               { "type": "heading", "text": "1. What is a Condition?" },
               { "type": "paragraph", "text": "A condition is a test that checks whether something is TRUE or FALSE. Excel evaluates the condition first and then performs different actions based on the result." },
@@ -670,7 +670,7 @@
               { "type": "heading", "text": "Formula" },
               { "type": "syntax", "code": "=IF(F2>=90%,\"First Class\",IF(F2>=85%,\"Second Class\",IF(F2>=80%,\"Third Class\",\"-\")))" },
               { "type": "heading", "text": "How the Formula Works" },
-              { "type": "steps", "title": "Execution Flow", "steps": [
+              { "type": "exercise", "title": "Execution Flow", "steps": [
                 "Step 1: Excel checks whether the Percentage is greater than or equal to 90%.",
                 "If TRUE, Excel returns \"First Class\" and stops checking the remaining conditions.",
                 "If FALSE, Excel checks whether the Percentage is greater than or equal to 85%.",
@@ -679,7 +679,7 @@
                 "If TRUE, Excel returns \"Third Class\".",
                 "If none of the above conditions are TRUE, Excel returns \"-\"."
               ] },
-              { "type": "steps", "title": "Decision Flow", "steps": [
+              { "type": "exercise", "title": "Decision Flow", "steps": [
                 "Percentage ≥ 90% ? → First Class",
                 "Else → Percentage ≥ 85% ? → Second Class",
                 "Else → Percentage ≥ 80% ? → Third Class",
