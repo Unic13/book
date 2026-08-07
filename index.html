@@ -179,8 +179,8 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 .concept-list{margin:6px 0 14px 20px;padding:0}
 .concept-list li{margin-bottom:9px;line-height:1.8;font-size:15px;color:#374151}
 .concept-note{
-  margin:14px 0;padding:12px 15px;background:#fff8db;
-  border-left:4px solid #facc15;border-radius:8px;color:#6b5500;
+  margin:14px 0;padding:12px 15px;background:#faf5ff;
+  border-left:4px solid #6b21a8;border-radius:8px;color:#4b5563;
   font-size:14px;line-height:1.7;box-shadow:0 3px 8px rgba(0,0,0,0.05)
 }
 .concept-syntax{margin:14px 0}
@@ -206,7 +206,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
   overflow:hidden;border-radius:10px;font-size:14px;
   box-shadow:0 3px 10px rgba(0,0,0,.08)
 }
-.concept-table thead{background:#2563eb;color:#fff}
+.concept-table thead{background:#185C37;color:#fff}
 .concept-table th,.concept-table td{padding:10px 12px;text-align:left}
 .concept-table tbody tr:nth-child(even){background:#f8fafc}
 .concept-table tbody tr:hover{background:#eef4ff}
@@ -1593,53 +1593,51 @@ function renderConceptBody(body = []) {
 
         case "exercise":
           return `
-    ${renderImageBlock(item.image, '')}${renderPdfBlock(item.pdf, '')}
-    <div class="concept-exercise">
-      <div class="exercise-header">
-        <span class="exercise-badge">✏️ Practice</span>
-        ${item.title ? `<div class="exercise-title">${formatText(item.title)}</div>` : ""}
-      </div>
-      <ol class="exercise-list">
-        ${item.steps
-          .map(
-            (s) => `<li class="exercise-item">${formatText(s)}</li>`
-          )
-          .join("")}
-      </ol>
-    </div>
-  `;
+          ${renderImageBlock(item.image, '')}${renderPdfBlock(item.pdf, '')}
+          <div class="concept-exercise">
+            <div class="exercise-header">
+              <span class="exercise-badge">✏️ Practice</span>
+              ${item.title ? `<div class="exercise-title">${formatText(item.title)}</div>` : ""}
+            </div>
+            <ol class="exercise-list">
+              ${item.steps
+                .map(
+                  (s) => `<li class="exercise-item">${formatText(s)}</li>`
+                )
+                .join("")}
+            </ol>
+          </div>
+        `;
 
         case "steps":
           return `
-    ${renderImageBlock(item.image, '')}${renderPdfBlock(item.pdf, '')}
-    <div class="concept-steps">
-      ${item.title ? `<div class="steps-title">${formatText(item.title)}</div>` : ""}
-      <ol class="steps-list">
-        ${item.steps
-          .map(
-            (s) => `
-              <li class="steps-item">
-                <span class="steps-number"></span>
-                <span class="steps-text">${formatText(s)}</span>
-              </li>
-            `
-          )
-          .join("")}
-      </ol>
-    </div>
-  `;
+            ${renderImageBlock(item.image, '')}${renderPdfBlock(item.pdf, '')}
+            <div class="concept-steps">
+              ${item.title ? `<div class="steps-title">${formatText(item.title)}</div>` : ""}
+              <ol class="steps-list">
+                ${item.steps
+                  .map(
+                    (s) => `
+                      <li class="steps-item">
+                        <span class="steps-number"></span>
+                        <span class="steps-text">${formatText(s)}</span>
+                      </li>
+                    `
+                  )
+                  .join("")}
+              </ol>
+            </div>
+          `;
 
   case "example":
   return `
     ${renderImageBlock(item.image, '')}
     ${renderPdfBlock(item.pdf, '')}
 
-    <div class="concept-example">
+    <div class="concept-steps">
       ${item.title ? `<div class="example-title">${formatText(item.title)}</div>` : ""}
-
       <div class="example-box">
         <div><strong>Input:</strong> ${formatText(item.before)}</div>
-
         ${
           item.steps
             ? `
@@ -1648,6 +1646,7 @@ function renderConceptBody(body = []) {
                 .map(
                   step => `
                   <li class="steps-item">
+                    <span class="steps-number"></span>
                     <span class="steps-text">${formatText(step)}</span>
                   </li>`
                 )
@@ -1655,7 +1654,6 @@ function renderConceptBody(body = []) {
             </ol>`
             : ""
         }
-
         <div class="mt-2">
           <strong>Result:</strong> ${formatText(item.after)}
         </div>
