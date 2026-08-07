@@ -2437,7 +2437,7 @@
             },
             {
   "type": "exercise",
-  "title": "Use the IF() Function to Determine the Student's Class",
+  "title": "Use the IF() Function to Determine the Students Class",
   "description": "Write a Nested IF() formula to classify students as First Class, Second Class, Third Class, or '-' based on their percentage."
 },
 {
