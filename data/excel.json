@@ -502,6 +502,12 @@
                 ["MIN()", "Returns lowest value", "=MIN(C2:G2)", "78"],
                 ["COUNT()", "Counts numeric cells", "=COUNT(C2:G2)", "5"]
               ] },
+              {
+                "type": "video",
+                "title": "Forumala: SUM, AVERAGE, MAX, MIN",
+                "url": "https://youtu.be/df-K-DiqarI?si=jIurMUpWVn0qGPVZ",
+                "start": ""
+              },             
               { "type": "table", "title": "Summary of Excel Functions", "headers": ["Function", "Excel Formula", "Mathematical Formula", "Example", "Purpose"], "rows": [
                 ["SUM()", "=SUM(C2:G2)", "Total = x₁ + x₂ + x₃ + ... + xₙ", "85 + 78 + 92 + 88 + 80 = 423", "Calculates the total of all selected numbers."],
                 ["AVERAGE()", "=AVERAGE(C2:G2)", "Average = (x₁ + x₂ + ... + xₙ) ÷ n", "(85 + 78 + 92 + 88 + 80) ÷ 5 = 84.6", "Calculates the average (mean) of all selected numbers."],
@@ -625,28 +631,34 @@
               { "type": "paragraph", "text": "The IF() function checks whether a condition is TRUE or FALSE. Depending on the result, Excel returns one value if TRUE and another value if FALSE." },
               { "type": "syntax", "code": "Syntax:\n\n=IF(logical_test, value_if_true, value_if_false)" },
               { "type": "table", "headers": ["Argument", "Meaning"], "rows": [["logical_test", "Condition to check"], ["value_if_true", "Returned when TRUE"], ["value_if_false", "Returned when FALSE"]] },
-              { "type": "table", "title": "Student Result Calculation", "headers": ["", "A", "B", "C"], "rows": [
-                [1, "Roll No", "Total Marks", "Result"],
-                [2, 101, 95, "=IF(B2>=35,\"Pass\",\"Fail\")"],
-                [3, 102, 82, ""],
-                [4, 103, 74, ""],
-                [5, 104, 68, ""],
-                [6, 105, 58, ""],
-                [7, 106, 46, ""],
-                [8, 107, 32, ""]
+              { "type": "syntax", "code": "Formula:\n\n=IF(B2>=35,\"Pass\",\"Fail\")" },
+              { "type": "table", "title": "Sample Data for Student Result Calculation", "headers": ["", "A", "B", "C", "D"], "rows": [
+                [1, "Roll No", "Total Marks", "Formula", "Result"],
+                [2, 101, 95, "=IF(B2>=35,\"Pass\",\"Fail\")", "Pass"],
+                [3, 102, 82, "=IF(B3>=35,\"Pass\",\"Fail\")", "Pass"],
+                [4, 103, 74, "=IF(B4>=35,\"Pass\",\"Fail\")", "Pass"],
+                [5, 104, 68, "=IF(B5>=35,\"Pass\",\"Fail\")", "Pass"],
+                [6, 105, 58, "=IF(B6>=35,\"Pass\",\"Fail\")", "Pass"],
+                [7, 106, 46, "=IF(B7>=35,\"Pass\",\"Fail\")", "Pass"],
+                [8, 107, 32, "=IF(B8>=35,\"Pass\",\"Fail\")", "Fail"]
               ] },
+                {
+                "type": "video",
+                "title": "Forumala: Nested IF()",
+                "url": "https://youtu.be/Q3mtTb0nBmY",
+                "start": ""
+              },
               { "type": "example", "title": "Pass or Fail", "before": "Student Marks = 72", "steps": ["Step 1: Check whether marks are greater than or equal to 35.", "Step 2: If TRUE, return Pass.", "Step 3: Otherwise return Fail.", "Formula =IF(B2>=35,\"Pass\",\"Fail\")"], "after": "Result = Pass" },
               { "type": "heading", "text": "5. Nested IF() Function" },
               { "type": "paragraph", "text": "Nested IF means placing one IF() function inside another IF() function to test multiple conditions." },
-              { "type": "syntax", "code": "=IF(C2>=90,\"A+\",IF(C2>=80,\"A\",IF(C2>=70,\"B\",IF(C2>=60,\"C\",IF(C2>=50,\"D\",IF(C2>=35,\"E\",\"Fail\"))))))" },
-              { "type": "table", "title": "Student Grade Calculation", "headers": ["Roll No", "Student", "Total Marks", "Grade"], "rows": [
-                [101, "Student-1", 95, ""],
-                [102, "Student-2", 82, ""],
-                [103, "Student-3", 74, ""],
-                [104, "Student-4", 68, ""],
-                [105, "Student-5", 58, ""],
-                [106, "Student-6", 46, ""],
-                [107, "Student-7", 32, ""]
+              { "type": "table", "title": "Sample Date for Student Grade Calculation", "headers": ["Roll No", "Student", "Total Marks", "Grade"], "rows": [
+                [101, "Student-1", 95, "A+"],
+                [102, "Student-2", 82, "A"],
+                [103, "Student-3", 74, "B"],
+                [104, "Student-4", 68, "C"],
+                [105, "Student-5", 58, "D"],
+                [106, "Student-6", 46, "E"],
+                [107, "Student-7", 32, "Fail"]
               ] },
               { "type": "table", "title": "Grade Criteria", "headers": ["Marks", "Grade"], "rows": [
                 ["90 - 100", "A+"],
@@ -657,6 +669,7 @@
                 ["35 - 49", "E"],
                 ["Below 35", "Fail"]
               ] },
+              { "type": "syntax", "code": "Formula:\n\n=IF(C2>=90,\"A+\",IF(C2>=80,\"A\",IF(C2>=70,\"B\",IF(C2>=60,\"C\",IF(C2>=50,\"D\",IF(C2>=35,\"E\",\"Fail\"))))))" },   
               { "type": "example", "title": "Nested IF Example", "before": "Marks = 82", "steps": ["Is 82 >= 90? No", "Is 82 >= 80? Yes", "Return Grade A", "Remaining conditions are skipped"], "after": "Grade = A" },
               { "type": "exercise", "title": "Practice Exercise", "steps": ["Enter the sample student marks.", "Write the IF() formula to display Pass or Fail.", "Create the Nested IF() formula for Grade.", "Copy the formula to remaining students.", "Verify the grade for every student."] },
               { "type": "table", "title": "Student Marks and Classification", "headers": ["Name", "Maths", "Physics", "Chemistry", "Total Marks (Out of 300)", "Percentage", "Result"], "rows": [
@@ -684,6 +697,12 @@
                 "Else → Percentage ≥ 80% ? → Third Class",
                 "Else → Return \"-\""
               ] },
+              {
+                "type": "video",
+                "title": "Forumala: Nested IF()",
+                "url": "https://youtu.be/cdNZTkRJBys",
+                "start": ""
+              },              
               { "type": "example", "title": "Example 1 (88%)", "before": "Percentage = 88%", "steps": ["Is 88% ≥ 90%? → No", "Is 88% ≥ 85%? → Yes", "Return \"Second Class\".", "Excel stops checking further conditions."], "after": "Result = Second Class" },
               { "type": "example", "title": "Example 2 (77%)", "before": "Percentage = 77%", "steps": ["Is 77% ≥ 90%? → No", "Is 77% ≥ 85%? → No", "Is 77% ≥ 80%? → No", "Return \"-\"."], "after": "Result = -" },
               { "type": "table", "title": "Classification Rules", "headers": ["Percentage", "Classification"], "rows": [
