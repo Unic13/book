@@ -2590,8 +2590,7 @@
   "title": "Important Note",
   "text": "Nested IF() evaluates conditions from left to right. As soon as a condition is TRUE, Excel returns the corresponding result and ignores all remaining IF() conditions."
 }
-
-                
+            
 
                   ]
                 },
