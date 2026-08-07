@@ -1958,7 +1958,7 @@
                     "text": "8. Google Sheets vs Microsoft Excel"
                   },
                   {
-                    "type": "summary_table",
+                    "type": "table",
                     "title": "Comparison",
                     "headers": [
                       "Feature",
@@ -2317,7 +2317,7 @@
   ]
 },
 {
-  "type": "flow",
+  "type": "steps",
   "title": "Decision Flow",
   "steps": [
     "Percentage ≥ 90% ? → First Class",
@@ -2351,7 +2351,7 @@
   "after": "Result = -"
 },
 {
-  "type": "summary_table",
+  "type": "table",
   "title": "Classification Rules",
   "headers": [
     "Percentage",
