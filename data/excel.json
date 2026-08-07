@@ -1837,7 +1837,679 @@
     "explanation": "These five functions together provide total, average, highest, lowest, and the count of marks, making them ideal for student mark analysis."
   }
 ]
-        }
+        },
+
+
+
+{
+          "id": "excel_u2_ref",
+          "title": "ARRAYFORMULA",
+          "concept": {
+            "title": "ARRAYFORMULA",
+            "body": [
+              [
+                  {
+                    "type": "heading",
+                    "text": "1. ARRAYFORMULA() in Google Sheets"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "ARRAYFORMULA() is a Google Sheets function that allows a single formula to process multiple rows or columns automatically. Instead of copying a formula down every row, ARRAYFORMULA() applies the formula to the entire range and automatically includes newly added rows."
+                  },
+                  {
+                    "type": "image",
+                    "title": "Google Sheets ARRAYFORMULA",
+                    "path": "/imagepdf/day10/arrayformula-google.jpeg"
+                  },
+                  {
+                    "type": "heading",
+                    "text": "2. Why Use ARRAYFORMULA()?"
+                  },
+                  {
+                    "type": "list",
+                    "items": [
+                      "Apply one formula to an entire column.",
+                      "No need to drag formulas.",
+                      "Automatically calculates new rows.",
+                      "Reduces manual work.",
+                      "Makes worksheets dynamic and easier to maintain."
+                    ]
+                  },
+                  {
+                    "type": "heading",
+                    "text": "3. Syntax"
+                  },
+                  {
+                    "type": "syntax",
+                    "code": "=ARRAYFORMULA(formula)"
+                  },
+                  {
+                    "type": "heading",
+                    "text": "4. Google Sheets Example"
+                  },
+                  {
+                    "type": "example",
+                    "title": "Pass / Fail Result",
+                    "before": "Marks are available in cells B2:B10.",
+                    "steps": [
+                      "ARRAYFORMULA checks every value in B2:B10.",
+                      "If the mark is greater than or equal to 50, it returns PASS.",
+                      "Otherwise, it returns FAIL.",
+                      "Only one formula is required for the entire column."
+                    ],
+                    "formula": "=ARRAYFORMULA(IF(B2:B10>=50,\"PASS\",\"FAIL\"))",
+                    "after": "The Result column is automatically filled for every student."
+                  },
+                  {
+                    "type": "heading",
+                    "text": "5. Ignore Blank Rows"
+                  },
+                  {
+                    "type": "example",
+                    "title": "Prevent Empty Rows Showing FAIL",
+                    "before": "Some rows do not contain marks.",
+                    "steps": [
+                      "Check whether the cell is blank.",
+                      "If blank, return an empty value.",
+                      "Otherwise, calculate PASS or FAIL."
+                    ],
+                    "formula": "=ARRAYFORMULA(IF(B2:B10=\"\",\"\",IF(B2:B10>=50,\"PASS\",\"FAIL\")))",
+                    "after": "Blank rows remain empty."
+                  },
+                  {
+                    "type": "heading",
+                    "text": "6. ARRAYFORMULA() in Microsoft Excel"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Microsoft Excel does not provide an ARRAYFORMULA() function like Google Sheets. Similar functionality can be achieved using Excel Tables, Dynamic Array functions (Excel 2021 / Microsoft 365), or keyboard shortcuts such as Ctrl + Enter."
+                  },
+                
+                  {
+                    "type": "heading",
+                    "text": "7. Excel Alternatives"
+                  },
+                  {
+                    "type": "table",
+                    "headers": [
+                      "Method",
+                      "Shortcut / Function",
+                      "Purpose"
+                    ],
+                    "rows": [
+                      [
+                        "Excel Table",
+                        "Ctrl + T",
+                        "Automatically copies formulas to new rows."
+                      ],
+                      [
+                        "Fill Multiple Cells",
+                        "Ctrl + Enter",
+                        "Applies the same formula to all selected cells."
+                      ],
+                      [
+                        "Fill Down",
+                        "Ctrl + D",
+                        "Copies the formula from the cell above."
+                      ],
+                      [
+                        "Dynamic Arrays",
+                        "FILTER(), SORT(), UNIQUE(), SEQUENCE()",
+                        "Automatically spill results into multiple cells."
+                      ]
+                    ]
+                  },
+                  {
+                    "type": "heading",
+                    "text": "8. Google Sheets vs Microsoft Excel"
+                  },
+                  {
+                    "type": "summary_table",
+                    "title": "Comparison",
+                    "headers": [
+                      "Feature",
+                      "Google Sheets",
+                      "Microsoft Excel"
+                    ],
+                    "rows": [
+                      [
+                        "ARRAYFORMULA() Function",
+                        "Available",
+                        "Not Available"
+                      ],
+                      [
+                        "Apply Formula to Entire Column",
+                        "Automatic",
+                        "Use Excel Table (Ctrl + T)"
+                      ],
+                      [
+                        "Fill Multiple Cells",
+                        "Automatic",
+                        "Ctrl + Enter"
+                      ],
+                      [
+                        "Dynamic Array Support",
+                        "Built into ARRAYFORMULA()",
+                        "Available in Excel 2021 / Microsoft 365"
+                      ],
+                      [
+                        "Auto Update New Rows",
+                        "Yes",
+                        "Yes (Using Excel Tables)"
+                      ],
+                      [
+                        "Best Practice",
+                        "Use ARRAYFORMULA()",
+                        "Use Excel Tables + Dynamic Arrays"
+                      ]
+                    ]
+                  },
+                  {
+                    "type": "tip",
+                    "title": "Teacher's Tip",
+                    "text": "Teach students both methods. Use ARRAYFORMULA() when working in Google Sheets. In Microsoft Excel, use Excel Tables (Ctrl + T), Ctrl + Enter, or Dynamic Array functions depending on the Excel version."
+                  },
+                  {
+                    "type": "note",
+                    "text": "ARRAYFORMULA() is exclusive to Google Sheets. Although Excel does not have the same function, modern versions such as Excel 2021 and Microsoft 365 provide Dynamic Array functions that offer similar capabilities."
+                  }
+                ]
+            ]
+          }
+        },
+
+        
+
+
+{
+          "id": "excel_u2_c2",
+          "title": "Day 2: IF() and Nested IF() and IFS()",
+          "concept": {
+            "title": "Function: IF(), Nested IF() and IFS()",
+            "body": [
+              {
+                "type": "heading",
+                "text": "1. What is a Condition?"
+              },
+              {
+                "type": "paragraph",
+                "text": "A condition is a test that checks whether something is TRUE or FALSE. Excel evaluates the condition first and then performs different actions based on the result."
+              },
+              
+              {
+                "type": "note",
+                "text": "Think of IF() as asking a question. If the answer is TRUE, Excel performs one action. Otherwise, it performs another action."
+              },
+              {
+                "type": "heading",
+                "text": "2. Real-Life Examples"
+              },
+              {
+                "type": "table",
+                "headers":[
+                  "Situation",
+                  "Condition",
+                  "TRUE",
+                  "FALSE"
+                ],
+                "rows":[
+                  [
+                    "Exam Result",
+                    "Marks >= 35",
+                    "Pass",
+                    "Fail"
+                  ],
+                  [
+                    "Voting",
+                    "Age >= 18",
+                    "Eligible",
+                    "Not Eligible"
+                  ],
+                  [
+                    "Salary Bonus",
+                    "Sales >= 100000",
+                    "Bonus",
+                    "No Bonus"
+                  ],
+                  [
+                    "Attendance",
+                    "Attendance >= 75%",
+                    "Allowed",
+                    "Not Allowed"
+                  ]
+                ]
+              },
+              {
+              "type":"heading",
+              "text":"3. Comparison Operators"
+              },
+              {
+                "type":"table",
+                "headers":[
+                  "Operator",
+                  "Meaning",
+                  "Example"
+                ],
+                "rows":[
+                  [">","Greater Than","80 > 50"],
+                  ["<","Less Than","20 < 35"],
+                  [">=","Greater Than or Equal","35 >= 35"],
+                  ["<=","Less Than or Equal","60 <= 100"],
+                  ["=","Equal To","A1=100"],
+                  ["<>","Not Equal To","A1<>100"]
+                ]
+              },
+              {
+              "type":"heading",
+              "text":"4. IF() Function"
+            },
+            {
+              "type":"paragraph",
+              "text":"The IF() function checks whether a condition is TRUE or FALSE. Depending on the result, Excel returns one value if TRUE and another value if FALSE."
+            },
+            {
+              "type":"syntax",
+              "code":"Syntax:\n\n=IF(logical_test, value_if_true, value_if_false)"
+            },
+            {
+              "type":"table",
+              "headers":[
+                "Argument",
+                "Meaning"
+              ],
+              "rows":[
+                ["logical_test","Condition to check"],
+                ["value_if_true","Returned when TRUE"],
+                ["value_if_false","Returned when FALSE"]
+              ]
+            },
+            {
+            "type":"table",
+            "title":"Student Result Calculation",
+            "headers":[
+              "",
+              "A",              
+              "B",
+              "C"
+            ],
+            "rows":[
+              [
+              1,
+              "Roll No",              
+              "Total Marks",
+              "Result"
+            ],
+              [2,101,95,"=IF(B2>=35,\"Pass\",\"Fail\")"],
+              [3,102,82,""],
+              [4,103,74,""],
+              [5,104,68,""],
+              [6,105,58,""],
+              [7,106,46,""],
+              [8,107,32,""]
+            ]
+          },
+
+            {
+              "type":"example",
+              "title":"Pass or Fail",
+              "before":"Student Marks = 72",
+              "steps":[
+                "Step 1: Check whether marks are greater than or equal to 35.",
+                "Step 2: If TRUE, return Pass.",
+                "Step 3: Otherwise return Fail.",
+                "Formula =IF(B2>=35,\"Pass\",\"Fail\")"
+              ],
+              "after":"Result = Pass"
+            },
+            {
+              "type":"heading",
+              "text":"5. Nested IF() Function"
+            },
+            {
+              "type":"paragraph",
+              "text":"Nested IF means placing one IF() function inside another IF() function to test multiple conditions."
+            },
+            {
+              "type":"syntax",
+              "code":"=IF(C2>=90,\"A+\",IF(C2>=80,\"A\",IF(C2>=70,\"B\",IF(C2>=60,\"C\",IF(C2>=50,\"D\",IF(C2>=35,\"E\",\"Fail\"))))))"
+            },
+            {
+              "type":"table",
+              "title":"Student Grade Calculation",
+              "headers":[
+                "Roll No",
+                "Student",
+                "Total Marks",
+                "Grade"
+              ],
+              "rows":[
+                [101,"Student-1",95,""],
+                [102,"Student-2",82,""],
+                [103,"Student-3",74,""],
+                [104,"Student-4",68,""],
+                [105,"Student-5",58,""],
+                [106,"Student-6",46,""],
+                [107,"Student-7",32,""]
+              ]
+            },
+            {
+              "type":"table",
+              "title":"Grade Criteria",
+              "headers":[
+                "Marks",
+                "Grade"
+              ],
+              "rows":[
+                ["90 - 100","A+"],
+                ["80 - 89","A"],
+                ["70 - 79","B"],
+                ["60 - 69","C"],
+                ["50 - 59","D"],
+                ["35 - 49","E"],
+                ["Below 35","Fail"]
+              ]
+            },
+            {
+              "type":"example",
+              "title":"Nested IF Example",
+              "before":"Marks = 82",
+              "steps":[
+                "Is 82 >= 90? No",
+                "Is 82 >= 80? Yes",
+                "Return Grade A",
+                "Remaining conditions are skipped"
+              ],
+              "after":"Grade = A"
+            },
+            {
+              "type":"exercise",
+              "title":"Practice Exercise",
+              "steps":[
+                "Enter the sample student marks.",
+                "Write the IF() formula to display Pass or Fail.",
+                "Create the Nested IF() formula for Grade.",
+                "Copy the formula to remaining students.",
+                "Verify the grade for every student."
+              ]
+            },
+            {
+  "type": "exercise",
+  "title": "Use the IF() Function to Determine the Student's Class",
+  "description": "Write a Nested IF() formula to classify students as First Class, Second Class, Third Class, or '-' based on their percentage."
+},
+{
+  "type": "table",
+  "title": "Student Marks and Classification",
+  "headers": [
+    "Name",
+    "Maths",
+    "Physics",
+    "Chemistry",
+    "Total Marks (Out of 300)",
+    "Percentage",
+    "Result"
+  ],
+  "rows": [
+    [
+      "Muthu 1",
+      "85",
+      "78",
+      "90",
+      "253",
+      "84%",
+      "Third Class"
+    ],
+    [
+      "Muthu 2",
+      "92",
+      "88",
+      "94",
+      "274",
+      "91%",
+      "First Class"
+    ],
+    [
+      "Muthu 3",
+      "78",
+      "82",
+      "80",
+      "240",
+      "80%",
+      "Third Class"
+    ],
+    [
+      "Muthu 4",
+      "90",
+      "85",
+      "88",
+      "263",
+      "88%",
+      "Second Class"
+    ],
+    [
+      "Muthu 5",
+      "75",
+      "80",
+      "77",
+      "232",
+      "77%",
+      "-"
+    ]
+  ]
+},
+{
+  "type": "heading",
+  "text": "Formula"
+},
+{
+  "type": "syntax",
+  "code": "=IF(F2>=90%,\"First Class\",IF(F2>=85%,\"Second Class\",IF(F2>=80%,\"Third Class\",\"-\")))"
+},
+{
+  "type": "heading",
+  "text": "How the Formula Works"
+},
+{
+  "type": "steps",
+  "title": "Execution Flow",
+  "steps": [
+    "Step 1: Excel checks whether the Percentage is greater than or equal to 90%.",
+    "If TRUE, Excel returns \"First Class\" and stops checking the remaining conditions.",
+    "If FALSE, Excel checks whether the Percentage is greater than or equal to 85%.",
+    "If TRUE, Excel returns \"Second Class\" and stops.",
+    "If FALSE, Excel checks whether the Percentage is greater than or equal to 80%.",
+    "If TRUE, Excel returns \"Third Class\".",
+    "If none of the above conditions are TRUE, Excel returns \"-\"."
+  ]
+},
+{
+  "type": "flow",
+  "title": "Decision Flow",
+  "steps": [
+    "Percentage ≥ 90% ? → First Class",
+    "Else → Percentage ≥ 85% ? → Second Class",
+    "Else → Percentage ≥ 80% ? → Third Class",
+    "Else → Return \"-\""
+  ]
+},
+{
+  "type": "example",
+  "title": "Example 1 (88%)",
+  "before": "Percentage = 88%",
+  "steps": [
+    "Is 88% ≥ 90%? → No",
+    "Is 88% ≥ 85%? → Yes",
+    "Return \"Second Class\".",
+    "Excel stops checking further conditions."
+  ],
+  "after": "Result = Second Class"
+},
+{
+  "type": "example",
+  "title": "Example 2 (77%)",
+  "before": "Percentage = 77%",
+  "steps": [
+    "Is 77% ≥ 90%? → No",
+    "Is 77% ≥ 85%? → No",
+    "Is 77% ≥ 80%? → No",
+    "Return \"-\"."
+  ],
+  "after": "Result = -"
+},
+{
+  "type": "summary_table",
+  "title": "Classification Rules",
+  "headers": [
+    "Percentage",
+    "Classification"
+  ],
+  "rows": [
+    [
+      "90% and Above",
+      "First Class"
+    ],
+    [
+      "85% to 89.99%",
+      "Second Class"
+    ],
+    [
+      "80% to 84.99%",
+      "Third Class"
+    ],
+    [
+      "Below 80%",
+      "-"
+    ]
+  ]
+},
+{
+  "type": "tip",
+  "title": "Important Note",
+  "text": "Nested IF() evaluates conditions from left to right. As soon as a condition is TRUE, Excel returns the corresponding result and ignores all remaining IF() conditions."
+}
+
+                
+
+                  ]
+                },
+                "questions": 
+                [
+                    {
+                "id": "excel_q096",
+                "type": "MCQ",
+                "difficulty_rating": 1,
+                "question": "What is the primary purpose of the IF() function in Excel?",
+                "options": [
+                  "To add numbers",
+                  "To test a condition and return different results",
+                  "To count cells",
+                  "To format worksheets"
+                ],
+                "answer": [1],
+                "explanation": "The IF() function checks whether a condition is TRUE or FALSE and returns one value if TRUE and another if FALSE."
+              },
+              {
+                "id": "excel_q097",
+                "type": "MCQ",
+                "difficulty_rating": 1,
+                "question": "Which symbol is commonly used to test whether two values are equal in an IF() function?",
+                "options": [
+                  ">",
+                  "<",
+                  "=",
+                  "<>"
+                ],
+                "answer": [2],
+                "explanation": "The '=' operator checks whether two values are equal."
+              },
+              {
+                "id": "excel_q098",
+                "type": "MCQ",
+                "difficulty_rating": 1,
+                "question": "Which formula displays 'Pass' if marks are 35 or above?",
+                "options": [
+                  "=IF(B2>=35,\"Pass\",\"Fail\")",
+                  "=SUM(B2>=35)",
+                  "=COUNT(B2)",
+                  "=AVERAGE(B2)"
+                ],
+                "answer": [0],
+                "explanation": "The IF() function evaluates the condition and returns Pass or Fail."
+              },
+              {
+                "id": "excel_q099",
+                "type": "MCQ",
+                "difficulty_rating": 1,
+                "question": "What does the logical test in an IF() function return?",
+                "options": [
+                  "Number",
+                  "TRUE or FALSE",
+                  "Text only",
+                  "Formula"
+                ],
+                "answer": [1],
+                "explanation": "The logical test always evaluates to either TRUE or FALSE."
+              },
+              {
+                "id": "excel_q100",
+                "type": "MCQ",
+                "difficulty_rating": 1,
+                "question": "Which comparison operator means 'Greater Than or Equal To'?",
+                "options": [
+                  ">",
+                  "<=",
+                  ">=",
+                  "="
+                ],
+                "answer": [2],
+                "explanation": "The operator '>=' checks whether a value is greater than or equal to another value."
+              },
+              {
+                "id": "excel_q101",
+                "type": "MCQ",
+                "difficulty_rating": 2,
+                "question": "What will =IF(50>=35,\"Pass\",\"Fail\") return?",
+                "options": [
+                  "Fail",
+                  "TRUE",
+                  "Pass",
+                  "35"
+                ],
+                "answer": [2],
+                "explanation": "Since 50 is greater than 35, the formula returns 'Pass'."
+              },
+              {
+                "id": "excel_q102",
+                "type": "MCQ",
+                "difficulty_rating": 2,
+                "question": "What will =IF(20>=35,\"Pass\",\"Fail\") return?",
+                "options": [
+                  "TRUE",
+                  "Pass",
+                  "20",
+                  "Fail"
+                ],
+                "answer": [3],
+                "explanation": "20 is less than 35, so the condition is FALSE and Excel returns 'Fail'."
+              },
+              {
+                "id": "excel_q103",
+                "type": "MCQ",
+                "difficulty_rating": 2,
+                "question": "Nested IF() is mainly used to:",
+                "options": [
+                  "Add multiple numbers",
+                  "Check multiple conditions",
+                  "Print worksheets",
+                  "Format cells"
+                ],
+                "answer": [1],
+                "explanation": "Nested IF() evaluates multiple conditions one after another."
+              }
+                ]
+              }
+
+
       ]
     }
 
