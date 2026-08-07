@@ -2007,8 +2007,9 @@
                     "type": "note",
                     "text": "ARRAYFORMULA() is exclusive to Google Sheets. Although Excel does not have the same function, modern versions such as Excel 2021 and Microsoft 365 provide Dynamic Array functions that offer similar capabilities."
                   }
-                ],
-                "questions":[
+                ]
+              },
+"questions":[
   {
     "id": "excel_q111",
     "type": "MCQ",
@@ -2221,8 +2222,7 @@
   }
 ]
             
-          }
-        },
+          },
 
 {
           "id": "excel_u2_c2",
