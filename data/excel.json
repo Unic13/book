@@ -659,7 +659,6 @@
               ] },
               { "type": "example", "title": "Nested IF Example", "before": "Marks = 82", "steps": ["Is 82 >= 90? No", "Is 82 >= 80? Yes", "Return Grade A", "Remaining conditions are skipped"], "after": "Grade = A" },
               { "type": "exercise", "title": "Practice Exercise", "steps": ["Enter the sample student marks.", "Write the IF() formula to display Pass or Fail.", "Create the Nested IF() formula for Grade.", "Copy the formula to remaining students.", "Verify the grade for every student."] },
-              { "type": "exercise", "title": "Use the IF() Function to Determine the Student's Class", "description": "Write a Nested IF() formula to classify students as First Class, Second Class, Third Class, or '-' based on their percentage." },
               { "type": "table", "title": "Student Marks and Classification", "headers": ["Name", "Maths", "Physics", "Chemistry", "Total Marks (Out of 300)", "Percentage", "Result"], "rows": [
                 ["Muthu 1", "85", "78", "90", "253", "84%", "Third Class"],
                 ["Muthu 2", "92", "88", "94", "274", "91%", "First Class"],
