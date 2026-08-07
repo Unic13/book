@@ -47,7 +47,7 @@
               { "type": "heading", "text": "9. Common Keyboard Shortcuts" },
               { "type": "table", "headers": ["Shortcut", "Purpose"], "rows": [["Ctrl + N", "New Workbook"], ["Ctrl + O", "Open Workbook"], ["Ctrl + S", "Save Workbook"], ["Ctrl + C", "Copy"], ["Ctrl + V", "Paste"], ["Ctrl + X", "Cut"], ["Ctrl + Z", "Undo"], ["Ctrl + Y", "Redo"], ["Ctrl + B", "Bold"]] },
               {
-                "type": "exercise",
+                "type": "steps",
                 "title": "How to Create and Save a New Workbook",
                 "steps": [
                   "Open Microsoft Excel.",
@@ -670,7 +670,7 @@
               { "type": "heading", "text": "Formula" },
               { "type": "syntax", "code": "=IF(F2>=90%,\"First Class\",IF(F2>=85%,\"Second Class\",IF(F2>=80%,\"Third Class\",\"-\")))" },
               { "type": "heading", "text": "How the Formula Works" },
-              { "type": "exercise", "title": "Execution Flow", "steps": [
+              { "type": "steps", "title": "Execution Flow", "steps": [
                 "Step 1: Excel checks whether the Percentage is greater than or equal to 90%.",
                 "If TRUE, Excel returns \"First Class\" and stops checking the remaining conditions.",
                 "If FALSE, Excel checks whether the Percentage is greater than or equal to 85%.",
@@ -679,7 +679,7 @@
                 "If TRUE, Excel returns \"Third Class\".",
                 "If none of the above conditions are TRUE, Excel returns \"-\"."
               ] },
-              { "type": "exercise", "title": "Decision Flow", "steps": [
+              { "type": "steps", "title": "Decision Flow", "steps": [
                 "Percentage ≥ 90% ? → First Class",
                 "Else → Percentage ≥ 85% ? → Second Class",
                 "Else → Percentage ≥ 80% ? → Third Class",
