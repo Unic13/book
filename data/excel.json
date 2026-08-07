@@ -618,7 +618,8 @@
                 ["Attendance", "Attendance >= 75%", "Allowed", "Not Allowed"]
               ] },
               { "type": "heading", "text": "3. Comparison Operators" },
-              { "type": "table", "headers": ["Operator", "Meaning", "Example"], "rows": [
+              { "type": "paragraph", "text": "Comparison operators are operators used to compare two values. They return a Boolean result: either True or False."},
+              { "type": "table", "title":"Here are the most common comparison operators", "headers": ["Operator", "Meaning", "Example"], "rows": [
                 [">", "Greater Than", "80 > 50"],
                 ["<", "Less Than", "20 < 35"],
                 [">=", "Greater Than or Equal", "35 >= 35"],
