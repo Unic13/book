@@ -688,7 +688,7 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
     <div class="modal-stripe"></div>
     <div class="modal-body">
       <div class="modal-logo" id="modal-logo">UN</div>
-      <h1 class="modal-title" id="modal-title">Welcome to UNIC Academic</h1>
+      <h1 class="modal-title" id="modal-title">Welcome to UNIC Academic<br><em>Knowledge Sharing — Learn • Create • Share</em></h1>      
       <p class="modal-sub" id="modal-sub">Enter your details to save progress &amp; get updates.<br><em>All fields are optional.</em></p>
 
       <div class="modal-mode-tabs">
@@ -742,7 +742,7 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
     </button>
     <button id="brand-home-btn" title="Go to home">
       <div id="logo-box">UN</div>
-      <span id="brand-name">UNIC Academic</span>
+      <span id="brand-name">UNIC Academic<br><em>Knowledge Sharing — Learn • Create • Share</em></span>
     </button>
     <button id="home-nav-btn" title="Go to home">🏠 <span>Home</span></button>
     <button id="dashboard-nav-btn" title="Your practice dashboard">📊 <span>Dashboard</span></button>
@@ -1020,7 +1020,7 @@ function renderHomeHTML() {
   wrap.innerHTML = `
     <div class="fade-in">
       <div class="home-hero">
-        <h1>Welcome to ${state.config?.academyName || 'UNIC Academic'}</h1>
+        <h1>Welcome to ${state.config?.academyName || 'UNIC Academic'} <br><em>Knowledge Sharing — Learn • Create • Share</em></h1>
         <p>Pick a subject below to start practising</p>
       </div>
       <div class="home-grid">${cardsHTML}</div>
