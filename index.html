@@ -31,7 +31,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;m
 }
 
 /* ─── Layout ─── */
-#app{display:flex;flex-direction:column;height:100vh;overflow:hidden}
+#app{display:flex;flex-direction:column;height:calc(100vh - 34px);overflow:hidden}
 
 /* ─── Top Bar ─── */
 #topbar{
@@ -603,6 +603,10 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
 .feedback-msg.err{color:#ef4444}
 .dash-guest-note{background:#fff8db;border-left:4px solid #facc15;border-radius:8px;padding:14px 16px;color:#6b5500;font-size:13.5px;line-height:1.7;margin-bottom:20px}
 
+/* Per-chapter feedback (shown after the last question in a chapter) */
+.chapter-feedback{background:#fff;border:1px solid #e5e7eb;border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:18px 20px;margin-top:8px;margin-bottom:20px}
+.chapter-feedback-title{font-size:14px;font-weight:700;color:var(--ink-blue);margin-bottom:10px}
+
 @media(max-width:640px){
   .q-media{padding:0 16px 6px}
   .media-pdf iframe{height:320px}
@@ -677,6 +681,14 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
     }
 
 }
+
+/* ─── Site-wide bottom disclaimer strip ── */
+.site-disclaimer{
+  text-align:center;font-size:11px;color:#9ca3af;line-height:34px;height:34px;
+  border-top:1px solid #f3f4f6;background:#fafafa;flex-shrink:0
+}
+.site-disclaimer a{color:#7c3aed;text-decoration:none;font-weight:600}
+.site-disclaimer a:hover{text-decoration:underline}
   
 </style>
 </head>
@@ -782,6 +794,11 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
   </div>
 </div>
 
+<div class="site-disclaimer">
+  Some content on this site may be AI-assisted and can sometimes be inaccurate. ·
+  <a href="legal.html">Disclaimer &amp; Terms</a>
+</div>
+
 <script>
 // ══════════════════════════════════════════
 //  UNIC ACADEMIC — Core App
@@ -858,6 +875,8 @@ let state = {
   dashboardStats: null,
   feedbackStats: null,
   feedbackRating: 0,
+  chapterFeedbackRating: {},   // chapterId -> star rating currently selected
+  chapterFeedbackSubmitted: {}, // chapterId -> true once sent
 };
 
 
@@ -969,7 +988,6 @@ function buildSubjectTabs() {
 
 function updateActiveTabs() {
   const color = subjectColor();
-  const onHome = state.view === 'home' || state.view === 'dashboard';
   document.querySelectorAll('.subj-tab').forEach(btn => {
     const code = btn.dataset.code;
     const s = SUBJECTS[code];
@@ -1076,7 +1094,7 @@ async function loadSubjectRoot(code) {
   let loaded = subjectRootCache[code];
   if (!loaded) {
     try {
-      loaded = await fetchJSON(`api/content11?code=${code}`, SUBJECTS[code].file);
+      loaded = await fetchJSON(`api/content?code=${code}`, SUBJECTS[code].file);
     } catch {
       document.getElementById('question-wrap').innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><p>Failed to load subject data</p></div>';
       return;
@@ -1627,13 +1645,9 @@ function renderConceptBody(body = []) {
                 .join("")}
             </ol>`
             : ""
-        } 
-        
-            
-        <div class="mt-2">
-            <div class="concept-formulas-label">Key Formula:</div>
-            <span class="formula-chip">${item.formula}</span>  
-            </div>
+        }
+        <div class="mt-2">    
+           ${item.formula ? `<span class="formula-chip">${item.formula}</span><br>` : ''}
           <strong>Result:</strong> ${formatText(item.after)}
         </div>
       </div>
@@ -1772,6 +1786,7 @@ function renderQuestion() {
         ${sqlPgHTML}
         ${tabsHTML}
         <div class="empty"><div class="empty-icon">📭</div><p>No ${state.qtypeFilter !== 'ALL' ? state.qtypeFilter : ''} questions in this chapter</p></div>
+        ${chapter ? renderChapterFeedbackHTML(chapter.id) : ''}
       </div>`;
     if (chapter?.concept?.latex && state.conceptOpen) renderLatex(document.getElementById('concept-body'));
     bindSqlPlaygroundEvents();
@@ -1781,6 +1796,7 @@ function renderQuestion() {
   const batchStart = state.questionIndex;
   const batchEnd = Math.min(batchStart + batch.length, totalQ);
   const pct = (batchEnd / totalQ) * 100;
+  const isLastBatch = batchEnd >= totalQ;
 
   const cardsHTML = batch.map((q, bi) => renderSingleQuestionCard(q, batchStart + bi, color)).join('');
 
@@ -1814,6 +1830,7 @@ function renderQuestion() {
         <button class="btn btn-primary" onclick="goNext()" ${!canGoNext()?'disabled':''} style="background:${color}">Next 3 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
       </div>
       ${dotsHTML}
+      ${isLastBatch && chapter ? renderChapterFeedbackHTML(chapter.id) : ''}
     </div>`;
 
   if (chapter?.concept?.latex || batch.some(q => q.latex)) {
@@ -1996,20 +2013,18 @@ function submitAnswer(qid) {
 
   state.submitted[q.id] = true;
 
-  if (state.userData) {
-    const isCorrect = checkIsCorrect(q, selected);
-    ajax('api/attempt', 'POST', {
-      userId: state.userData.email || state.userData.name || 'guest',
-      questionId: q.id,
-      subject: state.activeSubject,
-      chapterId: state.activeChapterId,
-      questionType: q.type,
-      selected,
-      correct: q.answer,
-      isCorrect,
-      timestamp: new Date().toISOString()
-    }).catch(()=>{});
-  }
+  const isCorrect = checkIsCorrect(q, selected);
+  ajax('api/attempt', 'POST', {
+    userId: state.userData ? (state.userData.email || state.userData.name) : 'guest',
+    questionId: q.id,
+    subject: state.activeSubject,
+    chapterId: state.activeChapterId,
+    questionType: q.type,
+    selected,
+    correct: q.answer,
+    isCorrect,
+    timestamp: new Date().toISOString()
+  }).catch(()=>{});
 
   updateChapterProgress(state.activeChapterId);
   renderQuestion();
@@ -2163,6 +2178,64 @@ async function resetSqlPlayground() {
 }
 
 // ══════════════════════════════════════════
+//  PER-CHAPTER FEEDBACK (shown after the last batch of questions)
+// ══════════════════════════════════════════
+function renderChapterFeedbackHTML(chapterId) {
+  if (state.chapterFeedbackSubmitted[chapterId]) {
+    return `<div class="chapter-feedback fade-in"><div class="feedback-msg ok">✓ Thanks for rating this chapter!</div></div>`;
+  }
+  const rating = state.chapterFeedbackRating[chapterId] || 0;
+  const starsHTML = [1,2,3,4,5].map(n =>
+    `<span class="feedback-star${n <= rating ? ' active' : ''}" onclick="setChapterFeedbackRating('${chapterId}', ${n})">★</span>`
+  ).join('');
+  return `
+    <div class="chapter-feedback fade-in">
+      <div class="chapter-feedback-title">How was this chapter?</div>
+      <div class="feedback-form">
+        <div class="feedback-stars">${starsHTML}</div>
+        <textarea class="feedback-textarea" id="chapter-feedback-message-${chapterId}" placeholder="Anything confusing, wrong, or worth adding? (optional)"></textarea>
+        <button class="btn btn-primary" style="max-width:200px" onclick="submitChapterFeedback('${chapterId}')">
+          Submit Feedback
+      </button>
+        <div class="feedback-msg" id="chapter-feedback-msg-${chapterId}"></div>
+      </div>
+    </div>`;
+}
+
+function setChapterFeedbackRating(chapterId, n) {
+  state.chapterFeedbackRating[chapterId] = n;
+  const wrap = document.querySelector('.chapter-feedback .feedback-stars');
+  if (wrap) wrap.querySelectorAll('.feedback-star').forEach((el, i) => el.classList.toggle('active', i < n));
+}
+
+async function submitChapterFeedback(chapterId) {
+  const msgEl = document.getElementById(`chapter-feedback-msg-${chapterId}`);
+  const textEl = document.getElementById(`chapter-feedback-message-${chapterId}`);
+  const rating = state.chapterFeedbackRating[chapterId];
+  if (!rating) {
+    if (msgEl) { msgEl.textContent = 'Please pick a star rating first.'; msgEl.className = 'feedback-msg err'; }
+    return;
+  }
+  try {
+    const res = await ajax('api/feedback', 'POST', {
+      userId: state.userData ? (state.userData.email || state.userData.name) : 'guest',
+      subject: state.activeSubject || null,
+      rating,
+      message: textEl ? textEl.value.trim() : '',
+    });
+    if (res && res.success) {
+      state.chapterFeedbackSubmitted[chapterId] = true;
+      renderQuestion();
+    } else if (msgEl) {
+      msgEl.textContent = 'Could not submit feedback — please try again.';
+      msgEl.className = 'feedback-msg err';
+    }
+  } catch {
+    if (msgEl) { msgEl.textContent = 'Network error — please try again.'; msgEl.className = 'feedback-msg err'; }
+  }
+}
+
+// ══════════════════════════════════════════
 //  DASHBOARD — user stats + feedback form
 // ══════════════════════════════════════════
 async function showDashboard() {
@@ -2175,7 +2248,7 @@ async function showDashboard() {
   if (state.userData) {
     const userId = state.userData.email || state.userData.name;
     try {
-      const res = await ajax(`api/stats?userId=${encodeURIComponent(userId)}`);
+      const res = await ajax(`api/user-stats?userId=${encodeURIComponent(userId)}`);
       if (res && res.success) state.dashboardStats = res.data;
     } catch { /* leave dashboardStats as-is; UI shows a friendly fallback */ }
   }
@@ -2304,7 +2377,7 @@ function renderFeedbackSectionHTML() {
       <div class="feedback-form">
         <div class="feedback-stars">${starsHTML}</div>
         <textarea class="feedback-textarea" id="feedback-message" placeholder="What's working well? What should we improve?"></textarea>
-        <button style="max-width:200px" onclick="submitFeedback()">Submit Feedback</button>
+        <button class="btn btn-primary" style="max-width:200px" onclick="submitFeedback()">Submit Feedback</button>
         <div class="feedback-msg" id="feedback-msg"></div>
       </div>
     </div>`;
@@ -2428,6 +2501,12 @@ async function submitModal() {
     mobile: document.getElementById('f-mobile').value.trim(),
     source: document.getElementById('f-source').value,
   };
+
+  if (!formData.name || !formData.email) {
+    document.getElementById('login-status').textContent = 'Name and email are required to register.';
+    document.getElementById('login-status').className = 'login-status err-msg';
+    return;
+  }
 
   const optimistic = { ...formData, timestamp: new Date().toISOString() };
   state.userData = optimistic;
