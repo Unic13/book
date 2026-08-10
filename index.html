@@ -1627,10 +1627,13 @@ function renderConceptBody(body = []) {
                 .join("")}
             </ol>`
             : ""
-        }     
+        } 
+        
             
         <div class="mt-2">
-         <span class="formula-chip">${item.formula}</span>    
+            <div class="concept-formulas-label">Key Formula:</div>
+            <span class="formula-chip">${item.formula}</span>  
+            </div>
           <strong>Result:</strong> ${formatText(item.after)}
         </div>
       </div>
