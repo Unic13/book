@@ -3,1505 +3,2633 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin — UNIC Academic</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>UNIC Academic — Knowledge Sharing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+  onload="window.__katexReady=true"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/sql.js@1.10.2/dist/sql-wasm.js"></script>
+
 <style>
+/* ─── Reset & Base ─── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#f4f5fb;color:#1a1a2e;min-height:100vh}
-:root{--brand:#6C3FF5}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:#f4f5fb;color:#1a1a2e;min-height:100vh;overflow-x:hidden}
 
-header{background:#fff;border-bottom:1px solid #e5e7eb;padding:0 24px;height:56px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#4f46e5);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:11px}
-.back-btn{background:none;border:none;cursor:pointer;color:#9ca3af;padding:6px;border-radius:8px;transition:.15s}
-.back-btn:hover{background:#f3f4f6;color:#374151}
-.brand{font-weight:700;font-size:14px;color:#111}
-.sub-brand{font-size:12px;color:#9ca3af}
+/* ─── CSS Variables ─── */
+:root{
+  --brand:#6C3FF5;--brand-light:#f0ebff;
+  --ph:#6C3FF5;--ch:#E53E3E;--ma:#2563EB;--bio:#16a34a;
+  --sidebar-w:256px;--topbar-h:56px;
+  --radius:12px;--radius-lg:18px;
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:0 4px 12px rgba(0,0,0,.1);
+  --trans:.15s ease;
+  --notes-bg:#F3EEFF;--notes-bg-soft:#FAF7FF;--ink-blue:#1E3A8A;
+}
 
-.container{max-width:1120px;margin:0 auto;padding:32px 20px}
+/* ─── Layout ─── */
+#app{display:flex;flex-direction:column;height:calc(100vh - 34px);overflow:hidden}
 
-/* Login */
-#login-panel{max-width:380px;margin:0 auto;background:#fff;border-radius:20px;border:1px solid #e5e7eb;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.07)}
-.login-stripe{height:5px;background:linear-gradient(90deg,#7c3aed,#6366f1)}
-.login-body{padding:32px}
-.login-icon{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,#7c3aed,#4f46e5);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 4px 14px rgba(124,58,237,.3)}
-.login-icon svg{width:26px;height:26px;color:#fff;stroke:#fff}
-.login-title{font-size:20px;font-weight:800;color:#111;text-align:center;margin-bottom:6px}
-.login-sub{font-size:13px;color:#9ca3af;text-align:center;margin-bottom:24px}
+/* ─── Top Bar ─── */
+#topbar{
+  height:var(--topbar-h);background:#fff;
+  border-bottom:1px solid #e5e7eb;
+  display:flex;align-items:center;gap:12px;
+  padding:0 16px;z-index:30;flex-shrink:0;
+  box-shadow:0 1px 3px rgba(0,0,0,.06)
+}
+#logo-box{
+  width:34px;height:34px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,#7c3aed,#4f46e5);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;color:#fff;font-size:11px;letter-spacing:.5px
+}
+#brand-name{font-weight:700;font-size:14px;color:#111;white-space:nowrap}
+#sidebar-toggle{
+  background:none;border:none;cursor:pointer;padding:7px;
+  border-radius:8px;color:#6b7280;transition:background var(--trans)
+}
+#sidebar-toggle:hover{background:#f3f4f6}
+#sidebar-toggle svg{display:block;width:20px;height:20px}
+
+/* Subject tabs */
+#subject-tabs{display:flex;gap:6px;flex:1;overflow-x:auto;scrollbar-width:none}
+#subject-tabs::-webkit-scrollbar{display:none}
+.subj-tab{
+  display:flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:9px;border:1.5px solid transparent;
+  font-size:13px;font-weight:600;cursor:pointer;
+  white-space:nowrap;transition:all var(--trans);background:none;
+}
+.subj-tab .emoji{font-size:15px;line-height:1}
+.subj-tab span{font-size:13px}
+
+/* User avatar */
+#user-btn{
+  width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,#8b5cf6,#4f46e5);
+  border:none;cursor:pointer;color:#fff;font-weight:700;font-size:12px;
+  display:flex;align-items:center;justify-content:center;
+  margin-left:auto;flex-shrink:0;transition:transform var(--trans)
+}
+#user-btn:hover{transform:scale(1.08)}
+#user-dropdown{
+  position:absolute;right:16px;top:52px;background:#fff;
+  border:1px solid #e5e7eb;border-radius:14px;padding:14px;
+  min-width:200px;box-shadow:var(--shadow-md);z-index:100;
+  display:none
+}
+#user-dropdown.open{display:block}
+#user-dropdown .uname{font-weight:600;font-size:13px;color:#111}
+#user-dropdown .uemail{font-size:11px;color:#9ca3af;margin-top:2px}
+#user-dropdown hr{border:none;border-top:1px solid #f3f4f6;margin:10px 0}
+#user-dropdown a,.dropdown-btn{
+  display:flex;align-items:center;gap:7px;font-size:12px;
+  color:#6b7280;text-decoration:none;background:none;border:none;
+  cursor:pointer;padding:4px 0;transition:color var(--trans);width:100%
+}
+#user-dropdown a:hover,.dropdown-btn:hover{color:#7c3aed}
+.dropdown-btn.danger{color:#ef4444}
+.dropdown-btn.danger:hover{color:#b91c1c}
+#dd-guest-note{font-size:11px;color:#9ca3af;line-height:1.6;margin-top:8px}
+
+/* ─── Body ─── */
+#body{display:flex;flex:1;overflow:hidden}
+
+/* ─── Sidebar ─── */
+#sidebar{
+  width:var(--sidebar-w);background:#fff;
+  border-right:1px solid #e5e7eb;
+  display:flex;flex-direction:column;
+  overflow:hidden;flex-shrink:0;
+  transition:width var(--trans),opacity var(--trans)
+}
+#sidebar.closed{width:0;opacity:0;pointer-events:none}
+#sidebar-subject-header{
+  padding:12px 16px;border-bottom:1px solid #f3f4f6;
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase
+}
+#sidebar-tree{flex:1;overflow-y:auto;padding:6px 0}
+#sidebar-tree::-webkit-scrollbar{width:3px}
+#sidebar-tree::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:2px}
+
+/* Unit */
+.unit-btn{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:9px 16px;background:none;border:none;cursor:pointer;
+  font-size:12px;font-weight:600;color:#374151;text-align:left;
+  transition:background var(--trans)
+}
+.unit-btn:hover{background:#f9fafb}
+.unit-btn .chevron{width:14px;height:14px;transition:transform .2s;color:#9ca3af;flex-shrink:0}
+.unit-btn.collapsed .chevron{transform:rotate(-90deg)}
+
+/* Chapter */
+.chapter-list{padding:0 0 4px 14px;border-left:2px solid #f3f4f6;margin-left:14px}
+.chapter-list.hidden{display:none}
+.chap-btn{
+  width:100%;text-align:left;padding:8px 10px;
+  border:none;cursor:pointer;border-radius:9px;
+  font-size:11.5px;font-weight:500;color:#6b7280;
+  background:none;margin-bottom:2px;transition:all var(--trans)
+}
+.chap-btn:hover{background:#f9fafb;color:#111}
+.chap-btn.active{color:#fff}
+.chap-progress{display:flex;align-items:center;gap:6px;margin-top:5px}
+.chap-progress-bar{flex:1;height:3px;border-radius:2px;background:#e5e7eb;overflow:hidden}
+.chap-progress-fill{height:100%;border-radius:2px;transition:width .4s ease}
+.chap-progress-label{font-size:10px;color:inherit;opacity:.7}
+
+/* ─── Main ─── */
+#main{flex:1;overflow-y:auto;padding:24px 20px}
+#main::-webkit-scrollbar{width:4px}
+#main::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:2px}
+
+/* ─── Concept Panel ─── */
+#question-wrap{max-width:760px;margin:0 auto}
+.concept-card{
+  background:var(--notes-bg-soft);border-radius:var(--radius-lg);border:1px solid #e3d9fb;
+  box-shadow:var(--shadow);overflow:hidden;margin-bottom:22px
+}
+.concept-header{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 22px;cursor:pointer;user-select:none;
+  border-bottom:1px solid transparent;transition:border-color var(--trans);
+  background:var(--notes-bg)
+}
+.concept-header.open{border-bottom-color:#e3d9fb}
+.concept-icon{
+  width:40px;height:40px;border-radius:11px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:19px;color:#fff
+}
+.concept-title-wrap{flex:1;min-width:0}
+.concept-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.75;color:var(--ink-blue)}
+.concept-title{font-size:18px;font-weight:700;color:var(--ink-blue);margin-top:2px;line-height:1.3}
+.concept-chevron{width:20px;height:20px;color:#9ca3af;flex-shrink:0;transition:transform .25s ease}
+.concept-chevron.open{transform:rotate(180deg)}
+.concept-body{padding:0 24px 24px;display:none;background:var(--notes-bg-soft)}
+.concept-body.open{display:block;animation:fadeUp .2s ease-out}
+.concept-para{font-size:15.5px;line-height:1.9;color:#374151;margin-bottom:15px}
+.concept-para:last-child{margin-bottom:0}
+.concept-para strong{color:var(--ink-blue);font-weight:700}
+.concept-heading{font-size:16.5px;font-weight:700;color:var(--ink-blue);margin:16px 0 8px}
+.concept-list{margin:6px 0 14px 20px;padding:0}
+.concept-list li{margin-bottom:9px;line-height:1.8;font-size:15px;color:#374151}
+.concept-note{
+  margin:14px 0;padding:12px 15px;background:#f9edfc;
+  border-left:4px solid #6b21a8;border-radius:8px;color:#4b5563;
+  font-size:14px;line-height:1.7;box-shadow:0 3px 8px rgba(0,0,0,0.05)
+}
+.concept-syntax{margin:14px 0}
+.syntax-title{font-size:11.5px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.concept-syntax pre{
+  background:#1e1e2e;color:#e2e8f0;border-radius:10px;
+  padding:14px 16px;overflow-x:auto;font-size:13.5px;line-height:1.7;
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace
+}
+.concept-formulas{
+  margin-top:16px;padding:16px 18px;border-radius:12px;
+  background:#f9fafb;border:1px solid #f0f0f0
+}
+.concept-formulas-label{font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9ca3af;margin-bottom:10px}
+.formula-chip{
+  display:inline-block;background:#fff;border:1px solid #e5e7eb;
+  border-radius:8px;padding:8px 14px;margin:0 7px 7px 0;
+  font-size:14.5px;color:#1f2937
+}
+/* Concept Table */
+.concept-table{
+  width:100%;border-collapse:collapse;margin:18px 0;
+  overflow:hidden;border-radius:10px;font-size:14px;
+  box-shadow:0 3px 10px rgba(0,0,0,.08)
+}
+.concept-table thead{background:#185C37;color:#fff}
+.concept-table th,.concept-table td{padding:10px 12px;text-align:left}
+.concept-table tbody tr:nth-child(even){background:#f8fafc}
+.concept-table tbody tr:hover{background:#eef4ff}
+.concept-table th{font-weight:700;font-size:13px}
+.concept-table td,.concept-table th{border-bottom:1px solid #e5e7eb}
+.table-wrapper{overflow-x:auto}
+
+/* Exercise block — a boxed, numbered practice-book style list */
+.concept-exercise{margin:16px 0;border-radius:12px;border:1.5px solid #fde68a;background:#fffbeb;overflow:hidden}
+.exercise-header{display:flex;align-items:center;gap:10px;padding:12px 16px;background:#fef3c7;border-bottom:1px solid #fde68a}
+.exercise-badge{font-size:11px;font-weight:800;color:#92400e;background:#fde68a;padding:3px 10px;border-radius:20px;letter-spacing:.03em;flex-shrink:0}
+.exercise-title{font-size:14.5px;font-weight:700;color:#92400e}
+.exercise-list{list-style:none;counter-reset:ex-counter;padding:14px 16px;margin:0}
+.exercise-item{counter-increment:ex-counter;position:relative;padding:8px 0 8px 36px;font-size:14.5px;line-height:1.7;color:#374151;border-bottom:1px dashed #fde68a}
+.exercise-item:last-child{border-bottom:none}
+.exercise-item::before{content:counter(ex-counter);position:absolute;left:0;top:7px;width:24px;height:24px;border-radius:7px;background:#f59e0b;color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
+
+/* Steps block — a vertical numbered walkthrough with a connecting rail */
+.concept-steps{margin:16px 0}
+.steps-title{font-size:15px;font-weight:700;color:var(--ink-blue);margin-bottom:10px}
+.steps-list{list-style:none;counter-reset:step-counter;padding:0;margin:0;position:relative}
+.steps-list::before{content:'';position:absolute;left:13px;top:6px;bottom:6px;width:2px;background:#e5e7eb}
+.steps-item{counter-increment:step-counter;display:flex;align-items:flex-start;gap:8px;padding:9px 0;position:relative}
+.steps-number{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;z-index:1}
+.steps-number::before{content:counter(step-counter)}
+.steps-text{font-size:14.5px;line-height:1.2;color:#374151;padding-top:3px}
+
+/* YouTube / video block */
+.media-video{margin:14px 0}
+.video-frame-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;background:#000}
+.video-frame-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.media-video-link{margin:14px 0}
+
+/* ─── Question type tabs ─── */
+.qtype-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.qtype-tab{
+  padding:7px 16px;border-radius:9px;border:1.5px solid #e5e7eb;
+  background:#fff;font-size:12.5px;font-weight:700;color:#6b7280;
+  cursor:pointer;transition:all var(--trans)
+}
+.qtype-tab .qtype-count{
+  display:inline-block;margin-left:5px;font-size:10.5px;
+  background:#f3f4f6;color:#9ca3af;border-radius:10px;padding:1px 6px
+}
+.qtype-tab.active .qtype-count{background:rgba(255,255,255,.25);color:#fff}
+.q-breadcrumb{font-size:11px;color:#9ca3af;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+
+/* Progress row */
+.q-progress-row{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.q-progress-track{flex:1;height:5px;background:#e5e7eb;border-radius:3px;overflow:hidden}
+.q-progress-fill{height:100%;border-radius:3px;transition:width .4s ease}
+.q-progress-label{font-size:12px;font-weight:600;color:#9ca3af;white-space:nowrap}
+
+/* Batch of question cards */
+.q-batch{display:flex;flex-direction:column;gap:18px;margin-bottom:16px}
+.q-batch-actions{display:flex;gap:10px;margin-top:2px}
+.q-batch-actions .btn{flex:1;justify-content:center}
+
+/* Card */
+.q-card{background:#fff;border-radius:var(--radius-lg);border:1px solid #e5e7eb;box-shadow:var(--shadow);overflow:hidden}
+.q-card-header{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 20px;border-bottom:1px solid #f3f4f6
+}
+.q-type-badge{
+  font-size:11px;font-weight:700;padding:3px 10px;
+  border-radius:20px;color:#fff;white-space:nowrap
+}
+.q-type-hint{font-size:12px;color:#9ca3af}
+.q-num{margin-left:auto;font-size:12px;color:#c4c4c4;font-weight:600}
+.q-body{padding:20px 22px}
+.q-text{font-size:16px;color:#111;line-height:1.75;font-weight:500}
+.q-options{padding:0 22px 20px;display:flex;flex-direction:column;gap:10px}
+
+/* Options */
+.opt{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:14px 16px;border-radius:11px;border:2px solid #e5e7eb;
+  background:#fff;cursor:pointer;text-align:left;
+  transition:all var(--trans);width:100%;overflow:hidden
+}
+.opt:hover:not(.disabled){border-color:#a5b4fc;background:#f8f7ff;transform:translateX(2px)}
+.opt.selected{border-color:var(--brand);background:#f0ebff}
+.opt.correct{border-color:#16a34a;background:#f0fdf4}
+.opt.missed{border-color:#86efac;background:#f0fdf4;opacity:.8}
+.opt.wrong{border-color:#ef4444;background:#fef2f2}
+.opt.disabled{cursor:default}
+.opt-label{
+  width:30px;height:30px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;
+  background:#f3f4f6;color:#6b7280;transition:all var(--trans)
+}
+.opt.selected .opt-label{background:var(--brand);color:#fff}
+.opt.correct .opt-label{background:#16a34a;color:#fff}
+.opt.missed .opt-label{background:#22c55e;color:#fff}
+.opt.wrong .opt-label{background:#ef4444;color:#fff}
+.opt-text{font-size:14.5px;color:#374151;line-height:1.65;flex:1;padding-top:2px;min-width:0}
+.opt-text-inline{display:block;word-break:break-word}
+.opt-img{
+  display:block;max-width:100%;max-height:180px;width:auto;
+  object-fit:contain;border-radius:8px;margin-bottom:8px;
+  border:1px solid #e5e7eb;background:#f9fafb;cursor:zoom-in
+}
+
+/* NAT input */
+.nat-wrap{padding:0 22px 4px}
+.nat-input-row{display:flex;align-items:center;gap:10px}
+.nat-input{
+  flex:1;padding:13px 16px;border-radius:11px;border:2px solid #e5e7eb;
+  font-size:15px;font-family:inherit;font-weight:600;color:#111;
+  outline:none;transition:all var(--trans);background:#fff
+}
+.nat-input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(108,63,245,.12)}
+.nat-input.correct{border-color:#16a34a;background:#f0fdf4;color:#15803d}
+.nat-input.wrong{border-color:#ef4444;background:#fef2f2;color:#b91c1c}
+.nat-unit{font-size:13px;color:#9ca3af;font-weight:600;white-space:nowrap}
+.nat-correct-value{font-size:12.5px;color:#16a34a;margin-top:8px;font-weight:600}
+.nat-hint{font-size:11.5px;color:#9ca3af;margin-top:6px}
+
+/* Explanation */
+.explanation{
+  margin:0 22px 20px;padding:15px 17px;
+  border-radius:12px;border:1.5px solid;font-size:14px;line-height:1.75
+}
+.explanation.correct{background:#f0fdf4;border-color:#86efac;color:#15803d}
+.explanation.wrong{background:#fef2f2;border-color:#fca5a5;color:#b91c1c}
+.explanation-head{display:flex;align-items:center;gap:7px;font-weight:700;margin-bottom:5px;font-size:15px}
+
+/* Actions */
+.q-actions{padding:0 22px 20px;display:flex;align-items:center;gap:10px}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:11px 18px;border-radius:10px;font-size:13.5px;font-weight:600;
+  border:none;cursor:pointer;transition:all var(--trans)
+}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-outline{background:#fff;border:1.5px solid #e5e7eb;color:#6b7280}
+.btn-outline:hover:not(:disabled){background:#f9fafb;border-color:#d1d5db}
+.btn-primary{color:#fff;flex:1;justify-content:center;box-shadow:0 2px 8px rgba(108,63,245,.3)}
+.btn-primary:hover:not(:disabled){filter:brightness(1.08);box-shadow:0 4px 14px rgba(108,63,245,.4)}
+.btn svg{width:16px;height:16px}
+
+/* Dot navigator */
+.q-dots{display:flex;justify-content:center;gap:6px;margin-top:14px;flex-wrap:wrap}
+.q-dot{height:6px;border-radius:3px;transition:all .25s ease;cursor:pointer}
+
+/* ─── SQL Playground ─── */
+.sql-playground{
+  background:#fff;border-radius:var(--radius-lg);border:1px solid #e5e7eb;
+  box-shadow:var(--shadow);overflow:hidden;margin-bottom:22px
+}
+.sql-pg-header{
+  display:flex;align-items:center;gap:12px;padding:16px 22px;
+  border-bottom:1px solid #f3f4f6;cursor:pointer;user-select:none
+}
+.sql-pg-icon{
+  width:40px;height:40px;border-radius:11px;flex-shrink:0;background:#0F9D8C;
+  display:flex;align-items:center;justify-content:center;font-size:19px;color:#fff
+}
+.sql-pg-title-wrap{flex:1;min-width:0}
+.sql-pg-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0F9D8C;opacity:.9}
+.sql-pg-title{font-size:17px;font-weight:700;color:#111;margin-top:2px}
+.sql-pg-body{padding:20px 22px}
+.sql-pg-body.hidden{display:none}
+.sql-schema-note{font-size:13.5px;color:#6b7280;line-height:1.7;margin-bottom:14px;background:#f9fafb;border:1px solid #f0f0f0;border-radius:10px;padding:12px 14px}
+.sql-schema-note code{background:#eef2f7;padding:1px 6px;border-radius:5px;font-size:12.5px}
+textarea#sql-editor{
+  width:100%;min-height:120px;resize:vertical;
+  background:#1e1e2e;color:#e2e8f0;border:none;border-radius:12px;
+  padding:16px 18px;font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  font-size:14px;line-height:1.7;outline:none
+}
+.sql-pg-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.sql-pg-actions .btn-outline{background:#f9fafb}
+.sql-result-wrap{margin-top:16px}
+.sql-result-msg{
+  padding:12px 14px;border-radius:10px;font-size:13.5px;font-weight:600;
+  margin-bottom:10px
+}
+.sql-result-msg.ok{background:#f0fdf4;color:#15803d;border:1px solid #86efac}
+.sql-result-msg.err{background:#fef2f2;color:#b91c1c;border:1px solid #fca5a5}
+.sql-result-table-wrap{overflow-x:auto;border-radius:10px;border:1px solid #e5e7eb}
+table.sql-result-table{width:100%;border-collapse:collapse;font-size:13px}
+table.sql-result-table thead{background:#0F9D8C;color:#fff}
+table.sql-result-table th,table.sql-result-table td{padding:9px 12px;text-align:left;white-space:nowrap}
+table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
+.sql-sample-queries{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.sql-sample-chip{
+  font-size:12px;font-weight:600;color:#0F9D8C;background:#e6f7f4;
+  border:1px solid #b9ece3;border-radius:20px;padding:6px 13px;cursor:pointer;
+  transition:all var(--trans)
+}
+.sql-sample-chip:hover{background:#0F9D8C;color:#fff;border-color:#0F9D8C}
+
+/* ─── Loading spinner ─── */
+#loader{
+  display:flex;align-items:center;justify-content:center;
+  height:200px
+}
+.spinner{
+  width:36px;height:36px;border:3px solid #e5e7eb;
+  border-radius:50%;border-top-color:var(--brand);animation:spin .7s linear infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ─── Fade animation ─── */
+.fade-in{animation:fadeUp .25s ease-out}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── Welcome Modal ─── */
+#modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);
+  backdrop-filter:blur(4px);z-index:200;
+  display:flex;align-items:center;justify-content:center;padding:16px
+}
+#modal-overlay.hidden{display:none}
+.modal{
+  background:#fff;border-radius:22px;width:100%;max-width:420px;
+  overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2)
+}
+.modal-stripe{height:5px;background:linear-gradient(90deg,#7c3aed,#6366f1,#4f46e5)}
+.modal-body{padding:32px}
+.modal-logo{
+  width:52px;height:52px;border-radius:16px;margin:0 auto 14px;
+  background:linear-gradient(135deg,#7c3aed,#4f46e5);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;color:#fff;font-size:14px;box-shadow:0 4px 14px rgba(124,58,237,.35)
+}
+.modal-title{font-size:22px;font-weight:800;color:#111;text-align:center;margin-bottom:5px}
+.modal-sub{font-size:13px;color:#9ca3af;text-align:center;margin-bottom:22px;line-height:1.5}
+.modal-sub em{color:#7c3aed;font-style:normal;font-weight:600}
 .field{margin-bottom:14px}
 .field label{display:block;font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
-.field input{width:100%;padding:12px 14px;border-radius:11px;border:1.5px solid #e5e7eb;background:#f9fafb;font-size:13px;font-family:inherit;outline:none;transition:.15s}
-.field input:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.1);background:#fff}
-.btn-login{width:100%;padding:13px;border-radius:12px;border:none;cursor:pointer;font-size:14px;font-weight:700;font-family:inherit;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;box-shadow:0 4px 14px rgba(108,63,245,.3);transition:filter .15s}
-.btn-login:hover{filter:brightness(1.07)}
-.btn-login:disabled{opacity:.5;cursor:not-allowed}
-.errmsg{color:#ef4444;font-size:12px;margin-top:8px;text-align:center}
-.note{font-size:11px;color:#9ca3af;text-align:center;margin-top:10px}
-.note code{background:#f3f4f6;padding:2px 5px;border-radius:4px;font-size:10px}
-
-/* Dashboard */
-#dashboard{display:none}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:28px}
-.stat-card{background:#fff;border-radius:16px;border:1px solid #e5e7eb;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.stat-icon{font-size:24px;margin-bottom:8px}
-.stat-value{font-size:28px;font-weight:800;color:#111}
-.stat-label{font-size:12px;color:#9ca3af;margin-top:2px}
-
-.tabs{display:flex;gap:8px;margin-bottom:16px}
-.tab-btn{padding:8px 18px;border-radius:10px;border:1.5px solid #e5e7eb;background:#fff;font-size:13px;font-weight:600;cursor:pointer;color:#6b7280;transition:.15s}
-.tab-btn.active{background:#6C3FF5;color:#fff;border-color:transparent;box-shadow:0 2px 8px rgba(108,63,245,.3)}
-
-.table-wrap{background:#fff;border-radius:16px;border:1px solid #e5e7eb;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.table-toolbar{padding:14px 18px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.search-input{padding:8px 12px;border-radius:9px;border:1.5px solid #e5e7eb;font-size:12px;font-family:inherit;outline:none;width:200px;transition:.15s}
-.search-input:focus{border-color:#7c3aed}
-.export-btn{padding:8px 16px;border-radius:9px;border:none;background:#f3f4f6;color:#374151;font-size:12px;font-weight:600;cursor:pointer;transition:.15s;font-family:inherit}
-.export-btn:hover{background:#e5e7eb}
-table{width:100%;border-collapse:collapse}
-thead tr{background:#f9fafb;border-bottom:1px solid #e5e7eb}
-th{text-align:left;padding:10px 16px;font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em}
-td{padding:12px 16px;font-size:12.5px;color:#374151;border-bottom:1px solid #f9fafb}
-tr:last-child td{border-bottom:none}
-tr:hover td{background:#fafafa}
-.badge{display:inline-flex;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}
-.badge-green{background:#dcfce7;color:#15803d}
-.badge-red{background:#fee2e2;color:#b91c1c}
-.badge-blue{background:#dbeafe;color:#1d4ed8}
-
-.empty-table{padding:48px;text-align:center;color:#9ca3af}
-.empty-table .big{font-size:36px;margin-bottom:8px}
-.db-tip{background:#faf5ff;border:1.5px solid #e9d5ff;border-radius:14px;padding:20px 24px;margin-top:20px}
-.db-tip h3{font-size:14px;font-weight:700;color:#7c3aed;margin-bottom:8px}
-.db-tip code{display:block;background:#1e1e2e;color:#cdd6f4;padding:12px 16px;border-radius:10px;font-size:12px;line-height:1.7;margin-top:8px;white-space:pre}
-.pagination{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-top:1px solid #f3f4f6;font-size:12px;color:#9ca3af}
-.page-btns{display:flex;gap:6px}
-.page-btn{padding:5px 10px;border-radius:7px;border:1.5px solid #e5e7eb;background:#fff;cursor:pointer;font-size:12px;transition:.15s}
-.page-btn:hover:not(:disabled){background:#f3f4f6}
-.page-btn:disabled{opacity:.4;cursor:not-allowed}
-
-/* ── Top-level section tabs (Data vs Builder) ── */
-.section-tabs{display:flex;gap:8px;margin-bottom:20px;border-bottom:1.5px solid #e5e7eb;overflow-x:auto}
-.section-tab{padding:10px 4px;margin-right:20px;background:none;border:none;border-bottom:2.5px solid transparent;cursor:pointer;font-size:13.5px;font-weight:700;color:#9ca3af;transition:.15s;margin-bottom:-1.5px;white-space:nowrap}
-.section-tab.active{color:#6C3FF5;border-bottom-color:#6C3FF5}
-.section-panel{display:none}
-.section-panel.active{display:block}
-
-/* ── Question Builder layout ── */
-.builder-grid{display:grid;grid-template-columns:250px 1fr 1fr;gap:16px;align-items:start}
-@media(max-width:1180px){.builder-grid{grid-template-columns:230px 1fr}.builder-preview-col{grid-column:1 / -1}}
-@media(max-width:840px){.builder-grid{grid-template-columns:1fr}.builder-preview-col{grid-column:auto}}
-
-.builder-preview-col .builder-col-body{padding:16px}
-.builder-preview-col .lp-inner{max-width:none}
-
-.builder-col{background:#fff;border-radius:16px;border:1px solid #e5e7eb;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
-.builder-col-header{padding:14px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
-.builder-col-title{font-size:12px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:.05em}
-.builder-col-body{padding:10px;max-height:640px;overflow-y:auto}
-
-/* Subject selector pills */
-.subj-pill-row{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px}
-.subj-pill{padding:6px 13px;border-radius:9px;border:1.5px solid #e5e7eb;background:#fff;font-size:12px;font-weight:700;cursor:pointer;transition:.15s;color:#6b7280}
-.subj-pill.active{color:#fff;border-color:transparent}
-
-/* Tree items (units/chapters) in builder */
-.b-unit{margin-bottom:4px}
-.b-unit-row{display:flex;align-items:center;gap:6px;padding:8px 10px;border-radius:9px;cursor:pointer;transition:.15s}
-.b-unit-row:hover{background:#f9fafb}
-.b-unit-title{flex:1;font-size:12.5px;font-weight:600;color:#374151;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.b-icon-btn{background:none;border:none;cursor:pointer;color:#9ca3af;padding:4px;border-radius:6px;display:flex;align-items:center;transition:.15s;flex-shrink:0}
-.b-icon-btn:hover{background:#f3f4f6;color:#374151}
-.b-icon-btn.danger:hover{background:#fee2e2;color:#dc2626}
-.b-chap-list{padding-left:16px;border-left:2px solid #f3f4f6;margin-left:14px}
-.b-chap-row{display:flex;align-items:center;gap:6px;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:12px;color:#6b7280;transition:.15s}
-.b-chap-row:hover{background:#f9fafb}
-.b-chap-row.active{font-weight:700}
-.b-chap-title{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.b-chap-qcount{font-size:10px;background:#f3f4f6;color:#9ca3af;border-radius:10px;padding:1px 6px;flex-shrink:0}
-.b-chap-row.active .b-chap-qcount{background:rgba(255,255,255,.3);color:#fff}
-.b-add-btn{width:100%;padding:9px;border-radius:9px;border:1.5px dashed #d1d5db;background:none;cursor:pointer;font-size:12px;font-weight:600;color:#9ca3af;transition:.15s;margin-top:4px}
-.b-add-btn:hover{border-color:#7c3aed;color:#7c3aed;background:#faf5ff}
-
-/* Editor panel */
-.editor-empty{padding:60px 20px;text-align:center;color:#9ca3af}
-.editor-empty .big{font-size:36px;margin-bottom:10px}
-.editor-section{padding:18px 20px;border-bottom:1px solid #f3f4f6}
-.editor-section:last-child{border-bottom:none}
-.editor-section-title{font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
-.b-field{margin-bottom:12px}
-.b-field label{display:block;font-size:11px;font-weight:700;color:#6b7280;margin-bottom:5px}
-.b-field input[type=text],.b-field input[type=number],.b-field input[type=url],.b-field textarea,.b-field select{
-  width:100%;padding:10px 12px;border-radius:9px;border:1.5px solid #e5e7eb;background:#f9fafb;
-  font-size:12.5px;font-family:inherit;outline:none;transition:.15s;color:#111;resize:vertical
+.field input,.field select{
+  width:100%;padding:12px 14px;border-radius:11px;
+  border:1.5px solid #e5e7eb;background:#f9fafb;
+  font-size:13px;font-family:inherit;color:#111;
+  transition:border-color var(--trans),box-shadow var(--trans);outline:none
 }
-.b-field input:focus,.b-field textarea:focus,.b-field select:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.1);background:#fff}
-.b-field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.b-field-hint{font-size:10.5px;color:#9ca3af;margin-top:4px}
+.field input:focus,.field select:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.12);background:#fff}
+.field input.err,.field select.err{border-color:#ef4444;background:#fef2f2}
+.field .errmsg{color:#ef4444;font-size:11px;margin-top:4px}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.btn-modal{
+  width:100%;padding:13px;border-radius:12px;border:none;cursor:pointer;
+  font-size:14px;font-weight:700;font-family:inherit;
+  background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;
+  margin-bottom:10px;box-shadow:0 4px 14px rgba(108,63,245,.3);
+  transition:filter var(--trans)
+}
+.btn-modal:hover{filter:brightness(1.07)}
+.btn-skip{
+  width:100%;padding:10px;border-radius:12px;border:none;cursor:pointer;
+  font-size:13px;color:#9ca3af;background:none;font-family:inherit;
+  transition:color var(--trans)
+}
+.btn-skip:hover{color:#6b7280}
 
-/* Concept paragraph / formula / image editors */
-.b-list-item{display:flex;gap:6px;align-items:flex-start;margin-bottom:8px}
-.b-list-item textarea,.b-list-item input{flex:1}
-.b-list-remove{flex-shrink:0;margin-top:2px}
-.b-image-item{border:1.5px solid #e5e7eb;border-radius:10px;padding:10px;margin-bottom:8px;background:#f9fafb}
-.b-image-item .b-field{margin-bottom:8px}
-.b-image-item .b-field:last-child{margin-bottom:0}
-.b-image-preview{max-width:100%;max-height:120px;border-radius:8px;margin-top:6px;display:block;border:1px solid #e5e7eb}
-.b-image-item-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.b-image-item-label{font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em}
+/* Modal register/login mode toggle */
+.modal-mode-tabs{display:flex;gap:8px;margin-bottom:18px}
+.mode-tab{
+  flex:1;padding:9px 6px;border-radius:9px;border:1.5px solid #e5e7eb;
+  background:#f9fafb;font-size:11px;font-weight:700;color:#6b7280;
+  cursor:pointer;font-family:inherit;transition:all var(--trans)
+}
+.mode-tab.active{background:#7c3aed;color:#fff;border-color:transparent;box-shadow:0 3px 10px rgba(124,58,237,.3)}
+.login-status{font-size:12px;text-align:center;margin:-4px 0 12px;line-height:1.5;min-height:0}
+.login-status.err-msg{color:#ef4444}
+.login-status.ok-msg{color:#16a34a}
 
-/* Question cards inside builder */
-.b-question-card{border:1.5px solid #e5e7eb;border-radius:12px;margin-bottom:12px;overflow:hidden}
-.b-question-head{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#f9fafb;cursor:pointer}
-.b-question-type-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;color:#fff;flex-shrink:0}
-.b-question-summary{flex:1;font-size:12px;color:#374151;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.b-question-body{padding:14px;display:none}
-.b-question-body.open{display:block}
-.b-opt-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.b-opt-row input[type=checkbox],.b-opt-row input[type=radio]{width:16px;height:16px;flex-shrink:0;cursor:pointer}
-.b-opt-row input[type=text]{flex:1}
-.b-opt-letter{width:22px;height:22px;border-radius:6px;background:#f3f4f6;color:#6b7280;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+/* Category / sub-topic picker (class-board, libraries, SQL topics, Excel levels...) */
+.back-link{
+  display:inline-flex;align-items:center;gap:5px;background:none;border:none;
+  cursor:pointer;font-size:13px;font-weight:700;color:#6b7280;padding:6px 4px;
+  margin-bottom:10px;transition:color var(--trans)
+}
+.back-link:hover{color:#111}
+.category-group{margin-bottom:24px}
+.category-group-title{
+  font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+  color:#9ca3af;margin-bottom:10px
+}
+#sidebar-category-nav{padding:8px 12px 2px}
+#sidebar-category-nav.hidden{display:none}
+#sidebar-back-btn{
+  width:100%;display:flex;align-items:center;gap:6px;
+  padding:8px 10px;border-radius:9px;border:1.5px dashed #e5e7eb;
+  background:none;color:#6b7280;font-size:11px;font-weight:700;
+  cursor:pointer;transition:all var(--trans);text-align:left
+}
+#sidebar-back-btn:hover{background:#f9fafb;color:#111;border-color:#d1d5db}
 
-/* Buttons */
-.b-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:9px;font-size:12px;font-weight:700;border:none;cursor:pointer;transition:.15s;font-family:inherit}
-.b-btn-primary{background:#6C3FF5;color:#fff;box-shadow:0 2px 8px rgba(108,63,245,.3)}
-.b-btn-primary:hover{filter:brightness(1.08)}
-.b-btn-outline{background:#fff;border:1.5px solid #e5e7eb;color:#6b7280}
-.b-btn-outline:hover{background:#f9fafb}
-.b-btn-danger{background:#fff;border:1.5px solid #fecaca;color:#dc2626}
-.b-btn-danger:hover{background:#fef2f2}
-.b-btn-sm{padding:5px 10px;font-size:11px}
-.b-btn:disabled{opacity:.45;cursor:not-allowed}
+/* ─── Empty state ─── */
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:240px;color:#9ca3af;gap:10px;text-align:center}
+.empty-icon{font-size:40px}
 
-.builder-toolbar{display:flex;align-items:center;gap:8px;padding:14px 20px;border-top:1px solid #f3f4f6;flex-wrap:wrap}
-.builder-status{font-size:11.5px;color:#9ca3af;margin-left:auto}
-.builder-status.success{color:#16a34a;font-weight:600}
-.builder-status.error{color:#dc2626;font-weight:600}
+/* ─── Brand / Home nav button ─── */
+#brand-home-btn{
+  display:flex;align-items:center;gap:9px;background:none;border:none;
+  cursor:pointer;padding:4px 6px;border-radius:9px;transition:background var(--trans)
+}
+#brand-home-btn:hover{background:#f3f4f6}
+#home-nav-btn,#dashboard-nav-btn{
+  display:flex;align-items:center;gap:6px;
+  padding:6px 13px;border-radius:9px;border:1.5px solid #e5e7eb;
+  background:#fff;color:#6b7280;font-size:13px;font-weight:700;
+  cursor:pointer;transition:all var(--trans);white-space:nowrap
+}
+#home-nav-btn:hover,#dashboard-nav-btn:hover{background:#f9fafb;border-color:#d1d5db;color:#111}
+#home-nav-btn.active,#dashboard-nav-btn.active{background:var(--brand);border-color:transparent;color:#fff}
 
-/* JSON preview modal */
-#json-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(3px);z-index:300;display:none;align-items:center;justify-content:center;padding:20px}
-#json-modal-overlay.open{display:flex}
-.json-modal{background:#1e1e2e;border-radius:18px;width:100%;max-width:720px;max-height:80vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.json-modal-head{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid #313244}
-.json-modal-title{font-size:13px;font-weight:700;color:#cdd6f4;flex:1}
-.json-modal-close{background:none;border:none;color:#9399b2;cursor:pointer;padding:4px;border-radius:6px}
-.json-modal-close:hover{background:#313244;color:#fff}
-.json-modal-body{padding:16px 20px;overflow-y:auto;flex:1}
-.json-modal-body pre{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.7;color:#cdd6f4;white-space:pre-wrap;word-break:break-word}
-.json-modal-foot{padding:14px 20px;border-top:1px solid #313244;display:flex;gap:8px}
+/* ─── Home page (card grid) ─── */
+.home-hero{text-align:center;margin:10px 0 26px}
+.home-hero h1{font-size:24px;font-weight:800;color:#111;margin-bottom:6px}
+.home-hero p{font-size:14px;color:#9ca3af}
+.home-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:14px
+}
+.home-card{
+  display:flex;flex-direction:column;align-items:flex-start;gap:10px;
+  background:#fff;border:1.5px solid #e5e7eb;border-radius:var(--radius-lg);
+  padding:20px 18px;cursor:pointer;text-align:left;
+  transition:all var(--trans);box-shadow:var(--shadow)
+}
+.home-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.home-card-icon{
+  width:44px;height:44px;border-radius:12px;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:20px
+}
+.home-card-label{font-size:15.5px;font-weight:700;color:#111}
+.home-card-cta{font-size:12.5px;font-weight:700}
 
-/* ══════════════════════════════════════════
-   LIVE PREVIEW MODAL — mirrors the student app
-   ══════════════════════════════════════════ */
-#live-preview-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:400;display:none;align-items:center;justify-content:center;padding:24px}
-#live-preview-overlay.open{display:flex}
-.live-preview-modal{background:#f4f5fb;border-radius:20px;width:100%;max-width:900px;height:92vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.35)}
-.lp-head{display:flex;align-items:center;gap:10px;padding:16px 22px;background:#fff;border-bottom:1px solid #e5e7eb;flex-shrink:0}
-.lp-head-title{font-size:14px;font-weight:700;color:#111;flex:1}
-.lp-head-sub{font-size:11px;color:#9ca3af}
-.lp-close{background:none;border:none;color:#9ca3af;cursor:pointer;padding:6px;border-radius:8px;transition:.15s}
-.lp-close:hover{background:#f3f4f6;color:#374151}
-.lp-body{flex:1;overflow-y:auto;padding:24px 20px}
-.lp-inner{max-width:680px;margin:0 auto}
+/* ─── Media blocks (image / pdf) driven by JSON ─── */
+.media-image{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
+.media-image img{display:block;width:100%;max-height:420px;object-fit:contain;background:#f9fafb;cursor:zoom-in}
+.media-pdf{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;background:#f9fafb}
+.media-pdf iframe{display:block;width:100%;height:420px;border:none;background:#fff}
+.media-pdf-link{
+  display:block;text-align:center;padding:9px;font-size:12.5px;font-weight:700;
+  color:#6C3FF5;text-decoration:none;background:#fff;border-top:1px solid #e5e7eb
+}
+ .media-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+} 
+.media-pdf-link:hover{background:#f3f4f6}
+.q-media{padding:0 22px 6px}
 
-/* Reused "student view" component styles, scoped to the live preview */
-.lp-inner .concept-card{background:#fff;border-radius:18px;border:1px solid #e5e7eb;box-shadow:0 1px 3px rgba(0,0,0,.08);overflow:hidden;margin-bottom:20px}
-.lp-inner .concept-header{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #f3f4f6}
-.lp-inner .concept-icon{width:38px;height:38px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff}
-.lp-inner .concept-eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
-.lp-inner .concept-title{font-size:17px;font-weight:700;color:#111;margin-top:2px}
-.lp-inner .concept-body-inner{padding:18px 20px}
-.lp-inner .concept-para{font-size:14.5px;line-height:1.85;color:#374151;margin-bottom:13px}
-.lp-inner .concept-para:last-child{margin-bottom:0}
-.lp-inner .concept-para strong{color:#111;font-weight:700}
-.lp-inner .concept-formulas{margin-top:14px;padding:14px 16px;border-radius:12px;background:#f9fafb;border:1px solid #f0f0f0}
-.lp-inner .concept-formulas-label{font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9ca3af;margin-bottom:9px}
-.lp-inner .formula-chip{display:inline-block;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:7px 12px;margin:0 6px 6px 0;font-size:13px;color:#1f2937}
-.lp-inner .concept-image-wrap{margin-top:14px}
-.lp-inner .concept-image-wrap img{width:100%;border-radius:12px;border:1px solid #e5e7eb;display:block}
-.lp-inner .concept-image-caption{font-size:12px;color:#9ca3af;margin-top:6px;text-align:center;font-style:italic}
-.lp-inner .q-card{background:#fff;border-radius:18px;border:1px solid #e5e7eb;box-shadow:0 1px 3px rgba(0,0,0,.08);overflow:hidden;margin-bottom:16px}
-.lp-inner .q-card-header{display:flex;align-items:center;gap:10px;padding:11px 18px;border-bottom:1px solid #f3f4f6}
-.lp-inner .q-type-badge{font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:20px;color:#fff}
-.lp-inner .q-num{margin-left:auto;font-size:11.5px;color:#c4c4c4;font-weight:600}
-.lp-inner .q-body{padding:16px 18px}
-.lp-inner .q-image-wrap{margin-top:12px}
-.lp-inner .q-image-wrap img{width:100%;border-radius:10px;border:1px solid #e5e7eb;display:block}
-.lp-inner .q-image-caption{font-size:11.5px;color:#9ca3af;margin-top:6px;text-align:center;font-style:italic}
-.lp-inner .q-text{font-size:14.5px;color:#111;line-height:1.7;font-weight:500}
-.lp-inner .q-options{padding:0 18px 16px;display:flex;flex-direction:column;gap:8px}
-.lp-inner .lp-opt{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border-radius:10px;border:2px solid #e5e7eb}
-.lp-inner .lp-opt.lp-correct{border-color:#16a34a;background:#f0fdf4}
-.lp-inner .lp-opt-label{width:24px;height:24px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;background:#f3f4f6;color:#6b7280}
-.lp-inner .lp-opt.lp-correct .lp-opt-label{background:#16a34a;color:#fff}
-.lp-inner .lp-opt-text{font-size:13px;color:#374151;line-height:1.6;flex:1;padding-top:1px}
-.lp-inner .lp-nat-answer{margin:0 18px 16px;padding:11px 14px;border-radius:10px;background:#f0fdf4;border:1.5px solid #86efac;color:#15803d;font-size:13px;font-weight:600}
-.lp-inner .lp-explanation{margin:0 18px 16px;padding:12px 14px;border-radius:10px;background:#faf5ff;border:1.5px solid #e9d5ff;color:#6b21a8;font-size:12.5px;line-height:1.65}
-.lp-inner .lp-explanation-label{font-weight:700;margin-bottom:4px;display:block}
-.lp-empty-note{text-align:center;color:#9ca3af;padding:60px 20px}
+/* ─── Image Lightbox ─── */
+#lightbox-overlay{
+  position:fixed;inset:0;background:rgba(10,10,20,.88);z-index:300;
+  display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out
+}
+#lightbox-overlay.open{display:flex}
+#lightbox-overlay img{max-width:100%;max-height:100%;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+#lightbox-close{
+  position:absolute;top:18px;right:22px;width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.12);border:none;color:#fff;font-size:20px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:background var(--trans)
+}
+#lightbox-close:hover{background:rgba(255,255,255,.25)}
+
+/* ─── Dashboard ─── */
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:22px}
+.dash-stat-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:var(--radius-lg);padding:18px;box-shadow:var(--shadow)}
+.dash-stat-label{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9ca3af;margin-bottom:8px}
+.dash-stat-value{font-size:26px;font-weight:800;color:var(--ink-blue)}
+.dash-stat-sub{font-size:12px;color:#9ca3af;margin-top:4px}
+.dash-section{background:#fff;border:1px solid #e5e7eb;border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:20px 22px;margin-bottom:20px}
+.dash-section-title{font-size:16px;font-weight:700;color:var(--ink-blue);margin-bottom:14px}
+.dash-subject-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #f3f4f6}
+.dash-subject-row:last-child{border-bottom:none}
+.dash-subject-name{width:110px;font-size:13px;font-weight:700;color:#374151;flex-shrink:0}
+.dash-subject-bar-track{flex:1;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden}
+.dash-subject-bar-fill{height:100%;border-radius:4px}
+.dash-subject-pct{width:70px;text-align:right;font-size:12.5px;color:#6b7280;font-weight:600;flex-shrink:0}
+.dash-week-chart{display:flex;align-items:flex-end;gap:8px;height:120px;padding-top:10px}
+.dash-week-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;justify-content:flex-end;height:100%}
+.dash-week-bar-wrap{flex:1;display:flex;align-items:flex-end;width:100%;justify-content:center}
+.dash-week-bar{width:60%;border-radius:5px 5px 0 0;min-height:3px}
+.dash-week-day{font-size:10.5px;color:#9ca3af;font-weight:600}
+.feedback-form{display:flex;flex-direction:column;gap:12px}
+.feedback-stars{display:flex;gap:6px}
+.feedback-star{font-size:26px;cursor:pointer;color:#e5e7eb;transition:color var(--trans)}
+.feedback-star.active{color:#f59e0b}
+.feedback-textarea{width:100%;min-height:90px;resize:vertical;padding:12px 14px;border-radius:11px;border:1.5px solid #e5e7eb;font-family:inherit;font-size:13.5px;outline:none}
+.feedback-textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(108,63,245,.12)}
+.feedback-msg{font-size:12.5px;font-weight:600;margin-top:2px}
+.feedback-msg.ok{color:#16a34a}
+.feedback-msg.err{color:#ef4444}
+.dash-guest-note{background:#fff8db;border-left:4px solid #facc15;border-radius:8px;padding:14px 16px;color:#6b5500;font-size:13.5px;line-height:1.7;margin-bottom:20px}
+
+/* Per-chapter feedback (shown after the last question in a chapter) */
+.chapter-feedback{background:#fff;border:1px solid #e5e7eb;border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:18px 20px;margin-top:8px;margin-bottom:20px}
+.chapter-feedback-title{font-size:14px;font-weight:700;color:var(--ink-blue);margin-bottom:10px}
+
+@media(max-width:640px){
+  .q-media{padding:0 16px 6px}
+  .media-pdf iframe{height:320px}
+  .home-hero h1{font-size:20px}
+}
 
 /* ─── Responsive ─── */
-@media(max-width:840px){
-  .container{padding:20px 12px}
-  header{padding:0 14px}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .tabs{flex-wrap:wrap}
-  .table-toolbar{flex-direction:column;align-items:stretch}
-  .search-input{width:100%}
-  .builder-col-body{max-height:440px}
-  .b-field-row{grid-template-columns:1fr}
-  .builder-toolbar{flex-direction:column;align-items:stretch}
-  .builder-toolbar .b-btn{width:100%;justify-content:center}
-  .builder-status{margin-left:0;text-align:center;order:99}
-  .builder-col-header{gap:10px}
-  .json-modal{max-width:100%;width:100%;height:100%;max-height:100%;border-radius:0}
-  .live-preview-modal{max-width:100%;width:100%;height:100%;border-radius:0}
-  #live-preview-overlay{padding:0}
-  #json-modal-overlay{padding:0}
+@media(max-width:640px){
+  #brand-name{display:none}
+  #sidebar{position:absolute;top:var(--topbar-h);left:0;height:calc(100vh - var(--topbar-h));z-index:20;box-shadow:var(--shadow-md)}
+  #sidebar.closed{width:0}
+  #main{padding:14px 10px}
+  .concept-header{padding:13px 16px;gap:10px}
+  .concept-icon{width:34px;height:34px;font-size:16px;border-radius:10px}
+  .concept-title{font-size:15.5px}
+  .concept-eyebrow{font-size:10px}
+  .concept-body{padding:0 16px 18px}
+  .concept-para{font-size:14px;line-height:1.75}
+  .concept-list li{font-size:13.5px}
+  .concept-note{font-size:13px;padding:10px 12px}
+  .concept-table th,.concept-table td{padding:7px 8px;font-size:12.5px}
+  .formula-chip{font-size:13px;padding:6px 11px}
+  .qtype-tabs{gap:5px}
+  .qtype-tab{padding:6px 12px;font-size:11.5px}
+  .q-body{padding:16px}
+  .q-text{font-size:14.5px}
+  .q-options{padding:0 16px 16px;gap:8px}
+  .opt{padding:12px 13px}
+  .opt-text{font-size:13.5px}
+  .opt-img{max-height:140px}
+  .q-actions{padding:0 16px 16px}
+  .nat-wrap{padding:0 16px 4px}
+  .explanation{margin:0 16px 16px;font-size:13px}
+  .q-batch{gap:14px}
+  .q-batch-actions{flex-direction:row;justify-content:space-between}
+  .q-batch-actions .btn{padding:10px 14px;font-size:12.5px;min-width:0;flex:0 0 auto}
+  .sql-pg-body{padding:16px}
+  textarea#sql-editor{font-size:13px;min-height:100px;padding:12px 14px}
+  .sql-pg-actions{gap:8px}
+  .sql-pg-actions .btn{flex:1;justify-content:center;padding:10px 8px;font-size:12.5px}
 }
-@media(max-width:480px){
-  .stats-grid{grid-template-columns:1fr 1fr}
-  .stat-value{font-size:22px}
-  .stat-card{padding:14px}
-  .login-body{padding:22px}
-  .lp-body{padding:16px 12px}
-  .lp-inner .concept-header,.lp-inner .concept-body-inner,.lp-inner .q-body{padding:14px}
-  .lp-inner .q-options{padding:0 14px 14px}
-  .lp-inner .lp-nat-answer,.lp-inner .lp-explanation{margin:0 14px 14px}
-  .section-tab{font-size:12.5px;margin-right:14px}
+@media(max-width:400px){
+  .q-card-header{flex-wrap:wrap;padding:10px 14px}
+  .q-num{margin-left:0}
+  .btn{padding:10px 12px;font-size:12.5px}
+  .concept-title{font-size:14.5px}
+  .q-text{font-size:14px}
 }
+
+/* Formula Highlight */
+.example-formula{   
+    font-family:Consolas, Monaco, monospace;
+    overflow-x:auto;
+}
+
+/* Result Badge */
+.example-result{
+    display:inline-block;   
+    font-weight:600;
+}
+
+/* Mobile */
+@media (max-width:768px){
+
+    .example-title{
+        font-size:.95rem;
+        padding:10px 12px;
+    }
+
+    .example-box{
+        padding:14px;
+    }
+
+}
+
+/* ─── Site-wide bottom disclaimer strip ── */
+.site-disclaimer{
+  text-align:center;font-size:11px;color:#9ca3af;line-height:34px;height:34px;
+  border-top:1px solid #f3f4f6;background:#fafafa;flex-shrink:0
+}
+.site-disclaimer a{color:#7c3aed;text-decoration:none;font-weight:600}
+.site-disclaimer a:hover{text-decoration:underline}
+  
 </style>
 </head>
 <body>
 
-<header>
-  <button class="back-btn" onclick="location.href='index.html'">
-    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-  </button>
-  <div class="logo" id="admin-logo">UN</div>
-  <div>
-    <div class="brand" id="admin-brand">UNIC Academic</div>
-    <div class="sub-brand">Admin Panel</div>
-  </div>
-</header>
+<!-- ══════════ WELCOME MODAL ══════════ -->
+<div id="modal-overlay" class="hidden">
+  <div class="modal">
+    <div class="modal-stripe"></div>
+    <div class="modal-body">
+      <div class="modal-logo" id="modal-logo">UN</div>
+      <h1 class="modal-title" id="modal-title">Welcome to UNIC Academic</h1>      
+      <p class="modal-sub" id="modal-sub"><em>Knowledge Sharing — Learn • Create • Share</em><br>Enter your details to save progress &amp; get updates.<br><em>All fields are optional.</em></p>
 
-<div class="container">
-
-  <!-- Login -->
-  <div id="login-panel">
-    <div class="login-stripe"></div>
-    <div class="login-body">
-      <div class="login-icon">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+      <div class="modal-mode-tabs">
+        <button type="button" class="mode-tab active" id="mode-register-btn" onclick="setModalMode('register')">New here? Register</button>
+        <button type="button" class="mode-tab" id="mode-login-btn" onclick="setModalMode('login')">Already registered? Log in</button>
       </div>
-      <div class="login-title">Admin Access</div>
-      <div class="login-sub">Enter your admin key to continue</div>
+
+      <div class="field" id="field-name">
+        <label>Full Name</label>
+        <input type="text" id="f-name" placeholder="e.g. Muthu Raj">
+        <div class="errmsg" id="err-name"></div>
+      </div>
       <div class="field">
-        <label>Admin Key</label>
-        <input type="password" id="admin-key" placeholder="Enter admin key" onkeydown="if(event.key==='Enter')login()">
+        <label id="f-email-label">Email Address</label>
+        <input type="email" id="f-email" placeholder="you@example.com">
+        <div class="errmsg" id="err-email"></div>
       </div>
-      <div class="errmsg" id="login-err"></div>
-      <button class="btn-login" id="login-btn" onclick="login()">Access Dashboard</button>
-      <div class="note">Set <code>ADMIN_KEY</code> in your server config</div>
-    </div>
-  </div>
-
-  <!-- Dashboard -->
-  <div id="dashboard">
-    <div class="stats-grid" id="stats-grid">
-      <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-value" id="stat-regs">—</div><div class="stat-label">Registrations</div></div>
-      <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-value" id="stat-attempts">—</div><div class="stat-label">Attempts</div></div>
-      <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-value" id="stat-accuracy">—</div><div class="stat-label">Accuracy</div></div>
-      <div class="stat-card"><div class="stat-icon">📚</div><div class="stat-value" id="stat-subjects">4</div><div class="stat-label">Subjects</div></div>
-    </div>
-
-    <!-- Section tabs: Data vs Question Builder -->
-    <div class="section-tabs">
-      <button class="section-tab active" id="sec-tab-data" onclick="switchSection('data')">📊 Data</button>
-      <button class="section-tab" id="sec-tab-builder" onclick="switchSection('builder')">✏️ Question Builder</button>
-    </div>
-
-    <!-- ═══ SECTION: DATA ═══ -->
-    <div class="section-panel active" id="section-data">
-      <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('registrations',this)">Registrations</button>
-        <button class="tab-btn" onclick="switchTab('attempts',this)">Attempts</button>
+      <div class="field" id="field-mobile">
+        <label>Mobile Number</label>
+        <input type="tel" id="f-mobile" placeholder="9655168622">
+        <div class="errmsg" id="err-mobile"></div>
       </div>
-
-      <div class="table-wrap">
-        <div class="table-toolbar">
-          <input class="search-input" type="text" id="search-input" placeholder="Search…" oninput="filterTable()">
-          <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
-        </div>
-        <div id="table-container">
-          <div class="empty-table"><div class="big">⏳</div><p>Loading…</p></div>
-        </div>
-        <div class="pagination" id="pagination" style="display:none">
-          <span id="page-info">Page 1</span>
-          <div class="page-btns">
-            <button class="page-btn" id="btn-prev-page" onclick="changePage(-1)" disabled>← Prev</button>
-            <button class="page-btn" id="btn-next-page" onclick="changePage(1)">Next →</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="db-tip">
-        <h3>🗄️ Backend: Vercel Serverless + Hasura</h3>
-        <p style="font-size:13px;color:#6b7280;margin-bottom:6px">Data is stored in Postgres via Hasura GraphQL. Already wired up — just configure env vars on Vercel:</p>
-        <code># In Vercel Dashboard → Settings → Environment Variables
-HASURA_GRAPHQL_URL=https://your-app.hasura.app/v1/graphql
-HASURA_ADMIN_SECRET=your-hasura-admin-secret
-ADMIN_KEY=your-admin-password
-
-# Run hasura/migrations/001_init.sql in Hasura Console
-# then track the tables under Data → Track Tables</code>
-      </div>
-    </div>
-
-    <!-- ═══ SECTION: QUESTION BUILDER ═══ -->
-    <div class="section-panel" id="section-builder">
-
-      <!-- Subject selector -->
-      <div class="builder-col" style="margin-bottom:14px">
-        <div class="builder-col-header">
-          <span class="builder-col-title">Subject</span>
-          <button class="b-btn b-btn-outline b-btn-sm" onclick="openNewSubjectPrompt()">+ New Subject</button>
-        </div>
-        <div class="subj-pill-row" id="builder-subject-pills"></div>
-      </div>
-
-      <div class="builder-grid">
-
-        <!-- LEFT: Units / Chapters tree -->
-        <div class="builder-col">
-          <div class="builder-col-header">
-            <span class="builder-col-title" id="builder-tree-subject-label">Units &amp; Chapters</span>
-          </div>
-          <div class="builder-col-body" id="builder-tree">
-            <div class="editor-empty"><div class="big">📚</div><p style="font-size:12px">Select or create a subject</p></div>
-          </div>
-        </div>
-
-        <!-- RIGHT: Chapter editor (concept + questions) -->
-        <div class="builder-col">
-          <div class="builder-col-header">
-            <span class="builder-col-title" id="builder-editor-label">Editor</span>
-            <div style="display:flex;gap:6px;flex-wrap:wrap">
-              <button class="b-btn b-btn-primary b-btn-sm" onclick="showLivePreview()">🔍 Live Preview</button>
-              <button class="b-btn b-btn-outline b-btn-sm" onclick="showJsonPreview()">👁 JSON</button>
-            </div>
-          </div>
-          <div id="builder-editor">
-            <div class="editor-empty"><div class="big">👈</div><p style="font-size:12px">Select a chapter to edit its concept &amp; questions</p></div>
-          </div>
-          <div class="builder-toolbar">
-            <button class="b-btn b-btn-primary" id="btn-save-subject" onclick="saveSubjectContent()">💾 Save Subject to Database</button>
-            <button class="b-btn b-btn-outline" onclick="downloadSubjectJson()">⬇ Download JSON</button>
-            <span class="builder-status" id="builder-status"></span>
-          </div>
-        </div>
-
-        <!-- RIGHT OF THAT: Live Preview panel (updates as you type) -->
-        <div class="builder-col builder-preview-col">
-          <div class="builder-col-header">
-            <span class="builder-col-title">🔍 Live Preview</span>
-            <button class="b-btn b-btn-outline b-btn-sm" onclick="showLivePreview()">⛶ Full Screen</button>
-          </div>
-          <div class="builder-col-body" style="max-height:720px">
-            <div class="lp-inner" id="lp-side-inner"><div class="lp-empty-note">Select a chapter to preview it here.</div></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-
+      <div class="field" id="field-source">
+  <label for="f-source">How Did You Find Us?</label>
+  <select id="f-source">
+    <option value="">Select one</option>    
+  </select>
 </div>
 
-<!-- JSON Preview Modal -->
-<div id="json-modal-overlay" onclick="if(event.target===this) closeJsonPreview()">
-  <div class="json-modal">
-    <div class="json-modal-head">
-      <span class="json-modal-title" id="json-modal-title">Subject JSON</span>
-      <button class="json-modal-close" onclick="closeJsonPreview()">
-        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div class="json-modal-body"><pre id="json-modal-content"></pre></div>
-    <div class="json-modal-foot">
-      <button class="b-btn b-btn-primary" onclick="copyJsonPreview()">📋 Copy JSON</button>
-      <button class="b-btn b-btn-outline" onclick="closeJsonPreview()">Close</button>
+      <div class="login-status" id="login-status"></div>
+
+      <button class="btn-modal" id="modal-submit">Start Learning and Practising →</button>
+      <button class="btn-skip" id="modal-skip">Skip for now</button>
     </div>
   </div>
 </div>
 
-<!-- Live Preview Modal — mirrors the actual student-facing screen -->
-<div id="live-preview-overlay" onclick="if(event.target===this) closeLivePreview()">
-  <div class="live-preview-modal">
-    <div class="lp-head">
-      <div style="flex:1">
-        <div class="lp-head-title" id="lp-head-title">Live Preview</div>
-        <div class="lp-head-sub">This is exactly how it will look to a student</div>
+<!-- ══════════ IMAGE LIGHTBOX (tap any question/option/concept image to zoom) ══════════ -->
+<div id="lightbox-overlay">
+  <button id="lightbox-close" aria-label="Close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- ══════════ APP SHELL ══════════ -->
+<div id="app">
+
+  <!-- Top Bar -->
+  <header id="topbar">
+    <button id="sidebar-toggle" aria-label="Toggle sidebar">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <button id="brand-home-btn" title="Go to home">
+      <div id="logo-box">UN</div>
+      <span id="brand-name">UNIC Academic<br>Learn • Create • Share</span>
+    </button>
+    <button id="home-nav-btn" title="Go to home">🏠 <span>Home</span></button>
+    <button id="dashboard-nav-btn" title="Your practice dashboard">📊 <span>Dashboard</span></button>
+    <nav id="subject-tabs"></nav>
+    <div style="position:relative">
+      <button id="user-btn">?</button>
+      <div id="user-dropdown">
+        <div class="uname" id="dd-name">Guest</div>
+        <div class="uemail" id="dd-email"></div>
+        <hr>
+        <button class="dropdown-btn danger" id="dd-signout">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+          Sign out
+        </button>
+        <div id="dd-guest-note"></div>
       </div>
-      <button class="lp-close" onclick="closeLivePreview()">
-        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
     </div>
-    <div class="lp-body">
-      <div class="lp-inner" id="lp-inner"></div>
-    </div>
+  </header>
+
+  <!-- Body -->
+  <div id="body">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div id="sidebar-subject-header">Subject</div>
+      <div id="sidebar-category-nav" class="hidden">
+        <button id="sidebar-back-btn" onclick="backToCategories()">← <span id="sidebar-back-label">Change Class / Topic</span></button>
+      </div>
+      <div id="sidebar-tree"></div>
+    </aside>
+
+    <!-- Main -->
+    <main id="main">
+      <div id="question-wrap">
+        <div class="empty"><div class="empty-icon">📚</div><p>Select a chapter to begin</p></div>
+      </div>
+    </main>
   </div>
+</div>
+
+<div class="site-disclaimer">
+  Some content on this site may be AI-assisted and can sometimes be inaccurate. ·
+  <a href="legal.html">Disclaimer &amp; Terms</a>
 </div>
 
 <script>
-let adminKey = '';
-let currentTab = 'registrations';
-let allData = [];
-let filteredData = [];
-let currentPage = 1;
-const PAGE_SIZE = 20;
+// ══════════════════════════════════════════
+//  UNIC ACADEMIC — Core App
+// ══════════════════════════════════════════
 
-function ajax(url, method, data) {
+const SUBJECTS = {
+  PH:  { label:'Physics',     emoji:'⚡', color:'#6C3FF5', file:'data/physics.json' },
+  CH:  { label:'Chemistry',   emoji:'🧪', color:'#E53E3E', file:'data/chemistry.json' },
+  MA:  { label:'Mathematics', emoji:'∑',  color:'#2563EB', file:'data/mathematics.json' },
+  BIO: { label:'Biology',     emoji:'🧬', color:'#16a34a', file:'data/biology.json' },
+  SQL: { label:'SQL',         emoji:'⛁', color:'#0F9D8C', file:'data/sql.json' },
+  EXCEL: { label:'EXCEL',     emoji:'𝄜', color:'#217346', file:'data/excel.json' },
+  PY:  { label:'Python',      emoji:'🐍', color:'#3776AB', file:'data/python.json' },
+  R:  { label:'R Program',    emoji:'R', color:'#1F65B7', file:'data/rprog.json' },
+  MAP:  { label:'Math Aptitude',    emoji:'📐', color:'#B7791F', file:'data/mathapti.json' },
+};
+const subjectRootCache = {};
+
+const LABELS = ['A','B','C','D','E'];
+const BATCH_SIZE = 3;
+
+const DEFAULT_SQL_SCHEMA = `CREATE TABLE Student (
+  Roll_No INT PRIMARY KEY,
+  Name VARCHAR(30),
+  Class VARCHAR(5),
+  Marks INT
+);
+
+INSERT INTO Student VALUES (1, 'Riya', '10A', 88);
+INSERT INTO Student VALUES (2, 'Aman', '10B', 72);
+INSERT INTO Student VALUES (3, 'Zoya', '10A', 95);
+INSERT INTO Student VALUES (4, 'Kabir', '10B', 64);
+INSERT INTO Student VALUES (5, 'Meera', '10A', 79);
+INSERT INTO Student VALUES (6, 'Vihaan', '10C', 58);`;
+
+const DEFAULT_SQL_QUERIES = [
+  'SELECT * FROM Student;',
+  "SELECT Name, Marks FROM Student WHERE Class = '10A';",
+  'SELECT Class, AVG(Marks) FROM Student GROUP BY Class;',
+  'SELECT * FROM Student ORDER BY Marks DESC;',
+  "UPDATE Student SET Marks = 90 WHERE Name = 'Aman';",
+];
+
+function getActivePlayground() {
+  const chapter = getCurrentChapter();
+  const pg = chapter?.playground;
+  return {
+    schema: pg?.schema || DEFAULT_SQL_SCHEMA,
+    sampleQueries: (pg?.sampleQueries && pg.sampleQueries.length) ? pg.sampleQueries : DEFAULT_SQL_QUERIES,
+  };
+}
+
+// ── State ──
+let state = {
+  view: 'home', // 'home' | 'categories' | 'subject' | 'dashboard'
+  config: null,
+  activeSubject: 'PH',
+  subjectMeta: null,
+  activeCategoryId: null,
+  subjectData: null,
+  activeChapterId: null,
+  questionIndex: 0,
+  answers: {},
+  submitted: {},
+  sidebarOpen: true,
+  userData: null,
+  conceptOpen: true,
+  qtypeFilter: 'ALL',
+  sqlPgOpen: true,
+  sqlDb: null,
+  sqlJsLoading: null,
+  sqlLoadedChapterId: null,
+  modalMode: 'register',
+  dashboardStats: null,
+  feedbackStats: null,
+  feedbackRating: 0,
+  chapterFeedbackRating: {},   // chapterId -> star rating currently selected
+  chapterFeedbackSubmitted: {}, // chapterId -> true once sent
+};
+
+
+// ── Utilities ──
+function hex2rgba(hex, a) {
+  const r = parseInt(hex.slice(1,3),16),g = parseInt(hex.slice(3,5),16),b = parseInt(hex.slice(5,7),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+function subjectColor() { return SUBJECTS[state.activeSubject].color; }
+
+function escapeHtml(str) {
+  return String(str ?? '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+// ── AJAX helper ──
+function ajax(url, method='GET', data=null) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
-    xhr.open(method || 'GET', url, true);
+    xhr.open(method, url, true);
     if (data) xhr.setRequestHeader('Content-Type','application/json');
     xhr.onload = () => {
       try { resolve(JSON.parse(xhr.responseText)); }
-      catch { resolve({ error: 'Parse error', raw: xhr.responseText }); }
+      catch { resolve(xhr.responseText); }
     };
     xhr.onerror = () => reject(new Error('Network error'));
     xhr.send(data ? JSON.stringify(data) : null);
   });
 }
 
-async function login() {
-  const k = document.getElementById('admin-key').value.trim();
-  if (!k) return;
-  document.getElementById('login-btn').disabled = true;
-  document.getElementById('login-btn').textContent = 'Verifying…';
-  document.getElementById('login-err').textContent = '';
-  try {
-    const res = await ajax(`api/admin?key=${encodeURIComponent(k)}&type=registrations`);
-    if (res.error === 'Unauthorized') {
-      document.getElementById('login-err').textContent = 'Invalid admin key';
-      document.getElementById('login-btn').disabled = false;
-      document.getElementById('login-btn').textContent = 'Access Dashboard';
-      return;
-    }
-    adminKey = k;
-    document.getElementById('login-panel').style.display = 'none';
-    document.getElementById('dashboard').style.display = 'block';
-    loadData('registrations');
-    loadStats();
-  } catch {
-    document.getElementById('login-err').textContent = 'Could not connect to server';
-    document.getElementById('login-btn').disabled = false;
-    document.getElementById('login-btn').textContent = 'Access Dashboard';
-  }
-  document.getElementById('login-panel').style.display = 'none';
-    document.getElementById('dashboard').style.display = 'block';
-}
-
-async function loadStats() {
-  try {
-    const r = await ajax(`api/admin?key=${encodeURIComponent(adminKey)}&type=registrations`);
-    const a = await ajax(`api/admin?key=${encodeURIComponent(adminKey)}&type=attempts`);
-    document.getElementById('stat-regs').textContent = r.count ?? '—';
-    document.getElementById('stat-attempts').textContent = a.count ?? '—';
-    if (a.records && a.records.length) {
-      const correct = a.records.filter(x => x.isCorrect).length;
-      document.getElementById('stat-accuracy').textContent = Math.round(correct/a.records.length*100) + '%';
-    } else {
-      document.getElementById('stat-accuracy').textContent = a.accuracy || '—';
-    }
-  } catch {}
-}
-
-async function loadData(type) {
-  document.getElementById('table-container').innerHTML = '<div class="empty-table"><div class="big">⏳</div><p>Loading…</p></div>';
-  try {
-    const res = await ajax(`api/admin?key=${encodeURIComponent(adminKey)}&type=${type}`);
-    if (res.message) {
-      document.getElementById('table-container').innerHTML = `<div class="empty-table"><div class="big">🗄️</div><p style="font-weight:600;color:#374151">${res.message}</p></div>`;
-      document.getElementById('pagination').style.display = 'none';
-      return;
-    }
-    allData = res.records || [];
-    filteredData = [...allData];
-    currentPage = 1;
-    renderTable();
-  } catch (e) {
-    document.getElementById('table-container').innerHTML = '<div class="empty-table"><div class="big">⚠️</div><p>Failed to load data</p></div>';
-  }
-}
-
-function renderTable() {
-  if (!filteredData.length) {
-    document.getElementById('table-container').innerHTML = `<div class="empty-table"><div class="big">📭</div><p>No ${currentTab} yet</p></div>`;
-    document.getElementById('pagination').style.display = 'none';
-    return;
-  }
-
-  const keys = Object.keys(filteredData[0]);
-  const start = (currentPage - 1) * PAGE_SIZE;
-  const page = filteredData.slice(start, start + PAGE_SIZE);
-  const totalPages = Math.ceil(filteredData.length / PAGE_SIZE);
-
-  let html = '<div style="overflow-x:auto"><table><thead><tr>';
-  keys.forEach(k => html += `<th>${k}</th>`);
-  html += '</tr></thead><tbody>';
-  page.forEach(row => {
-    html += '<tr>';
-    keys.forEach(k => {
-      const v = row[k];
-      let cell;
-      if (k === 'isCorrect') cell = v ? '<span class="badge badge-green">✓ Correct</span>' : '<span class="badge badge-red">✗ Wrong</span>';
-      else if (k === 'subject') cell = `<span class="badge badge-blue">${v}</span>`;
-      else if (typeof v === 'object' && v !== null) cell = JSON.stringify(v);
-      else cell = String(v ?? '');
-      html += `<td>${cell}</td>`;
-    });
-    html += '</tr>';
-  });
-  html += '</tbody></table></div>';
-
-  document.getElementById('table-container').innerHTML = html;
-  document.getElementById('pagination').style.display = 'flex';
-  document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages} (${filteredData.length} records)`;
-  document.getElementById('btn-prev-page').disabled = currentPage === 1;
-  document.getElementById('btn-next-page').disabled = currentPage === totalPages;
-}
-
-function switchSection(section) {
-  document.getElementById('sec-tab-data').classList.toggle('active', section === 'data');
-  document.getElementById('sec-tab-builder').classList.toggle('active', section === 'builder');
-  document.getElementById('section-data').classList.toggle('active', section === 'data');
-  document.getElementById('section-builder').classList.toggle('active', section === 'builder');
-  if (section === 'builder' && !builder.subjectsLoaded) {
-    initBuilder();
-  }
-}
-
-// ══════════════════════════════════════════════════════
-//  QUESTION BUILDER
-//  Lets admins create/edit Subjects → Units → Chapters →
-//  Concept + Questions (MCQ/MSQ/NAT), matching the exact
-//  JSON schema used by the main app's /data/*.json files.
-// ══════════════════════════════════════════════════════
-
-const BUILTIN_SUBJECTS = [
-  { code: 'PH',  subject: 'Physics',     color: '#6C3FF5' },
-  { code: 'CH',  subject: 'Chemistry',   color: '#E53E3E' },
-  { code: 'MA',  subject: 'Mathematics', color: '#2B6CB0' },
-  { code: 'BIO', subject: 'Biology',     color: '#276749' },
-];
-
-const QTYPE_COLORS = { MCQ: '#6C3FF5', MSQ: '#0891b2', NAT: '#d97706' };
-
-let builder = {
-  subjectsLoaded: false,
-  subjects: [],          // [{code, subject, color}]
-  activeCode: null,
-  activeData: null,       // full { subject, code, color, units:[...] } for the active subject
-  activeUnitId: null,
-  activeChapterId: null,
-  openQuestionId: null,   // which question card is expanded
-  dirty: false,
-};
-
-function uid(prefix) {
-  return `${prefix}_${Date.now().toString(36)}${Math.random().toString(36).slice(2,6)}`;
-}
-
-function setBuilderStatus(msg, type) {
-  const el = document.getElementById('builder-status');
-  el.textContent = msg || '';
-  el.className = 'builder-status' + (type ? ' ' + type : '');
-}
-
-async function initBuilder() {
-  builder.subjectsLoaded = true;
-  setBuilderStatus('Loading subjects…');
-
-  // Start with the 4 built-in subjects; merge in any custom ones already saved
-  builder.subjects = [...BUILTIN_SUBJECTS];
-
-  try {
-    const res = await ajax(`api/content`);
-    if (res && res.subjects) {
-      res.subjects.forEach(s => {
-        if (!builder.subjects.find(b => b.code === s.code)) {
-          builder.subjects.push({ code: s.code, subject: s.subject, color: s.color });
-        }
+// ── KaTeX rendering ──
+function renderLatex(el) {
+  if (!el) return;
+  function tryRender() {
+    if (window.renderMathInElement) {
+      renderMathInElement(el, {
+        delimiters:[
+          {left:'$$',right:'$$',display:true},
+          {left:'$',right:'$',display:false},
+          {left:'\\(',right:'\\)',display:false},
+          {left:'\\[',right:'\\]',display:true},
+        ],
+        throwOnError:false
       });
+    } else {
+      setTimeout(tryRender, 100);
     }
-  } catch {}
-
-  renderSubjectPills();
-  setBuilderStatus('');
-
-  if (builder.subjects.length) {
-    await loadSubjectIntoBuilder(builder.subjects[0].code);
   }
+  tryRender();
 }
 
-function renderSubjectPills() {
-  const row = document.getElementById('builder-subject-pills');
-  row.innerHTML = '';
-  builder.subjects.forEach(s => {
-    const btn = document.createElement('button');
-    btn.className = 'subj-pill' + (s.code === builder.activeCode ? ' active' : '');
-    btn.textContent = `${s.subject} (${s.code})`;
-    if (s.code === builder.activeCode) {
-      btn.style.background = s.color;
-      btn.style.borderColor = 'transparent';
-    }
-    btn.onclick = () => loadSubjectIntoBuilder(s.code);
-    row.appendChild(btn);
+// ══════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════
+async function init() {
+  try {
+    state.config = await ajax('data/config.json');
+  } catch {
+    state.config = { academyName:'UNIC Academic', logoText:'UN', subjects:['PH','CH','MA','BIO','SQL','EXCEL','PY', 'R'], howDidYouFindUs:['Google','Friend','YouTube','Other'] };
+  }
+
+  document.title = state.config.academyName + ' — Practice Portal';
+  document.querySelectorAll('#logo-box, .modal-logo').forEach(el => el.textContent = state.config.logoText || 'UN');
+  document.getElementById('modal-title').textContent = 'Welcome to ' + state.config.academyName;
+  document.getElementById('brand-name').textContent = state.config.academyName;
+
+  const src = document.getElementById('f-source');
+  (state.config.howDidYouFindUs || []).forEach(opt => {
+    const o = document.createElement('option'); o.value = opt; o.textContent = opt; src.appendChild(o);
   });
-}
 
-function openNewSubjectPrompt() {
-  const name = prompt('New subject name (e.g. "Computer Science"):');
-  if (!name || !name.trim()) return;
-  let code = prompt('Short code for this subject (e.g. "CS"):', name.trim().slice(0,3).toUpperCase());
-  if (!code || !code.trim()) return;
-  code = code.trim().toUpperCase();
+  buildSubjectTabs();
 
-  if (builder.subjects.find(s => s.code === code)) {
-    alert('A subject with that code already exists.');
-    return;
+  const saved = localStorage.getItem('unic_user');
+  if (saved) {
+    try { state.userData = JSON.parse(saved); } catch { state.userData = null; }
+  }
+  updateUserUI();
+
+  showHome();
+
+  if (!state.userData) {
+    document.getElementById('modal-overlay').classList.remove('hidden');
   }
 
-  const color = prompt('Hex color for this subject (e.g. #9333EA):', '#9333EA') || '#9333EA';
-
-  const newSubject = { code, subject: name.trim(), color };
-  builder.subjects.push(newSubject);
-  builder.activeCode = code;
-  builder.activeData = { subject: name.trim(), code, color, units: [] };
-  builder.activeUnitId = null;
-  builder.activeChapterId = null;
-
-  renderSubjectPills();
-  renderBuilderTree();
-  renderBuilderEditor();
-  setBuilderStatus('New subject created — add a unit to get started, then Save.', '');
+  bindEvents();
 }
 
-async function loadSubjectIntoBuilder(code) {
-  builder.activeCode = code;
-  builder.activeUnitId = null;
-  builder.activeChapterId = null;
-  renderSubjectPills();
+// ══════════════════════════════════════════
+//  SUBJECT TABS
+// ══════════════════════════════════════════
+function buildSubjectTabs() {
+  const nav = document.getElementById('subject-tabs');
+  nav.innerHTML = '';
+  (state.config.subjects || Object.keys(SUBJECTS)).forEach(code => {
+    const s = SUBJECTS[code];
+    if (!s) return;
+    const btn = document.createElement('button');
+    btn.className = 'subj-tab';
+    btn.dataset.code = code;
+    btn.innerHTML = `<span class="emoji">${s.emoji}</span><span>${s.label}</span>`;
+    btn.addEventListener('click', () => switchSubject(code));
+    nav.appendChild(btn);
+  });
+  updateActiveTabs();
+}
 
-  document.getElementById('builder-tree').innerHTML = '<div class="editor-empty"><div class="big">⏳</div><p style="font-size:12px">Loading…</p></div>';
-  document.getElementById('builder-editor').innerHTML = '<div class="editor-empty"><div class="big">👈</div><p style="font-size:12px">Select a chapter to edit</p></div>';
+function updateActiveTabs() {
+  const color = subjectColor();
+  document.querySelectorAll('.subj-tab').forEach(btn => {
+    const code = btn.dataset.code;
+    const s = SUBJECTS[code];
+    if (state.view === 'subject' && code === state.activeSubject) {
+      btn.style.background = s.color;
+      btn.style.color = '#fff';
+      btn.style.borderColor = 'transparent';
+      btn.style.boxShadow = `0 2px 8px ${hex2rgba(s.color,.35)}`;
+    } else {
+      btn.style.background = hex2rgba(s.color,.08);
+      btn.style.color = s.color;
+      btn.style.borderColor = hex2rgba(s.color,.25);
+      btn.style.boxShadow = 'none';
+    }
+  });
+  const homeBtn = document.getElementById('home-nav-btn');
+  if (homeBtn) homeBtn.classList.toggle('active', state.view === 'home');
+  const dashBtn = document.getElementById('dashboard-nav-btn');
+  if (dashBtn) dashBtn.classList.toggle('active', state.view === 'dashboard');
+  document.getElementById('sidebar-subject-header').style.color = color;
+}
+
+// ══════════════════════════════════════════
+//  HOME PAGE
+// ══════════════════════════════════════════
+function showHome() {
+  state.view = 'home';
+  state.sidebarOpen = false;
+  document.getElementById('sidebar').classList.add('closed');
+  renderHomeHTML();
+  updateActiveTabs();
+}
+
+function renderHomeHTML() {
+  const wrap = document.getElementById('question-wrap');
+  const codes = state.config?.subjects || Object.keys(SUBJECTS);
+  const cardsHTML = codes.map(code => {
+    const s = SUBJECTS[code];
+    if (!s) return '';
+    return `
+      <button class="home-card" onclick="switchSubject('${code}')">
+        <div class="home-card-icon" style="background:${s.color}">${s.emoji}</div>
+        <div class="home-card-label">${s.label}</div>
+        <div class="home-card-cta" style="color:${s.color}">Start Learning & Practice →</div>
+      </button>`;
+  }).join('');
+
+  wrap.innerHTML = `
+    <div class="fade-in">
+      <div class="home-hero">
+        <h1>Welcome to ${state.config?.academyName || 'UNIC Academic'}</h1> <br><h5>Knowledge Sharing — Learn • Create • Share</h5>
+        <p>Pick a subject below to start practising</p>
+      </div>
+      <div class="home-grid">${cardsHTML}</div>
+
+      <div style="margin-top:15px;padding:16px 20px;background:#fff8e1;border:1px solid #ffe082;border-left:5px solid #f9a825;border-radius:8px;color:#5f4500;font-family:Arial,sans-serif;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+  <strong>📢 Information</strong><br><br>
+
+  Click the <strong>Dashboard</strong> button to track your learning progress, quiz results, and completion status.
+
+  <br><br>
+
+  If you find any errors or have suggestions for improving the course content, examples, or quizzes, please send us your feedback. Your input helps us continuously enhance the platform and provide a better learning experience for all learners.
+</div>
+   
+ <div style="margin-top:15px;padding:16px 20px;background:#fff8e1;border:1px solid #ffe082;border-left:5px solid #f9a825;border-radius:8px;color:#5f4500;font-family:Arial,sans-serif;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+    <h6 style="margin:0 0 10px;font-size:16px;font-weight:600;color:#8a6d00;">
+        Learning Platform Notice / Disclaimer
+    </h6>
+
+    <ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.8;">
+        <li>Some lessons, examples, practice exercises, and quizzes are currently under development and will be updated soon.</li>
+        <li>Parts of this course have been generated with AI assistance and may occasionally contain minor errors, omissions, or outdated information.</li>
+        <li>Our team continuously reviews, verifies, and improves the content to ensure accuracy and quality.</li>
+        <li>Please use this platform as a learning resource and report any issues or suggestions for improvement.</li>
+        <li>Thank you for your patience, understanding, and continued support while we enhance the learning experience.</li>
+    </ul>
+</div>
+
+    </div>`;
+}
+
+function showLoader() {
+  document.getElementById('question-wrap').innerHTML = '<div id="loader"><div class="spinner"></div></div>';
+  const spinnerEl = document.querySelector('#loader .spinner');
+  if (spinnerEl) spinnerEl.style.borderTopColor = subjectColor();
+}
+
+async function fetchJSON(remoteQuery, staticFile) {
+  if (remoteQuery) {
+    try {
+      const remote = await ajax(remoteQuery);
+      if (remote && remote.data && (remote.data.units || remote.data.categories)) {
+        return remote.data;
+      }
+    } catch { /* fall through to static file */ }
+  }
+  return ajax(staticFile);
+}
+
+async function loadSubjectRoot(code) {
+  showLoader();
+
+  let loaded = subjectRootCache[code];
+  if (!loaded) {
+    try {
+      loaded = await fetchJSON(`api/content?code=${code}`, SUBJECTS[code].file);
+    } catch {
+      document.getElementById('question-wrap').innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><p>Failed to load subject data</p></div>';
+      return;
+    }
+    subjectRootCache[code] = loaded;
+  }
+
+  if (loaded && Array.isArray(loaded.categories) && loaded.categories.length) {
+    state.subjectMeta = loaded;
+    state.subjectData = null;
+    state.activeCategoryId = null;
+    state.view = 'categories';
+    state.sidebarOpen = false;
+    document.getElementById('sidebar').classList.add('closed');
+    renderCategoriesHTML();
+  } else {
+    state.subjectMeta = null;
+    state.view = 'subject';
+    state.sidebarOpen = true;
+    document.getElementById('sidebar').classList.remove('closed');
+    applySubjectData(loaded);
+  }
+  updateActiveTabs();
+}
+
+function renderCategoriesHTML() {
+  const wrap = document.getElementById('question-wrap');
+  const meta = state.subjectMeta;
+  const s = SUBJECTS[state.activeSubject];
+  const color = s.color;
+  const cats = meta?.categories || [];
+
+  const groups = {};
+  let hasGroups = false;
+  cats.forEach(c => {
+    const g = c.group || '';
+    if (g) hasGroups = true;
+    (groups[g] ||= []).push(c);
+  });
+
+  const cardHTML = c => `
+      <button class="home-card" onclick="loadCategory('${c.id}')">
+        <div class="home-card-icon" style="background:${color}">${c.icon || '📘'}</div>
+        <div class="home-card-label">${c.title}</div>
+        <div class="home-card-cta" style="color:${color}">${c.subtitle || 'Start practising →'}</div>
+      </button>`;
+
+  const bodyHTML = cats.length
+    ? (hasGroups
+        ? Object.keys(groups).map(g => `
+            <div class="category-group">
+              ${g ? `<div class="category-group-title">${g}</div>` : ''}
+              <div class="home-grid">${groups[g].map(cardHTML).join('')}</div>
+            </div>`).join('')
+        : `<div class="home-grid">${cats.map(cardHTML).join('')}</div>`)
+    : '<div class="empty"><div class="empty-icon">📭</div><p>No topics available yet</p></div>';
+
+  wrap.innerHTML = `
+    <div class="fade-in">
+      <button class="back-link" onclick="showHome()">← All subjects</button>
+      <div class="home-hero">
+        <h1>${s.emoji} ${meta?.subject || s.label}</h1>
+        <p>Choose a topic to start practising</p>
+      </div>
+      ${bodyHTML}
+    </div>`;
+}
+
+async function loadCategory(catId) {
+  const cat = (state.subjectMeta?.categories || []).find(c => c.id === catId);
+  if (!cat) return;
+
+  showLoader();
 
   let loaded = null;
-
-  // Try live content from Hasura first
-  try {
-    const res = await ajax(`api/content?code=${code}`);
-    if (res && res.data && res.data.units) loaded = res.data;
-  } catch {}
-
-  // Fall back to bundled static file for the 4 built-in subjects
-  if (!loaded) {
-    const fileMap = { PH:'data/physics.json', CH:'data/chemistry.json', MA:'data/mathematics.json', BIO:'data/biology.json' };
-    if (fileMap[code]) {
-      try { loaded = await ajax(fileMap[code]); } catch {}
+  if (cat.units) {
+    loaded = { subject: state.subjectMeta.subject, units: cat.units, playground: cat.playground };
+  } else if (cat.file) {
+    try {
+      loaded = await ajax(cat.file);
+      if (!loaded.subject) loaded.subject = `${state.subjectMeta.subject} — ${cat.title}`;
+    } catch {
+      document.getElementById('question-wrap').innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><p>Failed to load this topic\'s data</p></div>';
+      return;
     }
   }
 
-  if (!loaded) {
-    const meta = builder.subjects.find(s => s.code === code) || { subject: code, code, color: '#6C3FF5' };
-    loaded = { subject: meta.subject, code: meta.code, color: meta.color, units: [] };
-  }
-
-  builder.activeData = loaded;
-  document.getElementById('builder-tree-subject-label').textContent = `${loaded.subject} — Units & Chapters`;
-  renderBuilderTree();
-  renderBuilderEditor();
-}
-
-// ── TREE (units/chapters) ──
-function renderBuilderTree() {
-  const wrap = document.getElementById('builder-tree');
-  const data = builder.activeData;
-  if (!data) { wrap.innerHTML = '<div class="editor-empty"><div class="big">📚</div><p style="font-size:12px">Select a subject</p></div>'; return; }
-
-  let html = '';
-  (data.units || []).forEach(unit => {
-    html += `<div class="b-unit">
-      <div class="b-unit-row">
-        <span class="b-unit-title" title="${escAttr(unit.title)}">${escHtml(unit.title)}</span>
-        <button class="b-icon-btn" onclick="event.stopPropagation();renameUnit('${unit.id}')" title="Rename">
-          <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-        </button>
-        <button class="b-icon-btn danger" onclick="event.stopPropagation();deleteUnit('${unit.id}')" title="Delete unit">
-          <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-        </button>
-      </div>
-      <div class="b-chap-list">`;
-
-    (unit.chapters || []).forEach(ch => {
-      const isActive = ch.id === builder.activeChapterId;
-      const qCount = (ch.questions || []).length;
-      html += `<div class="b-chap-row${isActive?' active':''}" style="${isActive?`background:${data.color};color:#fff`:''}" onclick="selectChapterInBuilder('${unit.id}','${ch.id}')">
-        <span class="b-chap-title" title="${escAttr(ch.title)}">${escHtml(ch.title)}</span>
-        <span class="b-chap-qcount">${qCount}</span>
-        <button class="b-icon-btn" style="${isActive?'color:rgba(255,255,255,.8)':''}" onclick="event.stopPropagation();deleteChapter('${unit.id}','${ch.id}')" title="Delete chapter">
-          <svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>`;
-    });
-
-    html += `<button class="b-add-btn" onclick="addChapter('${unit.id}')">+ Add Chapter</button>
-      </div>
-    </div>`;
-  });
-
-  html += `<button class="b-add-btn" onclick="addUnit()">+ Add Unit</button>`;
-  wrap.innerHTML = html;
-}
-
-function escHtml(s) { return String(s ?? '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
-function escAttr(s) { return String(s ?? '').replace(/"/g, '&quot;'); }
-
-function markDirty() {
-  builder.dirty = true;
-  setBuilderStatus('Unsaved changes', '');
-  renderSidePreview();
-}
-
-function addUnit() {
-  const title = prompt('Unit title (e.g. "Unit 3: Thermodynamics"):');
-  if (!title || !title.trim()) return;
-  const unit = { id: uid('u'), title: title.trim(), chapters: [] };
-  builder.activeData.units = builder.activeData.units || [];
-  builder.activeData.units.push(unit);
-  renderBuilderTree();
-  markDirty();
-}
-
-function renameUnit(unitId) {
-  const unit = builder.activeData.units.find(u => u.id === unitId);
-  if (!unit) return;
-  const title = prompt('Rename unit:', unit.title);
-  if (!title || !title.trim()) return;
-  unit.title = title.trim();
-  renderBuilderTree();
-  markDirty();
-}
-
-function deleteUnit(unitId) {
-  if (!confirm('Delete this unit and all its chapters/questions?')) return;
-  builder.activeData.units = builder.activeData.units.filter(u => u.id !== unitId);
-  if (builder.activeUnitId === unitId) { builder.activeUnitId = null; builder.activeChapterId = null; renderBuilderEditor(); }
-  renderBuilderTree();
-  markDirty();
-}
-
-function addChapter(unitId) {
-  const title = prompt('Chapter title (e.g. "Ch 4: Thermal Equilibrium"):');
-  if (!title || !title.trim()) return;
-  const unit = builder.activeData.units.find(u => u.id === unitId);
-  if (!unit) return;
-  const chapter = {
-    id: uid('c'),
-    title: title.trim(),
-    concept: { title: title.trim(), latex: true, body: [], formulas: [], images: [] },
-    questions: [],
-  };
-  unit.chapters = unit.chapters || [];
-  unit.chapters.push(chapter);
-  renderBuilderTree();
-  selectChapterInBuilder(unitId, chapter.id);
-  markDirty();
-}
-
-function deleteChapter(unitId, chapterId) {
-  if (!confirm('Delete this chapter and all its questions?')) return;
-  const unit = builder.activeData.units.find(u => u.id === unitId);
-  if (!unit) return;
-  unit.chapters = unit.chapters.filter(c => c.id !== chapterId);
-  if (builder.activeChapterId === chapterId) { builder.activeChapterId = null; renderBuilderEditor(); }
-  renderBuilderTree();
-  markDirty();
-}
-
-function selectChapterInBuilder(unitId, chapterId) {
-  builder.activeUnitId = unitId;
-  builder.activeChapterId = chapterId;
-  builder.openQuestionId = null;
-  renderBuilderTree();
-  renderBuilderEditor();
-}
-
-function getActiveChapterObj() {
-  const unit = builder.activeData?.units?.find(u => u.id === builder.activeUnitId);
-  return unit?.chapters?.find(c => c.id === builder.activeChapterId) || null;
-}
-
-// ── EDITOR (concept + questions) ──
-function renderBuilderEditor() {
-  const wrap = document.getElementById('builder-editor');
-  const chapter = getActiveChapterObj();
-  const label = document.getElementById('builder-editor-label');
-
-  if (!chapter) {
-    label.textContent = 'Editor';
-    wrap.innerHTML = '<div class="editor-empty"><div class="big">👈</div><p style="font-size:12px">Select a chapter to edit its concept &amp; questions</p></div>';
-    renderSidePreview();
+  if (!loaded || !loaded.units) {
+    document.getElementById('question-wrap').innerHTML = '<div class="empty"><div class="empty-icon">📭</div><p>No questions available for this topic yet</p></div>';
     return;
   }
 
-  label.textContent = chapter.title;
-  const concept = chapter.concept || { title: chapter.title, latex: true, body: [], formulas: [], images: [] };
-
-  let html = `
-    <div class="editor-section">
-      <div class="editor-section-title">Chapter Title</div>
-      <div class="b-field">
-        <input type="text" id="ed-chapter-title" value="${escAttr(chapter.title)}" oninput="updateChapterTitle(this.value)">
-      </div>
-    </div>
-
-    <div class="editor-section">
-      <div class="editor-section-title">💡 Concept / Theory</div>
-      <div class="b-field">
-        <label>Concept Title</label>
-        <input type="text" id="ed-concept-title" value="${escAttr(concept.title || '')}" oninput="updateConceptField('title', this.value)">
-      </div>
-      <div class="b-field">
-        <label><input type="checkbox" id="ed-concept-latex" ${concept.latex ? 'checked' : ''} onchange="updateConceptField('latex', this.checked)" style="width:auto;margin-right:6px"> Enable LaTeX rendering</label>
-      </div>
-      <div class="b-field">
-        <label>Body Paragraphs</label>
-        <div id="ed-concept-body-list"></div>
-        <button class="b-btn b-btn-outline b-btn-sm" onclick="addConceptParagraph()">+ Add Paragraph</button>
-      </div>
-      <div class="b-field">
-        <label>Key Formulas</label>
-        <div id="ed-concept-formula-list"></div>
-        <button class="b-btn b-btn-outline b-btn-sm" onclick="addConceptFormula()">+ Add Formula</button>
-      </div>
-      <div class="b-field">
-        <label>🖼️ Figures / Images</label>
-        <div id="ed-concept-image-list"></div>
-        <button class="b-btn b-btn-outline b-btn-sm" onclick="addConceptImage()">+ Add Image</button>
-      </div>
-    </div>
-
-    <div class="editor-section">
-      <div class="editor-section-title">
-        <span>❓ Practice Questions (${(chapter.questions||[]).length})</span>
-      </div>
-      <div id="ed-questions-list"></div>
-      <div style="display:flex;gap:8px;margin-top:8px">
-        <button class="b-btn b-btn-outline b-btn-sm" onclick="addQuestion('MCQ')">+ MCQ</button>
-        <button class="b-btn b-btn-outline b-btn-sm" onclick="addQuestion('MSQ')">+ MSQ</button>
-        <button class="b-btn b-btn-outline b-btn-sm" onclick="addQuestion('NAT')">+ NAT</button>
-      </div>
-    </div>`;
-
-  wrap.innerHTML = html;
-  renderConceptBodyList(concept);
-  renderConceptFormulaList(concept);
-  renderConceptImageList(concept);
-  renderQuestionsList(chapter);
-  renderSidePreview();
+  state.activeCategoryId = cat.id;
+  state.view = 'subject';
+  state.sidebarOpen = true;
+  document.getElementById('sidebar').classList.remove('closed');
+  applySubjectData(loaded);
 }
 
-function updateChapterTitle(val) {
-  const chapter = getActiveChapterObj();
-  if (!chapter) return;
-  chapter.title = val;
-  if (chapter.concept) chapter.concept.title = chapter.concept.title || val;
-  renderBuilderTree();
-  document.getElementById('builder-editor-label').textContent = val;
-  markDirty();
+function applySubjectData(loaded) {
+  state.subjectData = loaded;
+  state.answers = {};
+  state.submitted = {};
+  state.qtypeFilter = 'ALL';
+  state.conceptOpen = true;
+  state.questionIndex = 0;
+
+  const firstChapter = state.subjectData.units?.[0]?.chapters?.[0];
+  state.activeChapterId = firstChapter ? firstChapter.id : null;
+
+  buildSidebar();
+  renderQuestion();
 }
 
-function updateConceptField(field, val) {
-  const chapter = getActiveChapterObj();
-  if (!chapter) return;
-  chapter.concept = chapter.concept || { title:'', latex:true, body:[], formulas:[], images:[] };
-  chapter.concept[field] = val;
-  markDirty();
+function backToCategories() {
+  if (!state.subjectMeta) { showHome(); return; }
+  state.view = 'categories';
+  state.subjectData = null;
+  state.activeCategoryId = null;
+  state.sidebarOpen = false;
+  document.getElementById('sidebar').classList.add('closed');
+  renderCategoriesHTML();
+  updateActiveTabs();
 }
 
-function renderConceptBodyList(concept) {
-  const wrap = document.getElementById('ed-concept-body-list');
-  wrap.innerHTML = '';
-  (concept.body || []).forEach((para, i) => {
-    const row = document.createElement('div');
-    row.className = 'b-list-item';
-    row.innerHTML = `
-      <textarea rows="2" oninput="updateConceptParagraph(${i}, this.value)" placeholder="Use **bold** and $LaTeX$ as needed">${escHtml(para)}</textarea>
-      <button class="b-icon-btn danger b-list-remove" onclick="removeConceptParagraph(${i})" title="Remove">
-        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>`;
-    wrap.appendChild(row);
-  });
-}
+// ══════════════════════════════════════════
+//  SIDEBAR
+// ══════════════════════════════════════════
+function buildSidebar() {
+  const data = state.subjectData;
+  if (!data) return;
+  const color = subjectColor();
+  const hdr = document.getElementById('sidebar-subject-header');
+  hdr.textContent = data.subject;
+  hdr.style.color = color;
+  hdr.style.background = hex2rgba(color, .06);
 
-function addConceptParagraph() {
-  const chapter = getActiveChapterObj();
-  chapter.concept = chapter.concept || { title:'', latex:true, body:[], formulas:[], images:[] };
-  chapter.concept.body = chapter.concept.body || [];
-  chapter.concept.body.push('');
-  renderConceptBodyList(chapter.concept);
-  markDirty();
-}
+  updateSidebarBackButton();
 
-function updateConceptParagraph(i, val) {
-  const chapter = getActiveChapterObj();
-  chapter.concept.body[i] = val;
-  markDirty();
-}
+  const tree = document.getElementById('sidebar-tree');
+  tree.innerHTML = '';
 
-function removeConceptParagraph(i) {
-  const chapter = getActiveChapterObj();
-  chapter.concept.body.splice(i, 1);
-  renderConceptBodyList(chapter.concept);
-  markDirty();
-}
-
-function renderConceptFormulaList(concept) {
-  const wrap = document.getElementById('ed-concept-formula-list');
-  wrap.innerHTML = '';
-  (concept.formulas || []).forEach((f, i) => {
-    const row = document.createElement('div');
-    row.className = 'b-list-item';
-    row.innerHTML = `
-      <input type="text" value="${escAttr(f)}" oninput="updateConceptFormula(${i}, this.value)" placeholder="$F = ma$">
-      <button class="b-icon-btn danger b-list-remove" onclick="removeConceptFormula(${i})" title="Remove">
-        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>`;
-    wrap.appendChild(row);
-  });
-}
-
-function addConceptFormula() {
-  const chapter = getActiveChapterObj();
-  chapter.concept = chapter.concept || { title:'', latex:true, body:[], formulas:[], images:[] };
-  chapter.concept.formulas = chapter.concept.formulas || [];
-  chapter.concept.formulas.push('');
-  renderConceptFormulaList(chapter.concept);
-  markDirty();
-}
-
-function updateConceptFormula(i, val) {
-  const chapter = getActiveChapterObj();
-  chapter.concept.formulas[i] = val;
-  markDirty();
-}
-
-function removeConceptFormula(i) {
-  const chapter = getActiveChapterObj();
-  chapter.concept.formulas.splice(i, 1);
-  renderConceptFormulaList(chapter.concept);
-  markDirty();
-}
-
-// ── Concept Figures / Images ──
-function renderConceptImageList(concept) {
-  const wrap = document.getElementById('ed-concept-image-list');
-  wrap.innerHTML = '';
-  (concept.images || []).forEach((img, i) => {
-    const row = document.createElement('div');
-    row.className = 'b-image-item';
-    row.innerHTML = `
-      <div class="b-image-item-head">
-        <span class="b-image-item-label">Image ${i+1}</span>
-        <button class="b-icon-btn danger" onclick="removeConceptImage(${i})" title="Remove image">
-          <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <div class="b-field">
-        <label>Image URL</label>
-        <input type="url" value="${escAttr(img.url||'')}" placeholder="https://…/diagram.png" oninput="updateConceptImage(${i},'url',this.value);previewConceptImage(${i},this.value)">
-      </div>
-      <div class="b-field">
-        <label>Caption (optional)</label>
-        <input type="text" value="${escAttr(img.caption||'')}" placeholder="Fig 1: Free body diagram" oninput="updateConceptImage(${i},'caption',this.value)">
-      </div>
-      ${img.url ? `<img class="b-image-preview" id="ed-concept-img-preview-${i}" src="${escAttr(img.url)}" onerror="this.style.display='none'">` : `<img class="b-image-preview" id="ed-concept-img-preview-${i}" style="display:none">`}
-    `;
-    wrap.appendChild(row);
-  });
-}
-
-function previewConceptImage(i, url) {
-  const img = document.getElementById(`ed-concept-img-preview-${i}`);
-  if (!img) return;
-  if (url) { img.src = url; img.style.display = 'block'; }
-  else { img.style.display = 'none'; }
-}
-
-function addConceptImage() {
-  const chapter = getActiveChapterObj();
-  chapter.concept = chapter.concept || { title:'', latex:true, body:[], formulas:[], images:[] };
-  chapter.concept.images = chapter.concept.images || [];
-  chapter.concept.images.push({ url:'', caption:'' });
-  renderConceptImageList(chapter.concept);
-  markDirty();
-}
-
-function updateConceptImage(i, field, val) {
-  const chapter = getActiveChapterObj();
-  chapter.concept.images[i][field] = val;
-  markDirty();
-}
-
-function removeConceptImage(i) {
-  const chapter = getActiveChapterObj();
-  chapter.concept.images.splice(i, 1);
-  renderConceptImageList(chapter.concept);
-  markDirty();
-}
-
-// ── Questions ──
-function addQuestion(type) {
-  const chapter = getActiveChapterObj();
-  if (!chapter) return;
-  chapter.questions = chapter.questions || [];
-
-  let q;
-  if (type === 'NAT') {
-    q = { id: uid('q'), type: 'NAT', latex: false, question: '', image: '', answer: 0, tolerance: 0, unit: '', explanation: '' };
-  } else {
-    q = { id: uid('q'), type, latex: false, question: '', image: '', options: ['', '', '', ''], answer: [], explanation: '' };
-  }
-  chapter.questions.push(q);
-  builder.openQuestionId = q.id;
-  renderBuilderEditor();
-  markDirty();
-}
-
-function renderQuestionsList(chapter) {
-  const wrap = document.getElementById('ed-questions-list');
-  wrap.innerHTML = '';
-  (chapter.questions || []).forEach((q, qi) => {
-    const isOpen = builder.openQuestionId === q.id;
-    const card = document.createElement('div');
-    card.className = 'b-question-card';
-    const summary = q.question ? q.question.replace(/\$/g,'').slice(0, 60) : '(empty question)';
-    card.innerHTML = `
-      <div class="b-question-head" onclick="toggleQuestionOpen('${q.id}')">
-        <span class="b-question-type-badge" style="background:${QTYPE_COLORS[q.type]}">${q.type}</span>
-        <span class="b-question-summary">${escHtml(summary)}</span>
-        <button class="b-icon-btn danger" onclick="event.stopPropagation();deleteQuestion('${q.id}')" title="Delete question">
-          <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-        </button>
-        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="transform:rotate(${isOpen?180:0}deg);transition:.2s;color:#9ca3af;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-      </div>
-      <div class="b-question-body${isOpen?' open':''}" id="qbody-${q.id}"></div>`;
-    wrap.appendChild(card);
-    if (isOpen) renderQuestionEditor(q, document.getElementById(`qbody-${q.id}`));
-  });
-}
-
-function toggleQuestionOpen(qid) {
-  builder.openQuestionId = builder.openQuestionId === qid ? null : qid;
-  const chapter = getActiveChapterObj();
-  renderQuestionsList(chapter);
-}
-
-function deleteQuestion(qid) {
-  if (!confirm('Delete this question?')) return;
-  const chapter = getActiveChapterObj();
-  chapter.questions = chapter.questions.filter(q => q.id !== qid);
-  renderBuilderTree();
-  renderQuestionsList(chapter);
-  markDirty();
-}
-
-function findQuestion(qid) {
-  const chapter = getActiveChapterObj();
-  return chapter?.questions?.find(q => q.id === qid);
-}
-
-function renderQuestionEditor(q, container) {
-  let optsHtml = '';
-  if (q.type !== 'NAT') {
-    (q.options || []).forEach((opt, i) => {
-      const checked = (q.answer || []).includes(i);
-      const inputType = q.type === 'MCQ' ? 'radio' : 'checkbox';
-      optsHtml += `
-        <div class="b-opt-row">
-          <span class="b-opt-letter">${String.fromCharCode(65+i)}</span>
-          <input type="text" value="${escAttr(opt)}" oninput="updateOptionText('${q.id}',${i},this.value)" placeholder="Option ${String.fromCharCode(65+i)}">
-          <input type="${inputType}" name="correct-${q.id}" ${checked?'checked':''} onchange="toggleOptionCorrect('${q.id}',${i},this.checked)" title="Mark as correct">
-          <button class="b-icon-btn danger" onclick="removeOption('${q.id}',${i})" title="Remove option">
-            <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
-        </div>`;
+  data.units?.forEach((unit, ui) => {
+    const unitBtn = document.createElement('button');
+    unitBtn.className = 'unit-btn';
+    unitBtn.innerHTML = `<span>${unit.title}</span><svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>`;
+    unitBtn.addEventListener('click', () => {
+      unitBtn.classList.toggle('collapsed');
+      chapList.classList.toggle('hidden');
     });
-  }
+    tree.appendChild(unitBtn);
 
-  let natHtml = '';
-  if (q.type === 'NAT') {
-    natHtml = `
-      <div class="b-field-row">
-        <div class="b-field"><label>Correct Answer (number or text)</label><input type="text" value="${escAttr(q.answer ?? 0)}" oninput="updateNatAnswer('${q.id}',this.value)"></div>
-        <div class="b-field"><label>Tolerance (± , numeric answers only)</label><input type="number" step="any" value="${q.tolerance ?? 0}" oninput="updateNatField('${q.id}','tolerance',parseFloat(this.value))"></div>
-      </div>
-      <div class="b-field"><label>Unit (optional, e.g. "m/s²")</label><input type="text" value="${escAttr(q.unit||'')}" oninput="updateNatField('${q.id}','unit',this.value)"></div>
-      <div class="b-field-hint" style="margin-bottom:10px">Type a number (e.g. 5) for numeric answers, or plain text (e.g. Delhi) for text answers — the app detects which one automatically.</div>`;
-  }
+    const chapList = document.createElement('div');
+    chapList.className = 'chapter-list';
+    chapList.id = `chaplist-${unit.id}`;
 
-  container.innerHTML = `
-    <div class="b-field">
-      <label>Question Text</label>
-      <textarea rows="2" oninput="updateQuestionField('${q.id}','question',this.value)" placeholder="If $x^2=4$, then $x=$">${escHtml(q.question)}</textarea>
-      <div class="b-field-hint">Wrap math in $...$ for inline LaTeX or $$...$$ for display mode</div>
-    </div>
-    <div class="b-field">
-      <label><input type="checkbox" ${q.latex?'checked':''} onchange="updateQuestionField('${q.id}','latex',this.checked)" style="width:auto;margin-right:6px"> Enable LaTeX rendering</label>
-    </div>
-    <div class="b-field">
-      <label>🖼️ Image URL (optional)</label>
-      <input type="url" value="${escAttr(q.image||'')}" placeholder="https://…/figure.png" oninput="updateQuestionField('${q.id}','image',this.value)">
-    </div>
-    ${q.type !== 'NAT' ? `
-      <div class="b-field">
-        <label>Options ${q.type==='MCQ' ? '(select the one correct radio)' : '(check all correct boxes)'}</label>
-        ${optsHtml}
-        <button class="b-btn b-btn-outline b-btn-sm" onclick="addOption('${q.id}')">+ Add Option</button>
-      </div>` : natHtml}
-    <div class="b-field">
-      <label>Explanation</label>
-      <textarea rows="2" oninput="updateQuestionField('${q.id}','explanation',this.value)" placeholder="Why this answer is correct...">${escHtml(q.explanation)}</textarea>
-    </div>`;
-}
+    unit.chapters?.forEach(ch => {
+      const btn = document.createElement('button');
+      btn.className = 'chap-btn';
+      btn.id = `chap-${ch.id}`;
+      btn.dataset.chapterId = ch.id;
 
-function updateQuestionField(qid, field, val) {
-  const q = findQuestion(qid);
-  if (!q) return;
-  q[field] = val;
-  if (field === 'question') {
-    const chapter = getActiveChapterObj();
-    renderQuestionsList(chapter); // refresh summary text, keeps this card open
-  }
-  markDirty();
-}
+      const total = ch.questions?.length || 0;
+      const done = ch.questions?.filter(q => state.submitted[q.id]).length || 0;
+      const pct = total ? Math.round(done/total*100) : 0;
 
-function updateNatField(qid, field, val) {
-  const q = findQuestion(qid);
-  if (!q) return;
-  q[field] = isNaN(val) ? 0 : val;
-  markDirty();
-}
-
-// NAT answer can be a number OR text — store whichever type was typed,
-// matching the app's auto-detecting checkIsCorrect() logic.
-function updateNatAnswer(qid, val) {
-  const q = findQuestion(qid);
-  if (!q) return;
-  const trimmed = String(val).trim();
-  const asNum = parseFloat(trimmed);
-  q.answer = (trimmed !== '' && !isNaN(asNum) && String(asNum) === trimmed) ? asNum : val;
-  markDirty();
-}
-
-function updateOptionText(qid, idx, val) {
-  const q = findQuestion(qid);
-  if (!q) return;
-  q.options[idx] = val;
-  markDirty();
-}
-
-function toggleOptionCorrect(qid, idx, checked) {
-  const q = findQuestion(qid);
-  if (!q) return;
-  if (q.type === 'MCQ') {
-    q.answer = checked ? [idx] : [];
-  } else {
-    q.answer = q.answer || [];
-    if (checked) { if (!q.answer.includes(idx)) q.answer.push(idx); }
-    else { q.answer = q.answer.filter(a => a !== idx); }
-  }
-  markDirty();
-}
-
-function addOption(qid) {
-  const q = findQuestion(qid);
-  if (!q) return;
-  q.options = q.options || [];
-  if (q.options.length >= 6) { alert('Maximum 6 options.'); return; }
-  q.options.push('');
-  const chapter = getActiveChapterObj();
-  renderQuestionEditor(q, document.getElementById(`qbody-${qid}`));
-  markDirty();
-}
-
-function removeOption(qid, idx) {
-  const q = findQuestion(qid);
-  if (!q) return;
-  q.options.splice(idx, 1);
-  q.answer = (q.answer || []).filter(a => a !== idx).map(a => a > idx ? a - 1 : a);
-  renderQuestionEditor(q, document.getElementById(`qbody-${qid}`));
-  markDirty();
-}
-
-// ══════════════════════════════════════════════════════
-//  LIVE PREVIEW — renders the active chapter exactly the
-//  way the student-facing app would (concept card + all
-//  question cards, with real KaTeX math rendering).
-// ══════════════════════════════════════════════════════
-function lpFormatText(text = '') {
-  return escHtml(text).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-}
-
-// Shared HTML builder used by BOTH the side-by-side panel and the
-// full-screen modal, so they always stay perfectly in sync.
-function buildChapterPreviewHTML(chapter, color) {
-  if (!chapter) return '<div class="lp-empty-note">Select a chapter to preview it.</div>';
-
-  const concept = chapter.concept || {};
-  let html = '';
-
-  // Concept card
-  html += `<div class="concept-card">
-    <div class="concept-header">
-      <div class="concept-icon" style="background:${color}">💡</div>
-      <div>
-        <div class="concept-eyebrow" style="color:${color}">Concept</div>
-        <div class="concept-title">${escHtml(concept.title || chapter.title)}</div>
-      </div>
-    </div>
-    <div class="concept-body-inner">`;
-
-  (concept.body || []).forEach(p => {
-    if (p && p.trim()) html += `<p class="concept-para">${lpFormatText(p)}</p>`;
-  });
-
-  if (concept.formulas && concept.formulas.filter(Boolean).length) {
-    html += `<div class="concept-formulas">
-      <div class="concept-formulas-label">Key Formulas</div>
-      ${concept.formulas.filter(Boolean).map(f => `<span class="formula-chip">${escHtml(f)}</span>`).join('')}
-    </div>`;
-  }
-
-  // Figures/images come AFTER the paragraph & formula text, same order
-  // an admin fills them in — theory first, supporting diagram after.
-  (concept.images || []).forEach(img => {
-    if (!img.url) return;
-    html += `<div class="concept-image-wrap">
-      <img src="${escAttr(img.url)}" alt="${escAttr(img.caption||'')}" onerror="this.parentElement.style.display='none'">
-      ${img.caption ? `<div class="concept-image-caption">${escHtml(img.caption)}</div>` : ''}
-    </div>`;
-  });
-
-  if (!(concept.body||[]).filter(Boolean).length && !(concept.formulas||[]).filter(Boolean).length && !(concept.images||[]).filter(Boolean).length) {
-    html += `<p class="concept-para" style="color:#c4c4c4;font-style:italic">No concept content added yet.</p>`;
-  }
-
-  html += `</div></div>`;
-
-  // Question cards (answer-key style: correct answers highlighted)
-  const questions = chapter.questions || [];
-  if (!questions.length) {
-    html += `<div class="lp-empty-note">No questions added to this chapter yet.</div>`;
-  }
-
-  questions.forEach((q, qi) => {
-    html += `<div class="q-card">
-      <div class="q-card-header">
-        <span class="q-type-badge" style="background:${QTYPE_COLORS[q.type]}">${q.type}</span>
-        <span class="q-num">Q${qi+1}</span>
-      </div>
-      <div class="q-body">
-        <div class="q-text">${q.question ? lpFormatText(q.question) : '<em style="color:#c4c4c4">(empty question)</em>'}</div>`;
-
-    // Image renders AFTER the question text (and, for MCQ/MSQ, above the
-    // option list right below) rather than above the text.
-    if (q.image) {
-      html += `<div class="q-image-wrap"><img src="${escAttr(q.image)}" onerror="this.parentElement.style.display='none'"></div>`;
-    }
-
-    html += `</div>`;
-
-    if (q.type === 'NAT') {
-      const unitSuffix = q.unit ? ' ' + escHtml(q.unit) : '';
-      html += `<div class="lp-nat-answer">✓ Correct answer: ${escHtml(String(q.answer ?? ''))}${unitSuffix}${q.tolerance ? ` (± ${q.tolerance})` : ''}</div>`;
-    } else {
-      html += `<div class="q-options">`;
-      (q.options || []).forEach((opt, i) => {
-        const isCorrect = (q.answer || []).includes(i);
-        html += `<div class="lp-opt${isCorrect?' lp-correct':''}">
-          <span class="lp-opt-label">${isCorrect ? '✓' : String.fromCharCode(65+i)}</span>
-          <span class="lp-opt-text">${opt ? lpFormatText(opt) : '<em style="color:#c4c4c4">(empty option)</em>'}</span>
+      btn.innerHTML = `
+        <div style="font-size:11.5px">${ch.title}</div>
+        <div class="chap-progress">
+          <div class="chap-progress-bar"><div class="chap-progress-fill" style="width:${pct}%;background:${color}"></div></div>
+          <span class="chap-progress-label">${done}/${total}</span>
         </div>`;
-      });
-      html += `</div>`;
-    }
 
-    if (q.explanation) {
-      html += `<div class="lp-explanation"><span class="lp-explanation-label">💡 Explanation</span>${lpFormatText(q.explanation)}</div>`;
-    }
+      btn.addEventListener('click', () => selectChapter(ch.id));
+      chapList.appendChild(btn);
+    });
 
-    html += `</div>`;
+    tree.appendChild(chapList);
   });
 
+  updateSidebarActive();
+}
+
+function updateSidebarActive() {
+  const color = subjectColor();
+  document.querySelectorAll('.chap-btn').forEach(btn => {
+    const isActive = btn.dataset.chapterId === state.activeChapterId;
+    btn.classList.toggle('active', isActive);
+    btn.style.background = isActive ? color : '';
+    btn.style.color = isActive ? '#fff' : '';
+  });
+}
+
+function updateSidebarBackButton() {
+  const row = document.getElementById('sidebar-category-nav');
+  if (!row) return;
+  const cats = state.subjectMeta?.categories;
+  if (cats && cats.length) {
+    row.classList.remove('hidden');
+    const cat = cats.find(c => c.id === state.activeCategoryId);
+    document.getElementById('sidebar-back-label').textContent = cat ? `Change (${cat.title})` : 'Change Class / Topic';
+  } else {
+    row.classList.add('hidden');
+  }
+}
+
+function updateChapterProgress(chapterId) {
+  const allChapters = getAllChapters();
+  const ch = allChapters.find(c => c.id === chapterId);
+  if (!ch) return;
+  const total = ch.questions?.length || 0;
+  const done = ch.questions?.filter(q => state.submitted[q.id]).length || 0;
+  const pct = total ? Math.round(done/total*100) : 0;
+  const btn = document.getElementById(`chap-${chapterId}`);
+  if (!btn) return;
+  const fill = btn.querySelector('.chap-progress-fill');
+  const label = btn.querySelector('.chap-progress-label');
+  if (fill) fill.style.width = pct + '%';
+  if (label) label.textContent = `${done}/${total}`;
+}
+
+// ══════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════
+function getAllChapters() {
+  return state.subjectData?.units?.flatMap(u => u.chapters) || [];
+}
+
+function getCurrentChapter() {
+  return getAllChapters().find(c => c.id === state.activeChapterId);
+}
+
+function getAllQuestions() {
+  return getCurrentChapter()?.questions || [];
+}
+
+function getQuestions() {
+  const all = getAllQuestions();
+  if (state.qtypeFilter === 'ALL') return all;
+  return all.filter(q => q.type === state.qtypeFilter);
+}
+
+function getTypeCounts() {
+  const all = getAllQuestions();
+  return {
+    ALL: all.length,
+    MCQ: all.filter(q => q.type === 'MCQ').length,
+    MSQ: all.filter(q => q.type === 'MSQ').length,
+    NAT: all.filter(q => q.type === 'NAT').length,
+  };
+}
+
+function switchSubject(code) {
+  const sameSubjectAlreadyActive = state.view === 'subject' && code === state.activeSubject;
+
+  if (sameSubjectAlreadyActive) {
+    if (state.subjectMeta?.categories?.length) {
+      backToCategories();
+    }
+    return;
+  }
+
+  state.activeSubject = code;
+  state.activeCategoryId = null;
+  loadSubjectRoot(code);
+}
+
+function selectChapter(chapterId) {
+  state.activeChapterId = chapterId;
+  state.questionIndex = 0;
+  state.qtypeFilter = 'ALL';
+  state.conceptOpen = true;
+  updateSidebarActive();
+  renderQuestion();
+  if (window.innerWidth < 640) {
+    state.sidebarOpen = false;
+    document.getElementById('sidebar').classList.add('closed');
+  }
+}
+
+function goNext() {
+  const qs = getQuestions();
+  const nextStart = state.questionIndex + BATCH_SIZE;
+  if (nextStart < qs.length) {
+    state.questionIndex = nextStart;
+    renderQuestion();
+  } else {
+    const all = getAllChapters();
+    const idx = all.findIndex(c => c.id === state.activeChapterId);
+    if (idx < all.length - 1) {
+      state.activeChapterId = all[idx+1].id;
+      state.questionIndex = 0;
+      updateSidebarActive();
+      renderQuestion();
+    }
+  }
+}
+
+function goPrev() {
+  if (state.questionIndex > 0) {
+    state.questionIndex = Math.max(0, state.questionIndex - BATCH_SIZE);
+    renderQuestion();
+  } else {
+    const all = getAllChapters();
+    const idx = all.findIndex(c => c.id === state.activeChapterId);
+    if (idx > 0) {
+      const prev = all[idx-1];
+      state.activeChapterId = prev.id;
+      const prevTotal = prev.questions?.length || 0;
+      state.questionIndex = prevTotal ? Math.floor((prevTotal - 1) / BATCH_SIZE) * BATCH_SIZE : 0;
+      updateSidebarActive();
+      renderQuestion();
+    }
+  }
+}
+
+function canGoNext() {
+  const qs = getQuestions();
+  if (state.questionIndex + BATCH_SIZE < qs.length) return true;
+  const all = getAllChapters();
+  return all.findIndex(c => c.id === state.activeChapterId) < all.length - 1;
+}
+
+function canGoPrev() {
+  if (state.questionIndex > 0) return true;
+  const all = getAllChapters();
+  return all.findIndex(c => c.id === state.activeChapterId) > 0;
+}
+
+function formatText(text = "") {
+  return text.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+}
+
+// ══════════════════════════════════════════
+//  MEDIA (image / pdf)
+// ══════════════════════════════════════════
+function resolveMediaSrc(val, kind) {
+  if (!val || typeof val !== 'string') return '';
+  const v = val.trim();
+  if (/^(https?:)?\/\//.test(v) || v.startsWith('/') || v.startsWith('./') || v.startsWith('data:')) {
+    return v;
+  }
+  const mime = kind === 'pdf' ? 'application/pdf' : 'image/png';
+  return `data:${mime};base64,${v}`;
+}
+
+function looksLikeImageString(v) {
+  if (typeof v !== 'string') return false;
+  const s = v.trim();
+  if (!s) return false;
+  if (s.startsWith('data:image')) return true;
+  if (/^(https?:)?\/\//.test(s) && /\.(png|jpe?g|gif|webp|svg|bmp)(\?.*)?$/i.test(s)) return true;
+  if (/^(\.{0,2}\/)?[\w\-\/]+\.(png|jpe?g|gif|webp|svg|bmp)$/i.test(s)) return true;
+  if (s.length > 100 && !/\s/.test(s) && /^[A-Za-z0-9+/=]+$/.test(s)) return true;
+  return false;
+}
+
+function renderImageBlock(imgVal, title = '') {
+  if (!imgVal) return '';
+  const src = resolveMediaSrc(imgVal, 'image');
+  if (!src) return '';
+  return `<div class="media-image">${title ? `<div class="media-title">${escapeHtml(title)}</div>` : ''}<img src="${src}" alt="${escapeHtml(title)}" loading="lazy" onclick="openLightbox('${src.replace(/'/g,"\\'")}')"></div>`;
+}
+
+function renderPdfBlock(pdfVal, title = '') {
+  if (!pdfVal) return '';
+  const src = resolveMediaSrc(pdfVal, 'pdf');
+  if (!src) return '';
+  return `<div class="media-pdf">${title ? `<div class="media-title">${escapeHtml(title)}</div>` : ''}
+    <iframe src="${src}" title="attached pdf"></iframe>
+    <a class="media-pdf-link" href="${src}" target="_blank" rel="noopener">Open PDF in new tab ↗</a>
+  </div>`;
+}
+
+function extractYouTubeId(url) {
+  if (!url || typeof url !== 'string') return null;
+  const m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+
+function parseTimeToSeconds(val) {
+  if (val === undefined || val === null || val === '') return 0;
+  if (typeof val === 'number') return Math.max(0, Math.floor(val));
+  const parts = String(val).split(':').map(p => parseInt(p, 10) || 0);
+  let secs = 0;
+  parts.forEach(p => { secs = secs * 60 + p; });
+  return Math.max(0, secs);
+}
+
+function renderVideoBlock(url, title = '', start) {
+  if (!url) return '';
+  const id = extractYouTubeId(url);
+  if (!id) {
+    return `<div class="media-video-link"><a href="${escapeHtml(url)}" target="_blank" rel="noopener" class="media-pdf-link">▶ ${escapeHtml(title || 'Watch video')}</a></div>`;
+  }
+  const startSecs = parseTimeToSeconds(start);
+  const src = `https://www.youtube.com/embed/${id}?rel=0${startSecs ? `&start=${startSecs}` : ''}`;
+  return `<div class="media-video">
+    ${title ? `<div class="media-title">${escapeHtml(title)}</div>` : ''}
+    <div class="video-frame-wrap"><iframe src="${src}" title="${escapeHtml(title || 'video')}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+  </div>`;
+}
+
+function renderOptionContent(opt) {
+  if (opt && typeof opt === 'object' && !Array.isArray(opt)) {
+    const text = opt.text ?? opt.label ?? '';
+    const imgVal = opt.image || opt.src || opt.path || opt.url;
+    const pdfVal = opt.pdf;
+    let html = '';
+    if (imgVal) {
+      const src = resolveMediaSrc(imgVal, 'image');
+      if (src) html += `<img src="${src}" alt="" loading="lazy" class="opt-img" onclick="event.stopPropagation();openLightbox('${src.replace(/'/g,"\\'")}')">`;
+    }
+    if (pdfVal) html += renderPdfBlock(pdfVal);
+    if (text) html += `<span class="opt-text-inline">${formatText(String(text))}</span>`;
+    return html || '&nbsp;';
+  }
+
+  if (looksLikeImageString(opt)) {
+    const src = resolveMediaSrc(opt, 'image');
+    return `<img src="${src}" alt="" loading="lazy" class="opt-img" onclick="event.stopPropagation();openLightbox('${src.replace(/'/g,"\\'")}')">`;
+  }
+
+  return formatText(String(opt ?? ''));
+}
+
+function renderConceptBody(body = []) {
+  return body
+    .map((item) => {
+      if (typeof item === "string") {
+        return `<p class="concept-para">${formatText(item)}</p>`;
+      }
+
+      switch (item.type) {
+        case "heading":
+          return `<h4 class="concept-heading">${formatText(item.text)}</h4>`;
+
+        case "paragraph":
+          return `<p class="concept-para">${formatText(item.text)}</p>`;
+
+        case "list":
+          return `
+            ${
+                item.title
+                  ? `<div class="syntax-title">${item.title}</div>`
+                  : ""
+              }
+            <ul class="concept-list">
+              ${item.items
+                .map((i) => `<li>${formatText(i)}</li>`)
+                .join("")}
+            </ul>
+          `;
+
+        case "note":
+          return `
+            <div class="concept-note">
+              💡 ${formatText(item.text)}
+            </div>
+          `;
+
+         case "tip":
+          return `
+            <div class="concept-note">
+              💡 ${formatText(item.text)}
+            </div>
+          `;
+
+        case "syntax":
+          return `
+            <div class="concept-syntax">
+              ${
+                item.title
+                  ? `<div class="syntax-title">${item.title}</div>`
+                  : ""
+              }
+              <pre><code>${item.code}</code></pre>
+            </div>
+          `;
+
+        case "image":
+          return renderImageBlock(item.src || item.image || item.path || item.url, item.title);
+        case "pdf":
+          return renderPdfBlock(item.src || item.pdf || item.path || item.url, item.title);
+
+        case "video":
+          return renderVideoBlock(item.url || item.src || item.youtube, item.title, item.start || item.startAt);
+
+        case "exercise":
+          return `
+          ${renderImageBlock(item.image, '')}${renderPdfBlock(item.pdf, '')}
+          <div class="concept-exercise">
+            <div class="exercise-header">
+              <span class="exercise-badge">✏️ Practice</span>
+              ${item.title ? `<div class="exercise-title">${formatText(item.title)}</div>` : ""}
+            </div>
+            <ol class="exercise-list">
+              ${item.steps
+                .map(
+                  (s) => `<li class="exercise-item">${formatText(s)}</li>`
+                )
+                .join("")}
+            </ol>
+          </div>
+        `;
+
+        case "steps":
+          return `
+            ${renderImageBlock(item.image, '')}${renderPdfBlock(item.pdf, '')}
+            <div class="concept-steps">
+              ${item.title ? `<div class="steps-title">${formatText(item.title)}</div>` : ""}
+              <ol class="steps-list">
+                ${item.steps
+                  .map(
+                    (s) => `
+                      <li class="steps-item">
+                        <span class="steps-number"></span>
+                        <span class="steps-text">${formatText(s)}</span>
+                      </li>
+                    `
+                  )
+                  .join("")}
+              </ol>
+            </div>
+          `;
+
+  case "example":
+  return `
+    ${renderImageBlock(item.image, '')}
+    ${renderPdfBlock(item.pdf, '')}
+
+    <div class="concept-steps">
+      ${item.title ? `<div class="example-title">${formatText(item.title)}</div>` : ""}
+      <div class="example-box">
+        <div><strong>Input:</strong> ${formatText(item.before)}</div>
+        ${
+          item.steps
+            ? `
+            <ol class="steps-list mt-2">
+              ${item.steps
+                .map(
+                  step => `
+                  <li class="steps-item">
+                    <span class="steps-number"></span>
+                    <span class="steps-text">${formatText(step)}</span>
+                  </li>`
+                )
+                .join("")}
+            </ol>`
+            : ""
+        }
+        <div class="mt-2">
+          <strong>Result:</strong> ${formatText(item.after)}
+        </div>
+      </div>
+    </div>
+  `;
+
+        case "table":
+          return `
+            <div class="table-wrapper">
+            ${item.title ? `<h5">${formatText(item.title)}</h5>` : ""}
+            <table class="concept-table">
+              <thead>
+                <tr>
+                  ${item.headers.map((h) => `<th>${h}</th>`).join("")}
+                </tr>
+              </thead>
+              <tbody>
+                ${item.rows
+                  .map(
+                    (r) => `
+                      <tr>
+                        ${r.map((c) => `<td>${c}</td>`).join("")}
+                      </tr>
+                    `
+                  )
+                  .join("")}
+              </tbody>
+            </table>
+            </div>
+          `;
+
+        default:
+          return "";
+      }
+    })
+    .join("");
+}
+
+function renderConceptHTML(chapter, color) {
+  const c = chapter?.concept;
+  if (!c) return '';
+  const openCls = state.conceptOpen ? ' open' : '';
+  const bodyHTML = renderConceptBody(c.body);
+  let formulasHTML = '';
+  if (c.formulas && c.formulas.length) {
+    formulasHTML = `<div class="concept-formulas">
+      <div class="concept-formulas-label">Key Formulas</div>
+      ${c.formulas.map(f => `<span class="formula-chip">${f}</span>`).join('')}
+    </div>`;
+  }
+
+  let syntaxHTML = '';
+  if (c.syntax && c.syntax.length) {
+    syntaxHTML = `<div class="concept-formulas">
+      <div class="concept-formulas-label">Syntax</div>
+      ${c.syntax.map(f => `<span class="formula-chip">${f}</span>`).join('')}
+    </div>`;
+  }
+
+  return `
+    <div class="concept-card">
+      <div class="concept-header${openCls}" onclick="toggleConcept()">
+        <div class="concept-icon" style="background:${color}">💡</div>
+        <div class="concept-title-wrap">
+          <div class="concept-eyebrow">Concept</div>
+          <div class="concept-title">${c.title}</div>
+        </div>
+        <svg class="concept-chevron${openCls}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+      <div class="concept-body${openCls}" id="concept-body">
+        ${renderImageBlock(c.image)}
+        ${renderPdfBlock(c.pdf)}
+        ${bodyHTML}
+        ${formulasHTML}
+        ${syntaxHTML}
+      </div>
+    </div>`;
+}
+
+function toggleConcept() {
+  state.conceptOpen = !state.conceptOpen;
+  const header = document.querySelector('.concept-header');
+  const body = document.getElementById('concept-body');
+  const chevron = document.querySelector('.concept-chevron');
+  if (header) header.classList.toggle('open', state.conceptOpen);
+  if (body) body.classList.toggle('open', state.conceptOpen);
+  if (chevron) chevron.classList.toggle('open', state.conceptOpen);
+  if (state.conceptOpen && body) renderLatex(body);
+}
+
+function renderTypeTabsHTML() {
+  const counts = getTypeCounts();
+  const color = subjectColor();
+  const types = [
+    { key:'ALL', label:'All' },
+    { key:'MCQ', label:'MCQ' },
+    { key:'MSQ', label:'MSQ' },
+    { key:'NAT', label:'NAT' },
+  ];
+  let html = '<div class="qtype-tabs">';
+  types.forEach(t => {
+    const count = counts[t.key];
+    if (t.key !== 'ALL' && count === 0) return;
+    const active = state.qtypeFilter === t.key;
+    html += `<button class="qtype-tab${active?' active':''}" style="${active?`background:${color};color:#fff;border-color:transparent`:''}" onclick="setQtypeFilter('${t.key}')">${t.label}<span class="qtype-count">${count}</span></button>`;
+  });
+  html += '</div>';
   return html;
 }
 
-function renderLatexIn(el) {
-  if (window.renderMathInElement && el) {
-    renderMathInElement(el, {
-      delimiters:[
-        {left:'$$',right:'$$',display:true},
-        {left:'$',right:'$',display:false},
-        {left:'\\(',right:'\\)',display:false},
-        {left:'\\[',right:'\\]',display:true},
-      ],
-      throwOnError:false
-    });
+function setQtypeFilter(type) {
+  state.qtypeFilter = type;
+  state.questionIndex = 0;
+  renderQuestion();
+}
+
+// ══════════════════════════════════════════
+//  RENDER QUESTION (batch of 3 at a time)
+// ══════════════════════════════════════════
+function renderQuestion() {
+  const wrap = document.getElementById('question-wrap');
+  const chapter = getCurrentChapter();
+  const color = subjectColor();
+  const conceptHTML = renderConceptHTML(chapter, color);
+  const sqlPgHTML = state.activeSubject === 'SQL' ? renderSqlPlaygroundHTML() : '';
+  const tabsHTML = renderTypeTabsHTML();
+
+  const questions = getQuestions();
+  const totalQ = questions.length;
+  const batch = questions.slice(state.questionIndex, state.questionIndex + BATCH_SIZE);
+
+  if (!batch.length) {
+    wrap.innerHTML = `
+      <div class="fade-in">
+        ${conceptHTML}
+        ${sqlPgHTML}
+        ${tabsHTML}
+        <div class="empty"><div class="empty-icon">📭</div><p>No ${state.qtypeFilter !== 'ALL' ? state.qtypeFilter : ''} questions in this chapter</p></div>
+        ${chapter ? renderChapterFeedbackHTML(chapter.id) : ''}
+      </div>`;
+    if (chapter?.concept?.latex && state.conceptOpen) renderLatex(document.getElementById('concept-body'));
+    bindSqlPlaygroundEvents();
+    return;
   }
+
+  const batchStart = state.questionIndex;
+  const batchEnd = Math.min(batchStart + batch.length, totalQ);
+  const pct = (batchEnd / totalQ) * 100;
+  const isLastBatch = batchEnd >= totalQ;
+
+  const cardsHTML = batch.map((q, bi) => renderSingleQuestionCard(q, batchStart + bi, color)).join('');
+
+  const totalBatches = Math.ceil(totalQ / BATCH_SIZE);
+  const currentBatch = Math.floor(state.questionIndex / BATCH_SIZE);
+  let dotsHTML = '<div class="q-dots">';
+  for (let i = 0; i < totalBatches; i++) {
+    const w = i === currentBatch ? '18px' : '6px';
+    const bg = i === currentBatch ? color : '#d1d5db';
+    dotsHTML += `<div class="q-dot" style="width:${w};background:${bg}" onclick="goToDot(${i * BATCH_SIZE})"></div>`;
+  }
+  dotsHTML += '</div>';
+
+  wrap.innerHTML = `
+    <div class="fade-in">
+      ${conceptHTML}
+      ${sqlPgHTML}
+      ${tabsHTML}
+      <div class="q-breadcrumb">${chapter?.title || ''}</div>
+      <div class="q-progress-row">
+        <div class="q-progress-track"><div class="q-progress-fill" style="width:${pct}%;background:${color}"></div></div>
+        <span class="q-progress-label">${batchStart+1}-${batchEnd} / ${totalQ}</span>
+      </div>
+      <div class="q-batch">
+        ${cardsHTML}
+      </div>
+      <div class="q-batch-actions">
+        <button class="btn btn-outline" onclick="goPrev()" ${!canGoPrev()?'disabled':''}>
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg> Prev 3
+        </button>
+        <button class="btn btn-primary" onclick="goNext()" ${!canGoNext()?'disabled':''} style="background:${color}">Next 3 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      ${dotsHTML}
+      ${isLastBatch && chapter ? renderChapterFeedbackHTML(chapter.id) : ''}
+    </div>`;
+
+  if (chapter?.concept?.latex || batch.some(q => q.latex)) {
+    renderLatex(wrap);
+  }
+
+  batch.forEach(q => {
+    if (q.type === 'NAT' && !state.submitted[q.id]) {
+      const natInput = document.getElementById(`nat-input-${q.id}`);
+      if (natInput) {
+        natInput.addEventListener('input', () => handleNatInput(q.id));
+      }
+    }
+  });
+
+  bindSqlPlaygroundEvents();
 }
 
-// Persistent side-by-side panel — refreshed on every edit
-function renderSidePreview() {
-  const wrap = document.getElementById('lp-side-inner');
-  if (!wrap) return;
-  const chapter = getActiveChapterObj();
-  const color = builder.activeData?.color || '#6C3FF5';
-  wrap.innerHTML = buildChapterPreviewHTML(chapter, color);
-  renderLatexIn(wrap);
+function renderSingleQuestionCard(q, absoluteIndex, color) {
+  const selected = state.answers[q.id] ?? (q.type === 'NAT' ? '' : []);
+  const isSubmitted = !!state.submitted[q.id];
+
+  let bodyHTML = '';
+  if (q.type === 'NAT') {
+    bodyHTML = renderNATHTML(q, isSubmitted);
+  } else {
+    let optionsHTML = '';
+    q.options.forEach((opt, i) => {
+      let cls = 'opt';
+      let labelContent = LABELS[i];
+      if (isSubmitted) {
+        cls += ' disabled';
+        const isCorrect = q.answer.includes(i);
+        const isSel = (selected || []).includes(i);
+        if (isCorrect && isSel)  { cls += ' correct'; labelContent = '✓'; }
+        else if (isCorrect)       { cls += ' missed';  labelContent = '✓'; }
+        else if (isSel)           { cls += ' wrong';   labelContent = '✗'; }
+      } else {
+        if ((selected || []).includes(i)) cls += ' selected';
+      }
+      optionsHTML += `
+        <button class="${cls}" data-idx="${i}" onclick="toggleOption('${q.id}', ${i})">
+          <span class="opt-label">${labelContent}</span>
+          <span class="opt-text">${renderOptionContent(opt)}</span>
+        </button>`;
+    });
+    bodyHTML = `<div class="q-options">${optionsHTML}</div>`;
+  }
+
+  let exHTML = '';
+  if (isSubmitted && (q.explanation || q.explanationImage || q.explanationPdf)) {
+    const isRight = checkIsCorrect(q, selected);
+    const cls = isRight ? 'correct' : 'wrong';
+    const icon = isRight ? '🎉' : '💡';
+    const head = isRight ? 'Correct!' : "Not quite — here's why:";
+    exHTML = `<div class="explanation ${cls}">
+      <div class="explanation-head">${icon} ${head}</div>
+      ${q.explanation ? `<div class="exp-text">${q.explanation}</div>` : ''}
+      ${renderImageBlock(q.explanationImage)}
+      ${renderPdfBlock(q.explanationPdf)}
+    </div>`;
+  }
+
+  const hasAnswer = q.type === 'NAT'
+    ? (selected !== undefined && selected !== null && String(selected).trim() !== '')
+    : (selected && selected.length > 0);
+
+  let actionHTML = '';
+  if (!isSubmitted) {
+    actionHTML = `<div class="q-actions"><button class="btn btn-primary" id="btn-check-${q.id}" onclick="submitAnswer('${q.id}')" ${!hasAnswer?'disabled':''} style="background:${color}">Check Answer</button></div>`;
+  }
+
+  let typeHintHTML = '';
+  if (q.type === 'MSQ') typeHintHTML = '<span class="q-type-hint">Select all correct answers</span>';
+  else if (q.type === 'NAT') typeHintHTML = '<span class="q-type-hint">Type a number or a word</span>';
+
+  return `
+    <div class="q-card fade-in">
+      <div class="q-card-header" style="background:${hex2rgba(color,.06)}">
+        <span class="q-type-badge" style="background:${color}">${q.type}</span>
+        ${typeHintHTML}
+        <span class="q-num">Q${absoluteIndex+1}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text q-question">${q.question}</div>
+      </div>
+      ${(q.image || q.pdf) ? `<div class="q-media">${renderImageBlock(q.image)}${renderPdfBlock(q.pdf)}</div>` : ''}
+      ${bodyHTML}
+      ${exHTML}
+      ${actionHTML}
+    </div>`;
 }
 
-// Full-screen modal version (same content, bigger canvas)
-function showLivePreview() {
-  const chapter = getActiveChapterObj();
-  const overlay = document.getElementById('live-preview-overlay');
-  const inner = document.getElementById('lp-inner');
-  const headTitle = document.getElementById('lp-head-title');
-  const color = builder.activeData?.color || '#6C3FF5';
+function renderNATHTML(q, isSubmitted) {
+  const selected = state.answers[q.id];
+  let inputCls = 'nat-input';
+  let valueAttr = selected ?? '';
+  let correctNoteHTML = '';
 
-  headTitle.textContent = chapter ? `Live Preview — ${chapter.title}` : 'Live Preview';
-  inner.innerHTML = buildChapterPreviewHTML(chapter, color);
+  if (isSubmitted) {
+    const isRight = checkIsCorrect(q, selected);
+    inputCls += isRight ? ' correct' : ' wrong';
+    if (!isRight) {
+      correctNoteHTML = `<div class="nat-correct-value">✓ Correct answer: ${q.answer}${q.unit ? ' ' + q.unit : ''}</div>
+        ${renderImageBlock(q.answerImage)}`;
+    }
+  }
+
+  return `
+    <div class="nat-wrap">
+      <div class="nat-input-row">
+        <input
+          type="text"
+          class="${inputCls}"
+          id="nat-input-${q.id}"
+          placeholder="Enter your answer"
+          value="${escapeHtml(valueAttr)}"
+          ${isSubmitted ? 'disabled' : ''}
+        >
+        ${q.unit ? `<span class="nat-unit">${q.unit}</span>` : ''}
+      </div>
+      ${!isSubmitted ? '<div class="nat-hint">Numbers and short text answers are both accepted.</div>' : ''}
+      ${correctNoteHTML}
+    </div>`;
+}
+
+function handleNatInput(qid) {
+  const el = document.getElementById(`nat-input-${qid}`);
+  if (!el) return;
+  state.answers[qid] = el.value;
+  const checkBtn = document.getElementById(`btn-check-${qid}`);
+  if (checkBtn) checkBtn.disabled = el.value.trim() === '';
+}
+
+function checkIsCorrect(q, selected) {
+  if (q.type === 'NAT') {
+    if (selected === undefined || selected === null || String(selected).trim() === '') return false;
+    if (typeof q.answer === 'number') {
+      const val = parseFloat(selected);
+      if (isNaN(val)) return false;
+      const tol = q.tolerance ?? 0;
+      return Math.abs(val - q.answer) <= tol;
+    }
+    return String(selected).trim().toLowerCase() === String(q.answer).trim().toLowerCase();
+  }
+  return JSON.stringify([...(selected||[])].sort((a,b)=>a-b)) === JSON.stringify([...q.answer].sort((a,b)=>a-b));
+}
+
+function goToDot(batchStartIndex) {
+  state.questionIndex = batchStartIndex;
+  renderQuestion();
+}
+
+// ══════════════════════════════════════════
+//  ANSWER HANDLING
+// ══════════════════════════════════════════
+function toggleOption(qid, idx) {
+  const q = getQuestions().find(qq => qq.id === qid);
+  if (!q || state.submitted[q.id] || q.type === 'NAT') return;
+  const prev = state.answers[q.id] || [];
+  if (q.type === 'MCQ') {
+    state.answers[q.id] = [idx];
+  } else {
+    const has = prev.includes(idx);
+    state.answers[q.id] = has ? prev.filter(x=>x!==idx) : [...prev, idx];
+  }
+  renderQuestion();
+}
+
+function submitAnswer(qid) {
+  const q = getQuestions().find(qq => qq.id === qid);
+  if (!q || state.submitted[q.id]) return;
+  const selected = state.answers[q.id];
+
+  if (q.type === 'NAT') {
+    if (selected === undefined || selected === null || String(selected).trim() === '') return;
+  } else {
+    if (!selected || !selected.length) return;
+  }
+
+  state.submitted[q.id] = true;
+
+  const isCorrect = checkIsCorrect(q, selected);
+  ajax('api/attempt', 'POST', {
+    userId: state.userData ? (state.userData.email || state.userData.name) : 'guest',
+    questionId: q.id,
+    subject: state.activeSubject,
+    chapterId: state.activeChapterId,
+    questionType: q.type,
+    selected,
+    correct: q.answer,
+    isCorrect,
+    timestamp: new Date().toISOString()
+  }).catch(()=>{});
+
+  updateChapterProgress(state.activeChapterId);
+  renderQuestion();
+}
+
+// ══════════════════════════════════════════
+//  IMAGE LIGHTBOX
+// ══════════════════════════════════════════
+function openLightbox(src) {
+  if (!src) return;
+  const overlay = document.getElementById('lightbox-overlay');
+  const img = document.getElementById('lightbox-img');
+  img.src = src;
   overlay.classList.add('open');
-  renderLatexIn(inner);
 }
 
-function closeLivePreview() {
-  document.getElementById('live-preview-overlay').classList.remove('open');
+function closeLightbox() {
+  document.getElementById('lightbox-overlay').classList.remove('open');
+  document.getElementById('lightbox-img').src = '';
 }
 
-// ── Save / Export ──
-async function saveSubjectContent() {
-  if (!builder.activeData) return;
-  const btn = document.getElementById('btn-save-subject');
-  btn.disabled = true;
-  setBuilderStatus('Saving…', '');
+// ══════════════════════════════════════════
+//  SQL PLAYGROUND
+// ══════════════════════════════════════════
+function renderSqlPlaygroundHTML() {
+  const openCls = state.sqlPgOpen ? '' : ' hidden';
+  const chevronOpen = state.sqlPgOpen ? ' open' : '';
+  const pg = getActivePlayground();
+  const starterQuery = pg.sampleQueries[0] || 'SELECT * FROM Student;';
+  return `
+    <div class="sql-playground">
+      <div class="sql-pg-header" onclick="toggleSqlPlayground()">
+        <div class="sql-pg-icon">🖥️</div>
+        <div class="sql-pg-title-wrap">
+          <div class="sql-pg-eyebrow">Live Practice — this chapter's schema</div>
+          <div class="sql-pg-title">SQL Playground — run real queries</div>
+        </div>
+        <svg class="concept-chevron${chevronOpen}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+      <div class="sql-pg-body${openCls}" id="sql-pg-body">
+        <details class="sql-schema-note" open>
+          <summary style="cursor:pointer;font-weight:700;color:#0F9D8C">📋 Preloaded schema for this chapter (click to collapse)</summary>
+          <pre style="margin-top:10px;background:#1e1e2e;color:#e2e8f0;border-radius:8px;padding:12px 14px;overflow-x:auto;font-size:12.5px;line-height:1.6;white-space:pre-wrap">${pg.schema}</pre>
+        </details>
+        <textarea id="sql-editor" spellcheck="false">${starterQuery}</textarea>
+        <div class="sql-pg-actions">
+          <button class="btn btn-primary" id="sql-run-btn" style="background:#0F9D8C" onclick="runSqlQuery()">▶ Run Query</button>
+          <button class="btn btn-outline" onclick="resetSqlPlayground()">↺ Reset This Chapter's Data</button>
+        </div>
+        <div class="sql-sample-queries" id="sql-sample-queries"></div>
+        <div class="sql-result-wrap" id="sql-result-wrap"></div>
+      </div>
+    </div>`;
+}
+
+function toggleSqlPlayground() {
+  state.sqlPgOpen = !state.sqlPgOpen;
+  const body = document.getElementById('sql-pg-body');
+  const chevron = document.querySelector('.sql-pg-header .concept-chevron');
+  if (body) body.classList.toggle('hidden', !state.sqlPgOpen);
+  if (chevron) chevron.classList.toggle('open', state.sqlPgOpen);
+}
+
+function bindSqlPlaygroundEvents() {
+  const chipsWrap = document.getElementById('sql-sample-queries');
+  if (!chipsWrap) return;
+  const pg = getActivePlayground();
+  chipsWrap.innerHTML = pg.sampleQueries.map(q =>
+    `<span class="sql-sample-chip" onclick="loadSampleQuery(this)">${q}</span>`
+  ).join('');
+}
+
+function loadSampleQuery(el) {
+  const editor = document.getElementById('sql-editor');
+  if (editor) editor.value = el.textContent;
+}
+
+async function ensureSqlEngine(forceRebuild = false) {
+  const chapterId = state.activeChapterId;
+  if (state.sqlDb && state.sqlLoadedChapterId === chapterId && !forceRebuild) {
+    return state.sqlDb;
+  }
+
+  state.sqlJsLoading = (async () => {
+    const SQL = await initSqlJs({
+      locateFile: file => `https://cdn.jsdelivr.net/npm/sql.js@1.10.2/dist/${file}`
+    });
+    const db = new SQL.Database();
+    const pg = getActivePlayground();
+    try {
+      db.run(pg.schema);
+    } catch (e) {
+      // starter schema was just an explanatory comment; fine
+    }
+    state.sqlDb = db;
+    state.sqlLoadedChapterId = chapterId;
+    return db;
+  })();
+
+  return state.sqlJsLoading;
+}
+
+async function runSqlQuery() {
+  const editor = document.getElementById('sql-editor');
+  const resultWrap = document.getElementById('sql-result-wrap');
+  const runBtn = document.getElementById('sql-run-btn');
+  if (!editor || !resultWrap) return;
+  const sql = editor.value.trim();
+  if (!sql) return;
+
+  runBtn.disabled = true;
+  runBtn.textContent = '⏳ Running…';
+  resultWrap.innerHTML = '';
 
   try {
-    const res = await ajax(`api/content?key=${encodeURIComponent(adminKey)}`, 'POST', {
-      key: adminKey,
-      code: builder.activeData.code,
-      subject: builder.activeData.subject,
-      color: builder.activeData.color,
-      data: builder.activeData,
-    });
+    const db = await ensureSqlEngine();
+    const results = db.exec(sql);
 
-    if (res && res.success) {
-      builder.dirty = false;
-      setBuilderStatus('✓ Saved to database', 'success');
-      // Reflect new subject in pill list / metadata if it was just created
-      if (!builder.subjects.find(s => s.code === res.code)) {
-        builder.subjects.push({ code: res.code, subject: builder.activeData.subject, color: builder.activeData.color });
-        renderSubjectPills();
-      }
-    } else if (res && res.configured === false) {
-      setBuilderStatus('⚠ Hasura not configured — download JSON instead and add it manually to /data/', 'error');
+    if (!results.length) {
+      resultWrap.innerHTML = `<div class="sql-result-msg ok">✓ Query executed successfully. No rows to display (e.g. INSERT/UPDATE/DELETE/CREATE ran fine).</div>`;
     } else {
-      setBuilderStatus('⚠ ' + (res?.error || 'Save failed'), 'error');
+      let html = '';
+      results.forEach(res => {
+        html += `<div class="sql-result-msg ok">✓ ${res.values.length} row(s) returned</div>`;
+        html += `<div class="sql-result-table-wrap"><table class="sql-result-table"><thead><tr>${res.columns.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>`;
+        res.values.forEach(row => {
+          html += `<tr>${row.map(cell => `<td>${cell === null ? '<em>NULL</em>' : cell}</td>`).join('')}</tr>`;
+        });
+        html += `</tbody></table></div>`;
+      });
+      resultWrap.innerHTML = html;
     }
-  } catch (e) {
-    setBuilderStatus('⚠ Network error while saving', 'error');
+  } catch (err) {
+    resultWrap.innerHTML = `<div class="sql-result-msg err">✗ ${err.message}</div>`;
+  } finally {
+    runBtn.disabled = false;
+    runBtn.textContent = '▶ Run Query';
+  }
+}
+
+async function resetSqlPlayground() {
+  const resultWrap = document.getElementById('sql-result-wrap');
+  state.sqlDb = null;
+  state.sqlLoadedChapterId = null;
+  try {
+    await ensureSqlEngine(true);
+    if (resultWrap) resultWrap.innerHTML = `<div class="sql-result-msg ok">✓ Data reset — this chapter's sample table(s) restored to their original rows.</div>`;
+  } catch (err) {
+    if (resultWrap) resultWrap.innerHTML = `<div class="sql-result-msg err">✗ Could not reset: ${err.message}</div>`;
+  }
+}
+
+// ══════════════════════════════════════════
+//  PER-CHAPTER FEEDBACK (shown after the last batch of questions)
+// ══════════════════════════════════════════
+function renderChapterFeedbackHTML(chapterId) {
+  if (state.chapterFeedbackSubmitted[chapterId]) {
+    return `<div class="chapter-feedback fade-in"><div class="feedback-msg ok">✓ Thanks for rating this chapter!</div></div>`;
+  }
+  const rating = state.chapterFeedbackRating[chapterId] || 0;
+  const starsHTML = [1,2,3,4,5].map(n =>
+    `<span class="feedback-star${n <= rating ? ' active' : ''}" onclick="setChapterFeedbackRating('${chapterId}', ${n})">★</span>`
+  ).join('');
+  return `
+    <div class="chapter-feedback fade-in">
+      <div class="chapter-feedback-title">How was this chapter?</div>
+      <div class="feedback-form">
+        <div class="feedback-stars">${starsHTML}</div>
+        <textarea class="feedback-textarea" id="chapter-feedback-message-${chapterId}" placeholder="Anything confusing, wrong, or worth adding? (optional)"></textarea>
+        <button style="max-width:200px" onclick="submitChapterFeedback('${chapterId}')">Submit Feedback</button>
+        <div class="feedback-msg" id="chapter-feedback-msg-${chapterId}"></div>
+      </div>
+    </div>`;
+}
+
+function setChapterFeedbackRating(chapterId, n) {
+  state.chapterFeedbackRating[chapterId] = n;
+  const wrap = document.querySelector('.chapter-feedback .feedback-stars');
+  if (wrap) wrap.querySelectorAll('.feedback-star').forEach((el, i) => el.classList.toggle('active', i < n));
+}
+
+async function submitChapterFeedback(chapterId) {
+  const msgEl = document.getElementById(`chapter-feedback-msg-${chapterId}`);
+  const textEl = document.getElementById(`chapter-feedback-message-${chapterId}`);
+  const rating = state.chapterFeedbackRating[chapterId];
+  if (!rating) {
+    if (msgEl) { msgEl.textContent = 'Please pick a star rating first.'; msgEl.className = 'feedback-msg err'; }
+    return;
+  }
+  try {
+    const res = await ajax('api/feedback', 'POST', {
+      userId: state.userData ? (state.userData.email || state.userData.name) : 'guest',
+      subject: state.activeSubject || null,
+      rating,
+      message: textEl ? textEl.value.trim() : '',
+    });
+    if (res && res.success) {
+      state.chapterFeedbackSubmitted[chapterId] = true;
+      renderQuestion();
+    } else if (msgEl) {
+      msgEl.textContent = 'Could not submit feedback — please try again.';
+      msgEl.className = 'feedback-msg err';
+    }
+  } catch {
+    if (msgEl) { msgEl.textContent = 'Network error — please try again.'; msgEl.className = 'feedback-msg err'; }
+  }
+}
+
+// ══════════════════════════════════════════
+//  DASHBOARD — user stats + feedback form
+// ══════════════════════════════════════════
+async function showDashboard() {
+  state.view = 'dashboard';
+  state.sidebarOpen = false;
+  document.getElementById('sidebar').classList.add('closed');
+  updateActiveTabs();
+  renderDashboardHTML(); // render immediately with loader, then fill in
+
+  if (state.userData) {
+    const userId = state.userData.email || state.userData.name;
+    try {
+      const res = await ajax(`api/user-stats?userId=${encodeURIComponent(userId)}`);
+      if (res && res.success) state.dashboardStats = res.data;
+    } catch { /* leave dashboardStats as-is; UI shows a friendly fallback */ }
   }
 
-  btn.disabled = false;
+  try {
+    const res = await ajax('api/feedback');
+    if (res && res.success) state.feedbackStats = res.data;
+  } catch { /* fine — feedback stats are optional */ }
+
+  renderDashboardHTML();
 }
 
-function downloadSubjectJson() {
-  if (!builder.activeData) return;
-  const blob = new Blob([JSON.stringify(builder.activeData, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `${(builder.activeData.code || 'subject').toLowerCase()}.json`;
-  a.click();
+function subjectLabelFor(code) {
+  // SUBJECTS is keyed by the same subject CODE (e.g. "PH", "SQL") that
+  // api/attempt.js stores in attempts.subject — this is the lookup the
+  // dashboard uses to turn a code into a name/color/emoji.
+  return SUBJECTS[code] || { label: code, color: '#9ca3af', emoji: '📘' };
 }
 
-function showJsonPreview() {
-  if (!builder.activeData) return;
-  document.getElementById('json-modal-title').textContent = `${builder.activeData.subject} (${builder.activeData.code}) — JSON`;
-  document.getElementById('json-modal-content').textContent = JSON.stringify(builder.activeData, null, 2);
-  document.getElementById('json-modal-overlay').classList.add('open');
+function renderDashboardHTML() {
+  const wrap = document.getElementById('question-wrap');
+
+  if (!state.userData) {
+    wrap.innerHTML = `
+      <div class="fade-in">
+        <div class="home-hero"><h1>📊 Your Dashboard</h1><p>Practice time, accuracy, and feedback — all in one place</p></div>
+        <div class="dash-guest-note">
+          You're browsing as a guest, so there's no saved practice history to show yet.
+          <button class="back-link" style="margin:8px 0 0" onclick="document.getElementById('modal-overlay').classList.remove('hidden')">→ Register or log in to start tracking your stats</button>
+        </div>
+        ${renderFeedbackSectionHTML()}
+      </div>`;
+    return;
+  }
+
+  if (!state.dashboardStats) {
+    wrap.innerHTML = `<div class="fade-in"><div class="home-hero"><h1>📊 Your Dashboard</h1></div><div id="loader"><div class="spinner"></div></div></div>`;
+    return;
+  }
+
+  const s = state.dashboardStats;
+  const t = s.totals;
+  const w = s.weekTotals;
+
+  const statCardsHTML = `
+    <div class="dash-grid">
+      <div class="dash-stat-card">
+        <div class="dash-stat-label">Total Attempted</div>
+        <div class="dash-stat-value">${t.attempts}</div>
+        <div class="dash-stat-sub">all-time questions</div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-stat-label">Correct</div>
+        <div class="dash-stat-value" style="color:#16a34a">${t.correct}</div>
+        <div class="dash-stat-sub">${t.accuracy}% accuracy</div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-stat-label">Wrong</div>
+        <div class="dash-stat-value" style="color:#ef4444">${t.wrong}</div>
+        <div class="dash-stat-sub">keep practising</div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-stat-label">This Week</div>
+        <div class="dash-stat-value">${w.attempts}</div>
+        <div class="dash-stat-sub">~${w.minutesPracticed} min practised</div>
+      </div>
+    </div>`;
+
+  const maxSubjAttempts = Math.max(1, ...s.bySubject.map(x => x.attempts));
+  const bySubjectHTML = s.bySubject.length ? s.bySubject.map(row => {
+    const meta = subjectLabelFor(row.subject);
+    const widthPct = Math.round((row.attempts / maxSubjAttempts) * 100);
+    return `
+      <div class="dash-subject-row">
+        <div class="dash-subject-name">${meta.emoji} ${meta.label}</div>
+        <div class="dash-subject-bar-track"><div class="dash-subject-bar-fill" style="width:${widthPct}%;background:${meta.color}"></div></div>
+        <div class="dash-subject-pct">${row.correct}/${row.attempts} (${row.accuracy}%)</div>
+      </div>`;
+  }).join('') : '<div class="empty" style="height:100px"><div class="empty-icon">📭</div><p>No attempts yet — go practice a chapter!</p></div>';
+
+  const maxDayAttempts = Math.max(1, ...s.last7Days.map(d => d.attempts));
+  const weekChartHTML = `
+    <div class="dash-week-chart">
+      ${s.last7Days.map(d => {
+        const h = d.attempts ? Math.max(6, Math.round((d.attempts / maxDayAttempts) * 100)) : 4;
+        const dayLabel = new Date(d.date + 'T00:00:00').toLocaleDateString(undefined, { weekday: 'short' });
+        return `
+          <div class="dash-week-col">
+            <div class="dash-week-bar-wrap"><div class="dash-week-bar" style="height:${h}%;background:var(--ink-blue)" title="${d.attempts} attempts, ${d.correct} correct, ~${d.minutesPracticed} min"></div></div>
+            <div class="dash-week-day">${dayLabel}</div>
+          </div>`;
+      }).join('')}
+    </div>`;
+
+  wrap.innerHTML = `
+    <div class="fade-in">
+      <div class="home-hero"><h1>📊 Your Dashboard</h1><p>Hi ${escapeHtml(state.userData.name || 'there')} — here's how your practice is going</p></div>
+      ${statCardsHTML}
+      <div class="dash-section">
+        <div class="dash-section-title">Accuracy by Subject</div>
+        ${bySubjectHTML}
+      </div>
+      <div class="dash-section">
+        <div class="dash-section-title">Last 7 Days</div>
+        ${weekChartHTML}
+      </div>
+      ${renderFeedbackSectionHTML()}
+    </div>`;
 }
 
-function closeJsonPreview() {
-  document.getElementById('json-modal-overlay').classList.remove('open');
+function renderFeedbackSectionHTML() {
+  const fb = state.feedbackStats;
+  const starsHTML = [1,2,3,4,5].map(n =>
+    `<span class="feedback-star${n <= state.feedbackRating ? ' active' : ''}" onclick="setFeedbackRating(${n})">★</span>`
+  ).join('');
+
+  const statsHTML = fb ? `
+    <div class="dash-stat-sub" style="margin-bottom:14px">
+      ⭐ ${fb.averageRating || '—'} average from ${fb.count} response${fb.count === 1 ? '' : 's'} so far
+    </div>` : '';
+
+  return `
+    <div class="dash-section">
+      <div class="dash-section-title">Share Feedback</div>
+      ${statsHTML}
+      <div class="feedback-form">
+        <div class="feedback-stars">${starsHTML}</div>
+        <textarea class="feedback-textarea" id="feedback-message" placeholder="What's working well? What should we improve?"></textarea>
+        <button style="max-width:200px" onclick="submitFeedback()">Submit Feedback</button>
+        <div class="feedback-msg" id="feedback-msg"></div>
+      </div>
+    </div>`;
 }
 
-function copyJsonPreview() {
-  const text = document.getElementById('json-modal-content').textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    setBuilderStatus('✓ Copied JSON to clipboard', 'success');
-  }).catch(() => {
-    alert('Could not copy automatically — please select and copy manually.');
+function setFeedbackRating(n) {
+  state.feedbackRating = n;
+  document.querySelectorAll('.feedback-star').forEach((el, i) => el.classList.toggle('active', i < n));
+}
+
+async function submitFeedback() {
+  const msgEl = document.getElementById('feedback-msg');
+  const textEl = document.getElementById('feedback-message');
+  if (!state.feedbackRating) {
+    msgEl.textContent = 'Please pick a star rating first.';
+    msgEl.className = 'feedback-msg err';
+    return;
+  }
+  try {
+    const res = await ajax('api/feedback', 'POST', {
+      userId: state.userData ? (state.userData.email || state.userData.name) : 'guest',
+      subject: state.activeSubject || null,
+      rating: state.feedbackRating,
+      message: textEl.value.trim(),
+    });
+    if (res && res.success) {
+      msgEl.textContent = 'Thanks — your feedback was submitted!';
+      msgEl.className = 'feedback-msg ok';
+      state.feedbackRating = 0;
+      textEl.value = '';
+      document.querySelectorAll('.feedback-star').forEach(el => el.classList.remove('active'));
+      try {
+        const stats = await ajax('api/feedback');
+        if (stats && stats.success) { state.feedbackStats = stats.data; renderDashboardHTML(); }
+      } catch {}
+    } else {
+      msgEl.textContent = 'Could not submit feedback — please try again.';
+      msgEl.className = 'feedback-msg err';
+    }
+  } catch {
+    msgEl.textContent = 'Network error — please try again.';
+    msgEl.className = 'feedback-msg err';
+  }
+}
+
+// ══════════════════════════════════════════
+//  USER / MODAL / SIGN OUT
+// ══════════════════════════════════════════
+function updateUserUI() {
+  const u = state.userData;
+  const btn = document.getElementById('user-btn');
+  const guestNote = document.getElementById('dd-guest-note');
+  if (u) {
+    btn.textContent = u.name ? u.name.charAt(0).toUpperCase() : '?';
+    document.getElementById('dd-name').textContent = u.name || 'Guest';
+    document.getElementById('dd-email').textContent = u.email || '';
+    if (guestNote) guestNote.textContent = '';
+  } else {
+    btn.textContent = '?';
+    document.getElementById('dd-name').textContent = 'Guest';
+    document.getElementById('dd-email').textContent = '';
+    if (guestNote) guestNote.textContent = "You're browsing as a guest — your progress won't be saved.";
+  }
+}
+
+function setModalMode(mode) {
+  state.modalMode = mode;
+  document.getElementById('mode-register-btn').classList.toggle('active', mode === 'register');
+  document.getElementById('mode-login-btn').classList.toggle('active', mode === 'login');
+  document.getElementById('field-name').style.display = mode === 'register' ? '' : 'none';
+  document.getElementById('field-mobile').style.display = mode === 'register' ? '' : 'none';
+  document.getElementById('field-source').style.display = mode === 'register' ? '' : 'none';
+  document.getElementById('f-email-label').textContent = mode === 'register' ? 'Email Address' : 'Your Registered Email';
+  document.getElementById('modal-sub').innerHTML = mode === 'register'
+    ? 'Enter your details to save progress &amp; get updates.<br><em>All fields are optional.</em>'
+    : 'Enter the email you registered with to pick up your saved progress.';
+  document.getElementById('modal-submit').textContent = mode === 'register' ? 'Start Practising →' : 'Log In →';
+  const statusEl = document.getElementById('login-status');
+  statusEl.textContent = '';
+  statusEl.className = 'login-status';
+}
+
+function validateModal() {
+  let ok = true;
+  const email = document.getElementById('f-email').value.trim();
+  const mobile = document.getElementById('f-mobile').value.trim();
+
+  document.getElementById('err-name').textContent = '';
+  document.getElementById('err-email').textContent = '';
+  document.getElementById('err-mobile').textContent = '';
+  document.getElementById('f-name').classList.remove('err');
+  document.getElementById('f-email').classList.remove('err');
+  document.getElementById('f-mobile').classList.remove('err');
+
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    document.getElementById('err-email').textContent = 'Invalid email address';
+    document.getElementById('f-email').classList.add('err');
+    ok = false;
+  }
+  if (mobile && !/^\+?[\d\s\-]{7,15}$/.test(mobile)) {
+    document.getElementById('err-mobile').textContent = 'Invalid mobile number';
+    document.getElementById('f-mobile').classList.add('err');
+    ok = false;
+  }
+  return ok;
+}
+
+function handleModalSubmit() {
+  if (state.modalMode === 'login') {
+    handleLogin();
+  } else {
+    submitModal();
+  }
+}
+
+async function submitModal() {
+  if (!validateModal()) return;
+  const formData = {
+    name: document.getElementById('f-name').value.trim(),
+    email: document.getElementById('f-email').value.trim(),
+    mobile: document.getElementById('f-mobile').value.trim(),
+    source: document.getElementById('f-source').value,
+  };
+
+  if (!formData.name || !formData.email) {
+    document.getElementById('login-status').textContent = 'Name and email are required to register.';
+    document.getElementById('login-status').className = 'login-status err-msg';
+    return;
+  }
+
+  const optimistic = { ...formData, timestamp: new Date().toISOString() };
+  state.userData = optimistic;
+  localStorage.setItem('unic_user', JSON.stringify(optimistic));
+  updateUserUI();
+  document.getElementById('modal-overlay').classList.add('hidden');
+
+  try {
+    const res = await ajax('api/register', 'POST', formData);
+    if (res && res.success && res.data) {
+      state.userData = res.data;
+      localStorage.setItem('unic_user', JSON.stringify(res.data));
+      updateUserUI();
+    }
+  } catch { /* offline / server hiccup — keep the optimistic local profile */ }
+
+  if (state.view === 'dashboard') showDashboard();
+}
+
+async function handleLogin() {
+  const email = document.getElementById('f-email').value.trim();
+  const statusEl = document.getElementById('login-status');
+  document.getElementById('f-email').classList.remove('err');
+  statusEl.textContent = '';
+  statusEl.className = 'login-status';
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    document.getElementById('f-email').classList.add('err');
+    statusEl.textContent = 'Enter a valid email to log in.';
+    statusEl.classList.add('err-msg');
+    return;
+  }
+
+  const btn = document.getElementById('modal-submit');
+  btn.disabled = true;
+  const originalLabel = btn.textContent;
+  btn.textContent = 'Checking…';
+
+  try {
+    const res = await ajax('api/register', 'POST', { email });
+    if (res && res.success && res.data) {
+      state.userData = res.data;
+      localStorage.setItem('unic_user', JSON.stringify(res.data));
+      updateUserUI();
+      document.getElementById('modal-overlay').classList.add('hidden');
+      if (state.view === 'dashboard') showDashboard();
+    } else {
+      statusEl.textContent = 'No saved profile found for that email — you can register instead.';
+      statusEl.classList.add('err-msg');
+    }
+  } catch {
+    statusEl.textContent = "Couldn't reach the server to log in. Please try again, or register instead.";
+    statusEl.classList.add('err-msg');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalLabel;
+  }
+}
+
+function signOut() {
+  localStorage.removeItem('unic_user');
+  sessionStorage.clear();
+
+  state.userData = null;
+  state.answers = {};
+  state.submitted = {};
+  state.subjectData = null;
+  state.activeChapterId = null;
+  state.questionIndex = 0;
+  state.qtypeFilter = 'ALL';
+  state.sqlDb = null;
+  state.sqlLoadedChapterId = null;
+  state.dashboardStats = null;
+
+  document.getElementById('user-dropdown').classList.remove('open');
+  updateUserUI();
+  showHome();
+
+  ['f-name','f-email','f-mobile'].forEach(id => { document.getElementById(id).value = ''; });
+  document.getElementById('f-source').value = '';
+  setModalMode('register');
+
+  document.getElementById('modal-overlay').classList.remove('hidden');
+}
+
+// ══════════════════════════════════════════
+//  EVENT BINDINGS
+// ══════════════════════════════════════════
+function bindEvents() {
+  document.getElementById('modal-submit').addEventListener('click', handleModalSubmit);
+  document.getElementById('modal-skip').addEventListener('click', () => {
+    document.getElementById('modal-overlay').classList.add('hidden');
+  });
+  document.getElementById('f-name').addEventListener('keydown', e => { if(e.key==='Enter') handleModalSubmit(); });
+  document.getElementById('f-email').addEventListener('keydown', e => { if(e.key==='Enter') handleModalSubmit(); });
+
+  document.getElementById('brand-home-btn').addEventListener('click', showHome);
+  document.getElementById('home-nav-btn').addEventListener('click', showHome);
+  document.getElementById('dashboard-nav-btn').addEventListener('click', showDashboard);
+
+  document.getElementById('sidebar-toggle').addEventListener('click', () => {
+    state.sidebarOpen = !state.sidebarOpen;
+    document.getElementById('sidebar').classList.toggle('closed', !state.sidebarOpen);
+  });
+
+  document.getElementById('user-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.getElementById('user-dropdown').classList.toggle('open');
+  });
+  document.addEventListener('click', () => {
+    document.getElementById('user-dropdown').classList.remove('open');
+  });
+
+  document.getElementById('dd-signout').addEventListener('click', signOut);
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-overlay').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox-overlay') closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
   });
 }
 
-// Warn before leaving with unsaved builder changes
-window.addEventListener('beforeunload', (e) => {
-  if (builder.dirty) { e.preventDefault(); e.returnValue = ''; }
-});
-
-function switchTab(type, btn) {
-  currentTab = type;
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('search-input').value = '';
-  loadData(type);
-}
-
-function filterTable() {
-  const q = document.getElementById('search-input').value.toLowerCase();
-  filteredData = allData.filter(row => Object.values(row).some(v => String(v).toLowerCase().includes(q)));
-  currentPage = 1;
-  renderTable();
-}
-
-function changePage(dir) {
-  const totalPages = Math.ceil(filteredData.length / PAGE_SIZE);
-  currentPage = Math.max(1, Math.min(totalPages, currentPage + dir));
-  renderTable();
-}
-
-function exportCSV() {
-  if (!filteredData.length) return;
-  const keys = Object.keys(filteredData[0]);
-  const rows = [keys.join(','), ...filteredData.map(r => keys.map(k => `"${String(r[k]??'').replace(/"/g,'""')}"`).join(','))];
-  const blob = new Blob([rows.join('\n')], {type:'text/csv'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `${currentTab}_${new Date().toISOString().slice(0,10)}.csv`;
-  a.click();
-}
-
-// Load config branding
-fetch('data/config.json').then(r=>r.json()).then(cfg => {
-  document.title = 'Admin — ' + cfg.academyName;
-  document.getElementById('admin-brand').textContent = cfg.academyName;
-  document.getElementById('admin-logo').textContent = cfg.logoText || 'UN';
-}).catch(()=>{});
+// ── Start ──
+document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
