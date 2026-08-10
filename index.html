@@ -1627,12 +1627,10 @@ function renderConceptBody(body = []) {
                 .join("")}
             </ol>`
             : ""
-        }
-        <div class="concept-formulas">
-          <div class="concept-formulas-label">Key Formulas</div>
-          ${item.formula.map(f => `<span class="formula-chip">${f}</span>`).join('')}
-        </div>
+        }     
+            
         <div class="mt-2">
+         <span class="formula-chip">${item.formula}</span>    
           <strong>Result:</strong> ${formatText(item.after)}
         </div>
       </div>
