@@ -2222,7 +2222,7 @@ async function submitChapterFeedback(chapterId) {
       subject: state.activeSubject || null,
       rating,
       message: textEl ? textEl.value.trim() : '',
-      chapter:chapterId, 
+      chapter: chapterId, 
     });
     if (res && res.success) {
       state.chapterFeedbackSubmitted[chapterId] = true;
