@@ -1353,7 +1353,11 @@
           ]
         ]
       },
-
+      {
+                "type": "video",          
+                "url": "https://youtu.be/4xQHC8pvSjA",
+                "start": ""
+      },
       {
         "type": "heading",
         "text": "5. COUNTIFS() Function"
@@ -1520,6 +1524,12 @@
       },
 
       {
+                "type": "video",          
+                "url": "https://youtu.be/b0LAP5jpvxE",
+                "start": ""
+      },
+
+      {
         "type": "heading",
         "text": "7. SUMIFS() Function"
       },
@@ -1647,6 +1657,12 @@
         ],
         "formula": "=AVERAGEIF(B2:B20,\"Physics\",D2:D20)",
         "after": "Average marks of Physics students"
+      },
+
+      {
+                "type": "video",          
+                "url": "https://youtu.be/2OVG72_er5g",
+                "start": ""
       },
 
       {
