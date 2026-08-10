@@ -603,9 +603,9 @@
         },
         {
           "id": "excel_u2_c3",
-          "title": "Day 2: IF() and Nested IF() and IFS()",
+          "title": "Day 2: IF() and Nested IF()",
           "concept": {
-            "title": "Function: IF(), Nested IF() and IFS()",
+            "title": "Function: IF(), Nested IF()",
             "body": [
               { "type": "heading", "text": "1. What is a Condition?" },
               { "type": "paragraph", "text": "A condition is a test that checks whether something is TRUE or FALSE. Excel evaluates the condition first and then performs different actions based on the result." },
@@ -726,9 +726,2392 @@
             { "id": "excel_q100", "type": "MCQ", "difficulty_rating": 1, "question": "Which comparison operator means 'Greater Than or Equal To'?", "options": [">", "<=", ">=", "="], "answer": [2], "explanation": "The operator '>=' checks whether a value is greater than or equal to another value." },
             { "id": "excel_q101", "type": "MCQ", "difficulty_rating": 2, "question": "What will =IF(50>=35,\"Pass\",\"Fail\") return?", "options": ["Fail", "TRUE", "Pass", "35"], "answer": [2], "explanation": "Since 50 is greater than 35, the formula returns 'Pass'." },
             { "id": "excel_q102", "type": "MCQ", "difficulty_rating": 2, "question": "What will =IF(20>=35,\"Pass\",\"Fail\") return?", "options": ["TRUE", "Pass", "20", "Fail"], "answer": [3], "explanation": "20 is less than 35, so the condition is FALSE and Excel returns 'Fail'." },
-            { "id": "excel_q103", "type": "MCQ", "difficulty_rating": 2, "question": "Nested IF() is mainly used to:", "options": ["Add multiple numbers", "Check multiple conditions", "Print worksheets", "Format cells"], "answer": [1], "explanation": "Nested IF() evaluates multiple conditions one after another." }
+            { "id": "excel_q103", "type": "MCQ", "difficulty_rating": 2, "question": "Nested IF() is mainly used to:", "options": ["Add multiple numbers", "Check multiple conditions", "Print worksheets", "Format cells"], "answer": [1], "explanation": "Nested IF() evaluates multiple conditions one after another." },
+            {
+              "id": "excel_q126",
+              "type": "MCQ",
+              "difficulty_rating": 1,
+              "question": "What is the primary purpose of the IF() function in Excel?",
+              "options": [
+                "To create charts",
+                "To test a condition and return different results",
+                "To sort data",
+                "To format cells"
+              ],
+              "answer": [1],
+              "explanation": "The IF() function checks whether a condition is TRUE or FALSE and returns different values based on the result."
+            },
+
+            {
+              "id": "excel_q127",
+              "type": "MCQ",
+              "difficulty_rating": 1,
+              "question": "Which of the following is the correct syntax for the IF() function?",
+              "options": [
+                "=IF(value_if_true,logical_test,value_if_false)",
+                "=IF(logical_test,value_if_true,value_if_false)",
+                "=IF(logical_test,value_if_false,value_if_true)",
+                "=IF(condition)"
+              ],
+              "answer": [1],
+              "explanation": "The correct syntax is =IF(logical_test,value_if_true,value_if_false)."
+            },
+
+            {
+              "id": "excel_q128",
+              "type": "MCQ",
+              "difficulty_rating": 1,
+              "question": "Which comparison operator means 'Greater Than or Equal To'?",
+              "options": [
+                ">",
+                "<=",
+                ">=",
+                "<>"
+              ],
+              "answer": [2],
+              "explanation": "The >= operator means Greater Than or Equal To."
+            },
+
+            {
+              "id": "excel_q129",
+              "type": "MCQ",
+              "difficulty_rating": 1,
+              "question": "Which comparison operator means 'Not Equal To'?",
+              "options": [
+                "<>",
+                "==",
+                "!=",
+                "<="
+              ],
+              "answer": [0],
+              "explanation": "In Excel, <> is used to mean Not Equal To."
+            },
+
+            {
+              "id": "excel_q130",
+              "type": "MCQ",
+              "difficulty_rating": 1,
+              "question": "Which formula correctly checks whether the value in B2 is at least 35?",
+              "options": [
+                "=IF(B2>35,\"Pass\",\"Fail\")",
+                "=IF(B2>=35,\"Pass\",\"Fail\")",
+                "=IF(B2<=35,\"Pass\",\"Fail\")",
+                "=IF(B2=35,\"Pass\",\"Fail\")"
+              ],
+              "answer": [1],
+              "explanation": "The >= operator checks whether B2 is greater than or equal to 35."
+            },
+
+            {
+              "id": "excel_q131",
+              "type": "MCQ",
+              "difficulty_rating": 1,
+              "question": "If B2 contains 72, what will =IF(B2>=35,\"Pass\",\"Fail\") return?",
+              "options": [
+                "Fail",
+                "72",
+                "Pass",
+                "TRUE"
+              ],
+              "answer": [2],
+              "explanation": "Since 72 is greater than or equal to 35, the IF function returns Pass."
+            },
+
+            {
+              "id": "excel_q132",
+              "type": "MCQ",
+              "difficulty_rating": 1,
+              "question": "If B2 contains 28, what will =IF(B2>=35,\"Pass\",\"Fail\") return?",
+              "options": [
+                "Pass",
+                "Fail",
+                "28",
+                "TRUE"
+              ],
+              "answer": [1],
+              "explanation": "Since 28 is less than 35, the condition is FALSE and Excel returns Fail."
+            },
+
+            {
+              "id": "excel_q133",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "What is a Nested IF() function?",
+              "options": [
+                "An IF function used only for formatting",
+                "An IF function placed inside another IF function",
+                "An IF function used with charts",
+                "An IF function used to sort data"
+              ],
+              "answer": [1],
+              "explanation": "A Nested IF means placing one IF function inside another IF function to evaluate multiple conditions."
+            },
+
+            {
+              "id": "excel_q134",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "What grade will the following formula return if C2 contains 82? =IF(C2>=90,\"A+\",IF(C2>=80,\"A\",IF(C2>=70,\"B\",\"Fail\")))",
+              "options": [
+                "A+",
+                "A",
+                "B",
+                "Fail"
+              ],
+              "answer": [1],
+              "explanation": "82 is not greater than or equal to 90, but it is greater than or equal to 80, so the result is A."
+            },
+
+            {
+              "id": "excel_q135",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "According to the given grading criteria, what grade should a student with 95 marks receive?",
+              "options": [
+                "A",
+                "B",
+                "A+",
+                "E"
+              ],
+              "answer": [2],
+              "explanation": "Marks from 90 to 100 receive the A+ grade."
+            },
+
+            {
+              "id": "excel_q136",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "According to the given grading criteria, what grade should a student with 74 marks receive?",
+              "options": [
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              "answer": [1],
+              "explanation": "Marks from 70 to 79 receive the B grade."
+            },
+
+            {
+              "id": "excel_q137",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "According to the given grading criteria, what grade should a student with 58 marks receive?",
+              "options": [
+                "C",
+                "D",
+                "E",
+                "Fail"
+              ],
+              "answer": [1],
+              "explanation": "Marks from 50 to 59 receive the D grade."
+            },
+
+            {
+              "id": "excel_q138",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "According to the given grading criteria, what grade should a student with 32 marks receive?",
+              "options": [
+                "E",
+                "D",
+                "Fail",
+                "C"
+              ],
+              "answer": [2],
+              "explanation": "Marks below 35 are classified as Fail."
+            },
+
+            {
+              "id": "excel_q139",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "Which formula correctly implements the given grade classification from 90% to below 35%?",
+              "options": [
+                "=IF(C2>=90,\"A+\",IF(C2>=80,\"A\",IF(C2>=70,\"B\",IF(C2>=60,\"C\",IF(C2>=50,\"D\",IF(C2>=35,\"E\",\"Fail\"))))))",
+                "=IF(C2>=35,\"E\",IF(C2>=50,\"D\",IF(C2>=60,\"C\",\"Fail\")))",
+                "=IF(C2<90,\"A+\",IF(C2<80,\"A\",\"B\"))",
+                "=IF(C2=90,\"A+\",\"Fail\")"
+              ],
+              "answer": [0],
+              "explanation": "The first formula correctly checks the highest mark range first and then progressively checks the lower ranges."
+            },
+
+            {
+              "id": "excel_q140",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "Why should Nested IF() conditions generally be arranged from the highest value to the lowest value in this grading example?",
+              "options": [
+                "To make Excel calculate faster in every situation",
+                "To ensure the correct grade is returned when the first TRUE condition is found",
+                "To prevent formulas from being copied",
+                "To automatically format the cells"
+              ],
+              "answer": [1],
+              "explanation": "Excel evaluates the conditions from left to right and stops when it finds the first TRUE condition."
+            },
+
+            {
+              "id": "excel_q141",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "In the formula =IF(F2>=90%,\"First Class\",IF(F2>=85%,\"Second Class\",IF(F2>=80%,\"Third Class\",\"-\"))), what classification is returned for 88%?",
+              "options": [
+                "First Class",
+                "Second Class",
+                "Third Class",
+                "-"
+              ],
+              "answer": [1],
+              "explanation": "88% is below 90% but greater than or equal to 85%, so the result is Second Class."
+            },
+
+            {
+              "id": "excel_q142",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "In the formula =IF(F2>=90%,\"First Class\",IF(F2>=85%,\"Second Class\",IF(F2>=80%,\"Third Class\",\"-\"))), what classification is returned for 77%?",
+              "options": [
+                "First Class",
+                "Second Class",
+                "Third Class",
+                "-"
+              ],
+              "answer": [3],
+              "explanation": "77% is below 80%, so none of the three classification conditions are TRUE and Excel returns '-'."
+            },
+
+            {
+              "id": "excel_q143",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "What classification should be returned for a percentage of exactly 90%?",
+              "options": [
+                "Second Class",
+                "Third Class",
+                "First Class",
+                "-"
+              ],
+              "answer": [2],
+              "explanation": "The condition F2>=90% is TRUE for exactly 90%, so the result is First Class."
+            },
+
+            {
+              "id": "excel_q144",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "What classification should be returned for a percentage of exactly 85%?",
+              "options": [
+                "First Class",
+                "Second Class",
+                "Third Class",
+                "-"
+              ],
+              "answer": [1],
+              "explanation": "85% is below 90% but satisfies the condition >=85%, so the result is Second Class."
+            },
+
+            {
+              "id": "excel_q145",
+              "type": "MCQ",
+              "difficulty_rating": 2,
+              "question": "What classification should be returned for a percentage of exactly 80%?",
+              "options": [
+                "First Class",
+                "Second Class",
+                "Third Class",
+                "-"
+              ],
+              "answer": [2],
+              "explanation": "80% is below 85% but satisfies the condition >=80%, so the result is Third Class."
+            },
+
+            {
+              "id": "excel_q146",
+              "type": "MCQ",
+              "difficulty_rating": 3,
+              "question": "Which formula correctly determines whether a student is eligible based on attendance of at least 75%?",
+              "options": [
+                "=IF(A2>75%,\"Allowed\",\"Not Allowed\")",
+                "=IF(A2>=75%,\"Allowed\",\"Not Allowed\")",
+                "=IF(A2<=75%,\"Allowed\",\"Not Allowed\")",
+                "=IF(A2=75%,\"Allowed\",\"Not Allowed\")"
+              ],
+              "answer": [1],
+              "explanation": "The requirement is at least 75%, so the >= operator must be used."
+            },
+
+            {
+              "id": "excel_q147",
+              "type": "MCQ",
+              "difficulty_rating": 3,
+              "question": "A company gives a bonus when sales are greater than or equal to 100000. Which formula is correct?",
+              "options": [
+                "=IF(B2>100000,\"Bonus\",\"No Bonus\")",
+                "=IF(B2>=100000,\"Bonus\",\"No Bonus\")",
+                "=IF(B2<=100000,\"Bonus\",\"No Bonus\")",
+                "=IF(B2=100000,\"No Bonus\",\"Bonus\")"
+              ],
+              "answer": [1],
+              "explanation": "Since sales of exactly 100000 should also receive the bonus, >= must be used."
+            },
+
+            {
+              "id": "excel_q148",
+              "type": "MCQ",
+              "difficulty_rating": 3,
+              "question": "Which result will the following formula return when F2 contains 91%? =IF(F2>=90%,\"First Class\",IF(F2>=85%,\"Second Class\",IF(F2>=80%,\"Third Class\",\"-\")))",
+              "options": [
+                "First Class",
+                "Second Class",
+                "Third Class",
+                "-"
+              ],
+              "answer": [0],
+              "explanation": "91% satisfies the first condition F2>=90%, so Excel immediately returns First Class."
+            },
+
+            {
+              "id": "excel_q149",
+              "type": "MCQ",
+              "difficulty_rating": 3,
+              "question": "A student has Maths = 85, Physics = 78, and Chemistry = 90. What is the total mark?",
+              "options": [
+                "243",
+                "253",
+                "263",
+                "273"
+              ],
+              "answer": [1],
+              "explanation": "85 + 78 + 90 = 253."
+            },
+
+            {
+              "id": "excel_q150",
+              "type": "MCQ",
+              "difficulty_rating": 3,
+              "question": "A student has a total of 253 marks out of 300. Approximately what is the percentage?",
+              "options": [
+                "74.33%",
+                "80.33%",
+                "84.33%",
+                "91.33%"
+              ],
+              "answer": [2],
+              "explanation": "Percentage = 253/300 × 100 = approximately 84.33%."
+            },
+
+            {
+              "id": "excel_q151",
+              "type": "MCQ",
+              "difficulty_rating": 3,
+              "question": "Using the classification rules 90% and above = First Class, 85% to 89.99% = Second Class, and 80% to 84.99% = Third Class, what is the result for 84.33%?",
+              "options": [
+                "First Class",
+                "Second Class",
+                "Third Class",
+                "Fail"
+              ],
+              "answer": [2],
+              "explanation": "84.33% is between 80% and 84.99%, so the student receives Third Class."
+            },
+
+            {
+              "id": "excel_q152",
+              "type": "MCQ",
+              "difficulty_rating": 3,
+              "question": "Which statement correctly describes how Excel evaluates a Nested IF() formula?",
+              "options": [
+                "Excel evaluates all conditions and combines all results",
+                "Excel evaluates conditions from right to left",
+                "Excel evaluates conditions from left to right and stops at the first TRUE condition",
+                "Excel randomly selects one condition"
+              ],
+              "answer": [2],
+              "explanation": "Nested IF conditions are evaluated from left to right. Once a condition is TRUE, Excel returns its result and does not evaluate the remaining conditions."
+            },
+
+            {
+              "id": "excel_q153",
+              "type": "MCQ",
+              "difficulty_rating": 3,
+              "question": "If the formula =IF(B2>=35,\"Pass\",\"Fail\") is entered in C2 and copied down to C3, what normally happens to B2?",
+              "options": [
+                "It remains B2",
+                "It changes to B3",
+                "It changes to A2",
+                "It changes to C3"
+              ],
+              "answer": [1],
+              "explanation": "B2 is a relative cell reference. When the formula is copied down one row, it automatically changes to B3."
+            },
+
+            {
+              "id": "excel_q154",
+              "type": "MCQ",
+              "difficulty_rating": 3,
+              "question": "Which formula returns 'Eligible' when age is 18 or above and 'Not Eligible' otherwise?",
+              "options": [
+                "=IF(B2>18,\"Eligible\",\"Not Eligible\")",
+                "=IF(B2>=18,\"Eligible\",\"Not Eligible\")",
+                "=IF(B2<18,\"Eligible\",\"Not Eligible\")",
+                "=IF(B2=18,\"Not Eligible\",\"Eligible\")"
+              ],
+              "answer": [1],
+              "explanation": "The requirement is age 18 or above, so >=18 is the correct condition."
+            },
+
+            {
+              "id": "excel_q155",
+              "type": "MCQ",
+              "difficulty_rating": 3,
+              "question": "What will the following formula return if C2 contains 68? =IF(C2>=90,\"A+\",IF(C2>=80,\"A\",IF(C2>=70,\"B\",IF(C2>=60,\"C\",IF(C2>=50,\"D\",\"Fail\")))))",
+              "options": [
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              "answer": [2],
+              "explanation": "68 is less than 70 but greater than or equal to 60, so the formula returns C."
+            }          
           ]
-        }
+        },
+        {
+  "id": "excel_u2_c4",
+  "title": "Day 11: COUNTIF(), COUNTIFS(), SUMIF(), SUMIFS(), AVERAGEIF(), AVERAGEIFS()",
+  "concept": {
+    "title": "Conditional Aggregation Functions",
+    "body": [
+
+      {
+        "type": "heading",
+        "text": "1. What is Conditional Aggregation?"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "Conditional aggregation means calculating values from a range of data based on one or more conditions. Excel provides functions such as COUNTIF(), COUNTIFS(), SUMIF(), SUMIFS(), AVERAGEIF(), and AVERAGEIFS() to perform these calculations."
+      },
+
+      {
+        "type": "note",
+        "text": "Think of conditional aggregation as asking Excel a question such as: How many students are from the Physics department? What is the total salary of employees in the IT department? What is the average mark of students who scored above 75?"
+      },
+
+      {
+        "type": "heading",
+        "text": "2. Real-Life Examples"
+      },
+
+      {
+        "type": "table",
+        "title": "Examples of Conditional Aggregation",
+        "headers": [
+          "Requirement",
+          "Function"
+        ],
+        "rows": [
+          [
+            "Count students who scored above 75",
+            "COUNTIF()"
+          ],
+          [
+            "Count students from Physics department with marks above 75",
+            "COUNTIFS()"
+          ],
+          [
+            "Calculate total salary of IT employees",
+            "SUMIF()"
+          ],
+          [
+            "Calculate total salary of IT employees in Chennai",
+            "SUMIFS()"
+          ],
+          [
+            "Calculate average marks for Physics students",
+            "AVERAGEIF()"
+          ],
+          [
+            "Calculate average marks of Physics students who scored above 75",
+            "AVERAGEIFS()"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "3. COUNTIF() Function"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "The COUNTIF() function counts the number of cells in a range that meet a single condition."
+      },
+
+      {
+        "type": "syntax",
+        "code": "Syntax:\n\n=COUNTIF(range, criteria)"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Argument",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "range",
+            "The cells that Excel checks"
+          ],
+          [
+            "criteria",
+            "The condition that must be satisfied"
+          ]
+        ]
+      },
+
+      {
+        "type": "table",
+        "title": "COUNTIF() Examples",
+        "headers": [
+          "Requirement",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "Count students who scored 75",
+            "=COUNTIF(B2:B10,75)"
+          ],
+          [
+            "Count students who scored above 75",
+            "=COUNTIF(B2:B10,\">75\")"
+          ],
+          [
+            "Count students who scored at least 75",
+            "=COUNTIF(B2:B10,\">=75\")"
+          ],
+          [
+            "Count students who failed",
+            "=COUNTIF(B2:B10,\"<35\")"
+          ],
+          [
+            "Count students from Physics",
+            "=COUNTIF(C2:C10,\"Physics\")"
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "COUNTIF() Example",
+        "before": "Suppose the marks are 45, 67, 82, 91, 72, 35, 88.",
+        "steps": [
+          "Select the marks range.",
+          "Specify the condition >=75.",
+          "Excel checks every cell in the range.",
+          "Excel counts the cells that satisfy the condition."
+        ],
+        "formula": "=COUNTIF(B2:B8,\">=75\")",
+        "after": "Result = 3"
+      },
+
+      {
+        "type": "note",
+        "text": "When a comparison operator such as >, <, >=, <=, or <> is used inside COUNTIF(), the condition must be written inside quotation marks."
+      },
+
+      {
+        "type": "heading",
+        "text": "4. COUNTIF() with Text Criteria"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "COUNTIF() can also count cells containing specific text."
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Department",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "Physics",
+            "=COUNTIF(C2:C20,\"Physics\")"
+          ],
+          [
+            "Chemistry",
+            "=COUNTIF(C2:C20,\"Chemistry\")"
+          ],
+          [
+            "Mathematics",
+            "=COUNTIF(C2:C20,\"Mathematics\")"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "5. COUNTIFS() Function"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "The COUNTIFS() function counts cells or records that satisfy multiple conditions simultaneously."
+      },
+
+      {
+        "type": "note",
+        "text": "COUNTIF() is used for one condition, while COUNTIFS() is used when two or more conditions must be satisfied."
+      },
+
+      {
+        "type": "syntax",
+        "code": "Syntax:\n\n=COUNTIFS(criteria_range1, criteria1, criteria_range2, criteria2, ...)"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Argument",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "criteria_range1",
+            "First range to check"
+          ],
+          [
+            "criteria1",
+            "First condition"
+          ],
+          [
+            "criteria_range2",
+            "Second range to check"
+          ],
+          [
+            "criteria2",
+            "Second condition"
+          ]
+        ]
+      },
+
+      {
+        "type": "table",
+        "title": "COUNTIFS() Examples",
+        "headers": [
+          "Requirement",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "Physics students scoring >=75",
+            "=COUNTIFS(C2:C20,\"Physics\",D2:D20,\">=75\")"
+          ],
+          [
+            "Students from Chennai scoring >=80",
+            "=COUNTIFS(C2:C20,\"Chennai\",D2:D20,\">=80\")"
+          ],
+          [
+            "Male students who passed",
+            "=COUNTIFS(C2:C20,\"Male\",D2:D20,\">=35\")"
+          ],
+          [
+            "IT employees with salary >=50000",
+            "=COUNTIFS(C2:C20,\"IT\",D2:D20,\">=50000\")"
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "COUNTIFS() Example",
+        "before": "We want to count Physics students who scored at least 75.",
+        "steps": [
+          "Check the Department column for Physics.",
+          "Check the Marks column for marks >=75.",
+          "Both conditions must be TRUE.",
+          "Excel counts only the records satisfying both conditions."
+        ],
+        "formula": "=COUNTIFS(C2:C20,\"Physics\",D2:D20,\">=75\")",
+        "after": "Result = Number of Physics students scoring at least 75"
+      },
+
+      {
+        "type": "heading",
+        "text": "6. SUMIF() Function"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "The SUMIF() function adds values from a range when a specified condition is satisfied."
+      },
+
+      {
+        "type": "syntax",
+        "code": "Syntax:\n\n=SUMIF(range, criteria, sum_range)"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Argument",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "range",
+            "Range where Excel checks the condition"
+          ],
+          [
+            "criteria",
+            "Condition to be satisfied"
+          ],
+          [
+            "sum_range",
+            "Range containing the values to add"
+          ]
+        ]
+      },
+
+      {
+        "type": "table",
+        "title": "SUMIF() Examples",
+        "headers": [
+          "Requirement",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "Total salary of IT employees",
+            "=SUMIF(B2:B20,\"IT\",D2:D20)"
+          ],
+          [
+            "Total sales above 50000",
+            "=SUMIF(C2:C20,\">50000\",C2:C20)"
+          ],
+          [
+            "Total marks of Physics students",
+            "=SUMIF(B2:B20,\"Physics\",D2:D20)"
+          ],
+          [
+            "Total sales for Chennai",
+            "=SUMIF(B2:B20,\"Chennai\",D2:D20)"
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "SUMIF() Example",
+        "before": "Suppose a company has employees from different departments and their salaries.",
+        "steps": [
+          "Check the Department column.",
+          "Find rows where Department = IT.",
+          "Take the corresponding salary values.",
+          "Add those salary values."
+        ],
+        "formula": "=SUMIF(B2:B20,\"IT\",D2:D20)",
+        "after": "Result = Total salary paid to IT employees"
+      },
+
+      {
+        "type": "heading",
+        "text": "7. SUMIFS() Function"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "The SUMIFS() function adds values when multiple conditions are satisfied."
+      },
+
+      {
+        "type": "syntax",
+        "code": "Syntax:\n\n=SUMIFS(sum_range, criteria_range1, criteria1, criteria_range2, criteria2, ...)"
+      },
+
+      {
+        "type": "note",
+        "text": "Important: SUMIFS() uses sum_range as the first argument, while SUMIF() uses range and criteria first and sum_range last."
+      },
+
+      {
+        "type": "table",
+        "title": "SUMIFS() Examples",
+        "headers": [
+          "Requirement",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "Total salary of IT employees in Chennai",
+            "=SUMIFS(D2:D20,B2:B20,\"IT\",C2:C20,\"Chennai\")"
+          ],
+          [
+            "Total sales by John in Chennai",
+            "=SUMIFS(D2:D20,B2:B20,\"John\",C2:C20,\"Chennai\")"
+          ],
+          [
+            "Total marks of Physics students scoring >=75",
+            "=SUMIFS(D2:D20,B2:B20,\"Physics\",D2:D20,\">=75\")"
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "SUMIFS() Example",
+        "before": "Find the total salary of IT employees working in Chennai.",
+        "steps": [
+          "Check whether the Department is IT.",
+          "Check whether the Location is Chennai.",
+          "For records satisfying both conditions, add the Salary.",
+          "Return the total salary."
+        ],
+        "formula": "=SUMIFS(D2:D20,B2:B20,\"IT\",C2:C20,\"Chennai\")",
+        "after": "Result = Total salary of IT employees in Chennai"
+      },
+
+      {
+        "type": "heading",
+        "text": "8. AVERAGEIF() Function"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "The AVERAGEIF() function calculates the average of values that satisfy a single condition."
+      },
+
+      {
+        "type": "syntax",
+        "code": "Syntax:\n\n=AVERAGEIF(range, criteria, average_range)"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Argument",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "range",
+            "Range where the condition is checked"
+          ],
+          [
+            "criteria",
+            "Condition to be satisfied"
+          ],
+          [
+            "average_range",
+            "Values to calculate the average"
+          ]
+        ]
+      },
+
+      {
+        "type": "table",
+        "title": "AVERAGEIF() Examples",
+        "headers": [
+          "Requirement",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "Average marks of Physics students",
+            "=AVERAGEIF(B2:B20,\"Physics\",D2:D20)"
+          ],
+          [
+            "Average salary of IT employees",
+            "=AVERAGEIF(B2:B20,\"IT\",D2:D20)"
+          ],
+          [
+            "Average marks of students scoring >=75",
+            "=AVERAGEIF(D2:D20,\">=75\",D2:D20)"
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "AVERAGEIF() Example",
+        "before": "Find the average marks of students belonging to Physics.",
+        "steps": [
+          "Check the Department column for Physics.",
+          "Select the corresponding marks.",
+          "Calculate the average of those marks."
+        ],
+        "formula": "=AVERAGEIF(B2:B20,\"Physics\",D2:D20)",
+        "after": "Result = Average marks of Physics students"
+      },
+
+      {
+        "type": "heading",
+        "text": "9. AVERAGEIFS() Function"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "The AVERAGEIFS() function calculates the average of values that satisfy multiple conditions."
+      },
+
+      {
+        "type": "syntax",
+        "code": "Syntax:\n\n=AVERAGEIFS(average_range, criteria_range1, criteria1, criteria_range2, criteria2, ...)"
+      },
+
+      {
+        "type": "note",
+        "text": "AVERAGEIFS() is useful when the average must be calculated only for records that satisfy two or more conditions."
+      },
+
+      {
+        "type": "table",
+        "title": "AVERAGEIFS() Examples",
+        "headers": [
+          "Requirement",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "Average marks of Physics students scoring >=75",
+            "=AVERAGEIFS(D2:D20,B2:B20,\"Physics\",D2:D20,\">=75\")"
+          ],
+          [
+            "Average salary of IT employees in Chennai",
+            "=AVERAGEIFS(D2:D20,B2:B20,\"IT\",C2:C20,\"Chennai\")"
+          ],
+          [
+            "Average marks of female Physics students",
+            "=AVERAGEIFS(D2:D20,B2:B20,\"Physics\",C2:C20,\"Female\")"
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "AVERAGEIFS() Example",
+        "before": "Find the average marks of Physics students who scored at least 75.",
+        "steps": [
+          "Check the Department column for Physics.",
+          "Check the Marks column for values >=75.",
+          "Use only the records satisfying both conditions.",
+          "Calculate their average marks."
+        ],
+        "formula": "=AVERAGEIFS(D2:D20,B2:B20,\"Physics\",D2:D20,\">=75\")",
+        "after": "Result = Average marks of qualifying Physics students"
+      },
+
+      {
+        "type": "heading",
+        "text": "10. Difference Between IF and IFS Functions"
+      },
+
+      {
+        "type": "table",
+        "title": "Comparison of Conditional Aggregation Functions",
+        "headers": [
+          "Function",
+          "Number of Conditions",
+          "Operation"
+        ],
+        "rows": [
+          [
+            "COUNTIF()",
+            "One",
+            "Counts matching records"
+          ],
+          [
+            "COUNTIFS()",
+            "Multiple",
+            "Counts records matching all conditions"
+          ],
+          [
+            "SUMIF()",
+            "One",
+            "Adds matching values"
+          ],
+          [
+            "SUMIFS()",
+            "Multiple",
+            "Adds values matching all conditions"
+          ],
+          [
+            "AVERAGEIF()",
+            "One",
+            "Averages matching values"
+          ],
+          [
+            "AVERAGEIFS()",
+            "Multiple",
+            "Averages values matching all conditions"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "11. COUNTIF() vs COUNTIFS()"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Requirement",
+          "Function",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "Count IT employees",
+            "COUNTIF()",
+            "=COUNTIF(B2:B20,\"IT\")"
+          ],
+          [
+            "Count IT employees in Chennai",
+            "COUNTIFS()",
+            "=COUNTIFS(B2:B20,\"IT\",C2:C20,\"Chennai\")"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "12. SUMIF() vs SUMIFS()"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Requirement",
+          "Function",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "Total IT salary",
+            "SUMIF()",
+            "=SUMIF(B2:B20,\"IT\",D2:D20)"
+          ],
+          [
+            "Total IT salary in Chennai",
+            "SUMIFS()",
+            "=SUMIFS(D2:D20,B2:B20,\"IT\",C2:C20,\"Chennai\")"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "13. AVERAGEIF() vs AVERAGEIFS()"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Requirement",
+          "Function",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "Average IT salary",
+            "AVERAGEIF()",
+            "=AVERAGEIF(B2:B20,\"IT\",D2:D20)"
+          ],
+          [
+            "Average IT salary in Chennai",
+            "AVERAGEIFS()",
+            "=AVERAGEIFS(D2:D20,B2:B20,\"IT\",C2:C20,\"Chennai\")"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "14. Sample Student Data"
+      },
+
+      {
+        "type": "table",
+        "title": "Student Performance Data",
+        "headers": [
+          "Name",
+          "Department",
+          "Gender",
+          "Marks",
+          "City"
+        ],
+        "rows": [
+          [
+            "Muthu",
+            "Physics",
+            "Male",
+            85,
+            "Chennai"
+          ],
+          [
+            "Ravi",
+            "Physics",
+            "Male",
+            72,
+            "Madurai"
+          ],
+          [
+            "Priya",
+            "Chemistry",
+            "Female",
+            91,
+            "Chennai"
+          ],
+          [
+            "Anitha",
+            "Physics",
+            "Female",
+            88,
+            "Chennai"
+          ],
+          [
+            "Kumar",
+            "Mathematics",
+            "Male",
+            67,
+            "Coimbatore"
+          ],
+          [
+            "Divya",
+            "Physics",
+            "Female",
+            76,
+            "Madurai"
+          ],
+          [
+            "Arun",
+            "Chemistry",
+            "Male",
+            82,
+            "Chennai"
+          ],
+          [
+            "Meena",
+            "Mathematics",
+            "Female",
+            95,
+            "Chennai"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "15. Practice Questions Using Sample Data"
+      },
+
+      {
+        "type": "table",
+        "title": "Practice Formula Questions",
+        "headers": [
+          "Question",
+          "Expected Function"
+        ],
+        "rows": [
+          [
+            "How many students belong to Physics?",
+            "COUNTIF()"
+          ],
+          [
+            "How many Physics students scored >=80?",
+            "COUNTIFS()"
+          ],
+          [
+            "What is the total marks of Physics students?",
+            "SUMIF()"
+          ],
+          [
+            "What is the total marks of Physics students in Chennai?",
+            "SUMIFS()"
+          ],
+          [
+            "What is the average mark of Physics students?",
+            "AVERAGEIF()"
+          ],
+          [
+            "What is the average mark of Physics students in Chennai?",
+            "AVERAGEIFS()"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "16. Wildcards with COUNTIF()"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "COUNTIF() can use wildcard characters to search for text patterns."
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Wildcard",
+          "Meaning",
+          "Example"
+        ],
+        "rows": [
+          [
+            "*",
+            "Matches any number of characters",
+            "\"Phy*\""
+          ],
+          [
+            "?",
+            "Matches exactly one character",
+            "\"A?un\""
+          ],
+          [
+            "~",
+            "Treats * or ? as a literal character",
+            "\"~*\""
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "Wildcard Example",
+        "before": "Count departments whose name starts with 'Phy'.",
+        "steps": [
+          "Use COUNTIF().",
+          "Select the department range.",
+          "Use \"Phy*\" as the criteria.",
+          "Excel counts all text values beginning with Phy."
+        ],
+        "formula": "=COUNTIF(B2:B20,\"Phy*\")",
+        "after": "Result = Number of matching departments"
+      },
+
+      {
+        "type": "heading",
+        "text": "17. Using Cell References as Criteria"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "Instead of typing a condition directly inside a formula, a cell reference can be used as the criteria."
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Cell",
+          "Value"
+        ],
+        "rows": [
+          [
+            "F2",
+            "Physics"
+          ],
+          [
+            "G2",
+            "75"
+          ]
+        ]
+      },
+
+      {
+        "type": "syntax",
+        "code": "=COUNTIF(B2:B20,F2)\n\n=COUNTIF(D2:D20,\">=\"&G2)"
+      },
+
+      {
+        "type": "note",
+        "text": "When a comparison operator is combined with a cell reference, use the & operator. For example, \">=\"&G2 means greater than or equal to the value stored in G2."
+      },
+
+      {
+        "type": "heading",
+        "text": "18. Important Difference in SUMIF() and SUMIFS() Syntax"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Function",
+          "Syntax"
+        ],
+        "rows": [
+          [
+            "SUMIF()",
+            "=SUMIF(range,criteria,sum_range)"
+          ],
+          [
+            "SUMIFS()",
+            "=SUMIFS(sum_range,criteria_range1,criteria1,...)"
+          ]
+        ]
+      },
+
+      {
+        "type": "tip",
+        "title": "Important Tip",
+        "text": "Remember the SUMIFS() syntax carefully. In SUMIF(), the condition range comes first. In SUMIFS(), the sum_range comes first."
+      },
+
+      {
+        "type": "heading",
+        "text": "19. Common Mistakes"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Mistake",
+          "Correct Approach"
+        ],
+        "rows": [
+          [
+            "Writing >75 without quotation marks",
+            "Use \">75\""
+          ],
+          [
+            "Using different-sized ranges",
+            "All criteria ranges should have compatible dimensions"
+          ],
+          [
+            "Confusing SUMIF() and SUMIFS() argument order",
+            "Remember that SUMIFS() starts with sum_range"
+          ],
+          [
+            "Using COUNTIF() for multiple conditions",
+            "Use COUNTIFS()"
+          ],
+          [
+            "Using SUMIF() for multiple conditions",
+            "Use SUMIFS()"
+          ],
+          [
+            "Using AVERAGEIF() for multiple conditions",
+            "Use AVERAGEIFS()"
+          ],
+          [
+            "Forgetting quotes around text criteria",
+            "Use \"Physics\", \"Chennai\", etc."
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "20. Quick Memory Trick"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Function",
+          "Think About"
+        ],
+        "rows": [
+          [
+            "COUNTIF()",
+            "COUNT + One Condition"
+          ],
+          [
+            "COUNTIFS()",
+            "COUNT + Multiple Conditions"
+          ],
+          [
+            "SUMIF()",
+            "SUM + One Condition"
+          ],
+          [
+            "SUMIFS()",
+            "SUM + Multiple Conditions"
+          ],
+          [
+            "AVERAGEIF()",
+            "AVERAGE + One Condition"
+          ],
+          [
+            "AVERAGEIFS()",
+            "AVERAGE + Multiple Conditions"
+          ]
+        ]
+      },
+
+      {
+        "type": "exercise",
+        "title": "Practice Exercise",
+        "steps": [
+          "Enter the sample student data into Excel.",
+          "Count the number of Physics students using COUNTIF().",
+          "Count Physics students who scored at least 80 using COUNTIFS().",
+          "Calculate the total marks of Physics students using SUMIF().",
+          "Calculate the total marks of Physics students in Chennai using SUMIFS().",
+          "Calculate the average marks of Physics students using AVERAGEIF().",
+          "Calculate the average marks of Physics students in Chennai using AVERAGEIFS().",
+          "Change the department criteria and verify that the results update automatically."
+        ]
+      },
+
+      {
+        "type": "exercise",
+        "title": "Challenge Exercise",
+        "steps": [
+          "Create a student performance table with Department, Gender, Marks, and City.",
+          "Find the number of female students scoring >=80.",
+          "Find the total marks of female Physics students.",
+          "Find the total marks of Physics students from Chennai.",
+          "Find the average marks of students scoring >=75.",
+          "Find the average marks of female Physics students from Chennai.",
+          "Use cell references instead of typing the criteria directly into the formulas."
+        ]
+      },
+
+      {
+        "type": "tip",
+        "title": "Final Summary",
+        "text": "Use COUNTIF(), SUMIF(), and AVERAGEIF() when you have one condition. Use COUNTIFS(), SUMIFS(), and AVERAGEIFS() when you need multiple conditions. The main difference is whether Excel must evaluate one condition or several conditions."
+      }
+
+    ]
+  },
+  "questions": [
+
+  {
+    "id": "excel_q156",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "What is the primary purpose of the COUNTIF() function in Excel?",
+    "options": [
+      "To add values based on multiple conditions",
+      "To count cells that meet a specified condition",
+      "To calculate the average of all cells",
+      "To format cells based on a condition"
+    ],
+    "answer": [1],
+    "explanation": "COUNTIF() counts the number of cells in a range that satisfy a specified condition."
+  },
+
+  {
+    "id": "excel_q157",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which is the correct syntax for COUNTIF()?",
+    "options": [
+      "=COUNTIF(criteria,range)",
+      "=COUNTIF(range,criteria)",
+      "=COUNTIF(range,criteria,sum_range)",
+      "=COUNTIF(criteria_range,criteria_range)"
+    ],
+    "answer": [1],
+    "explanation": "The correct syntax is =COUNTIF(range, criteria)."
+  },
+
+  {
+    "id": "excel_q158",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which formula counts students who scored 75 or more?",
+    "options": [
+      "=COUNTIF(B2:B20,\">75\")",
+      "=COUNTIF(B2:B20,\">=75\")",
+      "=COUNTIF(B2:B20,\"<75\")",
+      "=COUNTIF(B2:B20,\"=75\")"
+    ],
+    "answer": [1],
+    "explanation": "The >= operator means greater than or equal to, so it includes students who scored exactly 75."
+  },
+
+  {
+    "id": "excel_q159",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which formula counts students belonging to the Physics department?",
+    "options": [
+      "=COUNTIF(B2:B20,\"Physics\")",
+      "=COUNTIF(\"Physics\",B2:B20)",
+      "=COUNT(B2:B20,\"Physics\")",
+      "=COUNTIFS(B2:B20)"
+    ],
+    "answer": [0],
+    "explanation": "COUNTIF(B2:B20,\"Physics\") counts cells in B2:B20 containing Physics."
+  },
+
+  {
+    "id": "excel_q160",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function should be used when you need to count records that satisfy multiple conditions?",
+    "options": [
+      "COUNT()",
+      "COUNTIF()",
+      "COUNTIFS()",
+      "SUMIFS()"
+    ],
+    "answer": [2],
+    "explanation": "COUNTIFS() is designed to count records that satisfy multiple conditions."
+  },
+
+  {
+    "id": "excel_q161",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula counts Physics students who scored at least 75?",
+    "options": [
+      "=COUNTIF(B2:B20,\"Physics\",D2:D20,\">=75\")",
+      "=COUNTIFS(B2:B20,\"Physics\",D2:D20,\">=75\")",
+      "=COUNT(B2:B20,\"Physics\",D2:D20,\">=75\")",
+      "=COUNTIFS(\"Physics\",B2:B20,\">=75\",D2:D20)"
+    ],
+    "answer": [1],
+    "explanation": "COUNTIFS() is used because there are two conditions: Department = Physics and Marks >= 75."
+  },
+
+  {
+    "id": "excel_q162",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "In COUNTIFS(), what must be true for a record to be counted?",
+    "options": [
+      "At least one condition must be TRUE",
+      "All specified conditions must be TRUE",
+      "Only the first condition must be TRUE",
+      "None of the conditions must be TRUE"
+    ],
+    "answer": [1],
+    "explanation": "COUNTIFS() counts a record only when all specified criteria are satisfied."
+  },
+
+  {
+    "id": "excel_q163",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "What is the primary purpose of SUMIF()?",
+    "options": [
+      "To count cells matching a condition",
+      "To calculate an average using multiple conditions",
+      "To add values that meet a specified condition",
+      "To find the largest value"
+    ],
+    "answer": [2],
+    "explanation": "SUMIF() adds values from a range when a specified condition is satisfied."
+  },
+
+  {
+    "id": "excel_q164",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which is the correct syntax for SUMIF()?",
+    "options": [
+      "=SUMIF(criteria,range,sum_range)",
+      "=SUMIF(range,criteria,sum_range)",
+      "=SUMIF(sum_range,range,criteria)",
+      "=SUMIF(range,sum_range,criteria)"
+    ],
+    "answer": [1],
+    "explanation": "The correct syntax is =SUMIF(range, criteria, sum_range)."
+  },
+
+  {
+    "id": "excel_q165",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula calculates the total salary of employees in the IT department?",
+    "options": [
+      "=SUMIF(B2:B20,\"IT\",D2:D20)",
+      "=SUMIF(D2:D20,\"IT\",B2:B20)",
+      "=SUM(B2:B20,\"IT\",D2:D20)",
+      "=SUMIFS(B2:B20,\"IT\")"
+    ],
+    "answer": [0],
+    "explanation": "B2:B20 contains the department criteria and D2:D20 contains the salary values to be added."
+  },
+
+  {
+    "id": "excel_q166",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which function should be used to calculate the sum when multiple conditions must be satisfied?",
+    "options": [
+      "SUM()",
+      "SUMIF()",
+      "SUMIFS()",
+      "COUNTIFS()"
+    ],
+    "answer": [2],
+    "explanation": "SUMIFS() adds values when multiple conditions are satisfied."
+  },
+
+  {
+    "id": "excel_q167",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which is the correct syntax for SUMIFS()?",
+    "options": [
+      "=SUMIFS(sum_range,criteria_range1,criteria1,...)",
+      "=SUMIFS(criteria_range1,criteria1,sum_range,...)",
+      "=SUMIFS(range,criteria,sum_range)",
+      "=SUMIFS(criteria,sum_range)"
+    ],
+    "answer": [0],
+    "explanation": "SUMIFS() begins with the sum_range, followed by each criteria range and its corresponding criteria."
+  },
+
+  {
+    "id": "excel_q168",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula calculates the total salary of IT employees working in Chennai?",
+    "options": [
+      "=SUMIF(B2:B20,\"IT\",D2:D20)",
+      "=SUMIFS(D2:D20,B2:B20,\"IT\",C2:C20,\"Chennai\")",
+      "=SUMIFS(B2:B20,\"IT\",C2:C20,\"Chennai\",D2:D20)",
+      "=SUM(D2:D20,\"IT\",\"Chennai\")"
+    ],
+    "answer": [1],
+    "explanation": "SUMIFS() uses D2:D20 as the sum range and checks two conditions: Department = IT and City = Chennai."
+  },
+
+  {
+    "id": "excel_q169",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "What is the primary purpose of AVERAGEIF()?",
+    "options": [
+      "To count matching cells",
+      "To calculate the average of values meeting one condition",
+      "To add values meeting multiple conditions",
+      "To find the highest value"
+    ],
+    "answer": [1],
+    "explanation": "AVERAGEIF() calculates the average of values that satisfy a single condition."
+  },
+
+  {
+    "id": "excel_q170",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which is the correct syntax for AVERAGEIF()?",
+    "options": [
+      "=AVERAGEIF(criteria,range,average_range)",
+      "=AVERAGEIF(range,criteria,average_range)",
+      "=AVERAGEIF(average_range,range,criteria)",
+      "=AVERAGEIF(range,average_range,criteria)"
+    ],
+    "answer": [1],
+    "explanation": "The correct syntax is =AVERAGEIF(range, criteria, average_range)."
+  },
+
+  {
+    "id": "excel_q171",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula calculates the average marks of Physics students?",
+    "options": [
+      "=AVERAGEIF(B2:B20,\"Physics\",D2:D20)",
+      "=AVERAGEIF(D2:D20,\"Physics\",B2:B20)",
+      "=AVERAGE(B2:B20,\"Physics\",D2:D20)",
+      "=AVERAGEIF(\"Physics\",B2:B20,D2:D20)"
+    ],
+    "answer": [0],
+    "explanation": "B2:B20 is checked for Physics and the corresponding values in D2:D20 are averaged."
+  },
+
+  {
+    "id": "excel_q172",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which function calculates an average using multiple conditions?",
+    "options": [
+      "AVERAGE()",
+      "AVERAGEIF()",
+      "AVERAGEIFS()",
+      "SUMIFS()"
+    ],
+    "answer": [2],
+    "explanation": "AVERAGEIFS() calculates an average when multiple conditions are specified."
+  },
+
+  {
+    "id": "excel_q173",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which is the correct syntax for AVERAGEIFS()?",
+    "options": [
+      "=AVERAGEIFS(average_range,criteria_range1,criteria1,...)",
+      "=AVERAGEIFS(criteria_range1,criteria1,average_range)",
+      "=AVERAGEIFS(range,criteria,average_range)",
+      "=AVERAGEIFS(criteria,average_range)"
+    ],
+    "answer": [0],
+    "explanation": "AVERAGEIFS() starts with the average_range, followed by criteria ranges and criteria."
+  },
+
+  {
+    "id": "excel_q174",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula calculates the average marks of Physics students who scored at least 75?",
+    "options": [
+      "=AVERAGEIF(B2:B20,\"Physics\",D2:D20)",
+      "=AVERAGEIFS(D2:D20,B2:B20,\"Physics\",D2:D20,\">=75\")",
+      "=AVERAGEIFS(B2:B20,\"Physics\",D2:D20,\">=75\")",
+      "=AVERAGE(D2:D20,\"Physics\",\">=75\")"
+    ],
+    "answer": [1],
+    "explanation": "AVERAGEIFS() uses D2:D20 as the average range and applies two conditions: Physics and marks >=75."
+  },
+
+  {
+    "id": "excel_q175",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function should be used to count records based on exactly one condition?",
+    "options": [
+      "COUNTIF()",
+      "COUNTIFS()",
+      "SUMIF()",
+      "AVERAGEIFS()"
+    ],
+    "answer": [0],
+    "explanation": "COUNTIF() is used when there is one condition."
+  },
+
+  {
+    "id": "excel_q176",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function should be used to count records based on two or more conditions?",
+    "options": [
+      "COUNT()",
+      "COUNTIF()",
+      "COUNTIFS()",
+      "SUMIF()"
+    ],
+    "answer": [2],
+    "explanation": "COUNTIFS() is used when multiple conditions need to be satisfied."
+  },
+
+  {
+    "id": "excel_q177",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function should be used to add values based on one condition?",
+    "options": [
+      "SUMIF()",
+      "SUMIFS()",
+      "COUNTIF()",
+      "AVERAGEIF()"
+    ],
+    "answer": [0],
+    "explanation": "SUMIF() adds values based on a single condition."
+  },
+
+  {
+    "id": "excel_q178",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function should be used to add values based on multiple conditions?",
+    "options": [
+      "SUM()",
+      "SUMIF()",
+      "SUMIFS()",
+      "COUNTIFS()"
+    ],
+    "answer": [2],
+    "explanation": "SUMIFS() adds values when multiple conditions are satisfied."
+  },
+
+  {
+    "id": "excel_q179",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function calculates an average based on one condition?",
+    "options": [
+      "AVERAGE()",
+      "AVERAGEIF()",
+      "AVERAGEIFS()",
+      "SUMIF()"
+    ],
+    "answer": [1],
+    "explanation": "AVERAGEIF() calculates an average based on one condition."
+  },
+
+  {
+    "id": "excel_q180",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function calculates an average based on multiple conditions?",
+    "options": [
+      "AVERAGEIF()",
+      "AVERAGEIFS()",
+      "COUNTIFS()",
+      "SUMIFS()"
+    ],
+    "answer": [1],
+    "explanation": "AVERAGEIFS() calculates an average when multiple conditions are specified."
+  },
+
+  {
+    "id": "excel_q181",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "In the formula =COUNTIF(D2:D20,\">=75\"), what does \">=75\" represent?",
+    "options": [
+      "The range",
+      "The criteria",
+      "The result",
+      "The worksheet"
+    ],
+    "answer": [1],
+    "explanation": "\">=75\" is the criteria that COUNTIF() uses to determine which cells should be counted."
+  },
+
+  {
+    "id": "excel_q182",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Why are quotation marks required around \">=75\" in a COUNTIF() formula?",
+    "options": [
+      "Because comparison criteria containing operators are written as text",
+      "Because all Excel formulas require quotation marks",
+      "Because numbers cannot be used in COUNTIF()",
+      "Because COUNTIF() only works with text"
+    ],
+    "answer": [0],
+    "explanation": "Comparison criteria such as >=75 are written as a text criteria string inside COUNTIF()."
+  },
+
+  {
+    "id": "excel_q183",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "If G2 contains 75, which formula counts values greater than or equal to G2?",
+    "options": [
+      "=COUNTIF(D2:D20,\">=G2\")",
+      "=COUNTIF(D2:D20,\">=\"&G2)",
+      "=COUNTIF(D2:D20,G2>=)",
+      "=COUNTIF(D2:D20,\"G2>=\")"
+    ],
+    "answer": [1],
+    "explanation": "When an operator is combined with a cell reference, use the & operator: \">=\"&G2."
+  },
+
+  {
+    "id": "excel_q184",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which wildcard represents any number of characters in COUNTIF()?",
+    "options": [
+      "?",
+      "*",
+      "#",
+      "%"
+    ],
+    "answer": [1],
+    "explanation": "The asterisk (*) wildcard matches any number of characters."
+  },
+
+  {
+    "id": "excel_q185",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which wildcard represents exactly one character?",
+    "options": [
+      "*",
+      "?",
+      "#",
+      "&"
+    ],
+    "answer": [1],
+    "explanation": "The question mark (?) wildcard represents exactly one character."
+  },
+
+  {
+    "id": "excel_q186",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What does the formula =COUNTIF(B2:B20,\"Phy*\") count?",
+    "options": [
+      "Only cells containing exactly Phy",
+      "Cells beginning with Phy",
+      "Cells ending with Phy",
+      "Only blank cells"
+    ],
+    "answer": [1],
+    "explanation": "The * wildcard matches any number of characters after Phy, so the formula counts text beginning with Phy."
+  },
+
+  {
+    "id": "excel_q187",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which statement correctly describes SUMIF() and SUMIFS()?",
+    "options": [
+      "SUMIF() supports one condition and SUMIFS() supports multiple conditions",
+      "SUMIF() supports multiple conditions and SUMIFS() supports one condition",
+      "Both functions only support one condition",
+      "Both functions only work with text"
+    ],
+    "answer": [0],
+    "explanation": "SUMIF() is designed for one condition, while SUMIFS() supports multiple conditions."
+  },
+
+  {
+    "id": "excel_q188",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is an important syntax difference between SUMIF() and SUMIFS()?",
+    "options": [
+      "SUMIF() starts with sum_range, while SUMIFS() starts with range",
+      "SUMIF() starts with range, while SUMIFS() starts with sum_range",
+      "Both functions use exactly the same argument order",
+      "SUMIF() does not use criteria"
+    ],
+    "answer": [1],
+    "explanation": "SUMIF() uses =SUMIF(range,criteria,sum_range), while SUMIFS() starts with =SUMIFS(sum_range,...)."
+  },
+
+  {
+    "id": "excel_q189",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Consider the marks 45, 67, 82, 91, 72, 35, and 88. What is the result of =COUNTIF(A1:A7,\">=75\")?",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "answer": [2],
+    "explanation": "The values 82, 91, and 88 are >=75. Therefore, the result is 3."
+  },
+
+  {
+    "id": "excel_q190",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "If the marks are 85, 72, 91, 88, 67, 76, 82, and 95, how many students scored 80 or above?",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "answer": [2],
+    "explanation": "The scores 85, 91, 88, 82, and 95 are >=80. Therefore, the correct count is 5."
+  },
+
+  {
+    "id": "excel_q191",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Suppose B2:B6 contains Physics, Chemistry, Physics, Mathematics, and Physics. What will =COUNTIF(B2:B6,\"Physics\") return?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "answer": [2],
+    "explanation": "Physics appears three times, so COUNTIF() returns 3."
+  },
+
+  {
+    "id": "excel_q192",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Suppose B2:B6 contains Physics, Physics, Chemistry, Physics, and Mathematics, while D2:D6 contains 80, 70, 90, 85, and 75. What will =SUMIF(B2:B6,\"Physics\",D2:D6) return?",
+    "options": [
+      "225",
+      "235",
+      "240",
+      "250"
+    ],
+    "answer": [1],
+    "explanation": "The Physics marks are 80, 70, and 85. Their total is 235."
+  },
+
+  {
+    "id": "excel_q193",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Suppose B2:B5 contains Physics, Physics, Chemistry, and Physics, and D2:D5 contains 80, 70, 90, and 85. What will =AVERAGEIF(B2:B5,\"Physics\",D2:D5) return?",
+    "options": [
+      "75",
+      "78.33",
+      "80",
+      "85"
+    ],
+    "answer": [1],
+    "explanation": "Physics marks are 80, 70, and 85. Their average is (80+70+85)/3 = 78.33."
+  },
+
+  {
+    "id": "excel_q194",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which formula counts female Physics students?",
+    "options": [
+      "=COUNTIF(B2:B20,\"Physics\",C2:C20,\"Female\")",
+      "=COUNTIFS(B2:B20,\"Physics\",C2:C20,\"Female\")",
+      "=SUMIFS(B2:B20,\"Physics\",C2:C20,\"Female\")",
+      "=AVERAGEIFS(B2:B20,\"Physics\",C2:C20,\"Female\")"
+    ],
+    "answer": [1],
+    "explanation": "COUNTIFS() is appropriate because two conditions must be satisfied: Physics and Female."
+  },
+
+  {
+    "id": "excel_q195",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which formula calculates the total marks of female Physics students?",
+    "options": [
+      "=SUMIF(B2:B20,\"Physics\",D2:D20)",
+      "=SUMIFS(D2:D20,B2:B20,\"Physics\",C2:C20,\"Female\")",
+      "=COUNTIFS(D2:D20,B2:B20,\"Physics\",C2:C20,\"Female\")",
+      "=AVERAGEIFS(D2:D20,B2:B20,\"Physics\",C2:C20,\"Female\")"
+    ],
+    "answer": [1],
+    "explanation": "SUMIFS() adds the marks in D2:D20 when both Department = Physics and Gender = Female."
+  },
+
+  {
+    "id": "excel_q196",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which formula calculates the average marks of female Physics students?",
+    "options": [
+      "=AVERAGEIF(B2:B20,\"Physics\",D2:D20)",
+      "=AVERAGEIFS(D2:D20,B2:B20,\"Physics\",C2:C20,\"Female\")",
+      "=SUMIFS(D2:D20,B2:B20,\"Physics\",C2:C20,\"Female\")",
+      "=COUNTIFS(B2:B20,\"Physics\",C2:C20,\"Female\")"
+    ],
+    "answer": [1],
+    "explanation": "AVERAGEIFS() calculates the average of D2:D20 using both Physics and Female as criteria."
+  },
+
+  {
+    "id": "excel_q197",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "A student data table contains Department, Gender, Marks, and City. Which formula counts female Physics students from Chennai?",
+    "options": [
+      "=COUNTIFS(B2:B20,\"Physics\",C2:C20,\"Female\",E2:E20,\"Chennai\")",
+      "=COUNTIF(B2:B20,\"Physics\",C2:C20,\"Female\",E2:E20,\"Chennai\")",
+      "=SUMIFS(B2:B20,\"Physics\",C2:C20,\"Female\",E2:E20,\"Chennai\")",
+      "=AVERAGEIFS(B2:B20,\"Physics\",C2:C20,\"Female\",E2:E20,\"Chennai\")"
+    ],
+    "answer": [0],
+    "explanation": "COUNTIFS() can evaluate three conditions: Department = Physics, Gender = Female, and City = Chennai."
+  },
+
+  {
+    "id": "excel_q198",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which function is most appropriate for finding the average salary of IT employees working in Chennai?",
+    "options": [
+      "AVERAGEIF()",
+      "AVERAGEIFS()",
+      "SUMIFS()",
+      "COUNTIFS()"
+    ],
+    "answer": [1],
+    "explanation": "Two conditions are required, so AVERAGEIFS() should be used."
+  },
+
+  {
+    "id": "excel_q199",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which formula calculates the average salary of IT employees working in Chennai when salary is in D, department is in B, and city is in C?",
+    "options": [
+      "=AVERAGEIF(B2:B20,\"IT\",D2:D20)",
+      "=AVERAGEIFS(D2:D20,B2:B20,\"IT\",C2:C20,\"Chennai\")",
+      "=AVERAGEIFS(B2:B20,\"IT\",C2:C20,\"Chennai\",D2:D20)",
+      "=SUMIFS(D2:D20,B2:B20,\"IT\",C2:C20,\"Chennai\")"
+    ],
+    "answer": [1],
+    "explanation": "AVERAGEIFS() starts with the average range D2:D20, followed by the department and city criteria."
+  },
+
+  {
+    "id": "excel_q200",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which statement is the best way to remember the six conditional aggregation functions?",
+    "options": [
+      "IF functions are only for formatting",
+      "COUNT counts, SUM adds, AVERAGE calculates the mean; IF means one condition and IFS means multiple conditions",
+      "COUNTIF and SUMIF always require multiple conditions",
+      "IFS functions are only used with text"
+    ],
+    "answer": [1],
+    "explanation": "COUNTIF/COUNTIFS count records, SUMIF/SUMIFS add values, and AVERAGEIF/AVERAGEIFS calculate averages. IF is generally one condition while IFS represents multiple conditions."
+  }
+
+]
+},
+
+{
+  "id": "excel_u2_c5",
+  "title": "Day 13: MINIFS() and MAXIFS()",
+  "concept": {
+    "title": "Conditional Minimum and Maximum",
+    "body": [
+      {
+        "type": "heading",
+        "text": "1. Introduction"
+      },
+      {
+        "type": "paragraph",
+        "text": "MINIFS() and MAXIFS() are conditional aggregation functions used to find the smallest or largest value from a range when one or more conditions are satisfied."
+      },
+      {
+        "type": "note",
+        "text": "MIN() finds the smallest value from a range and MAX() finds the largest value. MINIFS() and MAXIFS() find the smallest or largest value only from records that satisfy specified conditions."
+      },
+      {
+        "type": "table",
+        "title": "MIN(), MAX(), MINIFS() and MAXIFS()",
+        "headers": ["Function", "Purpose", "Example"],
+        "rows": [
+          ["MIN()", "Find the smallest value", "=MIN(D2:D20)"],
+          ["MAX()", "Find the largest value", "=MAX(D2:D20)"],
+          ["MINIFS()", "Find the smallest value based on conditions", "=MINIFS(D2:D20,B2:B20,\"Physics\")"],
+          ["MAXIFS()", "Find the largest value based on conditions", "=MAXIFS(D2:D20,B2:B20,\"Physics\")"]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "2. MINIFS() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "The MINIFS() function returns the smallest value from a range that satisfies one or more specified conditions."
+      },
+      {
+        "type": "syntax",
+        "code": "Syntax:\n\n=MINIFS(min_range,criteria_range1,criteria1,[criteria_range2,criteria2],...)"
+      },
+      {
+        "type": "table",
+        "headers": ["Argument", "Meaning"],
+        "rows": [
+          ["min_range", "Range from which Excel finds the minimum value"],
+          ["criteria_range1", "Range where the first condition is checked"],
+          ["criteria1", "First condition"],
+          ["criteria_range2", "Range where the second condition is checked"],
+          ["criteria2", "Second condition"]
+        ]
+      },
+      {
+        "type": "example",
+        "title": "MINIFS() with One Condition",
+        "before": "Find the lowest mark among Physics students.",
+        "steps": [
+          "Select the Marks column as the min_range.",
+          "Select the Department column as the criteria range.",
+          "Set the condition as Physics.",
+          "Excel considers only Physics students.",
+          "Excel returns the smallest mark."
+        ],
+        "formula": "=MINIFS(D2:D20,B2:B20,\"Physics\")",
+        "after": "Result = Lowest Physics mark"
+      },
+      {
+        "type": "heading",
+        "text": "3. MINIFS() with Multiple Conditions"
+      },
+      {
+        "type": "paragraph",
+        "text": "MINIFS() can evaluate multiple conditions. A value is considered only when all specified conditions are satisfied."
+      },
+      {
+        "type": "example",
+        "title": "Physics Students from Chennai",
+        "before": "Find the lowest mark among Physics students from Chennai.",
+        "steps": [
+          "Use D2:D20 as the minimum range.",
+          "Check B2:B20 for Physics.",
+          "Check E2:E20 for Chennai.",
+          "Only records satisfying both conditions are considered.",
+          "Excel returns the smallest mark."
+        ],
+        "formula": "=MINIFS(D2:D20,B2:B20,\"Physics\",E2:E20,\"Chennai\")",
+        "after": "Result = Lowest Physics mark from Chennai"
+      },
+      {
+        "type": "heading",
+        "text": "4. MINIFS() with Comparison Operators"
+      },
+      {
+        "type": "table",
+        "headers": ["Requirement", "Formula"],
+        "rows": [
+          ["Lowest mark above 50", "=MINIFS(D2:D20,D2:D20,\">50\")"],
+          ["Lowest mark at least 75", "=MINIFS(D2:D20,D2:D20,\">=75\")"],
+          ["Lowest salary below 50000", "=MINIFS(D2:D20,D2:D20,\"<50000\")"],
+          ["Lowest mark not equal to 0", "=MINIFS(D2:D20,D2:D20,\"<>0\")"]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "5. MAXIFS() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "The MAXIFS() function returns the largest value from a range that satisfies one or more specified conditions."
+      },
+      {
+        "type": "syntax",
+        "code": "Syntax:\n\n=MAXIFS(max_range,criteria_range1,criteria1,[criteria_range2,criteria2],...)"
+      },
+      {
+        "type": "table",
+        "headers": ["Argument", "Meaning"],
+        "rows": [
+          ["max_range", "Range from which Excel finds the maximum value"],
+          ["criteria_range1", "Range where the first condition is checked"],
+          ["criteria1", "First condition"],
+          ["criteria_range2", "Range where the second condition is checked"],
+          ["criteria2", "Second condition"]
+        ]
+      },
+      {
+        "type": "example",
+        "title": "MAXIFS() with One Condition",
+        "before": "Find the highest mark among Physics students.",
+        "steps": [
+          "Select the Marks column as the max_range.",
+          "Select the Department column as the criteria range.",
+          "Set the condition as Physics.",
+          "Excel considers only Physics students.",
+          "Excel returns the largest mark."
+        ],
+        "formula": "=MAXIFS(D2:D20,B2:B20,\"Physics\")",
+        "after": "Result = Highest Physics mark"
+      },
+      {
+        "type": "example",
+        "title": "MAXIFS() with Multiple Conditions",
+        "before": "Find the highest mark among Physics students from Chennai.",
+        "steps": [
+          "Use D2:D20 as the maximum range.",
+          "Check B2:B20 for Physics.",
+          "Check E2:E20 for Chennai.",
+          "Only records satisfying both conditions are considered.",
+          "Excel returns the largest mark."
+        ],
+        "formula": "=MAXIFS(D2:D20,B2:B20,\"Physics\",E2:E20,\"Chennai\")",
+        "after": "Result = Highest Physics mark from Chennai"
+      },
+      {
+        "type": "heading",
+        "text": "6. Student Performance Example"
+      },
+      {
+        "type": "table",
+        "title": "Student Data",
+        "headers": ["Name", "Department", "Gender", "Marks", "City"],
+        "rows": [
+          ["Muthu", "Physics", "Male", 85, "Chennai"],
+          ["Ravi", "Physics", "Male", 72, "Madurai"],
+          ["Priya", "Chemistry", "Female", 91, "Chennai"],
+          ["Anitha", "Physics", "Female", 88, "Chennai"],
+          ["Kumar", "Mathematics", "Male", 67, "Coimbatore"],
+          ["Divya", "Physics", "Female", 76, "Madurai"],
+          ["Arun", "Chemistry", "Male", 82, "Chennai"],
+          ["Meena", "Mathematics", "Female", 95, "Chennai"]
+        ]
+      },
+      {
+        "type": "table",
+        "title": "Practice Formulas",
+        "headers": ["Question", "Formula"],
+        "rows": [
+          ["Lowest Physics mark", "=MINIFS(D2:D9,B2:B9,\"Physics\")"],
+          ["Highest Physics mark", "=MAXIFS(D2:D9,B2:B9,\"Physics\")"],
+          ["Lowest Physics mark from Chennai", "=MINIFS(D2:D9,B2:B9,\"Physics\",E2:E9,\"Chennai\")"],
+          ["Highest Physics mark from Chennai", "=MAXIFS(D2:D9,B2:B9,\"Physics\",E2:E9,\"Chennai\")"],
+          ["Lowest female Physics mark", "=MINIFS(D2:D9,B2:B9,\"Physics\",C2:C9,\"Female\")"],
+          ["Highest female Physics mark", "=MAXIFS(D2:D9,B2:B9,\"Physics\",C2:C9,\"Female\")"]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "7. Using Cell References as Criteria"
+      },
+      {
+        "type": "paragraph",
+        "text": "Criteria can be stored in cells and referenced by MINIFS() and MAXIFS(). This makes formulas dynamic."
+      },
+      {
+        "type": "syntax",
+        "code": "If G2 contains Physics:\n\n=MINIFS(D2:D20,B2:B20,G2)\n\n=MAXIFS(D2:D20,B2:B20,G2)"
+      },
+      {
+        "type": "heading",
+        "text": "8. Common Mistakes"
+      },
+      {
+        "type": "table",
+        "headers": ["Mistake", "Correct Approach"],
+        "rows": [
+          ["Using MIN() when conditions are required", "Use MINIFS()"],
+          ["Using MAX() when conditions are required", "Use MAXIFS()"],
+          ["Putting min_range after criteria", "MINIFS() starts with min_range"],
+          ["Putting max_range after criteria", "MAXIFS() starts with max_range"],
+          ["Forgetting quotation marks around comparison criteria", "Use \">=75\", \"<50000\", etc."],
+          ["Using ranges of different sizes", "Use compatible range sizes"]
+        ]
+      },
+      {
+        "type": "exercise",
+        "title": "Practice Exercise",
+        "steps": [
+          "Enter the student data.",
+          "Find the lowest Physics mark.",
+          "Find the highest Physics mark.",
+          "Find the lowest Chemistry mark.",
+          "Find the highest Chemistry mark.",
+          "Find the lowest Physics mark from Chennai.",
+          "Find the highest Physics mark from Chennai.",
+          "Find the lowest female Physics mark.",
+          "Find the highest female Physics mark."
+        ]
+      },
+      {
+        "type": "tip",
+        "title": "Important Note",
+        "text": "MINIFS() and MAXIFS() are the conditional versions of MIN() and MAX(). They can use one or multiple conditions."
+      }
+    ]
+  },
+   "questions": [ { "id": "excel_q201", "type": "MCQ", "difficulty_rating": 1, "question": "What is the primary purpose of MINIFS()?", "options": [ "To count cells based on conditions", "To find the smallest value based on one or more conditions", "To calculate the average of a range", "To find the largest value without conditions" ], "answer": [1], "explanation": "MINIFS() returns the smallest value from a range that satisfies one or more conditions." }, { "id": "excel_q202", "type": "MCQ", "difficulty_rating": 1, "question": "What is the primary purpose of MAXIFS()?", "options": [ "To find the largest value based on one or more conditions", "To count cells based on conditions", "To calculate the smallest value", "To calculate an average" ], "answer": [0], "explanation": "MAXIFS() returns the largest value from a range that satisfies one or more conditions." }, { "id": "excel_q203", "type": "MCQ", "difficulty_rating": 1, "question": "Which is the correct syntax for MINIFS()?", "options": [ "=MINIFS(criteria_range,criteria,min_range)", "=MINIFS(min_range,criteria_range,criteria)", "=MINIFS(min_range,criteria)", "=MINIFS(criteria,min_range,criteria_range)" ], "answer": [1], "explanation": "MINIFS() starts with the min_range followed by criteria_range and criteria." }, { "id": "excel_q204", "type": "MCQ", "difficulty_rating": 1, "question": "Which is the correct syntax for MAXIFS()?", "options": [ "=MAXIFS(criteria_range,criteria,max_range)", "=MAXIFS(max_range,criteria_range,criteria)", "=MAXIFS(criteria,max_range)", "=MAXIFS(max_range,criteria)" ], "answer": [1], "explanation": "MAXIFS() starts with the max_range followed by criteria_range and criteria." }, { "id": "excel_q205", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula finds the lowest Physics mark?", "options": [ "=MIN(D2:D20)", "=MINIFS(D2:D20,B2:B20,\"Physics\")", "=MAXIFS(D2:D20,B2:B20,\"Physics\")", "=COUNTIF(B2:B20,\"Physics\")" ], "answer": [1], "explanation": "MINIFS() finds the minimum mark only among Physics students." } ]
+},
+{ "id": "excel_u2_c6", "title": "Day 14: AND(), OR(), NOT() and IFS()", "concept": { "title": "Logical Functions", "body": [ { "type": "heading", "text": "1. Introduction to Logical Functions" }, { "type": "paragraph", "text": "Logical functions in Excel are used to evaluate conditions and return TRUE or FALSE. These functions help in decision-making by testing whether conditions are satisfied or not. They are widely used with IF() and IFS() functions to build logical formulas." }, { "type": "note", "text": "Logical functions always return either TRUE or FALSE based on the evaluation of conditions." }, { "type": "table", "headers": ["Function", "Purpose"], "rows": [ ["AND()", "Returns TRUE when all conditions are TRUE"], ["OR()", "Returns TRUE when at least one condition is TRUE"], ["NOT()", "Reverses TRUE to FALSE or FALSE to TRUE"], ["IFS()", "Checks multiple conditions and returns result for first TRUE condition"] ] }, { "type": "heading", "text": "2. AND() Function" }, { "type": "paragraph", "text": "AND() is a logical function that checks multiple conditions and returns TRUE only when ALL conditions are TRUE. If even one condition is FALSE, the result becomes FALSE." }, { "type": "syntax", "code": "Syntax:\n\n=AND(logical1,[logical2],...)" }, { "type": "heading", "text": "AND() Truth Table" }, { "type": "table", "headers": ["Condition 1", "Condition 2", "Result"], "rows": [ ["TRUE", "TRUE", "TRUE"], ["TRUE", "FALSE", "FALSE"], ["FALSE", "TRUE", "FALSE"], ["FALSE", "FALSE", "FALSE"] ] }, { "type": "example", "title": "Student Eligibility", "before": "A student must score at least 35 in Maths and Physics.", "steps": [ "Check Maths >= 35", "Check Physics >= 35", "Both conditions must be TRUE", "AND() returns TRUE only if both are satisfied" ], "formula": "=AND(B2>=35,C2>=35)", "after": "Result = TRUE or FALSE" }, { "type": "heading", "text": "3. AND() with IF()" }, { "type": "paragraph", "text": "AND() is commonly used inside IF() when multiple conditions must be satisfied together." }, { "type": "syntax", "code": "=IF(AND(B2>=35,C2>=35),\"Pass\",\"Fail\")" }, { "type": "heading", "text": "4. OR() Function" }, { "type": "paragraph", "text": "OR() is a logical function that checks multiple conditions and returns TRUE if AT LEAST ONE condition is TRUE. It returns FALSE only when all conditions are FALSE." }, { "type": "syntax", "code": "Syntax:\n\n=OR(logical1,[logical2],...)" }, { "type": "heading", "text": "OR() Truth Table" }, { "type": "table", "headers": ["Condition 1", "Condition 2", "Result"], "rows": [ ["TRUE", "TRUE", "TRUE"], ["TRUE", "FALSE", "TRUE"], ["FALSE", "TRUE", "TRUE"], ["FALSE", "FALSE", "FALSE"] ] }, { "type": "example", "title": "Scholarship Eligibility", "before": "A student qualifies if Maths >= 90 OR Physics >= 90.", "steps": [ "Check Maths >= 90", "Check Physics >= 90", "At least one condition must be TRUE", "OR() returns TRUE if any one condition is satisfied" ], "formula": "=OR(B2>=90,C2>=90)", "after": "Result = TRUE or FALSE" }, { "type": "heading", "text": "5. OR() with IF()" }, { "type": "syntax", "code": "=IF(OR(B2>=90,C2>=90),\"Eligible\",\"Not Eligible\")" }, { "type": "heading", "text": "6. NOT() Function" }, { "type": "paragraph", "text": "NOT() is a logical function that reverses the result of a condition. It converts TRUE into FALSE and FALSE into TRUE." }, { "type": "syntax", "code": "Syntax:\n\n=NOT(logical)" }, { "type": "heading", "text": "NOT() Truth Table" }, { "type": "table", "headers": ["Input", "Result"], "rows": [ ["TRUE", "FALSE"], ["FALSE", "TRUE"] ] }, { "type": "example", "title": "NOT() Example", "before": "A student is not absent.", "steps": [ "Check if Attendance = Absent", "NOT() reverses the result", "If not absent, result becomes TRUE" ], "formula": "=NOT(B2=\"Absent\")", "after": "Result = TRUE when student is present" }, { "type": "heading", "text": "7. Combined Use of AND, OR, NOT" }, { "type": "paragraph", "text": "Logical functions can be combined to create complex decision-making conditions in Excel." }, { "type": "example", "title": "Admission Eligibility", "before": "Student must have Maths >= 75 and must NOT be disqualified.", "steps": [ "Check Maths >= 75", "Check NOT Disqualified", "AND() ensures both conditions are TRUE" ], "formula": "=IF(AND(B2>=75,NOT(C2=\"Yes\")),\"Eligible\",\"Not Eligible\")", "after": "Result = Eligible or Not Eligible" }, { "type": "heading", "text": "8. IFS() Function" }, { "type": "paragraph", "text": "IFS() is a logical function that checks multiple conditions and returns the result for the FIRST condition that is TRUE. It is an alternative to nested IF() and is easier to read." }, { "type": "syntax", "code": "Syntax:\n\n=IFS(test1,value1,[test2,value2],...)" }, { "type": "heading", "text": "9. IFS() Grade Example" }, { "type": "table", "headers": ["Marks", "Grade"], "rows": [ ["90+", "A+"], ["80–89", "A"], ["70–79", "B"], ["60–69", "C"], ["50–59", "D"], ["35–49", "E"], ["Below 35", "Fail"] ] }, { "type": "syntax", "code": "=IFS(B2>=90,\"A+\",B2>=80,\"A\",B2>=70,\"B\",B2>=60,\"C\",B2>=50,\"D\",B2>=35,\"E\",TRUE,\"Fail\")" }, { "type": "heading", "text": "10. Key Difference Summary" }, { "type": "table", "headers": ["Function", "Meaning"], "rows": [ ["AND()", "All conditions must be TRUE"], ["OR()", "Any one condition must be TRUE"], ["NOT()", "Reverses TRUE/FALSE"], ["IFS()", "Returns result of first TRUE condition"] ] }, { "type": "tip", "title": "Memory Trick", "text": "AND = ALL conditions must pass, OR = ANY condition can pass, NOT = reverse result, IFS = first TRUE wins." } ] },
+
+"questions": [ { "id": "excel_q210", "type": "MCQ", "difficulty_rating": 2, "question": "AND() returns TRUE when:", "options": [ "At least one condition is TRUE", "All conditions are TRUE", "All conditions are FALSE", "Only the first condition is TRUE" ], "answer": [1], "explanation": "AND() returns TRUE only when all conditions are TRUE." }, { "id": "excel_q211", "type": "MCQ", "difficulty_rating": 1, "question": "OR() returns TRUE when:", "options": [ "All conditions are TRUE", "At least one condition is TRUE", "All conditions are FALSE", "No conditions are provided" ], "answer": [1], "explanation": "OR() returns TRUE when at least one condition is TRUE." }, { "id": "excel_q212", "type": "MCQ", "difficulty_rating": 1, "question": "What does NOT() do?", "options": [ "Adds two conditions", "Checks multiple conditions", "Reverses a logical result", "Calculates an average" ], "answer": [2], "explanation": "NOT() reverses TRUE to FALSE and FALSE to TRUE." }, { "id": "excel_q217", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula checks whether Maths and Physics marks are both at least 35?", "options": [ "=AND(B2>=35,C2>=35)", "=OR(B2>=35,C2>=35)", "=NOT(B2>=35,C2>=35)", "=AND(B2,C2)" ], "answer": [0], "explanation": "AND() is used because both conditions must be TRUE." }, { "id": "excel_q220", "type": "MCQ", "difficulty_rating": 2, "question": "What is the primary purpose of IFS()?", "options": [ "To calculate a total", "To check multiple conditions and return the result for the first TRUE condition", "To find the largest number", "To remove errors" ], "answer": [1], "explanation": "IFS() evaluates conditions from left to right and returns the first TRUE result." } ]
+
+
+},
+
+{ "id": "excel_u2_c7", "title": "Day 15: IFERROR() and IFNA()", "concept": { "title": "Error Handling Functions", "body": [ { "type": "heading", "text": "1. What is an Excel Error?" }, { "type": "paragraph", "text": "Excel displays an error when a formula cannot produce the expected result. Common errors include #DIV/0!, #N/A, #VALUE!, #REF!, #NAME?, #NUM!, and #NULL!." }, { "type": "table", "headers": ["Error", "Common Meaning"], "rows": [ ["#DIV/0!", "A number is being divided by zero or a blank cell"], ["#N/A", "A value is not available or a lookup cannot find a match"], ["#VALUE!", "The formula contains an incorrect value or data type"], ["#REF!", "The formula contains an invalid cell reference"], ["#NAME?", "Excel does not recognize a function or name"], ["#NUM!", "A formula has an invalid numeric value"] ] }, { "type": "heading", "text": "2. IFERROR() Function" }, { "type": "paragraph", "text": "IFERROR() checks whether a formula produces an error. If there is an error, it returns a specified alternative value. If there is no error, it returns the original result." }, { "type": "syntax", "code": "Syntax:\n\n=IFERROR(value,value_if_error)" }, { "type": "table", "headers": ["Argument", "Meaning"], "rows": [ ["value", "Formula or expression to evaluate"], ["value_if_error", "Value returned when the formula produces an error"] ] }, { "type": "example", "title": "Division by Zero", "before": "A2 contains 100 and B2 contains 0.", "steps": [ "Normal division = A2/B2.", "Excel cannot divide 100 by zero.", "Excel returns #DIV/0!.", "Use IFERROR() to provide a friendly result." ], "formula": "=IFERROR(A2/B2,0)", "after": "Result = 0" }, { "type": "heading", "text": "3. IFERROR() with Text" }, { "type": "syntax", "code": "=IFERROR(A2/B2,\"Not Available\")" }, { "type": "paragraph", "text": "Instead of displaying an Excel error, the formula displays the text Not Available when an error occurs." }, { "type": "heading", "text": "4. IFERROR() with Percentage Calculation" }, { "type": "example", "title": "Percentage Calculation", "before": "Obtained marks are in B2 and total marks are in C2.", "steps": [ "Calculate B2/C2.", "If C2 is zero, normal division produces #DIV/0!.", "IFERROR() catches the error.", "Display 0% instead." ], "formula": "=IFERROR(B2/C2,0)", "after": "Result = Percentage or 0" }, { "type": "heading", "text": "5. IFERROR() with VLOOKUP()" }, { "type": "paragraph", "text": "IFERROR() is commonly used with lookup functions to handle situations where a matching value cannot be found." }, { "type": "syntax", "code": "=IFERROR(VLOOKUP(A2,$F$2:$H$20,3,FALSE),\"Not Found\")" }, { "type": "example", "title": "Student Lookup", "before": "Find the student name using a Roll Number.", "steps": [ "VLOOKUP() searches for the Roll Number.", "If the Roll Number exists, the student name is returned.", "If it does not exist, VLOOKUP() may return #N/A.", "IFERROR() replaces the error with Not Found." ], "after": "Result = Student Name or Not Found" }, { "type": "heading", "text": "6. IFNA() Function" }, { "type": "paragraph", "text": "IFNA() handles only the #N/A error. If the formula produces #N/A, IFNA() returns the specified alternative value. Other errors are not replaced." }, { "type": "syntax", "code": "Syntax:\n\n=IFNA(value,value_if_na)" }, { "type": "table", "headers": ["Argument", "Meaning"], "rows": [ ["value", "Formula or expression to evaluate"], ["value_if_na", "Value returned when the result is #N/A"] ] }, { "type": "example", "title": "IFNA() with VLOOKUP()", "before": "Search for a Roll Number that may not exist.", "steps": [ "VLOOKUP() searches the lookup table.", "If the Roll Number is missing, VLOOKUP() returns #N/A.", "IFNA() catches only the #N/A error.", "Return Not Found instead." ], "formula": "=IFNA(VLOOKUP(A2,$F$2:$H$20,3,FALSE),\"Not Found\")", "after": "Result = Student Name or Not Found" }, { "type": "heading", "text": "7. IFERROR() vs IFNA()" }, { "type": "table", "headers": ["Function", "Handles", "Example Use"], "rows": [ ["IFERROR()", "All Excel errors", "Division, lookup, calculations"], ["IFNA()", "Only #N/A", "Lookup formulas"] ] }, { "type": "heading", "text": "8. Difference with Examples" }, { "type": "table", "headers": ["Formula", "Error", "Result"], "rows": [ ["=IFERROR(10/0,\"Error\")", "#DIV/0!", "Error"], ["=IFNA(10/0,\"Not Found\")", "#DIV/0!", "#DIV/0!"], ["=IFERROR(NA(),\"Error\")", "#N/A", "Error"], ["=IFNA(NA(),\"Not Found\")", "#N/A", "Not Found"] ] }, { "type": "heading", "text": "9. Practical Student Result Example" }, { "type": "table", "headers": ["Student", "Marks", "Total", "Percentage"], "rows": [ ["Muthu", 85, 100, "85%"], ["Ravi", 72, 100, "72%"], ["Priya", 90, 100, "90%"], ["Anitha", 75, 0, "Error"] ] }, { "type": "syntax", "code": "=IFERROR(B2/C2,0)" }, { "type": "paragraph", "text": "For Anitha, Total is 0. A normal division formula would produce #DIV/0!. IFERROR() can return 0 instead." }, { "type": "heading", "text": "10. Using IFERROR() to Keep Reports Clean" }, { "type": "paragraph", "text": "IFERROR() is useful in dashboards and reports because it prevents technical Excel errors from appearing in the final report." }, { "type": "table", "headers": ["Without IFERROR()", "With IFERROR()"], "rows": [ ["#DIV/0!", "0"], ["#N/A", "Not Found"], ["#VALUE!", "Invalid Data"], ["#REF!", "Check Reference"] ] }, { "type": "heading", "text": "11. Choosing Between IFERROR() and IFNA()" }, { "type": "table", "headers": ["Situation", "Recommended Function"], "rows": [ ["You want to handle any Excel error", "IFERROR()"], ["You only want to handle #N/A", "IFNA()"], ["Lookup result may not exist", "IFNA() or IFERROR()"], ["Division may result in #DIV/0!", "IFERROR()"], ["You want other errors to remain visible", "IFNA()"] ] }, { "type": "heading", "text": "12. Common Mistakes" }, { "type": "table", "headers": ["Mistake", "Correct Approach"], "rows": [ ["Using IFERROR() without understanding the original error", "First identify why the formula is failing"], ["Using IFERROR() to hide every error", "Use it only when an alternative result is meaningful"], ["Assuming IFNA() handles all errors", "IFNA() handles only #N/A"], ["Using text without quotation marks", "Use \"Not Found\" or another quoted text"], ["Returning blank unnecessarily", "Choose a meaningful alternative result"] ] }, { "type": "heading", "text": "13. Practical Exercise" }, { "type": "exercise", "title": "Practice Exercise", "steps": [ "Create a student marks table with Obtained Marks and Total Marks.", "Calculate percentage using normal division.", "Create a situation where Total Marks is zero.", "Use IFERROR() to prevent #DIV/0!.", "Use IFERROR() to display Not Available.", "Create a student lookup using VLOOKUP().", "Use IFERROR() to display Not Found when the student does not exist.", "Replace IFERROR() with IFNA() and observe the difference." ] }, { "type": "heading", "text": "14. Challenge Exercise" }, { "type": "exercise", "title": "Result Report Challenge", "steps": [ "Create a student result report.", "Calculate percentage.", "Handle zero total marks using IFERROR().", "Use XLOOKUP() or VLOOKUP() to retrieve student details.", "Use IFNA() to display Student Not Found when the ID does not exist.", "Compare the behavior of IFERROR() and IFNA()." ] }, { "type": "tip", "title": "Important Note", "text": "IFERROR() handles all Excel errors, while IFNA() handles only the #N/A error. Do not use error-handling functions simply to hide problems; use them when you have a meaningful alternative result." } ] },
+"questions": [ { "id": "excel_q224", "type": "MCQ", "difficulty_rating": 1, "question": "What is the primary purpose of IFERROR()?", "options": [ "To create charts", "To handle errors returned by a formula", "To count cells", "To sort data" ], "answer": [1], "explanation": "IFERROR() returns an alternative value when a formula produces an error." }, { "id": "excel_q225", "type": "MCQ", "difficulty_rating": 1, "question": "Which is the correct syntax for IFERROR()?", "options": [ "=IFERROR(value,value_if_error)", "=IFERROR(value_if_error,value)", "=IFERROR(error,value)", "=IFERROR(value)" ], "answer": [0], "explanation": "Correct syntax is =IFERROR(value,value_if_error)." }, { "id": "excel_q227", "type": "MCQ", "difficulty_rating": 1, "question": "Which Excel error occurs when a number is divided by zero?", "options": [ "#N/A", "#VALUE!", "#DIV/0!", "#REF!" ], "answer": [2], "explanation": "#DIV/0! occurs when division by zero happens." }, { "id": "excel_q228", "type": "MCQ", "difficulty_rating": 1, "question": "What is the primary purpose of IFNA()?", "options": [ "To handle all Excel errors", "To handle only the #N/A error", "To calculate an average", "To remove duplicate data" ], "answer": [1], "explanation": "IFNA() handles only #N/A errors." }, { "id": "excel_q230", "type": "MCQ", "difficulty_rating": 2, "question": "What is the main difference between IFERROR() and IFNA()?", "options": [ "IFERROR() handles all Excel errors while IFNA() handles only #N/A", "IFNA() handles all errors while IFERROR() handles only #N/A", "Both functions handle only #DIV/0!", "There is no difference" ], "answer": [0], "explanation": "IFERROR() handles all errors, IFNA() handles only #N/A." }, { "id": "excel_q231", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula displays Not Found if a VLOOKUP() returns #N/A?", "options": [ "=IFERROR(VLOOKUP(A2,F2:H20,3,FALSE),\"Not Found\")", "=IFNA(VLOOKUP(A2,F2:H20,3,FALSE),\"Not Found\")", "Both A and B", "Neither A nor B" ], "answer": [2], "explanation": "Both IFERROR() and IFNA() can handle #N/A errors." } ] 
+
+}
+
       ]
     }
   ]
