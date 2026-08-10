@@ -2211,7 +2211,7 @@ function setChapterFeedbackRating(chapterId, n) {
 async function submitChapterFeedback(chapterId) {
   const msgEl = document.getElementById(`chapter-feedback-msg-${chapterId}`);
   const textEl = document.getElementById(`chapter-feedback-message-${chapterId}`);
-  const rating = state.chapterFeedbackRating[chapterId];
+  const rating = state.chapterFeedbackRating[chapterId];  
   if (!rating) {
     if (msgEl) { msgEl.textContent = 'Please pick a star rating first.'; msgEl.className = 'feedback-msg err'; }
     return;
@@ -2222,6 +2222,7 @@ async function submitChapterFeedback(chapterId) {
       subject: state.activeSubject || null,
       rating,
       message: textEl ? textEl.value.trim() : '',
+      chapter:chapterId, 
     });
     if (res && res.success) {
       state.chapterFeedbackSubmitted[chapterId] = true;
