@@ -64,7 +64,7 @@ module.exports = async (req, res) => {
       }
 
       const data = await hasuraRequest(INSERT_FEEDBACK, {
-        object: { user_id: userId, subject, rating: r, message: message.slice(0, 2000), chapter: chapter },
+        object: { user_id: userId, subject, rating: r, message: message.slice(0, 2000), chapter_id: chapter },
       });
 
       return res.status(200).json({ success: true, id: data.insert_feedback_one.id });
