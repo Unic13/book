@@ -445,6 +445,798 @@
       "id": "excel_u2",
       "title": "Week 2: Excel Formulas & Functions",
       "chapters": [
+
+{
+  "id": "excel_u1_c1.0",
+  "title": "Formula Basics: Operators, Precedence and Student Totals",
+  "concept": {
+    "title": "Basic Excel Formulas",
+    "body": [
+
+      {
+        "type": "heading",
+        "text": "1. What is an Excel Formula?"
+      },
+      {
+        "type": "paragraph",
+        "text": "A formula is an expression used to perform calculations in Excel. Every Excel formula normally begins with an equal sign (=). Formulas can use numbers, cell references, operators, and functions."
+      },
+      {
+        "type": "note",
+        "text": "A formula always starts with =. For example, =10+20 calculates the result 30."
+      },
+
+      {
+        "type": "heading",
+        "text": "2. Basic Arithmetic Operators"
+      },
+      {
+        "type": "table",
+        "title": "Excel Arithmetic Operators",
+        "headers": ["Operator", "Meaning", "Example", "Result"],
+        "rows": [
+          ["+", "Addition", "=10+5", "15"],
+          ["-", "Subtraction", "=10-5", "5"],
+          ["*", "Multiplication", "=10*5", "50"],
+          ["/", "Division", "=10/5", "2"]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "3. Addition (+)"
+      },
+      {
+        "type": "paragraph",
+        "text": "The plus (+) operator is used to add two or more values."
+      },
+      {
+        "type": "syntax",
+        "code": "=10+20"
+      },
+      {
+        "type": "example",
+        "title": "Student Marks Addition",
+        "before": "A student scored 80 in Maths and 75 in Physics.",
+        "steps": [
+          "Enter Maths marks in B2.",
+          "Enter Physics marks in C2.",
+          "Use the + operator to add both marks.",
+          "Excel calculates the total."
+        ],
+        "formula": "=B2+C2",
+        "after": "Result = 155"
+      },
+
+      {
+        "type": "heading",
+        "text": "4. Subtraction (-)"
+      },
+      {
+        "type": "paragraph",
+        "text": "The minus (-) operator is used to subtract one value from another."
+      },
+      {
+        "type": "syntax",
+        "code": "=100-25"
+      },
+      {
+        "type": "example",
+        "title": "Remaining Marks",
+        "before": "A student scored 80 out of a maximum of 100 marks.",
+        "formula": "=100-80",
+        "after": "Remaining marks = 20"
+      },
+
+      {
+        "type": "heading",
+        "text": "5. Multiplication (*)"
+      },
+      {
+        "type": "paragraph",
+        "text": "The asterisk (*) is used for multiplication in Excel."
+      },
+      {
+        "type": "syntax",
+        "code": "=10*5"
+      },
+      {
+        "type": "example",
+        "title": "Calculate Total Fees",
+        "before": "A student pays ₹2,000 per month for 5 months.",
+        "formula": "=2000*5",
+        "after": "Total Fees = ₹10,000"
+      },
+
+      {
+        "type": "heading",
+        "text": "6. Division (/)"
+      },
+      {
+        "type": "paragraph",
+        "text": "The forward slash (/) is used to divide one value by another."
+      },
+      {
+        "type": "syntax",
+        "code": "=500/5"
+      },
+      {
+        "type": "example",
+        "title": "Calculate Average Marks"
+      },
+      {
+        "type": "paragraph",
+        "text": "If a student scores a total of 400 marks in 5 subjects, the average can be calculated by dividing the total marks by the number of subjects."
+      },
+      {
+        "type": "syntax",
+        "code": "=400/5"
+      },
+      {
+        "type": "example",
+        "title": "Result",
+        "before": "Total Marks = 400 and Subjects = 5",
+        "after": "Average = 80"
+      },
+
+      {
+        "type": "heading",
+        "text": "7. Using Cell References"
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead of typing numbers directly into formulas, Excel formulas normally use cell references. When the value in a referenced cell changes, Excel automatically recalculates the result."
+      },
+      {
+        "type": "table",
+        "headers": ["Cell", "Value"],
+        "rows": [
+          ["B2", "80"],
+          ["C2", "75"],
+          ["D2", "90"]
+        ]
+      },
+      {
+        "type": "syntax",
+        "code": "=B2+C2+D2"
+      },
+      {
+        "type": "example",
+        "title": "Result",
+        "before": "Maths = 80, Physics = 75, Chemistry = 90",
+        "after": "Total = 245"
+      },
+
+      {
+        "type": "heading",
+        "text": "8. Student Total Marks Scenario"
+      },
+      {
+        "type": "paragraph",
+        "text": "A teacher maintains a student marks sheet containing Maths, Physics and Chemistry marks. The teacher wants to calculate the total marks for every student."
+      },
+      {
+        "type": "table",
+        "title": "Student Marks",
+        "headers": ["Name", "Maths", "Physics", "Chemistry", "Total Marks"],
+        "rows": [
+          ["Muthu", 85, 78, 90, ""],
+          ["Ravi", 72, 68, 75, ""],
+          ["Priya", 92, 88, 94, ""],
+          ["Anitha", 76, 81, 79, ""],
+          ["Kumar", 65, 70, 68, ""]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "9. Calculate Student Total"
+      },
+      {
+        "type": "paragraph",
+        "text": "If Maths is in B2, Physics is in C2, and Chemistry is in D2, the total can be calculated in E2."
+      },
+      {
+        "type": "syntax",
+        "code": "=B2+C2+D2"
+      },
+      {
+        "type": "steps",
+        "title": "Steps",
+        "steps": [
+          "Click cell E2.",
+          "Type =B2+C2+D2.",
+          "Press Enter.",
+          "Excel adds the three subject marks.",
+          "The result appears in E2.",
+          "Copy the formula down to the remaining students."
+        ]
+      },
+
+      {
+        "type": "table",
+        "title": "Completed Student Total",
+        "headers": ["Name", "Maths", "Physics", "Chemistry", "Total Marks"],
+        "rows": [
+          ["Muthu", 85, 78, 90, 253],
+          ["Ravi", 72, 68, 75, 215],
+          ["Priya", 92, 88, 94, 274],
+          ["Anitha", 76, 81, 79, 236],
+          ["Kumar", 65, 70, 68, 203]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "10. Operator Precedence"
+      },
+      {
+        "type": "paragraph",
+        "text": "When a formula contains multiple arithmetic operators, Excel follows a specific order of calculation. This is called operator precedence."
+      },
+      {
+        "type": "table",
+        "title": "Basic Order of Calculation",
+        "headers": ["Priority", "Operation", "Operators"],
+        "rows": [
+          ["1", "Parentheses", "( )"],
+          ["2", "Multiplication and Division", "* /"],
+          ["3", "Addition and Subtraction", "+ -"]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "11. Example of Operator Precedence"
+      },
+      {
+        "type": "syntax",
+        "code": "=10+5*2"
+      },
+      {
+        "type": "steps",
+        "title": "How Excel Calculates",
+        "steps": [
+          "Excel first calculates 5*2.",
+          "5*2 = 10.",
+          "Excel then calculates 10+10.",
+          "Final result = 20."
+        ]
+      },
+      {
+        "type": "note",
+        "text": "Excel does not calculate the formula simply from left to right. Multiplication and division are performed before addition and subtraction."
+      },
+
+      {
+        "type": "heading",
+        "text": "12. Using Parentheses"
+      },
+      {
+        "type": "paragraph",
+        "text": "Parentheses can be used to control the order in which Excel performs calculations."
+      },
+      {
+        "type": "table",
+        "headers": ["Formula", "Calculation", "Result"],
+        "rows": [
+          ["=10+5*2", "10+(5*2)", "20"],
+          ["=(10+5)*2", "(10+5)*2", "30"],
+          ["=100-20/5", "100-(20/5)", "96"],
+          ["=(100-20)/5", "(100-20)/5", "16"]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "13. Student Percentage Calculation"
+      },
+      {
+        "type": "paragraph",
+        "text": "After calculating total marks, the teacher wants to calculate the student's percentage. If the total marks are out of 300, percentage is calculated by dividing the student's total by 300 and multiplying by 100."
+      },
+      {
+        "type": "syntax",
+        "code": "=E2/300*100"
+      },
+      {
+        "type": "example",
+        "title": "Muthu's Percentage",
+        "before": "Total Marks = 253",
+        "steps": [
+          "Divide 253 by 300.",
+          "Multiply the result by 100.",
+          "The result is approximately 84.33%."
+        ],
+        "after": "Percentage = 84.33%"
+      },
+
+      {
+        "type": "heading",
+        "text": "14. Calculate Average Using Basic Operators"
+      },
+      {
+        "type": "paragraph",
+        "text": "The average of three subject marks can also be calculated using basic arithmetic operators."
+      },
+      {
+        "type": "syntax",
+        "code": "=(B2+C2+D2)/3"
+      },
+      {
+        "type": "example",
+        "title": "Student Average",
+        "before": "Maths = 85, Physics = 78, Chemistry = 90",
+        "steps": [
+          "Add the three subject marks.",
+          "Divide the total by 3.",
+          "The result is the student's average mark."
+        ],
+        "after": "Average = 84.33"
+      },
+
+      {
+        "type": "heading",
+        "text": "15. Important Difference: Formula vs Function"
+      },
+      {
+        "type": "table",
+        "headers": ["Formula", "Function"],
+        "rows": [
+          ["=B2+C2+D2", "Uses arithmetic operators"],
+          ["=SUM(B2:D2)", "Uses the SUM() function"],
+          ["=(B2+C2+D2)/3", "Uses arithmetic operators"],
+          ["=AVERAGE(B2:D2)", "Uses the AVERAGE() function"]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "In this chapter, students first learn how calculations work using arithmetic operators. Functions such as SUM() and AVERAGE() will make these calculations easier in later lessons."
+      },
+
+      {
+        "type": "heading",
+        "text": "16. Copying a Formula"
+      },
+      {
+        "type": "paragraph",
+        "text": "Once the total formula is entered for the first student, the formula can be copied down using the Fill Handle. Excel automatically adjusts the relative cell references."
+      },
+      {
+        "type": "example",
+        "title": "Formula Copying"
+      },
+      {
+        "type": "table",
+        "headers": ["Student Row", "Formula"],
+        "rows": [
+          ["Row 2", "=B2+C2+D2"],
+          ["Row 3", "=B3+C3+D3"],
+          ["Row 4", "=B4+C4+D4"],
+          ["Row 5", "=B5+C5+D5"],
+          ["Row 6", "=B6+C6+D6"]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "17. Scenario-Based Practice"
+      },
+      {
+        "type": "exercise",
+        "title": "Student Marks Calculation",
+        "steps": [
+          "Create a table with Name, Maths, Physics, Chemistry and Total Marks.",
+          "Enter marks for five students.",
+          "Calculate Total Marks using +.",
+          "Calculate Average using /.",
+          "Calculate Percentage using / and *.",
+          "Copy the formulas to all students.",
+          "Change one subject mark and observe the automatic recalculation.",
+          "Use parentheses in a calculation and compare the result with a formula without parentheses."
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "18. Challenge Exercise"
+      },
+      {
+        "type": "table",
+        "title": "Student Performance Challenge",
+        "headers": ["Name", "Maths", "Physics", "Chemistry", "Total", "Average", "Percentage"],
+        "rows": [
+          ["Muthu", 85, 78, 90, "", "", ""],
+          ["Ravi", 72, 68, 75, "", "", ""],
+          ["Priya", 92, 88, 94, "", "", ""],
+          ["Anitha", 76, 81, 79, "", "", ""],
+          ["Kumar", 65, 70, 68, "", "", ""]
+        ]
+      },
+      {
+        "type": "steps",
+        "title": "Tasks",
+        "steps": [
+          "Calculate Total using +.",
+          "Calculate Average using /.",
+          "Calculate Percentage using / and *.",
+          "Copy all formulas down.",
+          "Check the result for each student.",
+          "Change one mark and verify that Total, Average and Percentage update automatically."
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "19. Common Mistakes"
+      },
+      {
+        "type": "table",
+        "headers": ["Mistake", "Correct Approach"],
+        "rows": [
+          ["Forgetting = at the beginning", "Start the formula with ="],
+          ["Using x for multiplication", "Use *"],
+          ["Using ÷ for division", "Use /"],
+          ["Ignoring operator precedence", "Use parentheses when necessary"],
+          ["Typing cell references incorrectly", "Check the cell addresses"],
+          ["Manually calculating every student's total", "Enter the formula once and copy it down"]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "20. Quick Reference"
+      },
+      {
+        "type": "table",
+        "headers": ["Requirement", "Formula"],
+        "rows": [
+          ["Add two values", "=B2+C2"],
+          ["Subtract two values", "=B2-C2"],
+          ["Multiply two values", "=B2*C2"],
+          ["Divide two values", "=B2/C2"],
+          ["Student Total", "=B2+C2+D2"],
+          ["Student Average", "=(B2+C2+D2)/3"],
+          ["Student Percentage", "=E2/300*100"],
+          ["Control calculation order", "Use ( )"]
+        ]
+      },
+
+      {
+        "type": "tip",
+        "title": "Important Note",
+        "text": "Excel uses + for addition, - for subtraction, * for multiplication, and / for division. Multiplication and division are calculated before addition and subtraction. Use parentheses when you need to control the calculation order."
+      }
+
+    ]
+  },
+
+"questions": [
+
+  {
+    "id": "excel_q261",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which symbol must normally be entered at the beginning of an Excel formula?",
+    "options": ["+", "=", "#", "$"],
+    "answer": [1],
+    "explanation": "Excel formulas normally begin with the equal sign (=)."
+  },
+
+  {
+    "id": "excel_q262",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which operator is used for multiplication in Excel?",
+    "options": ["x", "*", "×", "/"],
+    "answer": [1],
+    "explanation": "Excel uses the asterisk (*) for multiplication."
+  },
+
+  {
+    "id": "excel_q263",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which operator is used for division in Excel?",
+    "options": ["/", "÷", "*", "\\"],
+    "answer": [0],
+    "explanation": "Excel uses the forward slash (/) for division."
+  },
+
+  {
+    "id": "excel_q264",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "What is the result of =10+5?",
+    "options": ["15", "5", "50", "2"],
+    "answer": [0],
+    "explanation": "The + operator adds 10 and 5, giving 15."
+  },
+
+  {
+    "id": "excel_q265",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "What is the result of =20-8?",
+    "options": ["28", "12", "160", "2.5"],
+    "answer": [1],
+    "explanation": "20 minus 8 equals 12."
+  },
+
+  {
+    "id": "excel_q266",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "What is the result of =12*5?",
+    "options": ["17", "60", "2.4", "7"],
+    "answer": [1],
+    "explanation": "12 multiplied by 5 equals 60."
+  },
+
+  {
+    "id": "excel_q267",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "What is the result of =100/4?",
+    "options": ["25", "96", "400", "104"],
+    "answer": [0],
+    "explanation": "100 divided by 4 equals 25."
+  },
+
+  {
+    "id": "excel_q268",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "A student scored 80 in Maths and 75 in Physics. Which formula calculates the total?",
+    "options": [
+      "=B2+C2",
+      "=B2-C2",
+      "=B2*C2",
+      "=B2/C2"
+    ],
+    "answer": [0],
+    "explanation": "Addition is required to calculate the total of Maths and Physics."
+  },
+
+  {
+    "id": "excel_q269",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "A student has Maths in B2, Physics in C2, and Chemistry in D2. Which formula calculates Total Marks?",
+    "options": [
+      "=B2-C2-D2",
+      "=B2+C2+D2",
+      "=B2*C2*D2",
+      "=B2/C2/D2"
+    ],
+    "answer": [1],
+    "explanation": "The three subject marks must be added to calculate the total."
+  },
+
+  {
+    "id": "excel_q270",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Muthu scored 85, 78 and 90 in three subjects. What is his total?",
+    "options": ["243", "253", "263", "273"],
+    "answer": [1],
+    "explanation": "85 + 78 + 90 = 253."
+  },
+
+  {
+    "id": "excel_q271",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Muthu scored a total of 253 marks in 3 subjects. Which formula calculates his average?",
+    "options": [
+      "=253*3",
+      "=253+3",
+      "=253/3",
+      "=253-3"
+    ],
+    "answer": [2],
+    "explanation": "Average is calculated by dividing the total by the number of subjects."
+  },
+
+  {
+    "id": "excel_q272",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is the result of =10+5*2?",
+    "options": ["30", "20", "25", "40"],
+    "answer": [1],
+    "explanation": "Multiplication is performed before addition: 5*2 = 10, then 10+10 = 20."
+  },
+
+  {
+    "id": "excel_q273",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is the result of =(10+5)*2?",
+    "options": ["20", "25", "30", "40"],
+    "answer": [2],
+    "explanation": "Parentheses are calculated first: 10+5 = 15, then 15*2 = 30."
+  },
+
+  {
+    "id": "excel_q274",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is the result of =100-20/5?",
+    "options": ["16", "96", "80", "20"],
+    "answer": [1],
+    "explanation": "Division is performed first: 20/5 = 4, then 100-4 = 96."
+  },
+
+  {
+    "id": "excel_q275",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is the result of =(100-20)/5?",
+    "options": ["96", "20", "16", "80"],
+    "answer": [2],
+    "explanation": "Parentheses are calculated first: 100-20 = 80, then 80/5 = 16."
+  },
+
+  {
+    "id": "excel_q276",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "A student scored 253 out of 300. Which formula calculates the percentage?",
+    "options": [
+      "=253/300",
+      "=253*300",
+      "=253/300*100",
+      "=253+300"
+    ],
+    "answer": [2],
+    "explanation": "Percentage is calculated as obtained marks divided by maximum marks and multiplied by 100."
+  },
+
+  {
+    "id": "excel_q277",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Maths is in B2, Physics is in C2, and Chemistry is in D2. Which formula should be entered in E2 to calculate Total Marks?",
+    "options": [
+      "=B2+C2+D2",
+      "=B2+C2-D2",
+      "=B2*C2*D2",
+      "=B2/C2+D2"
+    ],
+    "answer": [0],
+    "explanation": "The total of the three subjects is calculated by adding B2, C2 and D2."
+  },
+
+  {
+    "id": "excel_q278",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "A teacher enters =B2+C2+D2 in E2 and copies it down to E3. What will Excel normally do?",
+    "options": [
+      "Keep the formula exactly as =B2+C2+D2",
+      "Change it to =B3+C3+D3",
+      "Change it to =B1+C1+D1",
+      "Delete the formula"
+    ],
+    "answer": [1],
+    "explanation": "Relative cell references automatically adjust when the formula is copied down."
+  },
+
+  {
+    "id": "excel_q279",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "A student has 85, 78 and 90 marks. Which formula calculates the average directly from the subject cells?",
+    "options": [
+      "=B2+C2+D2",
+      "=(B2+C2+D2)/3",
+      "=(B2+C2+D2)*3",
+      "=B2+C2+D2*3"
+    ],
+    "answer": [1],
+    "explanation": "The subject marks are first added and then divided by 3."
+  },
+
+  {
+    "id": "excel_q280",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Why are parentheses important in Excel formulas?",
+    "options": [
+      "They change the font",
+      "They control the order of calculation",
+      "They automatically format numbers",
+      "They prevent formulas from being copied"
+    ],
+    "answer": [1],
+    "explanation": "Parentheses tell Excel which calculation should be performed first."
+  },
+
+  {
+    "id": "excel_q281",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "A student has a total of 240 marks out of 300. Which formula calculates the percentage?",
+    "options": [
+      "=240+300",
+      "=240-300",
+      "=240/300*100",
+      "=240*300"
+    ],
+    "answer": [2],
+    "explanation": "240 divided by 300 and multiplied by 100 gives 80%."
+  },
+
+  {
+    "id": "excel_q282",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "A teacher wants to calculate Total, Average and Percentage automatically whenever a student's marks change. What is the best approach?",
+    "options": [
+      "Calculate everything manually each time",
+      "Use formulas with cell references",
+      "Type the final results as text",
+      "Use screenshots of the marks"
+    ],
+    "answer": [1],
+    "explanation": "Formulas using cell references automatically recalculate when source values change."
+  },
+
+  {
+    "id": "excel_q283",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which formula correctly calculates the average of Maths, Physics and Chemistry marks?",
+    "options": [
+      "=B2+C2+D2/3",
+      "=(B2+C2+D2)/3",
+      "=B2+(C2+D2)/3",
+      "=B2*C2*D2/3"
+    ],
+    "answer": [1],
+    "explanation": "Parentheses ensure that all three marks are added before dividing the total by 3."
+  },
+
+  {
+    "id": "excel_q284",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which formula calculates the total fees if the monthly fee is in B2 and the number of months is in C2?",
+    "options": [
+      "=B2+C2",
+      "=B2-C2",
+      "=B2*C2",
+      "=B2/C2"
+    ],
+    "answer": [2],
+    "explanation": "Monthly fee multiplied by the number of months gives the total fees."
+  },
+
+  {
+    "id": "excel_q285",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "A student scored 85 in Maths, 78 in Physics and 90 in Chemistry. Which formula calculates the percentage out of 300?",
+    "options": [
+      "=B2+C2+D2/300*100",
+      "=(B2+C2+D2)/300*100",
+      "=(B2+C2+D2)*300/100",
+      "=B2+C2+D2-300"
+    ],
+    "answer": [1],
+    "explanation": "The total marks must be calculated first, then divided by 300 and multiplied by 100."
+  }
+
+]
+
+
+},
+
+
+
+
+
         {
           "id": "excel_u2_c1",
           "title": "Day 1: Introduction to Excel Functions",
@@ -1178,6 +1970,649 @@
             }          
           ]
         },
+
+{
+  "id": "excel_u2_c4.0",
+  "title": "COUNT(), COUNTA() and COUNTBLANK()",
+  "concept": {
+    "title": "Counting Numbers, Non-Blank Cells and Blank Cells",
+    "body": [
+
+      {
+        "type": "heading",
+        "text": "1. Introduction"
+      },
+      {
+        "type": "paragraph",
+        "text": "COUNT(), COUNTA(), and COUNTBLANK() are basic Excel counting functions. They are useful for checking how many numeric values, non-empty records, and blank cells exist in a dataset."
+      },
+      {
+        "type": "table",
+        "title": "Three Important Counting Functions",
+        "headers": ["Function", "What It Counts", "Example"],
+        "rows": [
+          ["COUNT()", "Cells containing numbers", "=COUNT(B2:B20)"],
+          ["COUNTA()", "Cells containing any non-empty value", "=COUNTA(A2:A20)"],
+          ["COUNTBLANK()", "Empty or blank cells", "=COUNTBLANK(C2:C20)"]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "2. Real-Life Scenario: Student Admission Report"
+      },
+      {
+        "type": "paragraph",
+        "text": "A college admission office maintains a student registration sheet. Some students have entered their marks, some have not entered marks, and some registration details are incomplete. The administrator wants to know how many students have marks, how many student names are available, and how many marks are missing."
+      },
+
+      {
+        "type": "table",
+        "title": "Student Admission Data",
+        "headers": ["Roll No", "Student Name", "Marks", "Email", "Attendance"],
+        "rows": [
+          [101, "Muthu", 85, "muthu@example.com", 92],
+          [102, "Ravi", 72, "ravi@example.com", 88],
+          [103, "Priya", 91, "priya@example.com", 95],
+          [104, "Anitha", "", "anitha@example.com", 90],
+          [105, "Kumar", 68, "", 82],
+          [106, "Divya", 76, "divya@example.com", ""],
+          [107, "Arun", "", "arun@example.com", 75],
+          [108, "Meena", 89, "", 91],
+          [109, "Suresh", "", "suresh@example.com", 80],
+          [110, "", 78, "unknown@example.com", 85]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "3. COUNT() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "COUNT() counts only cells that contain numeric values. It does not count text, empty cells, or text-formatted values."
+      },
+      {
+        "type": "syntax",
+        "code": "Syntax:\n\n=COUNT(value1,[value2],...)"
+      },
+
+      {
+        "type": "example",
+        "title": "Scenario 1: How Many Students Have Entered Marks?"
+      },
+      {
+        "type": "paragraph",
+        "text": "The administrator wants to know how many students have entered their examination marks."
+      },
+      {
+        "type": "steps",
+        "title": "Steps",
+        "steps": [
+          "Select the Marks column.",
+          "COUNT() checks the cells for numeric values.",
+          "Blank Marks cells are ignored.",
+          "The result gives the number of students whose marks are entered."
+        ]
+      },
+      {
+        "type": "syntax",
+        "code": "=COUNT(C2:C11)"
+      },
+      {
+        "type": "example",
+        "title": "Expected Result",
+        "before": "There are 7 numeric marks entered.",
+        "after": "COUNT(C2:C11) = 7"
+      },
+
+      {
+        "type": "heading",
+        "text": "4. What Does COUNT() Ignore?"
+      },
+      {
+        "type": "table",
+        "headers": ["Cell Content", "COUNT() Counts?"],
+        "rows": [
+          ["85", "Yes"],
+          ["72", "Yes"],
+          ["Student Name", "No"],
+          ["Email Address", "No"],
+          ["Blank Cell", "No"],
+          ["Text such as \"85 marks\"", "No"]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "5. COUNTA() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "COUNTA() counts all non-empty cells. It counts numbers, text, dates, logical values, and other non-empty values."
+      },
+      {
+        "type": "syntax",
+        "code": "Syntax:\n\n=COUNTA(value1,[value2],...)"
+      },
+
+      {
+        "type": "example",
+        "title": "Scenario 2: How Many Student Names Are Registered?"
+      },
+      {
+        "type": "paragraph",
+        "text": "The admission office wants to know how many student-name entries have been completed."
+      },
+      {
+        "type": "syntax",
+        "code": "=COUNTA(B2:B11)"
+      },
+      {
+        "type": "example",
+        "title": "Expected Result",
+        "before": "There are 9 non-empty student names.",
+        "after": "COUNTA(B2:B11) = 9"
+      },
+
+      {
+        "type": "heading",
+        "text": "6. COUNT() vs COUNTA()"
+      },
+      {
+        "type": "table",
+        "headers": ["Data", "COUNT()", "COUNTA()"],
+        "rows": [
+          ["85", "Counts", "Counts"],
+          ["Muthu", "Does not count", "Counts"],
+          ["85.5", "Counts", "Counts"],
+          ["Email address", "Does not count", "Counts"],
+          ["Blank", "Does not count", "Does not count"],
+          ["Date", "Counts", "Counts"]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "7. COUNTBLANK() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "COUNTBLANK() counts the number of empty cells in a specified range."
+      },
+      {
+        "type": "syntax",
+        "code": "Syntax:\n\n=COUNTBLANK(range)"
+      },
+
+      {
+        "type": "example",
+        "title": "Scenario 3: How Many Students Have Not Entered Marks?"
+      },
+      {
+        "type": "paragraph",
+        "text": "The administrator wants to identify how many students have not yet entered their marks."
+      },
+      {
+        "type": "syntax",
+        "code": "=COUNTBLANK(C2:C11)"
+      },
+      {
+        "type": "example",
+        "title": "Expected Result",
+        "before": "There are 3 blank Marks cells.",
+        "after": "COUNTBLANK(C2:C11) = 3"
+      },
+
+      {
+        "type": "heading",
+        "text": "8. Scenario 4: Missing Email IDs"
+      },
+      {
+        "type": "paragraph",
+        "text": "The administrator wants to identify how many students have not provided an email address."
+      },
+      {
+        "type": "syntax",
+        "code": "=COUNTBLANK(D2:D11)"
+      },
+      {
+        "type": "example",
+        "title": "Expected Result",
+        "before": "There are 2 blank Email cells.",
+        "after": "COUNTBLANK(D2:D11) = 2"
+      },
+
+      {
+        "type": "heading",
+        "text": "9. Scenario 5: Missing Attendance"
+      },
+      {
+        "type": "paragraph",
+        "text": "The faculty member wants to know how many students do not yet have attendance entered."
+      },
+      {
+        "type": "syntax",
+        "code": "=COUNTBLANK(E2:E11)"
+      },
+      {
+        "type": "example",
+        "title": "Expected Result",
+        "before": "There is 1 blank Attendance cell.",
+        "after": "COUNTBLANK(E2:E11) = 1"
+      },
+
+      {
+        "type": "heading",
+        "text": "10. Practical Admission Dashboard"
+      },
+      {
+        "type": "paragraph",
+        "text": "The college administrator wants to create a small data-completeness dashboard."
+      },
+      {
+        "type": "table",
+        "title": "Dashboard Requirements",
+        "headers": ["Requirement", "Formula", "Purpose"],
+        "rows": [
+          ["Students with Marks", "=COUNT(C2:C11)", "Counts numeric marks"],
+          ["Student Names Entered", "=COUNTA(B2:B11)", "Counts non-empty names"],
+          ["Missing Marks", "=COUNTBLANK(C2:C11)", "Counts blank marks"],
+          ["Missing Emails", "=COUNTBLANK(D2:D11)", "Counts blank emails"],
+          ["Missing Attendance", "=COUNTBLANK(E2:E11)", "Counts blank attendance"]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "11. Scenario-Based Question"
+      },
+      {
+        "type": "example",
+        "title": "Admission Data Quality Check",
+        "before": "The admission office has 10 student records. The Marks column contains 7 numeric values and 3 blank cells. The Student Name column contains 9 names and 1 blank cell.",
+        "steps": [
+          "Use COUNT() to find how many students have marks.",
+          "Use COUNTBLANK() to find how many marks are missing.",
+          "Use COUNTA() to find how many student names are entered.",
+          "Use COUNTBLANK() to find how many student names are missing."
+        ],
+        "after": "Marks entered = 7, Missing Marks = 3, Names entered = 9, Missing Names = 1"
+      },
+
+      {
+        "type": "heading",
+        "text": "12. Important Difference"
+      },
+      {
+        "type": "table",
+        "headers": ["Question", "Function"],
+        "rows": [
+          ["How many cells contain numbers?", "COUNT()"],
+          ["How many cells contain any value?", "COUNTA()"],
+          ["How many cells are empty?", "COUNTBLANK()"]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "13. Common Mistakes"
+      },
+      {
+        "type": "table",
+        "headers": ["Mistake", "Correct Approach"],
+        "rows": [
+          ["Using COUNT() to count names", "Use COUNTA()"],
+          ["Using COUNTA() to count only numbers", "Use COUNT()"],
+          ["Using COUNT() to find missing values", "Use COUNTBLANK()"],
+          ["Using COUNTBLANK() to count completed records", "Use COUNTA()"],
+          ["Forgetting the range", "Specify the cells to be checked"]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "14. Practice Exercise"
+      },
+      {
+        "type": "exercise",
+        "title": "Student Admission Data Quality Exercise",
+        "steps": [
+          "Create the Student Admission table.",
+          "Use COUNT() to count students who have entered marks.",
+          "Use COUNTA() to count student names.",
+          "Use COUNTBLANK() to count missing marks.",
+          "Use COUNTBLANK() to count missing email addresses.",
+          "Use COUNTBLANK() to count missing attendance.",
+          "Create a small summary table using the results.",
+          "Identify which field has the most missing information."
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "15. Challenge Question"
+      },
+      {
+        "type": "paragraph",
+        "text": "The admission officer says there are 10 student records. Use COUNT(), COUNTA(), and COUNTBLANK() to determine whether all student records have complete information."
+      },
+
+      {
+        "type": "tip",
+        "title": "Easy Memory Trick",
+        "text": "COUNT = Numbers, COUNTA = Anything that is not empty, COUNTBLANK = Empty cells."
+      }
+    ]
+  },
+
+"questions": [
+
+  {
+    "id": "excel_q241",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function counts cells containing numbers?",
+    "options": [
+      "COUNT()",
+      "COUNTA()",
+      "COUNTBLANK()",
+      "COUNTIF()"
+    ],
+    "answer": [0],
+    "explanation": "COUNT() counts cells containing numeric values."
+  },
+
+  {
+    "id": "excel_q242",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function counts all non-empty cells?",
+    "options": [
+      "COUNT()",
+      "COUNTA()",
+      "COUNTBLANK()",
+      "SUM()"
+    ],
+    "answer": [1],
+    "explanation": "COUNTA() counts cells containing any non-empty value."
+  },
+
+  {
+    "id": "excel_q243",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which function counts blank cells?",
+    "options": [
+      "COUNT()",
+      "COUNTA()",
+      "COUNTBLANK()",
+      "COUNTIF()"
+    ],
+    "answer": [2],
+    "explanation": "COUNTBLANK() counts empty cells in a specified range."
+  },
+
+  {
+    "id": "excel_q244",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "A Marks column contains 7 numeric marks and 3 blank cells. Which formula returns 7?",
+    "options": [
+      "=COUNT(C2:C11)",
+      "=COUNTA(C2:C11)",
+      "=COUNTBLANK(C2:C11)",
+      "=SUM(C2:C11)"
+    ],
+    "answer": [0],
+    "explanation": "COUNT() counts the 7 numeric values and ignores the 3 blank cells."
+  },
+
+  {
+    "id": "excel_q245",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "A Marks column contains 7 numeric values and 3 blank cells. Which formula returns 3?",
+    "options": [
+      "=COUNT(C2:C11)",
+      "=COUNTA(C2:C11)",
+      "=COUNTBLANK(C2:C11)",
+      "=MAX(C2:C11)"
+    ],
+    "answer": [2],
+    "explanation": "COUNTBLANK() counts the 3 empty cells."
+  },
+
+  {
+    "id": "excel_q246",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "A Student Name column contains 9 names and 1 blank cell. Which formula returns 9?",
+    "options": [
+      "=COUNT(B2:B11)",
+      "=COUNTA(B2:B11)",
+      "=COUNTBLANK(B2:B11)",
+      "=SUM(B2:B11)"
+    ],
+    "answer": [1],
+    "explanation": "COUNTA() counts the 9 non-empty name cells."
+  },
+
+  {
+    "id": "excel_q247",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "The admission officer wants to find how many students have not entered their email address. Which function should be used?",
+    "options": [
+      "COUNT()",
+      "COUNTA()",
+      "COUNTBLANK()",
+      "SUM()"
+    ],
+    "answer": [2],
+    "explanation": "COUNTBLANK() is used to count missing email entries."
+  },
+
+  {
+    "id": "excel_q248",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula counts the number of students who have entered attendance?",
+    "options": [
+      "=COUNT(E2:E11)",
+      "=COUNTA(E2:E11)",
+      "=COUNTBLANK(E2:E11)",
+      "Both A and B"
+    ],
+    "answer": [3],
+    "explanation": "If attendance is stored as numeric percentages, COUNT() works. If attendance can contain text as well, COUNTA() counts all non-empty entries."
+  },
+
+  {
+    "id": "excel_q249",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which function should be used to count only numeric values in a Salary column?",
+    "options": [
+      "COUNT()",
+      "COUNTA()",
+      "COUNTBLANK()",
+      "COUNTIF()"
+    ],
+    "answer": [0],
+    "explanation": "COUNT() counts numeric values."
+  },
+
+  {
+    "id": "excel_q250",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which function should be used to count both text and numbers in a registration column?",
+    "options": [
+      "COUNT()",
+      "COUNTA()",
+      "COUNTBLANK()",
+      "SUM()"
+    ],
+    "answer": [1],
+    "explanation": "COUNTA() counts all non-empty values, including text and numbers."
+  },
+
+  {
+    "id": "excel_q251",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula counts blank cells in the Marks column?",
+    "options": [
+      "=COUNT(C2:C20)",
+      "=COUNTA(C2:C20)",
+      "=COUNTBLANK(C2:C20)",
+      "=SUM(C2:C20)"
+    ],
+    "answer": [2],
+    "explanation": "COUNTBLANK() counts empty cells."
+  },
+
+  {
+    "id": "excel_q252",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula counts numeric marks entered by students?",
+    "options": [
+      "=COUNT(C2:C11)",
+      "=COUNTA(C2:C11)",
+      "=COUNTBLANK(C2:C11)",
+      "=COUNTIF(C2:C11,\"Blank\")"
+    ],
+    "answer": [0],
+    "explanation": "COUNT() counts numeric marks."
+  },
+
+  {
+    "id": "excel_q253",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is the result of =COUNT(10,20,\"Muthu\",30)?",
+    "options": [
+      "4",
+      "3",
+      "2",
+      "1"
+    ],
+    "answer": [1],
+    "explanation": "COUNT() counts only the three numeric values: 10, 20, and 30."
+  },
+
+  {
+    "id": "excel_q254",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is the result of =COUNTA(10,20,\"Muthu\",30)?",
+    "options": [
+      "4",
+      "3",
+      "2",
+      "1"
+    ],
+    "answer": [0],
+    "explanation": "COUNTA() counts all four non-empty values."
+  },
+
+  {
+    "id": "excel_q255",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is the result of =COUNTBLANK(A1:A5) if A1:A5 contains 3 blank cells?",
+    "options": [
+      "2",
+      "3",
+      "5",
+      "0"
+    ],
+    "answer": [1],
+    "explanation": "COUNTBLANK() returns the number of blank cells, which is 3."
+  },
+
+  {
+    "id": "excel_q256",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "A college has 100 student records. 85 students have entered marks. Which formula can be used to find how many marks are missing?",
+    "options": [
+      "=COUNT(C2:C101)",
+      "=COUNTA(C2:C101)",
+      "=COUNTBLANK(C2:C101)",
+      "=SUM(C2:C101)"
+    ],
+    "answer": [2],
+    "explanation": "COUNTBLANK() directly counts the cells where marks are missing."
+  },
+
+  {
+    "id": "excel_q257",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "A registration column contains student names, but some names are missing. Which function should be used to count completed registrations?",
+    "options": [
+      "COUNT()",
+      "COUNTA()",
+      "COUNTBLANK()",
+      "MAX()"
+    ],
+    "answer": [1],
+    "explanation": "COUNTA() counts all non-empty student-name cells."
+  },
+
+  {
+    "id": "excel_q258",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "An administrator wants to find which field has missing data. Which function is most useful for counting empty cells in each field?",
+    "options": [
+      "COUNT()",
+      "COUNTA()",
+      "COUNTBLANK()",
+      "SUM()"
+    ],
+    "answer": [2],
+    "explanation": "COUNTBLANK() can be applied to each field to identify the number of missing entries."
+  },
+
+  {
+    "id": "excel_q259",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "A Marks column contains numbers, text such as \"Absent\", and blank cells. Which function counts only the numeric marks?",
+    "options": [
+      "COUNT()",
+      "COUNTA()",
+      "COUNTBLANK()",
+      "COUNTIF()"
+    ],
+    "answer": [0],
+    "explanation": "COUNT() counts numeric values and ignores text and blank cells."
+  },
+
+  {
+    "id": "excel_q260",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "A Status column contains \"Present\", \"Absent\", and blank cells. Which function counts all entered statuses regardless of whether they are text?",
+    "options": [
+      "COUNT()",
+      "COUNTA()",
+      "COUNTBLANK()",
+      "SUM()"
+    ],
+    "answer": [1],
+    "explanation": "COUNTA() counts all non-empty status cells, including text such as Present and Absent."
+  }
+
+]
+
+},
+
+
         {
   "id": "excel_u2_c4",
   "title": "Day 3: COUNTIF(), COUNTIFS(), SUMIF(), SUMIFS(), AVERAGEIF(), AVERAGEIFS()",
@@ -2706,7 +4141,7 @@
       "4",
       "5"
     ],
-    "answer": [2],
+    "answer": [1],
     "explanation": "The values 82, 91, and 88 are >=75. Therefore, the result is 3."
   },
 
@@ -2721,7 +4156,7 @@
       "6",
       "7"
     ],
-    "answer": [2],
+    "answer": [1],
     "explanation": "The scores 85, 91, 88, 82, and 95 are >=80. Therefore, the correct count is 5."
   },
 
