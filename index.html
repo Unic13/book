@@ -2805,7 +2805,7 @@ async function showDashboard() {
   if (state.userData) {
     const userId = state.userData.email || state.userData.name;
     try {
-      const res = await ajax(`api/user-stats?userId=${encodeURIComponent(userId)}`);
+      const res = await ajax(`api/stats?userId=${encodeURIComponent(userId)}`);
       if (res && res.success) state.dashboardStats = res.data;
     } catch { /* leave dashboardStats as-is; UI shows a friendly fallback */ }
   }
