@@ -647,14 +647,45 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
 .chapter-feedback-title{font-size:14px;font-weight:700;color:var(--ink-blue);margin-bottom:10px}
 
 /* Notes board */
-.notes-card{background:#fff;border-radius:var(--radius-lg);border:1px solid #e3d9fb;box-shadow:var(--shadow);overflow:hidden;margin-bottom:22px}
-.notes-card-header{display:flex;align-items:center;gap:12px;padding:16px 22px;background:#fffbeb;border-bottom:1px solid #fde68a}
-.notes-card-icon{width:40px;height:40px;border-radius:11px;flex-shrink:0;background:#f59e0b;display:flex;align-items:center;justify-content:center;font-size:19px;color:#fff}
-.notes-card-body{padding:18px 22px}
-.notes-textarea{width:100%;min-height:120px;resize:vertical;padding:14px 16px;border-radius:11px;border:1.5px solid #e5e7eb;font-family:inherit;font-size:14px;line-height:1.7;outline:none}
+.notes-textarea{width:100%;min-height:280px;resize:vertical;padding:14px 16px;border-radius:11px;border:1.5px solid #e5e7eb;font-family:inherit;font-size:14px;line-height:1.7;outline:none}
 .notes-textarea:focus{border-color:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.12)}
 .note-item{background:#fff;border:1px solid #e5e7eb;border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:16px 18px;margin-bottom:12px;cursor:pointer;transition:all var(--trans)}
 .note-item:hover{border-color:#fde68a;box-shadow:var(--shadow-md)}
+
+/* Floating notes tab — fixed to the right edge, vertically centered */
+#notes-fab{
+  position:fixed;right:0;top:50%;transform:translateY(-50%);
+  width:46px;height:64px;border-radius:14px 0 0 14px;
+  background:#f59e0b;color:#fff;border:none;cursor:pointer;
+  font-size:20px;display:flex;align-items:center;justify-content:center;
+  box-shadow:-2px 0 12px rgba(0,0,0,.15);z-index:150;transition:right var(--trans)
+}
+#notes-fab.open{right:340px}
+#notes-fab:hover{filter:brightness(1.08)}
+
+/* Slide-out drawer */
+#notes-drawer{
+  position:fixed;right:-340px;top:0;bottom:0;width:340px;background:#fff;
+  border-left:1px solid #e5e7eb;box-shadow:-6px 0 24px rgba(0,0,0,.12);
+  z-index:140;transition:right .25s ease;display:flex;flex-direction:column
+}
+#notes-drawer.open{right:0}
+.notes-drawer-header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 14px;border-bottom:1px solid #f3f4f6}
+.notes-drawer-close{background:none;border:none;cursor:pointer;color:#9ca3af;font-size:16px;padding:4px;border-radius:6px}
+.notes-drawer-close:hover{background:#f3f4f6;color:#111}
+.notes-drawer-tabs{display:flex;gap:6px;padding:12px 20px 0}
+.notes-drawer-tab{flex:1;padding:8px 10px;border-radius:9px 9px 0 0;border:1.5px solid #e5e7eb;border-bottom:none;background:#f9fafb;font-size:12.5px;font-weight:700;color:#6b7280;cursor:pointer;font-family:inherit}
+.notes-drawer-tab.active{background:#fff;color:#f59e0b;border-color:#fde68a}
+.notes-drawer-body{flex:1;overflow-y:auto;padding:16px 20px;border-top:1.5px solid #fde68a}
+.notes-pen-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.notes-pen-color{width:22px;height:22px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0}
+.notes-pen-color.active{border-color:#111}
+.notes-canvas{width:100%;height:300px;border-radius:11px;border:1.5px solid #e5e7eb;background:#fff;touch-action:none;cursor:crosshair}
+
+@media(max-width:640px){
+  #notes-drawer{width:100%;right:-100%}
+  #notes-fab.open{right:calc(100% - 46px)}
+}
 
 @media(max-width:640px){
   .q-media{padding:0 16px 6px}
@@ -796,6 +827,10 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
   <img id="lightbox-img" src="" alt="">
 </div>
 
+<!-- ══════════ NOTES — floating tab + slide-out drawer ══════════ -->
+<button id="notes-fab" onclick="toggleNotesDrawer()" title="My notes for this chapter" style="display:none">📝</button>
+<div id="notes-drawer"></div>
+
 <!-- ══════════ APP SHELL ══════════ -->
 <div id="app">
 
@@ -816,7 +851,6 @@ table.sql-result-table tbody tr:nth-child(even){background:#f8fafc}
       <input type="text" id="global-search-input" placeholder="🔍 Search topics…" oninput="onGlobalSearchInput(this.value)" onfocus="onGlobalSearchInput(this.value)">
       <div class="global-search-dropdown" id="global-search-results"></div>
     </div>
-    <nav id="subject-tabs"></nav>
     <select id="lang-select" title="Language">
       <option value="en">EN</option>
       <option value="ta">தமிழ்</option>
@@ -1024,9 +1058,12 @@ let state = {
   chapterFeedbackRating: {},   // chapterId -> star rating currently selected
   chapterFeedbackSubmitted: {}, // chapterId -> true once sent
   lang: 'en',
-  chapterNotes: {},    // chapterId -> current note text (cache)
+  chapterNotes: {},    // chapterId -> { content, drawing } (cache)
   noteSaveTimers: {},  // chapterId -> debounce timer id
   notesList: [],
+  notesDrawerOpen: false,
+  notesDrawerTab: 'type',
+  penColor: '#111827',
 };
 
 
@@ -1126,6 +1163,7 @@ async function init() {
 // ══════════════════════════════════════════
 function buildSubjectTabs() {
   const nav = document.getElementById('subject-tabs');
+  if (!nav) return; // subject tabs bar was removed from the header — navigation now happens via home cards / global search / sidebar
   nav.innerHTML = '';
   (state.config.subjects || Object.keys(SUBJECTS)).forEach(code => {
     const s = SUBJECTS[code];
@@ -1173,6 +1211,8 @@ function showHome() {
   state.view = 'home';
   state.sidebarOpen = false;
   document.getElementById('sidebar').classList.add('closed');
+  closeNotesDrawer();
+  refreshNotesFab();
   renderHomeHTML();
   updateActiveTabs();
 }
@@ -1372,6 +1412,8 @@ function backToCategories() {
   state.activeCategoryId = null;
   state.sidebarOpen = false;
   document.getElementById('sidebar').classList.add('closed');
+  closeNotesDrawer();
+  refreshNotesFab();
   renderCategoriesHTML();
   updateActiveTabs();
 }
@@ -1929,8 +1971,7 @@ function renderQuestion() {
   const chapter = getCurrentChapter();
   const color = subjectColor();
   const conceptHTML = renderConceptHTML(chapter, color);
-  const notesHTML = chapter ? renderChapterNoteHTML(chapter) : '';
-  if (chapter) ensureChapterNoteLoaded(chapter.id); // async; patches the textarea in place once loaded
+  if (chapter) { ensureChapterNoteLoaded(chapter.id); refreshNotesFab(); } // notes now live in the side drawer, not inline
   const sqlPgHTML = state.activeSubject === 'SQL' ? renderSqlPlaygroundHTML() : '';
   const tabsHTML = renderTypeTabsHTML();
 
@@ -1942,7 +1983,6 @@ function renderQuestion() {
     wrap.innerHTML = `
       <div class="fade-in">
         ${conceptHTML}
-        ${notesHTML}
         ${sqlPgHTML}
         ${tabsHTML}
         <div class="empty"><div class="empty-icon">📭</div><p>No ${state.qtypeFilter !== 'ALL' ? state.qtypeFilter : ''} questions in this chapter</p></div>
@@ -1973,7 +2013,6 @@ function renderQuestion() {
   wrap.innerHTML = `
     <div class="fade-in">
       ${conceptHTML}
-      ${notesHTML}
       ${sqlPgHTML}
       ${tabsHTML}
       <div class="q-breadcrumb">${chapter?.title || ''}</div>
@@ -2470,66 +2509,193 @@ function jumpToGlobalSearchResult(code, chapterId) {
 }
 
 // ══════════════════════════════════════════
-//  NOTES — inline per-chapter notepad + a dedicated "My Notes" page
+//  NOTES — a slide-out drawer (floating tab on the right edge) with a
+//  Type tab (keyboard, fully editable) and a Pen tab (freehand canvas),
+//  plus a dedicated "My Notes" page listing everything across subjects.
 // ══════════════════════════════════════════
 function notesLocalGetAll() {
   try { return JSON.parse(localStorage.getItem('unic_notes') || '{}'); } catch { return {}; }
 }
 function notesLocalGet(chapterId) {
-  return notesLocalGetAll()[chapterId]?.content || '';
+  const n = notesLocalGetAll()[chapterId];
+  return n ? { content: n.content || '', drawing: n.drawing || '' } : { content: '', drawing: '' };
 }
-function notesLocalSet(chapterId, content, subject, chapterTitle) {
+function notesLocalSet(chapterId, content, drawing, subject, chapterTitle) {
   const all = notesLocalGetAll();
-  all[chapterId] = { content, subject, chapterTitle, updatedAt: new Date().toISOString() };
+  all[chapterId] = { content, drawing, subject, chapterTitle, updatedAt: new Date().toISOString() };
   localStorage.setItem('unic_notes', JSON.stringify(all));
 }
 
 async function ensureChapterNoteLoaded(chapterId) {
-  if (state.chapterNotes[chapterId] !== undefined) return;
-  let content = notesLocalGet(chapterId);
+  if (state.chapterNotes[chapterId] !== undefined) {
+    if (state.notesDrawerOpen && state.activeChapterId === chapterId) renderNotesDrawer();
+    return;
+  }
+  let note = notesLocalGet(chapterId);
   if (state.userData) {
     try {
       const res = await ajax(`api/notes?userId=${encodeURIComponent(state.userData.email || state.userData.name)}&chapterId=${encodeURIComponent(chapterId)}`);
-      if (res && res.success && res.data) content = res.data.content || content;
+      if (res && res.success && res.data) note = { content: res.data.content || note.content, drawing: res.data.drawing || note.drawing };
     } catch { /* fall back to whatever's local */ }
   }
-  state.chapterNotes[chapterId] = content;
-  const ta = document.getElementById(`chapter-note-${chapterId}`);
-  if (ta && document.activeElement !== ta) ta.value = content;
+  state.chapterNotes[chapterId] = note;
+  // If the drawer is already open on this chapter, patch it in place.
+  if (state.notesDrawerOpen && state.activeChapterId === chapterId) renderNotesDrawer();
 }
 
-function renderChapterNoteHTML(chapter) {
-  const content = state.chapterNotes[chapter.id] ?? notesLocalGet(chapter.id);
-  return `
-    <div class="notes-card">
-      <div class="notes-card-header">
-        <div class="notes-card-icon">📝</div>
-        <div class="concept-title-wrap">
-          <div class="concept-eyebrow" style="color:#92400e">${t('notes')}</div>
-          <div class="concept-title" style="font-size:15px;color:#92400e">${t('notesForChapter')}</div>
+// ── Floating tab (fixed to the right edge, vertically centered) ──
+function refreshNotesFab() {
+  const fab = document.getElementById('notes-fab');
+  if (!fab) return;
+  const hasChapter = !!state.activeChapterId && state.view === 'subject';
+  fab.style.display = hasChapter ? 'flex' : 'none';
+}
+
+function toggleNotesDrawer() {
+  if (!state.activeChapterId) return;
+  state.notesDrawerOpen = !state.notesDrawerOpen;
+  const drawer = document.getElementById('notes-drawer');
+  const fab = document.getElementById('notes-fab');
+  drawer.classList.toggle('open', state.notesDrawerOpen);
+  fab.classList.toggle('open', state.notesDrawerOpen);
+  if (state.notesDrawerOpen) {
+    state.notesDrawerTab = state.notesDrawerTab || 'type';
+    renderNotesDrawer();
+  }
+}
+function closeNotesDrawer() {
+  state.notesDrawerOpen = false;
+  document.getElementById('notes-drawer').classList.remove('open');
+  document.getElementById('notes-fab').classList.remove('open');
+}
+
+function renderNotesDrawer() {
+  const chapterId = state.activeChapterId;
+  const chapter = getAllChapters().find(c => c.id === chapterId);
+  const note = state.chapterNotes[chapterId] || { content: '', drawing: '' };
+  const drawer = document.getElementById('notes-drawer');
+  const tab = state.notesDrawerTab || 'type';
+
+  drawer.innerHTML = `
+    <div class="notes-drawer-header">
+      <div>
+        <div class="concept-eyebrow" style="color:#92400e">${t('notes')}</div>
+        <div style="font-size:14px;font-weight:700;color:#111;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(chapter?.title || '')}</div>
+      </div>
+      <button class="notes-drawer-close" onclick="closeNotesDrawer()">✕</button>
+    </div>
+    <div class="notes-drawer-tabs">
+      <button class="notes-drawer-tab${tab === 'type' ? ' active' : ''}" onclick="setNotesDrawerTab('type')">⌨️ Type</button>
+      <button class="notes-drawer-tab${tab === 'pen' ? ' active' : ''}" onclick="setNotesDrawerTab('pen')">🖊️ Pen</button>
+    </div>
+    <div class="notes-drawer-body">
+      <div id="notes-type-pane" style="display:${tab === 'type' ? 'block' : 'none'}">
+        <textarea class="notes-textarea" id="chapter-note-textarea" placeholder="${escapeHtml(t('notesPlaceholder'))}" oninput="onChapterNoteInput(this.value)">${escapeHtml(note.content)}</textarea>
+      </div>
+      <div id="notes-pen-pane" style="display:${tab === 'pen' ? 'block' : 'none'}">
+        <div class="notes-pen-toolbar">
+          ${['#111827','#dc2626','#2563eb','#16a34a','#f59e0b'].map(c => `<button class="notes-pen-color${c === (state.penColor || '#111827') ? ' active' : ''}" style="background:${c}" onclick="setPenColor('${c}')"></button>`).join('')}
+          <button class="b-btn b-btn-outline b-btn-sm" style="margin-left:auto" onclick="clearNotesCanvas()">Clear</button>
         </div>
+        <canvas id="notes-canvas" class="notes-canvas"></canvas>
+        <div class="b-field-hint">Draw with mouse, finger, or stylus — typed notes and drawings are saved together.</div>
       </div>
-      <div class="notes-card-body">
-        <textarea class="notes-textarea" id="chapter-note-${chapter.id}" placeholder="${escapeHtml(t('notesPlaceholder'))}" oninput="onChapterNoteInput('${chapter.id}', this.value)">${escapeHtml(content)}</textarea>
-        <div class="feedback-msg" id="chapter-note-status-${chapter.id}" style="margin-top:6px"></div>
-        ${!state.userData ? `<div class="dash-guest-note" style="margin-top:10px;margin-bottom:0">${t('notesGuestHint')}</div>` : ''}
-      </div>
+      <div class="feedback-msg" id="chapter-note-status" style="margin-top:8px"></div>
+      ${!state.userData ? `<div class="dash-guest-note" style="margin-top:10px;margin-bottom:0">${t('notesGuestHint')}</div>` : ''}
     </div>`;
+
+  if (tab === 'pen') initNotesCanvas(note.drawing);
 }
 
-function onChapterNoteInput(chapterId, val) {
-  state.chapterNotes[chapterId] = val;
-  const statusEl = document.getElementById(`chapter-note-status-${chapterId}`);
+function setNotesDrawerTab(tabName) {
+  state.notesDrawerTab = tabName;
+  renderNotesDrawer();
+}
+
+function onChapterNoteInput(val) {
+  const chapterId = state.activeChapterId;
+  state.chapterNotes[chapterId] = state.chapterNotes[chapterId] || { content: '', drawing: '' };
+  state.chapterNotes[chapterId].content = val;
+  const statusEl = document.getElementById('chapter-note-status');
   if (statusEl) { statusEl.textContent = 'Saving…'; statusEl.className = 'feedback-msg'; }
   clearTimeout(state.noteSaveTimers[chapterId]);
   state.noteSaveTimers[chapterId] = setTimeout(() => saveChapterNote(chapterId), 700);
 }
 
+// ── Pen / freehand canvas ──
+let notesCanvasCtx = null, notesDrawing = false, notesLastPoint = null;
+function initNotesCanvas(existingDrawingUrl) {
+  const canvas = document.getElementById('notes-canvas');
+  if (!canvas) return;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * 2;
+  canvas.height = rect.height * 2;
+  notesCanvasCtx = canvas.getContext('2d');
+  notesCanvasCtx.scale(2, 2);
+  notesCanvasCtx.lineCap = 'round';
+  notesCanvasCtx.lineJoin = 'round';
+  notesCanvasCtx.lineWidth = 2.5;
+  notesCanvasCtx.strokeStyle = state.penColor || '#111827';
+
+  if (existingDrawingUrl) {
+    const img = new Image();
+    img.onload = () => notesCanvasCtx.drawImage(img, 0, 0, rect.width, rect.height);
+    img.src = existingDrawingUrl;
+  }
+
+  const getPoint = (e) => {
+    const r = canvas.getBoundingClientRect();
+    const p = e.touches ? e.touches[0] : e;
+    return { x: p.clientX - r.left, y: p.clientY - r.top };
+  };
+  const start = (e) => { notesDrawing = true; notesLastPoint = getPoint(e); e.preventDefault(); };
+  const move = (e) => {
+    if (!notesDrawing) return;
+    const p = getPoint(e);
+    notesCanvasCtx.beginPath();
+    notesCanvasCtx.moveTo(notesLastPoint.x, notesLastPoint.y);
+    notesCanvasCtx.lineTo(p.x, p.y);
+    notesCanvasCtx.stroke();
+    notesLastPoint = p;
+    e.preventDefault();
+  };
+  const end = () => {
+    if (!notesDrawing) return;
+    notesDrawing = false;
+    saveCanvasDrawing();
+  };
+
+  canvas.onmousedown = start; canvas.onmousemove = move; canvas.onmouseup = end; canvas.onmouseleave = end;
+  canvas.ontouchstart = start; canvas.ontouchmove = move; canvas.ontouchend = end;
+}
+function setPenColor(color) {
+  state.penColor = color;
+  if (notesCanvasCtx) notesCanvasCtx.strokeStyle = color;
+  renderNotesDrawer();
+}
+function clearNotesCanvas() {
+  const canvas = document.getElementById('notes-canvas');
+  if (!canvas || !notesCanvasCtx) return;
+  notesCanvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+  saveCanvasDrawing();
+}
+function saveCanvasDrawing() {
+  const canvas = document.getElementById('notes-canvas');
+  if (!canvas) return;
+  const chapterId = state.activeChapterId;
+  state.chapterNotes[chapterId] = state.chapterNotes[chapterId] || { content: '', drawing: '' };
+  state.chapterNotes[chapterId].drawing = canvas.toDataURL('image/png');
+  const statusEl = document.getElementById('chapter-note-status');
+  if (statusEl) { statusEl.textContent = 'Saving…'; statusEl.className = 'feedback-msg'; }
+  clearTimeout(state.noteSaveTimers[chapterId]);
+  state.noteSaveTimers[chapterId] = setTimeout(() => saveChapterNote(chapterId), 500);
+}
+
 async function saveChapterNote(chapterId) {
   const chapter = getAllChapters().find(c => c.id === chapterId);
-  const content = state.chapterNotes[chapterId] || '';
-  const statusEl = document.getElementById(`chapter-note-status-${chapterId}`);
-  notesLocalSet(chapterId, content, state.activeSubject, chapter?.title || '');
+  const note = state.chapterNotes[chapterId] || { content: '', drawing: '' };
+  const statusEl = document.getElementById('chapter-note-status');
+  notesLocalSet(chapterId, note.content, note.drawing, state.activeSubject, chapter?.title || '');
 
   if (!state.userData) {
     if (statusEl) { statusEl.textContent = '✓ Saved on this device'; statusEl.className = 'feedback-msg ok'; }
@@ -2541,7 +2707,8 @@ async function saveChapterNote(chapterId) {
       subject: state.activeSubject,
       chapterId,
       chapterTitle: chapter?.title || '',
-      content,
+      content: note.content,
+      drawing: note.drawing,
     });
     if (statusEl) { statusEl.textContent = '✓ Saved'; statusEl.className = 'feedback-msg ok'; }
   } catch {
@@ -2553,6 +2720,7 @@ async function showNotesPage() {
   state.view = 'notes';
   state.sidebarOpen = false;
   document.getElementById('sidebar').classList.add('closed');
+  closeNotesDrawer();
   updateActiveTabs();
   renderNotesPageHTML(true);
 
@@ -2566,8 +2734,8 @@ async function showNotesPage() {
   if (!notes.length) {
     const all = notesLocalGetAll();
     notes = Object.entries(all)
-      .filter(([, n]) => (n.content || '').trim())
-      .map(([chapterId, n]) => ({ chapter_id: chapterId, subject: n.subject, chapter_title: n.chapterTitle, content: n.content, updated_at: n.updatedAt }));
+      .filter(([, n]) => (n.content || '').trim() || n.drawing)
+      .map(([chapterId, n]) => ({ chapter_id: chapterId, subject: n.subject, chapter_title: n.chapterTitle, content: n.content, drawing: n.drawing, updated_at: n.updatedAt }));
   }
   state.notesList = notes;
   renderNotesPageHTML();
@@ -2594,6 +2762,7 @@ function renderNotesPageHTML(loading) {
             <span style="font-size:18px">${meta.emoji}</span>
             <strong style="font-size:13.5px;color:#111">${escapeHtml(n.chapter_title || n.chapter_id)}</strong>
             <span class="badge" style="margin-left:6px;background:${hex2rgba(meta.color,.12)};color:${meta.color};font-size:10.5px;padding:2px 8px;border-radius:20px;font-weight:700">${escapeHtml(meta.label)}</span>
+            ${n.drawing ? '<span title="Has a drawing" style="font-size:12px">🖊️</span>' : ''}
             <span style="margin-left:auto;font-size:11px;color:#9ca3af">${n.updated_at ? new Date(n.updated_at).toLocaleDateString() : ''}</span>
           </div>
           <div style="font-size:13px;color:#374151;white-space:pre-wrap;line-height:1.6">${escapeHtml(preview)}${(n.content || '').length > 220 ? '…' : ''}</div>
@@ -2605,12 +2774,19 @@ function renderNotesPageHTML(loading) {
 }
 
 function jumpToNoteChapter(subject, chapterId) {
+  state.notesDrawerOpen = true; // open the drawer once we land on the chapter
   if (subject === state.activeSubject && state.subjectData) {
     selectChapter(chapterId);
+    toggleNotesDrawerOpenOnly();
   } else {
     state.activeSubject = subject;
-    loadSubjectRoot(subject).then(() => selectChapter(chapterId));
+    loadSubjectRoot(subject).then(() => { selectChapter(chapterId); toggleNotesDrawerOpenOnly(); });
   }
+}
+function toggleNotesDrawerOpenOnly() {
+  document.getElementById('notes-drawer').classList.add('open');
+  document.getElementById('notes-fab').classList.add('open');
+  renderNotesDrawer();
 }
 
 // ══════════════════════════════════════════
@@ -2620,6 +2796,8 @@ async function showDashboard() {
   state.view = 'dashboard';
   state.sidebarOpen = false;
   document.getElementById('sidebar').classList.add('closed');
+  closeNotesDrawer();
+  refreshNotesFab();
   updateActiveTabs();
   renderDashboardHTML(); // render immediately with loader, then fill in
 
@@ -2628,7 +2806,13 @@ async function showDashboard() {
     try {
       const res = await ajax(`api/user-stats?userId=${encodeURIComponent(userId)}`);
       if (res && res.success) state.dashboardStats = res.data;
-    } catch { /* leave dashboardStats as-is; UI shows a friendly fallback */ }
+    } catch { /* handled below — falls back to an empty dashboard instead of spinning forever */ }
+    // The fetch above can fail (offline, backend not configured, bad
+    // response) — without this, the spinner in renderDashboardHTML()'s
+    // `if (!state.dashboardStats)` branch would never clear, which looks
+    // exactly like "the Dashboard button doesn't work." Fall back to a
+    // safe empty shape so the page always finishes loading.
+    if (!state.dashboardStats) state.dashboardStats = buildEmptyDashboardStats();
   }
 
   try {
@@ -2637,6 +2821,21 @@ async function showDashboard() {
   } catch { /* fine — feedback stats are optional */ }
 
   renderDashboardHTML();
+}
+
+function buildEmptyDashboardStats() {
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    days.push({ date: d.toISOString().slice(0, 10), attempts: 0, correct: 0, minutesPracticed: 0 });
+  }
+  return {
+    totals: { attempts: 0, correct: 0, wrong: 0, accuracy: 0 },
+    weekTotals: { attempts: 0, minutesPracticed: 0 },
+    bySubject: [],
+    last7Days: days,
+  };
 }
 
 function subjectLabelFor(code) {
