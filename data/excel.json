@@ -4554,10 +4554,1275 @@
 
 "questions": [ { "id": "excel_q210", "type": "MCQ", "difficulty_rating": 2, "question": "AND() returns TRUE when:", "options": [ "At least one condition is TRUE", "All conditions are TRUE", "All conditions are FALSE", "Only the first condition is TRUE" ], "answer": [1], "explanation": "AND() returns TRUE only when all conditions are TRUE." }, { "id": "excel_q211", "type": "MCQ", "difficulty_rating": 1, "question": "OR() returns TRUE when:", "options": [ "All conditions are TRUE", "At least one condition is TRUE", "All conditions are FALSE", "No conditions are provided" ], "answer": [1], "explanation": "OR() returns TRUE when at least one condition is TRUE." }, { "id": "excel_q212", "type": "MCQ", "difficulty_rating": 1, "question": "What does NOT() do?", "options": [ "Adds two conditions", "Checks multiple conditions", "Reverses a logical result", "Calculates an average" ], "answer": [2], "explanation": "NOT() reverses TRUE to FALSE and FALSE to TRUE." }, { "id": "excel_q217", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula checks whether Maths and Physics marks are both at least 35?", "options": [ "=AND(B2>=35,C2>=35)", "=OR(B2>=35,C2>=35)", "=NOT(B2>=35,C2>=35)", "=AND(B2,C2)" ], "answer": [0], "explanation": "AND() is used because both conditions must be TRUE." }, { "id": "excel_q220", "type": "MCQ", "difficulty_rating": 2, "question": "What is the primary purpose of IFS()?", "options": [ "To calculate a total", "To check multiple conditions and return the result for the first TRUE condition", "To find the largest number", "To remove errors" ], "answer": [1], "explanation": "IFS() evaluates conditions from left to right and returns the first TRUE result." } ]
 
+},
+{
+  "id": "excel_u2_c7",
+  "title": "Day 6: SUMPRODUCT() Function",
+  "concept": {
+    "title": "SUMPRODUCT() - Multiplication, Counting, Conditional Sum and Weighted Analysis",
+    "body": [
+      {
+        "type": "heading",
+        "text": "1. What is SUMPRODUCT()?"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUMPRODUCT() multiplies corresponding values from one or more ranges and then adds the resulting products. It can also be used for conditional counting, conditional summing, weighted calculations, sales analysis, inventory valuation and other advanced calculations."
+      },
+      {
+        "type": "note",
+        "text": "The basic idea of SUMPRODUCT() is: Multiply corresponding values and then add the results. With conditions, TRUE/FALSE values can be converted into 1/0 and used to count or sum selected records."
+      },
 
+      {
+        "type": "heading",
+        "text": "2. SUMPRODUCT() Syntax"
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT(array1, [array2], [array3], ...)"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Argument",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "array1",
+            "First range or array"
+          ],
+          [
+            "array2",
+            "Second range or array"
+          ],
+          [
+            "array3",
+            "Optional additional range or array"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "3. Simple SUMPRODUCT() Example"
+      },
+      {
+        "type": "paragraph",
+        "text": "A shop wants to calculate total sales. Quantity is stored in column B and Rate is stored in column C."
+      },
+      {
+        "type": "table",
+        "title": "Sales Data",
+        "headers": [
+          "Product",
+          "Quantity",
+          "Rate"
+        ],
+        "rows": [
+          [
+            "Pen",
+            10,
+            20
+          ],
+          [
+            "Notebook",
+            5,
+            50
+          ],
+          [
+            "Bag",
+            2,
+            500
+          ]
+        ]
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT(B2:B4,C2:C4)"
+      },
+      {
+        "type": "steps",
+        "title": "Calculation",
+        "steps": [
+          "Pen: 10 × 20 = 200",
+          "Notebook: 5 × 50 = 250",
+          "Bag: 2 × 500 = 1000",
+          "Add all products: 200 + 250 + 1000"
+        ]
+      },
+      {
+        "type": "example",
+        "title": "Result",
+        "before": "Quantity × Rate",
+        "after": "Total Sales = 1450"
+      },
+
+      {
+        "type": "heading",
+        "text": "4. SUMPRODUCT() for Counting Values"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUMPRODUCT() can count records that satisfy a condition by converting TRUE to 1 and FALSE to 0."
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT(--(B2:B7=\"Physics\"))"
+      },
+      {
+        "type": "table",
+        "title": "Student Department Data",
+        "headers": [
+          "Student",
+          "Department",
+          "Marks"
+        ],
+        "rows": [
+          [
+            "Muthu",
+            "Physics",
+            85
+          ],
+          [
+            "Ravi",
+            "Chemistry",
+            72
+          ],
+          [
+            "Priya",
+            "Physics",
+            91
+          ],
+          [
+            "Anitha",
+            "Maths",
+            78
+          ],
+          [
+            "Kumar",
+            "Physics",
+            68
+          ],
+          [
+            "Divya",
+            "Chemistry",
+            88
+          ]
+        ]
+      },
+      {
+        "type": "example",
+        "title": "Count Physics Students",
+        "before": "Count the number of students whose Department is Physics.",
+        "formula": "=SUMPRODUCT(--(B2:B7=\"Physics\"))",
+        "after": "Result = 3"
+      },
+
+      {
+        "type": "heading",
+        "text": "5. Why Does -- Work?"
+      },
+      {
+        "type": "paragraph",
+        "text": "The condition B2:B7=\"Physics\" produces TRUE or FALSE values. The double minus (--) converts TRUE to 1 and FALSE to 0. SUMPRODUCT() then adds those 1s and 0s."
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Condition Result",
+          "Converted Value"
+        ],
+        "rows": [
+          [
+            "TRUE",
+            1
+          ],
+          [
+            "FALSE",
+            0
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "6. SUMPRODUCT() for Conditional SUM"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUMPRODUCT() can sum only the values that satisfy a condition."
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT((B2:B7=\"Physics\")*C2:C7)"
+      },
+      {
+        "type": "example",
+        "title": "Total Physics Marks",
+        "before": "Calculate the total marks of Physics students.",
+        "steps": [
+          "Check whether Department equals Physics.",
+          "TRUE becomes 1 and FALSE becomes 0.",
+          "Multiply the condition by the Marks range.",
+          "Only Physics marks contribute to the total."
+        ],
+        "after": "Total Physics Marks = 244"
+      },
+
+      {
+        "type": "heading",
+        "text": "7. SUMPRODUCT() with Multiple Conditions"
+      },
+      {
+        "type": "paragraph",
+        "text": "Multiple conditions can be combined using multiplication (*). A row contributes to the result only when all conditions are TRUE."
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT((B2:B7=\"Physics\")*(C2:C7>=80))"
+      },
+      {
+        "type": "example",
+        "title": "Count Physics Students with Marks >= 80",
+        "before": "Count Physics students who scored 80 or above.",
+        "after": "Result = 2"
+      },
+
+      {
+        "type": "heading",
+        "text": "8. SUMPRODUCT() for Conditional SUM with Multiple Conditions"
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT((B2:B7=\"Physics\")*(C2:C7>=80)*C2:C7)"
+      },
+      {
+        "type": "example",
+        "title": "Total Marks of Physics Students >= 80",
+        "before": "Calculate the marks only for Physics students who scored 80 or above.",
+        "after": "Result = 176"
+      },
+
+      {
+        "type": "heading",
+        "text": "9. SUMPRODUCT() for Inventory Value"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUMPRODUCT() is useful for calculating the total value of inventory without creating a separate amount column."
+      },
+      {
+        "type": "table",
+        "title": "Inventory Data",
+        "headers": [
+          "Product",
+          "Available Quantity",
+          "Unit Price"
+        ],
+        "rows": [
+          [
+            "Laptop",
+            10,
+            55000
+          ],
+          [
+            "Keyboard",
+            25,
+            1200
+          ],
+          [
+            "Mouse",
+            30,
+            600
+          ],
+          [
+            "Monitor",
+            8,
+            8500
+          ]
+        ]
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT(B2:B5,C2:C5)"
+      },
+      {
+        "type": "example",
+        "title": "Total Inventory Value",
+        "after": "Inventory Value = 667000"
+      },
+
+      {
+        "type": "heading",
+        "text": "10. SUMPRODUCT() for Weighted Marks"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUMPRODUCT() is very useful when different subjects, components or assessments have different weights."
+      },
+      {
+        "type": "table",
+        "title": "Weighted Student Score",
+        "headers": [
+          "Subject",
+          "Marks",
+          "Weight"
+        ],
+        "rows": [
+          [
+            "Maths",
+            85,
+            0.40
+          ],
+          [
+            "Physics",
+            78,
+            0.30
+          ],
+          [
+            "Chemistry",
+            90,
+            0.30
+          ]
+        ]
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT(B2:B4,C2:C4)"
+      },
+      {
+        "type": "steps",
+        "title": "Calculation",
+        "steps": [
+          "Maths: 85 × 40% = 34",
+          "Physics: 78 × 30% = 23.4",
+          "Chemistry: 90 × 30% = 27",
+          "Add the weighted scores."
+        ]
+      },
+      {
+        "type": "example",
+        "title": "Weighted Score",
+        "after": "Weighted Score = 84.4"
+      },
+
+      {
+        "type": "heading",
+        "text": "11. SUMPRODUCT() for Employee Salary Cost"
+      },
+      {
+        "type": "table",
+        "title": "Employee Salary Data",
+        "headers": [
+          "Designation",
+          "Employee Count",
+          "Monthly Salary"
+        ],
+        "rows": [
+          [
+            "Developer",
+            5,
+            50000
+          ],
+          [
+            "Tester",
+            3,
+            35000
+          ],
+          [
+            "Designer",
+            2,
+            45000
+          ]
+        ]
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT(B2:B4,C2:C4)"
+      },
+      {
+        "type": "example",
+        "title": "Total Monthly Salary Cost",
+        "after": "Total Salary Cost = 445000"
+      },
+
+      {
+        "type": "heading",
+        "text": "12. SUMPRODUCT() for Conditional Sales"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUMPRODUCT() can calculate sales for a specific product by combining a condition with Quantity and Rate."
+      },
+      {
+        "type": "table",
+        "title": "Sales Data",
+        "headers": [
+          "Product",
+          "Quantity",
+          "Rate"
+        ],
+        "rows": [
+          [
+            "Laptop",
+            2,
+            55000
+          ],
+          [
+            "Mouse",
+            10,
+            600
+          ],
+          [
+            "Laptop",
+            3,
+            55000
+          ],
+          [
+            "Keyboard",
+            5,
+            1200
+          ],
+          [
+            "Laptop",
+            1,
+            55000
+          ]
+        ]
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT((A2:A6=\"Laptop\")*B2:B6*C2:C6)"
+      },
+      {
+        "type": "example",
+        "title": "Total Laptop Sales",
+        "before": "Calculate total sales only for Laptop.",
+        "after": "Laptop Sales = 330000"
+      },
+
+      {
+        "type": "heading",
+        "text": "13. SUMPRODUCT() for Discount Calculation"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUMPRODUCT() can calculate total discount amounts when quantity, price and discount percentage are stored separately."
+      },
+      {
+        "type": "table",
+        "title": "Discount Data",
+        "headers": [
+          "Product",
+          "Quantity",
+          "Price",
+          "Discount"
+        ],
+        "rows": [
+          [
+            "Laptop",
+            2,
+            50000,
+            0.10
+          ],
+          [
+            "Mouse",
+            5,
+            1000,
+            0.05
+          ],
+          [
+            "Keyboard",
+            3,
+            2000,
+            0.08
+          ]
+        ]
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT(B2:B4,C2:C4,D2:D4)"
+      },
+      {
+        "type": "example",
+        "title": "Total Discount Amount",
+        "before": "Quantity × Price × Discount Percentage",
+        "after": "Total Discount = 10880"
+      },
+
+      {
+        "type": "heading",
+        "text": "14. SUMPRODUCT() for Weighted Average"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUMPRODUCT() can calculate a weighted average when each value has a different weight."
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT(B2:B5,C2:C5)/SUM(C2:C5)"
+      },
+      {
+        "type": "paragraph",
+        "text": "The numerator calculates the weighted total and the denominator calculates the total weight."
+      },
+
+      {
+        "type": "heading",
+        "text": "15. SUMPRODUCT() for Attendance Analysis"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUMPRODUCT() can count students who satisfy multiple attendance conditions."
+      },
+      {
+        "type": "table",
+        "title": "Attendance Data",
+        "headers": [
+          "Student",
+          "Attendance %",
+          "Department"
+        ],
+        "rows": [
+          [
+            "Muthu",
+            85,
+            "Physics"
+          ],
+          [
+            "Ravi",
+            72,
+            "Chemistry"
+          ],
+          [
+            "Priya",
+            91,
+            "Physics"
+          ],
+          [
+            "Anitha",
+            78,
+            "Maths"
+          ],
+          [
+            "Kumar",
+            68,
+            "Physics"
+          ]
+        ]
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT((C2:C6=\"Physics\")*(B2:B6>=75))"
+      },
+      {
+        "type": "example",
+        "title": "Count Eligible Physics Students",
+        "before": "Count Physics students whose attendance is at least 75%.",
+        "after": "Result = 2"
+      },
+
+      {
+        "type": "heading",
+        "text": "16. SUMPRODUCT() for Pass Student Count"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUMPRODUCT() can count students who pass multiple subjects."
+      },
+      {
+        "type": "table",
+        "title": "Student Marks",
+        "headers": [
+          "Student",
+          "Maths",
+          "Physics",
+          "Chemistry"
+        ],
+        "rows": [
+          [
+            "Muthu",
+            85,
+            78,
+            90
+          ],
+          [
+            "Ravi",
+            32,
+            68,
+            75
+          ],
+          [
+            "Priya",
+            92,
+            88,
+            94
+          ],
+          [
+            "Anitha",
+            76,
+            81,
+            79
+          ]
+        ]
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT((B2:B5>=35)*(C2:C5>=35)*(D2:D5>=35))"
+      },
+      {
+        "type": "example",
+        "title": "Count Students Passing All Subjects",
+        "before": "A student must score at least 35 in Maths, Physics and Chemistry.",
+        "after": "Result = 3"
+      },
+
+      {
+        "type": "heading",
+        "text": "17. SUMPRODUCT() with OR Logic"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUMPRODUCT() can also be used to count records that satisfy either of two conditions. Conditions can be added and then checked for a value greater than zero."
+      },
+      {
+        "type": "syntax",
+        "code": "=SUMPRODUCT(--((B2:B10=\"Physics\")+(B2:B10=\"Maths\")>0))"
+      },
+      {
+        "type": "paragraph",
+        "text": "This counts rows where the Department is either Physics or Maths."
+      },
+
+      {
+        "type": "heading",
+        "text": "18. SUMPRODUCT() vs Other Functions"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Requirement",
+          "Simple Function",
+          "SUMPRODUCT() Alternative"
+        ],
+        "rows": [
+          [
+            "Count one condition",
+            "COUNTIF()",
+            "SUMPRODUCT(--condition)"
+          ],
+          [
+            "Count multiple conditions",
+            "COUNTIFS()",
+            "SUMPRODUCT(condition1*condition2)"
+          ],
+          [
+            "Sum one condition",
+            "SUMIF()",
+            "SUMPRODUCT(condition*value)"
+          ],
+          [
+            "Sum multiple conditions",
+            "SUMIFS()",
+            "SUMPRODUCT(condition1*condition2*value)"
+          ],
+          [
+            "Weighted calculation",
+            "Not always available directly",
+            "SUMPRODUCT(values,weights)"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "19. Common Applications"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Application",
+          "SUMPRODUCT() Use"
+        ],
+        "rows": [
+          [
+            "Sales",
+            "Quantity × Rate"
+          ],
+          [
+            "Inventory",
+            "Stock × Unit Price"
+          ],
+          [
+            "Invoice",
+            "Quantity × Price × Discount"
+          ],
+          [
+            "Student Marks",
+            "Marks × Weight"
+          ],
+          [
+            "Attendance",
+            "Count records satisfying conditions"
+          ],
+          [
+            "Employee Salary",
+            "Employee Count × Salary"
+          ],
+          [
+            "Conditional Sales",
+            "Condition × Quantity × Rate"
+          ],
+          [
+            "Pass Analysis",
+            "Multiple subject conditions"
+          ],
+          [
+            "Weighted Average",
+            "Value × Weight / Total Weight"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "20. Important Rules"
+      },
+      {
+        "type": "note",
+        "text": "The arrays used in SUMPRODUCT() should normally have the same dimensions. Avoid using full-column references unnecessarily in large datasets because SUMPRODUCT() can perform many calculations."
+      },
+
+      {
+        "type": "heading",
+        "text": "21. Practice Scenario"
+      },
+      {
+        "type": "exercise",
+        "title": "Student Department Analysis",
+        "steps": [
+          "Create columns for Student, Department, Marks and Fees.",
+          "Count the number of Physics students using SUMPRODUCT().",
+          "Calculate total Physics marks using SUMPRODUCT().",
+          "Count Physics students who scored at least 80.",
+          "Calculate total marks of Physics students who scored at least 80.",
+          "Calculate total Physics student fees.",
+          "Compare the results with COUNTIF(), COUNTIFS(), SUMIF() and SUMIFS()."
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "22. Quick Reference"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Requirement",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "Basic multiplication and total",
+            "=SUMPRODUCT(B2:B10,C2:C10)"
+          ],
+          [
+            "Count matching values",
+            "=SUMPRODUCT(--(A2:A10=\"Physics\"))"
+          ],
+          [
+            "Conditional sum",
+            "=SUMPRODUCT((A2:A10=\"Physics\")*B2:B10)"
+          ],
+          [
+            "Count two conditions",
+            "=SUMPRODUCT((A2:A10=\"Physics\")*(B2:B10>=80))"
+          ],
+          [
+            "Sum two conditions",
+            "=SUMPRODUCT((A2:A10=\"Physics\")*(B2:B10>=80)*B2:B10)"
+          ],
+          [
+            "Weighted score",
+            "=SUMPRODUCT(B2:B5,C2:C5)"
+          ],
+          [
+            "Weighted average",
+            "=SUMPRODUCT(B2:B5,C2:C5)/SUM(C2:C5)"
+          ],
+          [
+            "Conditional sales",
+            "=SUMPRODUCT((A2:A10=\"Laptop\")*B2:B10*C2:C10)"
+          ]
+        ]
+      },
+
+      {
+        "type": "tip",
+        "title": "Remember",
+        "text": "SUMPRODUCT() is not limited to multiplication. It can be used as an advanced calculation tool for counting, conditional summing, multiple conditions, weighted scores, weighted averages, inventory valuation, sales analysis and many other business calculations."
+      }
+    ]
+  },
+  "questions": [
+
+  {
+    "id": "excel_q286",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "What is the primary purpose of SUMPRODUCT()?",
+    "options": [
+      "To format cells",
+      "To multiply corresponding values and add the results",
+      "To create charts",
+      "To sort data"
+    ],
+    "answer": [1],
+    "explanation": "SUMPRODUCT() multiplies corresponding values in arrays and then adds the resulting products."
+  },
+
+  {
+    "id": "excel_q287",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which is the correct syntax for SUMPRODUCT()?",
+    "options": [
+      "=SUMPRODUCT(array1, [array2], ...)",
+      "=SUMPRODUCTIF(range, criteria)",
+      "=PRODUCTSUM(range)",
+      "=SUMPRODUCT(range, criteria, result)"
+    ],
+    "answer": [0],
+    "explanation": "The syntax is =SUMPRODUCT(array1, [array2], ...)."
+  },
+
+  {
+    "id": "excel_q288",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "Which formula calculates Quantity × Rate for all products in rows 2 to 10?",
+    "options": [
+      "=SUM(B2:B10+C2:C10)",
+      "=SUMPRODUCT(B2:B10,C2:C10)",
+      "=PRODUCT(B2:B10,C2:C10)",
+      "=SUMIF(B2:B10,C2:C10)"
+    ],
+    "answer": [1],
+    "explanation": "SUMPRODUCT(B2:B10,C2:C10) multiplies each quantity by its corresponding rate and adds the results."
+  },
+
+  {
+    "id": "excel_q289",
+    "type": "MCQ",
+    "difficulty_rating": 1,
+    "question": "What is the result of =SUMPRODUCT({2,3,4},{10,20,5})?",
+    "options": [
+      "90",
+      "100",
+      "1000",
+      "29"
+    ],
+    "answer": [1],
+    "explanation": "2×10 + 3×20 + 4×5 = 20 + 60 + 20 = 100. Therefore the correct answer is 100.",
+    "corrected_answer": [1]
+  },
+
+  {
+    "id": "excel_q290",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "A shop sells 10 pens at ₹20 each, 5 notebooks at ₹50 each and 2 bags at ₹500 each. Which formula calculates the total sales?",
+    "options": [
+      "=SUMPRODUCT(B2:B4,C2:C4)",
+      "=SUM(B2:B4,C2:C4)",
+      "=PRODUCT(B2:B4,C2:C4)",
+      "=SUMIF(B2:B4,C2:C4)"
+    ],
+    "answer": [0],
+    "explanation": "SUMPRODUCT() calculates 10×20 + 5×50 + 2×500."
+  },
+
+  {
+    "id": "excel_q291",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What is the total sales for the following data? Quantity = 10, 5, 2 and Rate = 20, 50, 500.",
+    "options": [
+      "1250",
+      "1350",
+      "1450",
+      "1550"
+    ],
+    "answer": [2],
+    "explanation": "10×20 + 5×50 + 2×500 = 200 + 250 + 1000 = 1450."
+  },
+
+  {
+    "id": "excel_q292",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula can be used to count cells in B2:B10 containing the value \"Physics\" using SUMPRODUCT()?",
+    "options": [
+      "=SUMPRODUCT(B2:B10=\"Physics\")",
+      "=SUMPRODUCT(--(B2:B10=\"Physics\"))",
+      "=SUMPRODUCT(B2:B10,\"Physics\")",
+      "=SUMPRODUCTIF(B2:B10,\"Physics\")"
+    ],
+    "answer": [1],
+    "explanation": "The -- converts TRUE/FALSE results into 1/0 so SUMPRODUCT() can count matching records."
+  },
+
+  {
+    "id": "excel_q293",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "In SUMPRODUCT(), what does TRUE effectively become when using --(condition)?",
+    "options": [
+      "0",
+      "1",
+      "TRUE",
+      "FALSE"
+    ],
+    "answer": [1],
+    "explanation": "The double unary operator -- converts TRUE to 1 and FALSE to 0."
+  },
+
+  {
+    "id": "excel_q294",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula calculates the total marks for Physics students when Department is in B2:B10 and Marks are in C2:C10?",
+    "options": [
+      "=SUMPRODUCT((B2:B10=\"Physics\")*C2:C10)",
+      "=SUMPRODUCT(B2:B10=\"Physics\",C2:C10)",
+      "=SUMPRODUCT(C2:C10=\"Physics\")",
+      "=SUMPRODUCT((B2:B10=\"Physics\")+C2:C10)"
+    ],
+    "answer": [0],
+    "explanation": "The condition creates 1/0 values and multiplication by the marks includes only Physics students."
+  },
+
+  {
+    "id": "excel_q295",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "Which formula counts Physics students who scored 80 or above?",
+    "options": [
+      "=SUMPRODUCT((B2:B10=\"Physics\")*(C2:C10>=80))",
+      "=SUMPRODUCT(B2:B10=\"Physics\",C2:C10>=80)",
+      "=SUMPRODUCT(C2:C10>=80)",
+      "=SUMPRODUCT((B2:B10=\"Physics\")+(C2:C10>=80))"
+    ],
+    "answer": [0],
+    "explanation": "Multiplying the two conditions works as AND logic. Both conditions must be TRUE for a row to count."
+  },
+
+  {
+    "id": "excel_q296",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "What does multiplication (*) between two conditions generally represent in a SUMPRODUCT() formula?",
+    "options": [
+      "OR logic",
+      "AND logic",
+      "NOT logic",
+      "Sorting"
+    ],
+    "answer": [1],
+    "explanation": "Multiplying conditions means both conditions must be TRUE for the result to be 1."
+  },
+
+  {
+    "id": "excel_q297",
+    "type": "MCQ",
+    "difficulty_rating": 2,
+    "question": "A student dataset contains Department and Marks. Which formula calculates the total marks of Physics students who scored at least 80?",
+    "options": [
+      "=SUMPRODUCT((B2:B10=\"Physics\")*(C2:C10>=80)*C2:C10)",
+      "=SUMPRODUCT((B2:B10=\"Physics\")*(C2:C10>=80))",
+      "=SUMPRODUCT(B2:B10*C2:C10)",
+      "=SUMPRODUCT(C2:C10>=80)"
+    ],
+    "answer": [0],
+    "explanation": "The first two conditions filter the rows and multiplying by C2:C10 sums the qualifying marks."
+  },
+
+  {
+    "id": "excel_q298",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Consider the following data: Physics marks are 85, 91 and 68. What is the total Physics marks?",
+    "options": [
+      "234",
+      "244",
+      "254",
+      "264"
+    ],
+    "answer": [1],
+    "explanation": "85 + 91 + 68 = 244."
+  },
+
+  {
+    "id": "excel_q299",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Consider Physics students with marks 85, 91 and 68. How many scored at least 80?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "0"
+    ],
+    "answer": [1],
+    "explanation": "85 and 91 are at least 80, so the count is 2."
+  },
+
+  {
+    "id": "excel_q300",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "What is the result of =SUMPRODUCT({85,78,90},{0.4,0.3,0.3})?",
+    "options": [
+      "80.4",
+      "82.4",
+      "84.4",
+      "86.4"
+    ],
+    "answer": [2],
+    "explanation": "85×0.4 + 78×0.3 + 90×0.3 = 34 + 23.4 + 27 = 84.4."
+  },
+
+  {
+    "id": "excel_q301",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which scenario is most suitable for using SUMPRODUCT()?",
+    "options": [
+      "Changing font size",
+      "Calculating Quantity × Price for many products",
+      "Creating a worksheet",
+      "Freezing rows"
+    ],
+    "answer": [1],
+    "explanation": "SUMPRODUCT() is especially useful for multiplying corresponding values and calculating totals."
+  },
+
+  {
+    "id": "excel_q302",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "An inventory sheet contains Quantity in B2:B20 and Unit Price in C2:C20. Which formula calculates total inventory value?",
+    "options": [
+      "=SUM(B2:B20*C2:C20)",
+      "=SUMPRODUCT(B2:B20,C2:C20)",
+      "=COUNT(B2:B20,C2:C20)",
+      "=AVERAGE(B2:B20,C2:C20)"
+    ],
+    "answer": [1],
+    "explanation": "SUMPRODUCT() multiplies each quantity by its corresponding unit price and adds all values."
+  },
+
+  {
+    "id": "excel_q303",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which formula calculates the weighted average when values are in B2:B5 and weights are in C2:C5?",
+    "options": [
+      "=SUM(B2:B5)/SUM(C2:C5)",
+      "=SUMPRODUCT(B2:B5,C2:C5)",
+      "=SUMPRODUCT(B2:B5,C2:C5)/SUM(C2:C5)",
+      "=AVERAGE(B2:B5,C2:C5)"
+    ],
+    "answer": [2],
+    "explanation": "Weighted average is calculated as the weighted total divided by the total weight."
+  },
+
+  {
+    "id": "excel_q304",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "A company has 5 developers earning ₹50,000 each, 3 testers earning ₹35,000 each and 2 designers earning ₹45,000 each. Which formula calculates the total monthly salary?",
+    "options": [
+      "=SUM(B2:B4,C2:C4)",
+      "=SUMPRODUCT(B2:B4,C2:C4)",
+      "=COUNT(B2:B4,C2:C4)",
+      "=AVERAGE(B2:B4,C2:C4)"
+    ],
+    "answer": [1],
+    "explanation": "SUMPRODUCT() calculates 5×50000 + 3×35000 + 2×45000."
+  },
+
+  {
+    "id": "excel_q305",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which formula calculates total Laptop sales when Product is in A2:A10, Quantity is in B2:B10 and Rate is in C2:C10?",
+    "options": [
+      "=SUMPRODUCT((A2:A10=\"Laptop\")*B2:B10*C2:C10)",
+      "=SUMPRODUCT(A2:A10*B2:B10)",
+      "=SUMPRODUCT(B2:B10+C2:C10)",
+      "=SUMPRODUCT((A2:A10=\"Laptop\")+B2:B10+C2:C10)"
+    ],
+    "answer": [0],
+    "explanation": "The product condition filters Laptop rows, and Quantity × Rate calculates their sales."
+  },
+
+  {
+    "id": "excel_q306",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which formula counts students who passed Maths, Physics and Chemistry, where the passing mark is 35?",
+    "options": [
+      "=SUMPRODUCT((B2:B10>=35)*(C2:C10>=35)*(D2:D10>=35))",
+      "=SUMPRODUCT(B2:B10+C2:C10+D2:D10)",
+      "=SUMPRODUCT((B2:B10>=35)+(C2:C10>=35)+(D2:D10>=35))",
+      "=COUNT(B2:D10)"
+    ],
+    "answer": [0],
+    "explanation": "Multiplying all three conditions means a student is counted only when all three subject marks are at least 35."
+  },
+
+  {
+    "id": "excel_q307",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "What happens when one condition in a multiple-condition SUMPRODUCT() formula is FALSE?",
+    "options": [
+      "The row is included with full value",
+      "The row contributes 0",
+      "The formula stops",
+      "The row is deleted"
+    ],
+    "answer": [1],
+    "explanation": "FALSE is treated as 0, so multiplication causes that row to contribute zero."
+  },
+
+  {
+    "id": "excel_q308",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which function is generally simpler when you only need to count one condition?",
+    "options": [
+      "SUMPRODUCT()",
+      "COUNTIF()",
+      "PRODUCT()",
+      "SUM()"
+    ],
+    "answer": [1],
+    "explanation": "COUNTIF() is specifically designed to count cells that meet one condition."
+  },
+
+  {
+    "id": "excel_q309",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which function is generally simpler when you need to sum values using multiple criteria?",
+    "options": [
+      "SUMIFS()",
+      "SUMPRODUCT()",
+      "COUNTIF()",
+      "PRODUCT()"
+    ],
+    "answer": [0],
+    "explanation": "SUMIFS() is the purpose-built function for summing values based on multiple criteria. SUMPRODUCT() is useful when more complex calculations are required."
+  },
+
+  {
+    "id": "excel_q310",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "A student has marks 80, 70 and 90 with weights 40%, 30% and 30%. Which formula calculates the weighted score?",
+    "options": [
+      "=SUM(80,70,90)",
+      "=SUMPRODUCT({80,70,90},{0.4,0.3,0.3})",
+      "=AVERAGE(80,70,90)",
+      "=PRODUCT(80,70,90)"
+    ],
+    "answer": [1],
+    "explanation": "SUMPRODUCT() multiplies each mark by its corresponding weight and adds the weighted values."
+  },
+
+  {
+    "id": "excel_q311",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which statement about SUMPRODUCT() is TRUE?",
+    "options": [
+      "It can only perform multiplication",
+      "It can only count values",
+      "It can perform multiplication, conditional counting, conditional sums and weighted calculations",
+      "It is only used for charts"
+    ],
+    "answer": [2],
+    "explanation": "SUMPRODUCT() has many uses including multiplication, conditional counting, conditional sums, weighted scores and weighted averages."
+  },
+
+  {
+    "id": "excel_q312",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "A teacher wants to count Physics students with attendance of at least 75%. Department is in C2:C20 and Attendance is in B2:B20. Which formula should be used?",
+    "options": [
+      "=SUMPRODUCT((C2:C20=\"Physics\")*(B2:B20>=75))",
+      "=SUMPRODUCT(C2:C20=\"Physics\")",
+      "=SUMPRODUCT(B2:B20>=75)",
+      "=COUNT(B2:B20,C2:C20)"
+    ],
+    "answer": [0],
+    "explanation": "The formula applies both conditions: Department = Physics AND Attendance >= 75."
+  },
+
+  {
+    "id": "excel_q313",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which formula can calculate the total discount when Quantity is B2:B10, Price is C2:C10 and Discount Percentage is D2:D10?",
+    "options": [
+      "=SUMPRODUCT(B2:B10,C2:C10,D2:D10)",
+      "=SUM(B2:B10,C2:C10,D2:D10)",
+      "=AVERAGE(B2:B10,C2:C10,D2:D10)",
+      "=COUNT(B2:B10,C2:C10,D2:D10)"
+    ],
+    "answer": [0],
+    "explanation": "SUMPRODUCT() multiplies Quantity × Price × Discount Percentage for every row and adds the results."
+  },
+
+  {
+    "id": "excel_q314",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "What should normally be true about the dimensions of the arrays used in SUMPRODUCT()?",
+    "options": [
+      "They should normally have matching dimensions",
+      "They must always contain text",
+      "They must always contain only one cell",
+      "They must have different sizes"
+    ],
+    "answer": [0],
+    "explanation": "The arrays should normally have matching dimensions so corresponding elements can be multiplied correctly."
+  },
+
+  {
+    "id": "excel_q315",
+    "type": "MCQ",
+    "difficulty_rating": 3,
+    "question": "Which formula counts records where Department is either Physics or Maths?",
+    "options": [
+      "=SUMPRODUCT(--((B2:B10=\"Physics\")+(B2:B10=\"Maths\")>0))",
+      "=SUMPRODUCT((B2:B10=\"Physics\")*(B2:B10=\"Maths\"))",
+      "=SUMPRODUCT(B2:B10=\"Physics\")",
+      "=SUMPRODUCT(B2:B10=\"Maths\")"
+    ],
+    "answer": [0],
+    "explanation": "Adding the two conditions provides OR-style logic, and >0 ensures a matching row is counted once."
+  }
+
+]
 },
 
-{ "id": "excel_u2_c7", "title": "Day 6: IFERROR() and IFNA()", "concept": { "title": "Error Handling Functions", "body": [ { "type": "heading", "text": "1. What is an Excel Error?" }, { "type": "paragraph", "text": "Excel displays an error when a formula cannot produce the expected result. Common errors include #DIV/0!, #N/A, #VALUE!, #REF!, #NAME?, #NUM!, and #NULL!." }, { "type": "table", "headers": ["Error", "Common Meaning"], "rows": [ ["#DIV/0!", "A number is being divided by zero or a blank cell"], ["#N/A", "A value is not available or a lookup cannot find a match"], ["#VALUE!", "The formula contains an incorrect value or data type"], ["#REF!", "The formula contains an invalid cell reference"], ["#NAME?", "Excel does not recognize a function or name"], ["#NUM!", "A formula has an invalid numeric value"] ] }, { "type": "heading", "text": "2. IFERROR() Function" }, { "type": "paragraph", "text": "IFERROR() checks whether a formula produces an error. If there is an error, it returns a specified alternative value. If there is no error, it returns the original result." }, { "type": "syntax", "code": "Syntax:\n\n=IFERROR(value,value_if_error)" }, { "type": "table", "headers": ["Argument", "Meaning"], "rows": [ ["value", "Formula or expression to evaluate"], ["value_if_error", "Value returned when the formula produces an error"] ] }, { "type": "example", "title": "Division by Zero", "before": "A2 contains 100 and B2 contains 0.", "steps": [ "Normal division = A2/B2.", "Excel cannot divide 100 by zero.", "Excel returns #DIV/0!.", "Use IFERROR() to provide a friendly result." ], "formula": "=IFERROR(A2/B2,0)", "after": "0" }, { "type": "heading", "text": "3. IFERROR() with Text" }, { "type": "syntax", "code": "=IFERROR(A2/B2,\"Not Available\")" }, { "type": "paragraph", "text": "Instead of displaying an Excel error, the formula displays the text Not Available when an error occurs." }, { "type": "heading", "text": "4. IFERROR() with Percentage Calculation" }, { "type": "example", "title": "Percentage Calculation", "before": "Obtained marks are in B2 and total marks are in C2.", "steps": [ "Calculate B2/C2.", "If C2 is zero, normal division produces #DIV/0!.", "IFERROR() catches the error.", "Display 0% instead." ], "formula": "=IFERROR(B2/C2,0)", "after": "Percentage or 0" }, { "type": "heading", "text": "5. IFERROR() with VLOOKUP()" }, { "type": "paragraph", "text": "IFERROR() is commonly used with lookup functions to handle situations where a matching value cannot be found." }, { "type": "syntax", "code": "=IFERROR(VLOOKUP(A2,$F$2:$H$20,3,FALSE),\"Not Found\")" }, { "type": "example", "title": "Student Lookup", "before": "Find the student name using a Roll Number.", "steps": [ "VLOOKUP() searches for the Roll Number.", "If the Roll Number exists, the student name is returned.", "If it does not exist, VLOOKUP() may return #N/A.", "IFERROR() replaces the error with Not Found." ], "after": "Student Name or Not Found" }, { "type": "heading", "text": "6. IFNA() Function" }, { "type": "paragraph", "text": "IFNA() handles only the #N/A error. If the formula produces #N/A, IFNA() returns the specified alternative value. Other errors are not replaced." }, { "type": "syntax", "code": "Syntax:\n\n=IFNA(value,value_if_na)" }, { "type": "table", "headers": ["Argument", "Meaning"], "rows": [ ["value", "Formula or expression to evaluate"], ["value_if_na", "Value returned when the result is #N/A"] ] }, { "type": "example", "title": "IFNA() with VLOOKUP()", "before": "Search for a Roll Number that may not exist.", "steps": [ "VLOOKUP() searches the lookup table.", "If the Roll Number is missing, VLOOKUP() returns #N/A.", "IFNA() catches only the #N/A error.", "Return Not Found instead." ], "formula": "=IFNA(VLOOKUP(A2,$F$2:$H$20,3,FALSE),\"Not Found\")", "after": "Student Name or Not Found" }, { "type": "heading", "text": "7. IFERROR() vs IFNA()" }, { "type": "table", "headers": ["Function", "Handles", "Example Use"], "rows": [ ["IFERROR()", "All Excel errors", "Division, lookup, calculations"], ["IFNA()", "Only #N/A", "Lookup formulas"] ] }, { "type": "heading", "text": "8. Difference with Examples" }, { "type": "table", "headers": ["Formula", "Error", "Result"], "rows": [ ["=IFERROR(10/0,\"Error\")", "#DIV/0!", "Error"], ["=IFNA(10/0,\"Not Found\")", "#DIV/0!", "#DIV/0!"], ["=IFERROR(NA(),\"Error\")", "#N/A", "Error"], ["=IFNA(NA(),\"Not Found\")", "#N/A", "Not Found"] ] }, { "type": "heading", "text": "9. Practical Student Result Example" }, { "type": "table", "headers": ["Student", "Marks", "Total", "Percentage"], "rows": [ ["Muthu", 85, 100, "85%"], ["Ravi", 72, 100, "72%"], ["Priya", 90, 100, "90%"], ["Anitha", 75, 0, "Error"] ] }, { "type": "syntax", "code": "=IFERROR(B2/C2,0)" }, { "type": "paragraph", "text": "For Anitha, Total is 0. A normal division formula would produce #DIV/0!. IFERROR() can return 0 instead." }, { "type": "heading", "text": "10. Using IFERROR() to Keep Reports Clean" }, { "type": "paragraph", "text": "IFERROR() is useful in dashboards and reports because it prevents technical Excel errors from appearing in the final report." }, { "type": "table", "headers": ["Without IFERROR()", "With IFERROR()"], "rows": [ ["#DIV/0!", "0"], ["#N/A", "Not Found"], ["#VALUE!", "Invalid Data"], ["#REF!", "Check Reference"] ] }, { "type": "heading", "text": "11. Choosing Between IFERROR() and IFNA()" }, { "type": "table", "headers": ["Situation", "Recommended Function"], "rows": [ ["You want to handle any Excel error", "IFERROR()"], ["You only want to handle #N/A", "IFNA()"], ["Lookup result may not exist", "IFNA() or IFERROR()"], ["Division may result in #DIV/0!", "IFERROR()"], ["You want other errors to remain visible", "IFNA()"] ] }, { "type": "heading", "text": "12. Common Mistakes" }, { "type": "table", "headers": ["Mistake", "Correct Approach"], "rows": [ ["Using IFERROR() without understanding the original error", "First identify why the formula is failing"], ["Using IFERROR() to hide every error", "Use it only when an alternative result is meaningful"], ["Assuming IFNA() handles all errors", "IFNA() handles only #N/A"], ["Using text without quotation marks", "Use \"Not Found\" or another quoted text"], ["Returning blank unnecessarily", "Choose a meaningful alternative result"] ] }, { "type": "heading", "text": "13. Practical Exercise" }, { "type": "exercise", "title": "Practice Exercise", "steps": [ "Create a student marks table with Obtained Marks and Total Marks.", "Calculate percentage using normal division.", "Create a situation where Total Marks is zero.", "Use IFERROR() to prevent #DIV/0!.", "Use IFERROR() to display Not Available.", "Create a student lookup using VLOOKUP().", "Use IFERROR() to display Not Found when the student does not exist.", "Replace IFERROR() with IFNA() and observe the difference." ] }, { "type": "heading", "text": "14. Challenge Exercise" }, { "type": "exercise", "title": "Result Report Challenge", "steps": [ "Create a student result report.", "Calculate percentage.", "Handle zero total marks using IFERROR().", "Use XLOOKUP() or VLOOKUP() to retrieve student details.", "Use IFNA() to display Student Not Found when the ID does not exist.", "Compare the behavior of IFERROR() and IFNA()." ] }, { "type": "tip", "title": "Important Note", "text": "IFERROR() handles all Excel errors, while IFNA() handles only the #N/A error. Do not use error-handling functions simply to hide problems; use them when you have a meaningful alternative result." } ] },
+{ "id": "excel_u2_c8", "title": "Day 7: IFERROR() and IFNA()", "concept": { "title": "Error Handling Functions", "body": [ { "type": "heading", "text": "1. What is an Excel Error?" }, { "type": "paragraph", "text": "Excel displays an error when a formula cannot produce the expected result. Common errors include #DIV/0!, #N/A, #VALUE!, #REF!, #NAME?, #NUM!, and #NULL!." }, { "type": "table", "headers": ["Error", "Common Meaning"], "rows": [ ["#DIV/0!", "A number is being divided by zero or a blank cell"], ["#N/A", "A value is not available or a lookup cannot find a match"], ["#VALUE!", "The formula contains an incorrect value or data type"], ["#REF!", "The formula contains an invalid cell reference"], ["#NAME?", "Excel does not recognize a function or name"], ["#NUM!", "A formula has an invalid numeric value"] ] }, { "type": "heading", "text": "2. IFERROR() Function" }, { "type": "paragraph", "text": "IFERROR() checks whether a formula produces an error. If there is an error, it returns a specified alternative value. If there is no error, it returns the original result." }, { "type": "syntax", "code": "Syntax:\n\n=IFERROR(value,value_if_error)" }, { "type": "table", "headers": ["Argument", "Meaning"], "rows": [ ["value", "Formula or expression to evaluate"], ["value_if_error", "Value returned when the formula produces an error"] ] }, { "type": "example", "title": "Division by Zero", "before": "A2 contains 100 and B2 contains 0.", "steps": [ "Normal division = A2/B2.", "Excel cannot divide 100 by zero.", "Excel returns #DIV/0!.", "Use IFERROR() to provide a friendly result." ], "formula": "=IFERROR(A2/B2,0)", "after": "0" }, { "type": "heading", "text": "3. IFERROR() with Text" }, { "type": "syntax", "code": "=IFERROR(A2/B2,\"Not Available\")" }, { "type": "paragraph", "text": "Instead of displaying an Excel error, the formula displays the text Not Available when an error occurs." }, { "type": "heading", "text": "4. IFERROR() with Percentage Calculation" }, { "type": "example", "title": "Percentage Calculation", "before": "Obtained marks are in B2 and total marks are in C2.", "steps": [ "Calculate B2/C2.", "If C2 is zero, normal division produces #DIV/0!.", "IFERROR() catches the error.", "Display 0% instead." ], "formula": "=IFERROR(B2/C2,0)", "after": "Percentage or 0" }, { "type": "heading", "text": "5. IFERROR() with VLOOKUP()" }, { "type": "paragraph", "text": "IFERROR() is commonly used with lookup functions to handle situations where a matching value cannot be found." }, { "type": "syntax", "code": "=IFERROR(VLOOKUP(A2,$F$2:$H$20,3,FALSE),\"Not Found\")" }, { "type": "example", "title": "Student Lookup", "before": "Find the student name using a Roll Number.", "steps": [ "VLOOKUP() searches for the Roll Number.", "If the Roll Number exists, the student name is returned.", "If it does not exist, VLOOKUP() may return #N/A.", "IFERROR() replaces the error with Not Found." ], "after": "Student Name or Not Found" }, { "type": "heading", "text": "6. IFNA() Function" }, { "type": "paragraph", "text": "IFNA() handles only the #N/A error. If the formula produces #N/A, IFNA() returns the specified alternative value. Other errors are not replaced." }, { "type": "syntax", "code": "Syntax:\n\n=IFNA(value,value_if_na)" }, { "type": "table", "headers": ["Argument", "Meaning"], "rows": [ ["value", "Formula or expression to evaluate"], ["value_if_na", "Value returned when the result is #N/A"] ] }, { "type": "example", "title": "IFNA() with VLOOKUP()", "before": "Search for a Roll Number that may not exist.", "steps": [ "VLOOKUP() searches the lookup table.", "If the Roll Number is missing, VLOOKUP() returns #N/A.", "IFNA() catches only the #N/A error.", "Return Not Found instead." ], "formula": "=IFNA(VLOOKUP(A2,$F$2:$H$20,3,FALSE),\"Not Found\")", "after": "Student Name or Not Found" }, { "type": "heading", "text": "7. IFERROR() vs IFNA()" }, { "type": "table", "headers": ["Function", "Handles", "Example Use"], "rows": [ ["IFERROR()", "All Excel errors", "Division, lookup, calculations"], ["IFNA()", "Only #N/A", "Lookup formulas"] ] }, { "type": "heading", "text": "8. Difference with Examples" }, { "type": "table", "headers": ["Formula", "Error", "Result"], "rows": [ ["=IFERROR(10/0,\"Error\")", "#DIV/0!", "Error"], ["=IFNA(10/0,\"Not Found\")", "#DIV/0!", "#DIV/0!"], ["=IFERROR(NA(),\"Error\")", "#N/A", "Error"], ["=IFNA(NA(),\"Not Found\")", "#N/A", "Not Found"] ] }, { "type": "heading", "text": "9. Practical Student Result Example" }, { "type": "table", "headers": ["Student", "Marks", "Total", "Percentage"], "rows": [ ["Muthu", 85, 100, "85%"], ["Ravi", 72, 100, "72%"], ["Priya", 90, 100, "90%"], ["Anitha", 75, 0, "Error"] ] }, { "type": "syntax", "code": "=IFERROR(B2/C2,0)" }, { "type": "paragraph", "text": "For Anitha, Total is 0. A normal division formula would produce #DIV/0!. IFERROR() can return 0 instead." }, { "type": "heading", "text": "10. Using IFERROR() to Keep Reports Clean" }, { "type": "paragraph", "text": "IFERROR() is useful in dashboards and reports because it prevents technical Excel errors from appearing in the final report." }, { "type": "table", "headers": ["Without IFERROR()", "With IFERROR()"], "rows": [ ["#DIV/0!", "0"], ["#N/A", "Not Found"], ["#VALUE!", "Invalid Data"], ["#REF!", "Check Reference"] ] }, { "type": "heading", "text": "11. Choosing Between IFERROR() and IFNA()" }, { "type": "table", "headers": ["Situation", "Recommended Function"], "rows": [ ["You want to handle any Excel error", "IFERROR()"], ["You only want to handle #N/A", "IFNA()"], ["Lookup result may not exist", "IFNA() or IFERROR()"], ["Division may result in #DIV/0!", "IFERROR()"], ["You want other errors to remain visible", "IFNA()"] ] }, { "type": "heading", "text": "12. Common Mistakes" }, { "type": "table", "headers": ["Mistake", "Correct Approach"], "rows": [ ["Using IFERROR() without understanding the original error", "First identify why the formula is failing"], ["Using IFERROR() to hide every error", "Use it only when an alternative result is meaningful"], ["Assuming IFNA() handles all errors", "IFNA() handles only #N/A"], ["Using text without quotation marks", "Use \"Not Found\" or another quoted text"], ["Returning blank unnecessarily", "Choose a meaningful alternative result"] ] }, { "type": "heading", "text": "13. Practical Exercise" }, { "type": "exercise", "title": "Practice Exercise", "steps": [ "Create a student marks table with Obtained Marks and Total Marks.", "Calculate percentage using normal division.", "Create a situation where Total Marks is zero.", "Use IFERROR() to prevent #DIV/0!.", "Use IFERROR() to display Not Available.", "Create a student lookup using VLOOKUP().", "Use IFERROR() to display Not Found when the student does not exist.", "Replace IFERROR() with IFNA() and observe the difference." ] }, { "type": "heading", "text": "14. Challenge Exercise" }, { "type": "exercise", "title": "Result Report Challenge", "steps": [ "Create a student result report.", "Calculate percentage.", "Handle zero total marks using IFERROR().", "Use XLOOKUP() or VLOOKUP() to retrieve student details.", "Use IFNA() to display Student Not Found when the ID does not exist.", "Compare the behavior of IFERROR() and IFNA()." ] }, { "type": "tip", "title": "Important Note", "text": "IFERROR() handles all Excel errors, while IFNA() handles only the #N/A error. Do not use error-handling functions simply to hide problems; use them when you have a meaningful alternative result." } ] },
 "questions": [ { "id": "excel_q224", "type": "MCQ", "difficulty_rating": 1, "question": "What is the primary purpose of IFERROR()?", "options": [ "To create charts", "To handle errors returned by a formula", "To count cells", "To sort data" ], "answer": [1], "explanation": "IFERROR() returns an alternative value when a formula produces an error." }, { "id": "excel_q225", "type": "MCQ", "difficulty_rating": 1, "question": "Which is the correct syntax for IFERROR()?", "options": [ "=IFERROR(value,value_if_error)", "=IFERROR(value_if_error,value)", "=IFERROR(error,value)", "=IFERROR(value)" ], "answer": [0], "explanation": "Correct syntax is =IFERROR(value,value_if_error)." }, { "id": "excel_q227", "type": "MCQ", "difficulty_rating": 1, "question": "Which Excel error occurs when a number is divided by zero?", "options": [ "#N/A", "#VALUE!", "#DIV/0!", "#REF!" ], "answer": [2], "explanation": "#DIV/0! occurs when division by zero happens." }, { "id": "excel_q228", "type": "MCQ", "difficulty_rating": 1, "question": "What is the primary purpose of IFNA()?", "options": [ "To handle all Excel errors", "To handle only the #N/A error", "To calculate an average", "To remove duplicate data" ], "answer": [1], "explanation": "IFNA() handles only #N/A errors." }, { "id": "excel_q230", "type": "MCQ", "difficulty_rating": 2, "question": "What is the main difference between IFERROR() and IFNA()?", "options": [ "IFERROR() handles all Excel errors while IFNA() handles only #N/A", "IFNA() handles all errors while IFERROR() handles only #N/A", "Both functions handle only #DIV/0!", "There is no difference" ], "answer": [0], "explanation": "IFERROR() handles all errors, IFNA() handles only #N/A." }, { "id": "excel_q231", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula displays Not Found if a VLOOKUP() returns #N/A?", "options": [ "=IFERROR(VLOOKUP(A2,F2:H20,3,FALSE),\"Not Found\")", "=IFNA(VLOOKUP(A2,F2:H20,3,FALSE),\"Not Found\")", "Both A and B", "Neither A nor B" ], "answer": [2], "explanation": "Both IFERROR() and IFNA() can handle #N/A errors." } ] 
 
 }
