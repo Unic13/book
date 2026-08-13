@@ -448,7 +448,7 @@
 
 {
   "id": "excel_u1_c1.0",
-  "title": "Formula Basics: Operators, Precedence and Student Totals",
+  "title": "Day 1: Formula Basics: Operators, Precedence and Student Totals",
   "concept": {
     "title": "Basic Excel Formulas",
     "body": [
@@ -1233,10 +1233,6 @@
 
 },
 
-
-
-
-
         {
           "id": "excel_u2_c1",
           "title": "Day 1: Introduction to Excel Functions",
@@ -1339,7 +1335,7 @@
         },
         {
           "id": "excel_u2_c2",
-          "title": "ARRAYFORMULA",
+          "title": "Day 1: ARRAYFORMULA",
           "concept": {
             "title": "ARRAYFORMULA",
             "body": [
@@ -1978,7 +1974,7 @@
 
 {
   "id": "excel_u2_c4.0",
-  "title": "COUNT(), COUNTA() and COUNTBLANK()",
+  "title": "Day 3:COUNT(), COUNTA() and COUNTBLANK()",
   "concept": {
     "title": "Counting Numbers, Non-Blank Cells and Blank Cells",
     "body": [
@@ -4325,7 +4321,7 @@
 
 {
   "id": "excel_u2_c5",
-  "title": "Day 4: MINIFS() and MAXIFS()",
+  "title": "Day 3: MINIFS() and MAXIFS()",
   "concept": {
     "title": "Conditional Minimum and Maximum",
     "body": [
@@ -4570,14 +4566,14 @@
   },
    "questions": [ { "id": "excel_q201", "type": "MCQ", "difficulty_rating": 1, "question": "What is the primary purpose of MINIFS()?", "options": [ "To count cells based on conditions", "To find the smallest value based on one or more conditions", "To calculate the average of a range", "To find the largest value without conditions" ], "answer": [1], "explanation": "MINIFS() returns the smallest value from a range that satisfies one or more conditions." }, { "id": "excel_q202", "type": "MCQ", "difficulty_rating": 1, "question": "What is the primary purpose of MAXIFS()?", "options": [ "To find the largest value based on one or more conditions", "To count cells based on conditions", "To calculate the smallest value", "To calculate an average" ], "answer": [0], "explanation": "MAXIFS() returns the largest value from a range that satisfies one or more conditions." }, { "id": "excel_q203", "type": "MCQ", "difficulty_rating": 1, "question": "Which is the correct syntax for MINIFS()?", "options": [ "=MINIFS(criteria_range,criteria,min_range)", "=MINIFS(min_range,criteria_range,criteria)", "=MINIFS(min_range,criteria)", "=MINIFS(criteria,min_range,criteria_range)" ], "answer": [1], "explanation": "MINIFS() starts with the min_range followed by criteria_range and criteria." }, { "id": "excel_q204", "type": "MCQ", "difficulty_rating": 1, "question": "Which is the correct syntax for MAXIFS()?", "options": [ "=MAXIFS(criteria_range,criteria,max_range)", "=MAXIFS(max_range,criteria_range,criteria)", "=MAXIFS(criteria,max_range)", "=MAXIFS(max_range,criteria)" ], "answer": [1], "explanation": "MAXIFS() starts with the max_range followed by criteria_range and criteria." }, { "id": "excel_q205", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula finds the lowest Physics mark?", "options": [ "=MIN(D2:D20)", "=MINIFS(D2:D20,B2:B20,\"Physics\")", "=MAXIFS(D2:D20,B2:B20,\"Physics\")", "=COUNTIF(B2:B20,\"Physics\")" ], "answer": [1], "explanation": "MINIFS() finds the minimum mark only among Physics students." } ]
 },
-{ "id": "excel_u2_c6", "title": "Day 5: AND(), OR(), NOT() and IFS()", "concept": { "title": "Logical Functions", "body": [ { "type": "heading", "text": "1. Introduction to Logical Functions" }, { "type": "paragraph", "text": "Logical functions in Excel are used to evaluate conditions and return TRUE or FALSE. These functions help in decision-making by testing whether conditions are satisfied or not. They are widely used with IF() and IFS() functions to build logical formulas." }, { "type": "note", "text": "Logical functions always return either TRUE or FALSE based on the evaluation of conditions." }, { "type": "table", "headers": ["Function", "Purpose"], "rows": [ ["AND()", "Returns TRUE when all conditions are TRUE"], ["OR()", "Returns TRUE when at least one condition is TRUE"], ["NOT()", "Reverses TRUE to FALSE or FALSE to TRUE"], ["IFS()", "Checks multiple conditions and returns result for first TRUE condition"] ] }, { "type": "heading", "text": "2. AND() Function" }, { "type": "paragraph", "text": "AND() is a logical function that checks multiple conditions and returns TRUE only when ALL conditions are TRUE. If even one condition is FALSE, the result becomes FALSE." }, { "type": "syntax", "code": "Syntax:\n\n=AND(logical1,[logical2],...)" }, { "type": "heading", "text": "AND() Truth Table" }, { "type": "table", "headers": ["Condition 1", "Condition 2", "Result"], "rows": [ ["TRUE", "TRUE", "TRUE"], ["TRUE", "FALSE", "FALSE"], ["FALSE", "TRUE", "FALSE"], ["FALSE", "FALSE", "FALSE"] ] }, { "type": "example", "title": "Student Eligibility", "before": "A student must score at least 35 in Maths and Physics.", "steps": [ "Check Maths >= 35", "Check Physics >= 35", "Both conditions must be TRUE", "AND() returns TRUE only if both are satisfied" ], "formula": "=AND(B2>=35,C2>=35)", "after": "TRUE or FALSE" }, { "type": "heading", "text": "3. AND() with IF()" }, { "type": "paragraph", "text": "AND() is commonly used inside IF() when multiple conditions must be satisfied together." }, { "type": "syntax", "code": "=IF(AND(B2>=35,C2>=35),\"Pass\",\"Fail\")" }, { "type": "video", "url": "https://youtu.be/gQpk4U4vZ00","start": ""  }, { "type": "heading", "text": "4. OR() Function" }, { "type": "paragraph", "text": "OR() is a logical function that checks multiple conditions and returns TRUE if AT LEAST ONE condition is TRUE. It returns FALSE only when all conditions are FALSE." }, { "type": "syntax", "code": "Syntax:\n\n=OR(logical1,[logical2],...)" }, { "type": "heading", "text": "OR() Truth Table" }, { "type": "table", "headers": ["Condition 1", "Condition 2", "Result"], "rows": [ ["TRUE", "TRUE", "TRUE"], ["TRUE", "FALSE", "TRUE"], ["FALSE", "TRUE", "TRUE"], ["FALSE", "FALSE", "FALSE"] ] }, { "type": "example", "title": "Scholarship Eligibility", "before": "A student qualifies if Maths >= 90 OR Physics >= 90.", "steps": [ "Check Maths >= 90", "Check Physics >= 90", "At least one condition must be TRUE", "OR() returns TRUE if any one condition is satisfied" ], "formula": "=OR(B2>=90,C2>=90)", "after": "TRUE or FALSE" }, { "type": "heading", "text": "5. OR() with IF()" }, { "type": "syntax", "code": "=IF(OR(B2>=90,C2>=90),\"Eligible\",\"Not Eligible\")" }, { "type": "video", "url": "https://youtu.be/91Ouz2yrOPE","start": ""  }, { "type": "heading", "text": "6. NOT() Function" }, { "type": "paragraph", "text": "NOT() is a logical function that reverses the result of a condition. It converts TRUE into FALSE and FALSE into TRUE." }, { "type": "syntax", "code": "Syntax:\n\n=NOT(logical)" }, { "type": "heading", "text": "NOT() Truth Table" }, { "type": "table", "headers": ["Input", "Result"], "rows": [ ["TRUE", "FALSE"], ["FALSE", "TRUE"] ] }, { "type": "example", "title": "NOT() Example", "before": "A student is not absent.", "steps": [ "Check if Attendance = Absent", "NOT() reverses the result", "If not absent, result becomes TRUE" ], "formula": "=NOT(B2=\"Absent\")", "after": "TRUE when student is present" }, { "type": "video", "url": "https://youtu.be/ONBeGO7yrHQ","start": ""  },  { "type": "heading", "text": "7. Combined Use of AND, OR, NOT" }, { "type": "paragraph", "text": "Logical functions can be combined to create complex decision-making conditions in Excel." }, { "type": "example", "title": "Admission Eligibility", "before": "Student must have Maths >= 75 and must NOT be disqualified.", "steps": [ "Check Maths >= 75", "Check NOT Disqualified", "AND() ensures both conditions are TRUE" ], "formula": "=IF(AND(B2>=75,NOT(C2=\"Yes\")),\"Eligible\",\"Not Eligible\")", "after": "Eligible or Not Eligible" }, { "type": "heading", "text": "8. IFS() Function" }, { "type": "paragraph", "text": "IFS() is a logical function that checks multiple conditions and returns the result for the FIRST condition that is TRUE. It is an alternative to nested IF() and is easier to read." }, { "type": "syntax", "code": "Syntax:\n\n=IFS(test1,value1,[test2,value2],...)" }, { "type": "heading", "text": "9. IFS() Grade Example" }, { "type": "table", "headers": ["Marks", "Grade"], "rows": [ ["90+", "A+"], ["80–89", "A"], ["70–79", "B"], ["60–69", "C"], ["50–59", "D"], ["35–49", "E"], ["Below 35", "Fail"] ] }, { "type": "syntax", "code": "=IFS(B2>=90,\"A+\",B2>=80,\"A\",B2>=70,\"B\",B2>=60,\"C\",B2>=50,\"D\",B2>=35,\"E\",TRUE,\"Fail\")" }, { "type": "heading", "text": "10. Key Difference Summary" }, { "type": "table", "headers": ["Function", "Meaning"], "rows": [ ["AND()", "All conditions must be TRUE"], ["OR()", "Any one condition must be TRUE"], ["NOT()", "Reverses TRUE/FALSE"], ["IFS()", "Returns result of first TRUE condition"] ] }, { "type": "tip", "title": "Memory Trick", "text": "AND = ALL conditions must pass, OR = ANY condition can pass, NOT = reverse result, IFS = first TRUE wins." } ] },
+{ "id": "excel_u2_c6", "title": "Day 4: AND(), OR(), NOT() and IFS()", "concept": { "title": "Logical Functions", "body": [ { "type": "heading", "text": "1. Introduction to Logical Functions" }, { "type": "paragraph", "text": "Logical functions in Excel are used to evaluate conditions and return TRUE or FALSE. These functions help in decision-making by testing whether conditions are satisfied or not. They are widely used with IF() and IFS() functions to build logical formulas." }, { "type": "note", "text": "Logical functions always return either TRUE or FALSE based on the evaluation of conditions." }, { "type": "table", "headers": ["Function", "Purpose"], "rows": [ ["AND()", "Returns TRUE when all conditions are TRUE"], ["OR()", "Returns TRUE when at least one condition is TRUE"], ["NOT()", "Reverses TRUE to FALSE or FALSE to TRUE"], ["IFS()", "Checks multiple conditions and returns result for first TRUE condition"] ] }, { "type": "heading", "text": "2. AND() Function" }, { "type": "paragraph", "text": "AND() is a logical function that checks multiple conditions and returns TRUE only when ALL conditions are TRUE. If even one condition is FALSE, the result becomes FALSE." }, { "type": "syntax", "code": "Syntax:\n\n=AND(logical1,[logical2],...)" }, { "type": "heading", "text": "AND() Truth Table" }, { "type": "table", "headers": ["Condition 1", "Condition 2", "Result"], "rows": [ ["TRUE", "TRUE", "TRUE"], ["TRUE", "FALSE", "FALSE"], ["FALSE", "TRUE", "FALSE"], ["FALSE", "FALSE", "FALSE"] ] }, { "type": "example", "title": "Student Eligibility", "before": "A student must score at least 35 in Maths and Physics.", "steps": [ "Check Maths >= 35", "Check Physics >= 35", "Both conditions must be TRUE", "AND() returns TRUE only if both are satisfied" ], "formula": "=AND(B2>=35,C2>=35)", "after": "TRUE or FALSE" }, { "type": "heading", "text": "3. AND() with IF()" }, { "type": "paragraph", "text": "AND() is commonly used inside IF() when multiple conditions must be satisfied together." }, { "type": "syntax", "code": "=IF(AND(B2>=35,C2>=35),\"Pass\",\"Fail\")" }, { "type": "video", "url": "https://youtu.be/gQpk4U4vZ00","start": ""  }, { "type": "heading", "text": "4. OR() Function" }, { "type": "paragraph", "text": "OR() is a logical function that checks multiple conditions and returns TRUE if AT LEAST ONE condition is TRUE. It returns FALSE only when all conditions are FALSE." }, { "type": "syntax", "code": "Syntax:\n\n=OR(logical1,[logical2],...)" }, { "type": "heading", "text": "OR() Truth Table" }, { "type": "table", "headers": ["Condition 1", "Condition 2", "Result"], "rows": [ ["TRUE", "TRUE", "TRUE"], ["TRUE", "FALSE", "TRUE"], ["FALSE", "TRUE", "TRUE"], ["FALSE", "FALSE", "FALSE"] ] }, { "type": "example", "title": "Scholarship Eligibility", "before": "A student qualifies if Maths >= 90 OR Physics >= 90.", "steps": [ "Check Maths >= 90", "Check Physics >= 90", "At least one condition must be TRUE", "OR() returns TRUE if any one condition is satisfied" ], "formula": "=OR(B2>=90,C2>=90)", "after": "TRUE or FALSE" }, { "type": "heading", "text": "5. OR() with IF()" }, { "type": "syntax", "code": "=IF(OR(B2>=90,C2>=90),\"Eligible\",\"Not Eligible\")" }, { "type": "video", "url": "https://youtu.be/91Ouz2yrOPE","start": ""  }, { "type": "heading", "text": "6. NOT() Function" }, { "type": "paragraph", "text": "NOT() is a logical function that reverses the result of a condition. It converts TRUE into FALSE and FALSE into TRUE." }, { "type": "syntax", "code": "Syntax:\n\n=NOT(logical)" }, { "type": "heading", "text": "NOT() Truth Table" }, { "type": "table", "headers": ["Input", "Result"], "rows": [ ["TRUE", "FALSE"], ["FALSE", "TRUE"] ] }, { "type": "example", "title": "NOT() Example", "before": "A student is not absent.", "steps": [ "Check if Attendance = Absent", "NOT() reverses the result", "If not absent, result becomes TRUE" ], "formula": "=NOT(B2=\"Absent\")", "after": "TRUE when student is present" }, { "type": "video", "url": "https://youtu.be/ONBeGO7yrHQ","start": ""  },  { "type": "heading", "text": "7. Combined Use of AND, OR, NOT" }, { "type": "paragraph", "text": "Logical functions can be combined to create complex decision-making conditions in Excel." }, { "type": "example", "title": "Admission Eligibility", "before": "Student must have Maths >= 75 and must NOT be disqualified.", "steps": [ "Check Maths >= 75", "Check NOT Disqualified", "AND() ensures both conditions are TRUE" ], "formula": "=IF(AND(B2>=75,NOT(C2=\"Yes\")),\"Eligible\",\"Not Eligible\")", "after": "Eligible or Not Eligible" }, { "type": "heading", "text": "8. IFS() Function" }, { "type": "paragraph", "text": "IFS() is a logical function that checks multiple conditions and returns the result for the FIRST condition that is TRUE. It is an alternative to nested IF() and is easier to read." }, { "type": "syntax", "code": "Syntax:\n\n=IFS(test1,value1,[test2,value2],...)" }, { "type": "heading", "text": "9. IFS() Grade Example" }, { "type": "table", "headers": ["Marks", "Grade"], "rows": [ ["90+", "A+"], ["80–89", "A"], ["70–79", "B"], ["60–69", "C"], ["50–59", "D"], ["35–49", "E"], ["Below 35", "Fail"] ] }, { "type": "syntax", "code": "=IFS(B2>=90,\"A+\",B2>=80,\"A\",B2>=70,\"B\",B2>=60,\"C\",B2>=50,\"D\",B2>=35,\"E\",TRUE,\"Fail\")" }, { "type": "heading", "text": "10. Key Difference Summary" }, { "type": "table", "headers": ["Function", "Meaning"], "rows": [ ["AND()", "All conditions must be TRUE"], ["OR()", "Any one condition must be TRUE"], ["NOT()", "Reverses TRUE/FALSE"], ["IFS()", "Returns result of first TRUE condition"] ] }, { "type": "tip", "title": "Memory Trick", "text": "AND = ALL conditions must pass, OR = ANY condition can pass, NOT = reverse result, IFS = first TRUE wins." } ] },
 
 "questions": [ { "id": "excel_q210", "type": "MCQ", "difficulty_rating": 2, "question": "AND() returns TRUE when:", "options": [ "At least one condition is TRUE", "All conditions are TRUE", "All conditions are FALSE", "Only the first condition is TRUE" ], "answer": [1], "explanation": "AND() returns TRUE only when all conditions are TRUE." }, { "id": "excel_q211", "type": "MCQ", "difficulty_rating": 1, "question": "OR() returns TRUE when:", "options": [ "All conditions are TRUE", "At least one condition is TRUE", "All conditions are FALSE", "No conditions are provided" ], "answer": [1], "explanation": "OR() returns TRUE when at least one condition is TRUE." }, { "id": "excel_q212", "type": "MCQ", "difficulty_rating": 1, "question": "What does NOT() do?", "options": [ "Adds two conditions", "Checks multiple conditions", "Reverses a logical result", "Calculates an average" ], "answer": [2], "explanation": "NOT() reverses TRUE to FALSE and FALSE to TRUE." }, { "id": "excel_q217", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula checks whether Maths and Physics marks are both at least 35?", "options": [ "=AND(B2>=35,C2>=35)", "=OR(B2>=35,C2>=35)", "=NOT(B2>=35,C2>=35)", "=AND(B2,C2)" ], "answer": [0], "explanation": "AND() is used because both conditions must be TRUE." }, { "id": "excel_q220", "type": "MCQ", "difficulty_rating": 2, "question": "What is the primary purpose of IFS()?", "options": [ "To calculate a total", "To check multiple conditions and return the result for the first TRUE condition", "To find the largest number", "To remove errors" ], "answer": [1], "explanation": "IFS() evaluates conditions from left to right and returns the first TRUE result." } ]
 
 },
 {
   "id": "excel_u2_c7",
-  "title": "Day 6: SUMPRODUCT() Function",
+  "title": "Day 4: SUMPRODUCT() Function",
   "concept": {
     "title": "SUMPRODUCT() - Multiplication, Counting, Conditional Sum and Weighted Analysis",
     "body": [
@@ -5842,9 +5838,4388 @@
 ]
 },
 
-{ "id": "excel_u2_c8", "title": "Day 7: IFERROR() and IFNA()", "concept": { "title": "Error Handling Functions", "body": [ { "type": "heading", "text": "1. What is an Excel Error?" }, { "type": "paragraph", "text": "Excel displays an error when a formula cannot produce the expected result. Common errors include #DIV/0!, #N/A, #VALUE!, #REF!, #NAME?, #NUM!, and #NULL!." }, { "type": "table", "headers": ["Error", "Common Meaning"], "rows": [ ["#DIV/0!", "A number is being divided by zero or a blank cell"], ["#N/A", "A value is not available or a lookup cannot find a match"], ["#VALUE!", "The formula contains an incorrect value or data type"], ["#REF!", "The formula contains an invalid cell reference"], ["#NAME?", "Excel does not recognize a function or name"], ["#NUM!", "A formula has an invalid numeric value"] ] }, { "type": "heading", "text": "2. IFERROR() Function" }, { "type": "paragraph", "text": "IFERROR() checks whether a formula produces an error. If there is an error, it returns a specified alternative value. If there is no error, it returns the original result." }, { "type": "syntax", "code": "Syntax:\n\n=IFERROR(value,value_if_error)" }, { "type": "table", "headers": ["Argument", "Meaning"], "rows": [ ["value", "Formula or expression to evaluate"], ["value_if_error", "Value returned when the formula produces an error"] ] }, { "type": "example", "title": "Division by Zero", "before": "A2 contains 100 and B2 contains 0.", "steps": [ "Normal division = A2/B2.", "Excel cannot divide 100 by zero.", "Excel returns #DIV/0!.", "Use IFERROR() to provide a friendly result." ], "formula": "=IFERROR(A2/B2,0)", "after": "0" }, { "type": "heading", "text": "3. IFERROR() with Text" }, { "type": "syntax", "code": "=IFERROR(A2/B2,\"Not Available\")" }, { "type": "paragraph", "text": "Instead of displaying an Excel error, the formula displays the text Not Available when an error occurs." }, { "type": "heading", "text": "4. IFERROR() with Percentage Calculation" }, { "type": "example", "title": "Percentage Calculation", "before": "Obtained marks are in B2 and total marks are in C2.", "steps": [ "Calculate B2/C2.", "If C2 is zero, normal division produces #DIV/0!.", "IFERROR() catches the error.", "Display 0% instead." ], "formula": "=IFERROR(B2/C2,0)", "after": "Percentage or 0" }, { "type": "heading", "text": "5. IFERROR() with VLOOKUP()" }, { "type": "paragraph", "text": "IFERROR() is commonly used with lookup functions to handle situations where a matching value cannot be found." }, { "type": "syntax", "code": "=IFERROR(VLOOKUP(A2,$F$2:$H$20,3,FALSE),\"Not Found\")" }, { "type": "example", "title": "Student Lookup", "before": "Find the student name using a Roll Number.", "steps": [ "VLOOKUP() searches for the Roll Number.", "If the Roll Number exists, the student name is returned.", "If it does not exist, VLOOKUP() may return #N/A.", "IFERROR() replaces the error with Not Found." ], "after": "Student Name or Not Found" }, { "type": "heading", "text": "6. IFNA() Function" }, { "type": "paragraph", "text": "IFNA() handles only the #N/A error. If the formula produces #N/A, IFNA() returns the specified alternative value. Other errors are not replaced." }, { "type": "syntax", "code": "Syntax:\n\n=IFNA(value,value_if_na)" }, { "type": "table", "headers": ["Argument", "Meaning"], "rows": [ ["value", "Formula or expression to evaluate"], ["value_if_na", "Value returned when the result is #N/A"] ] }, { "type": "example", "title": "IFNA() with VLOOKUP()", "before": "Search for a Roll Number that may not exist.", "steps": [ "VLOOKUP() searches the lookup table.", "If the Roll Number is missing, VLOOKUP() returns #N/A.", "IFNA() catches only the #N/A error.", "Return Not Found instead." ], "formula": "=IFNA(VLOOKUP(A2,$F$2:$H$20,3,FALSE),\"Not Found\")", "after": "Student Name or Not Found" }, { "type": "heading", "text": "7. IFERROR() vs IFNA()" }, { "type": "table", "headers": ["Function", "Handles", "Example Use"], "rows": [ ["IFERROR()", "All Excel errors", "Division, lookup, calculations"], ["IFNA()", "Only #N/A", "Lookup formulas"] ] }, { "type": "heading", "text": "8. Difference with Examples" }, { "type": "table", "headers": ["Formula", "Error", "Result"], "rows": [ ["=IFERROR(10/0,\"Error\")", "#DIV/0!", "Error"], ["=IFNA(10/0,\"Not Found\")", "#DIV/0!", "#DIV/0!"], ["=IFERROR(NA(),\"Error\")", "#N/A", "Error"], ["=IFNA(NA(),\"Not Found\")", "#N/A", "Not Found"] ] }, { "type": "heading", "text": "9. Practical Student Result Example" }, { "type": "table", "headers": ["Student", "Marks", "Total", "Percentage"], "rows": [ ["Muthu", 85, 100, "85%"], ["Ravi", 72, 100, "72%"], ["Priya", 90, 100, "90%"], ["Anitha", 75, 0, "Error"] ] }, { "type": "syntax", "code": "=IFERROR(B2/C2,0)" }, { "type": "paragraph", "text": "For Anitha, Total is 0. A normal division formula would produce #DIV/0!. IFERROR() can return 0 instead." }, { "type": "heading", "text": "10. Using IFERROR() to Keep Reports Clean" }, { "type": "paragraph", "text": "IFERROR() is useful in dashboards and reports because it prevents technical Excel errors from appearing in the final report." }, { "type": "table", "headers": ["Without IFERROR()", "With IFERROR()"], "rows": [ ["#DIV/0!", "0"], ["#N/A", "Not Found"], ["#VALUE!", "Invalid Data"], ["#REF!", "Check Reference"] ] }, { "type": "heading", "text": "11. Choosing Between IFERROR() and IFNA()" }, { "type": "table", "headers": ["Situation", "Recommended Function"], "rows": [ ["You want to handle any Excel error", "IFERROR()"], ["You only want to handle #N/A", "IFNA()"], ["Lookup result may not exist", "IFNA() or IFERROR()"], ["Division may result in #DIV/0!", "IFERROR()"], ["You want other errors to remain visible", "IFNA()"] ] }, { "type": "heading", "text": "12. Common Mistakes" }, { "type": "table", "headers": ["Mistake", "Correct Approach"], "rows": [ ["Using IFERROR() without understanding the original error", "First identify why the formula is failing"], ["Using IFERROR() to hide every error", "Use it only when an alternative result is meaningful"], ["Assuming IFNA() handles all errors", "IFNA() handles only #N/A"], ["Using text without quotation marks", "Use \"Not Found\" or another quoted text"], ["Returning blank unnecessarily", "Choose a meaningful alternative result"] ] }, { "type": "heading", "text": "13. Practical Exercise" }, { "type": "exercise", "title": "Practice Exercise", "steps": [ "Create a student marks table with Obtained Marks and Total Marks.", "Calculate percentage using normal division.", "Create a situation where Total Marks is zero.", "Use IFERROR() to prevent #DIV/0!.", "Use IFERROR() to display Not Available.", "Create a student lookup using VLOOKUP().", "Use IFERROR() to display Not Found when the student does not exist.", "Replace IFERROR() with IFNA() and observe the difference." ] }, { "type": "heading", "text": "14. Challenge Exercise" }, { "type": "exercise", "title": "Result Report Challenge", "steps": [ "Create a student result report.", "Calculate percentage.", "Handle zero total marks using IFERROR().", "Use XLOOKUP() or VLOOKUP() to retrieve student details.", "Use IFNA() to display Student Not Found when the ID does not exist.", "Compare the behavior of IFERROR() and IFNA()." ] }, { "type": "tip", "title": "Important Note", "text": "IFERROR() handles all Excel errors, while IFNA() handles only the #N/A error. Do not use error-handling functions simply to hide problems; use them when you have a meaningful alternative result." } ] },
+{ "id": "excel_u2_c8", "title": "Day 5: IFERROR() and IFNA()", "concept": { "title": "Error Handling Functions", "body": [ { "type": "heading", "text": "1. What is an Excel Error?" }, { "type": "paragraph", "text": "Excel displays an error when a formula cannot produce the expected result. Common errors include #DIV/0!, #N/A, #VALUE!, #REF!, #NAME?, #NUM!, and #NULL!." }, { "type": "table", "headers": ["Error", "Common Meaning"], "rows": [ ["#DIV/0!", "A number is being divided by zero or a blank cell"], ["#N/A", "A value is not available or a lookup cannot find a match"], ["#VALUE!", "The formula contains an incorrect value or data type"], ["#REF!", "The formula contains an invalid cell reference"], ["#NAME?", "Excel does not recognize a function or name"], ["#NUM!", "A formula has an invalid numeric value"] ] }, { "type": "heading", "text": "2. IFERROR() Function" }, { "type": "paragraph", "text": "IFERROR() checks whether a formula produces an error. If there is an error, it returns a specified alternative value. If there is no error, it returns the original result." }, { "type": "syntax", "code": "Syntax:\n\n=IFERROR(value,value_if_error)" }, { "type": "table", "headers": ["Argument", "Meaning"], "rows": [ ["value", "Formula or expression to evaluate"], ["value_if_error", "Value returned when the formula produces an error"] ] }, { "type": "example", "title": "Division by Zero", "before": "A2 contains 100 and B2 contains 0.", "steps": [ "Normal division = A2/B2.", "Excel cannot divide 100 by zero.", "Excel returns #DIV/0!.", "Use IFERROR() to provide a friendly result." ], "formula": "=IFERROR(A2/B2,0)", "after": "0" }, { "type": "heading", "text": "3. IFERROR() with Text" }, { "type": "syntax", "code": "=IFERROR(A2/B2,\"Not Available\")" }, { "type": "paragraph", "text": "Instead of displaying an Excel error, the formula displays the text Not Available when an error occurs." }, { "type": "heading", "text": "4. IFERROR() with Percentage Calculation" }, { "type": "example", "title": "Percentage Calculation", "before": "Obtained marks are in B2 and total marks are in C2.", "steps": [ "Calculate B2/C2.", "If C2 is zero, normal division produces #DIV/0!.", "IFERROR() catches the error.", "Display 0% instead." ], "formula": "=IFERROR(B2/C2,0)", "after": "Percentage or 0" }, { "type": "heading", "text": "5. IFERROR() with VLOOKUP()" }, { "type": "paragraph", "text": "IFERROR() is commonly used with lookup functions to handle situations where a matching value cannot be found." }, { "type": "syntax", "code": "=IFERROR(VLOOKUP(A2,$F$2:$H$20,3,FALSE),\"Not Found\")" }, { "type": "example", "title": "Student Lookup", "before": "Find the student name using a Roll Number.", "steps": [ "VLOOKUP() searches for the Roll Number.", "If the Roll Number exists, the student name is returned.", "If it does not exist, VLOOKUP() may return #N/A.", "IFERROR() replaces the error with Not Found." ], "after": "Student Name or Not Found" }, { "type": "heading", "text": "6. IFNA() Function" }, { "type": "paragraph", "text": "IFNA() handles only the #N/A error. If the formula produces #N/A, IFNA() returns the specified alternative value. Other errors are not replaced." }, { "type": "syntax", "code": "Syntax:\n\n=IFNA(value,value_if_na)" }, { "type": "table", "headers": ["Argument", "Meaning"], "rows": [ ["value", "Formula or expression to evaluate"], ["value_if_na", "Value returned when the result is #N/A"] ] }, { "type": "example", "title": "IFNA() with VLOOKUP()", "before": "Search for a Roll Number that may not exist.", "steps": [ "VLOOKUP() searches the lookup table.", "If the Roll Number is missing, VLOOKUP() returns #N/A.", "IFNA() catches only the #N/A error.", "Return Not Found instead." ], "formula": "=IFNA(VLOOKUP(A2,$F$2:$H$20,3,FALSE),\"Not Found\")", "after": "Student Name or Not Found" }, { "type": "heading", "text": "7. IFERROR() vs IFNA()" }, { "type": "table", "headers": ["Function", "Handles", "Example Use"], "rows": [ ["IFERROR()", "All Excel errors", "Division, lookup, calculations"], ["IFNA()", "Only #N/A", "Lookup formulas"] ] }, { "type": "heading", "text": "8. Difference with Examples" }, { "type": "table", "headers": ["Formula", "Error", "Result"], "rows": [ ["=IFERROR(10/0,\"Error\")", "#DIV/0!", "Error"], ["=IFNA(10/0,\"Not Found\")", "#DIV/0!", "#DIV/0!"], ["=IFERROR(NA(),\"Error\")", "#N/A", "Error"], ["=IFNA(NA(),\"Not Found\")", "#N/A", "Not Found"] ] }, { "type": "heading", "text": "9. Practical Student Result Example" }, { "type": "table", "headers": ["Student", "Marks", "Total", "Percentage"], "rows": [ ["Muthu", 85, 100, "85%"], ["Ravi", 72, 100, "72%"], ["Priya", 90, 100, "90%"], ["Anitha", 75, 0, "Error"] ] }, { "type": "syntax", "code": "=IFERROR(B2/C2,0)" }, { "type": "paragraph", "text": "For Anitha, Total is 0. A normal division formula would produce #DIV/0!. IFERROR() can return 0 instead." }, { "type": "heading", "text": "10. Using IFERROR() to Keep Reports Clean" }, { "type": "paragraph", "text": "IFERROR() is useful in dashboards and reports because it prevents technical Excel errors from appearing in the final report." }, { "type": "table", "headers": ["Without IFERROR()", "With IFERROR()"], "rows": [ ["#DIV/0!", "0"], ["#N/A", "Not Found"], ["#VALUE!", "Invalid Data"], ["#REF!", "Check Reference"] ] }, { "type": "heading", "text": "11. Choosing Between IFERROR() and IFNA()" }, { "type": "table", "headers": ["Situation", "Recommended Function"], "rows": [ ["You want to handle any Excel error", "IFERROR()"], ["You only want to handle #N/A", "IFNA()"], ["Lookup result may not exist", "IFNA() or IFERROR()"], ["Division may result in #DIV/0!", "IFERROR()"], ["You want other errors to remain visible", "IFNA()"] ] }, { "type": "heading", "text": "12. Common Mistakes" }, { "type": "table", "headers": ["Mistake", "Correct Approach"], "rows": [ ["Using IFERROR() without understanding the original error", "First identify why the formula is failing"], ["Using IFERROR() to hide every error", "Use it only when an alternative result is meaningful"], ["Assuming IFNA() handles all errors", "IFNA() handles only #N/A"], ["Using text without quotation marks", "Use \"Not Found\" or another quoted text"], ["Returning blank unnecessarily", "Choose a meaningful alternative result"] ] }, { "type": "heading", "text": "13. Practical Exercise" }, { "type": "exercise", "title": "Practice Exercise", "steps": [ "Create a student marks table with Obtained Marks and Total Marks.", "Calculate percentage using normal division.", "Create a situation where Total Marks is zero.", "Use IFERROR() to prevent #DIV/0!.", "Use IFERROR() to display Not Available.", "Create a student lookup using VLOOKUP().", "Use IFERROR() to display Not Found when the student does not exist.", "Replace IFERROR() with IFNA() and observe the difference." ] }, { "type": "heading", "text": "14. Challenge Exercise" }, { "type": "exercise", "title": "Result Report Challenge", "steps": [ "Create a student result report.", "Calculate percentage.", "Handle zero total marks using IFERROR().", "Use XLOOKUP() or VLOOKUP() to retrieve student details.", "Use IFNA() to display Student Not Found when the ID does not exist.", "Compare the behavior of IFERROR() and IFNA()." ] }, { "type": "tip", "title": "Important Note", "text": "IFERROR() handles all Excel errors, while IFNA() handles only the #N/A error. Do not use error-handling functions simply to hide problems; use them when you have a meaningful alternative result." } ] },
 "questions": [ { "id": "excel_q224", "type": "MCQ", "difficulty_rating": 1, "question": "What is the primary purpose of IFERROR()?", "options": [ "To create charts", "To handle errors returned by a formula", "To count cells", "To sort data" ], "answer": [1], "explanation": "IFERROR() returns an alternative value when a formula produces an error." }, { "id": "excel_q225", "type": "MCQ", "difficulty_rating": 1, "question": "Which is the correct syntax for IFERROR()?", "options": [ "=IFERROR(value,value_if_error)", "=IFERROR(value_if_error,value)", "=IFERROR(error,value)", "=IFERROR(value)" ], "answer": [0], "explanation": "Correct syntax is =IFERROR(value,value_if_error)." }, { "id": "excel_q227", "type": "MCQ", "difficulty_rating": 1, "question": "Which Excel error occurs when a number is divided by zero?", "options": [ "#N/A", "#VALUE!", "#DIV/0!", "#REF!" ], "answer": [2], "explanation": "#DIV/0! occurs when division by zero happens." }, { "id": "excel_q228", "type": "MCQ", "difficulty_rating": 1, "question": "What is the primary purpose of IFNA()?", "options": [ "To handle all Excel errors", "To handle only the #N/A error", "To calculate an average", "To remove duplicate data" ], "answer": [1], "explanation": "IFNA() handles only #N/A errors." }, { "id": "excel_q230", "type": "MCQ", "difficulty_rating": 2, "question": "What is the main difference between IFERROR() and IFNA()?", "options": [ "IFERROR() handles all Excel errors while IFNA() handles only #N/A", "IFNA() handles all errors while IFERROR() handles only #N/A", "Both functions handle only #DIV/0!", "There is no difference" ], "answer": [0], "explanation": "IFERROR() handles all errors, IFNA() handles only #N/A." }, { "id": "excel_q231", "type": "MCQ", "difficulty_rating": 2, "question": "Which formula displays Not Found if a VLOOKUP() returns #N/A?", "options": [ "=IFERROR(VLOOKUP(A2,F2:H20,3,FALSE),\"Not Found\")", "=IFNA(VLOOKUP(A2,F2:H20,3,FALSE),\"Not Found\")", "Both A and B", "Neither A nor B" ], "answer": [2], "explanation": "Both IFERROR() and IFNA() can handle #N/A errors." } ] 
+},
 
+{
+  "id": "excel_u2_c10",
+  "title": "Text Functions – II: UPPER(), LOWER(), PROPER(), TRIM(), CLEAN()",
+  "concept": {
+    "title": "Text Functions – II",
+    "body": [
+      {
+        "type": "heading",
+        "text": "1. Introduction to Text Cleaning Functions"
+      },
+      {
+        "type": "paragraph",
+        "text": "Text functions are used to clean, standardize, correct and transform text data. UPPER(), LOWER(), PROPER(), TRIM() and CLEAN() are commonly used when preparing names, departments, email addresses, product information and imported data."
+      },
+      {
+        "type": "table",
+        "title": "Text Functions Covered",
+        "headers": [
+          "Function",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            "UPPER()",
+            "Converts text to uppercase"
+          ],
+          [
+            "LOWER()",
+            "Converts text to lowercase"
+          ],
+          [
+            "PROPER()",
+            "Capitalizes the first letter of each word"
+          ],
+          [
+            "TRIM()",
+            "Removes unnecessary spaces"
+          ],
+          [
+            "CLEAN()",
+            "Removes non-printing characters from text"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "2. UPPER() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "UPPER() converts all alphabetic characters in a text string to uppercase letters."
+      },
+      {
+        "type": "syntax",
+        "code": "=UPPER(text)"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Original Text",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "muthu raj",
+            "=UPPER(A2)",
+            "MUTHU RAJ"
+          ],
+          [
+            "physics",
+            "=UPPER(A3)",
+            "PHYSICS"
+          ],
+          [
+            "ph101",
+            "=UPPER(A4)",
+            "PH101"
+          ]
+        ]
+      },
+      {
+        "type": "example",
+        "title": "Example: Department Code",
+        "before": "Department = physics",
+        "steps": [
+          "Enter the department in cell A2.",
+          "Use =UPPER(A2).",
+          "Excel converts all letters to uppercase."
+        ],
+        "after": "Result = PHYSICS"
+      },
+
+      {
+        "type": "heading",
+        "text": "3. LOWER() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "LOWER() converts all alphabetic characters in a text string to lowercase letters."
+      },
+      {
+        "type": "syntax",
+        "code": "=LOWER(text)"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Original Text",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "MUTHU RAJ",
+            "=LOWER(A2)",
+            "muthu raj"
+          ],
+          [
+            "PHYSICS",
+            "=LOWER(A3)",
+            "physics"
+          ],
+          [
+            "MUTHU@GMAIL.COM",
+            "=LOWER(A4)",
+            "muthu@gmail.com"
+          ]
+        ]
+      },
+      {
+        "type": "example",
+        "title": "Example: Email Standardization",
+        "before": "Email = MUTHU@GMAIL.COM",
+        "steps": [
+          "Enter the email address in A2.",
+          "Use =LOWER(A2).",
+          "Excel converts alphabetic characters to lowercase."
+        ],
+        "after": "Result = muthu@gmail.com"
+      },
+
+      {
+        "type": "heading",
+        "text": "4. PROPER() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "PROPER() converts the first letter of each word to uppercase and the remaining letters to lowercase."
+      },
+      {
+        "type": "syntax",
+        "code": "=PROPER(text)"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Original Text",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "muthu raj",
+            "=PROPER(A2)",
+            "Muthu Raj"
+          ],
+          [
+            "JOHN SMITH",
+            "=PROPER(A3)",
+            "John Smith"
+          ],
+          [
+            "rAVI kumAR",
+            "=PROPER(A4)",
+            "Ravi Kumar"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "text": "PROPER() is useful for names and titles, but it can change abbreviations. For example, PROPER(\"IIT MADRAS\") returns \"Iit Madras\", so abbreviations may require manual correction."
+      },
+
+      {
+        "type": "heading",
+        "text": "5. TRIM() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "TRIM() removes unnecessary spaces from text. It removes leading and trailing normal spaces and reduces multiple spaces between words to a single space."
+      },
+      {
+        "type": "syntax",
+        "code": "=TRIM(text)"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Original Data",
+          "Formula",
+          "Cleaned Result"
+        ],
+        "rows": [
+          [
+            "  Muthu Raj",
+            "=TRIM(A2)",
+            "Muthu Raj"
+          ],
+          [
+            "Muthu   Raj",
+            "=TRIM(A3)",
+            "Muthu Raj"
+          ],
+          [
+            "Muthu Raj   ",
+            "=TRIM(A4)",
+            "Muthu Raj"
+          ],
+          [
+            "  John    Smith  ",
+            "=TRIM(A5)",
+            "John Smith"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "6. CLEAN() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "CLEAN() removes non-printing characters from text. These characters can appear when data is copied from external systems, websites, reports, text files or other applications."
+      },
+      {
+        "type": "syntax",
+        "code": "=CLEAN(text)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Non-printing characters are characters that may not be visible on the worksheet but can affect text processing, comparison, searching and data cleaning."
+      },
+      {
+        "type": "example",
+        "title": "Example: Imported Text",
+        "before": "A2 contains text copied from an external system that includes hidden non-printing characters.",
+        "steps": [
+          "Select the cell containing the imported text.",
+          "Use =CLEAN(A2).",
+          "Excel removes supported non-printing characters.",
+          "The cleaned text can then be used for further processing."
+        ],
+        "after": "Result = Cleaned text without non-printing characters"
+      },
+
+      {
+        "type": "heading",
+        "text": "7. TRIM() vs CLEAN()"
+      },
+      {
+        "type": "table",
+        "title": "Important Difference",
+        "headers": [
+          "Function",
+          "Removes",
+          "Main Use"
+        ],
+        "rows": [
+          [
+            "TRIM()",
+            "Unnecessary normal spaces",
+            "Clean extra spaces"
+          ],
+          [
+            "CLEAN()",
+            "Non-printing characters",
+            "Clean imported/control characters"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "text": "TRIM() and CLEAN() solve different problems. TRIM() handles unnecessary spaces, while CLEAN() handles non-printing characters."
+      },
+
+      {
+        "type": "heading",
+        "text": "8. Combining CLEAN() and TRIM()"
+      },
+      {
+        "type": "paragraph",
+        "text": "When imported data contains both non-printing characters and unnecessary spaces, combine CLEAN() and TRIM()."
+      },
+      {
+        "type": "syntax",
+        "code": "=TRIM(CLEAN(A2))"
+      },
+      {
+        "type": "steps",
+        "title": "Execution Order",
+        "steps": [
+          "CLEAN(A2) removes supported non-printing characters.",
+          "TRIM() then removes unnecessary spaces.",
+          "The final result is cleaner text."
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "9. Combining TRIM() and PROPER()"
+      },
+      {
+        "type": "paragraph",
+        "text": "TRIM() can be combined with PROPER() to clean names and convert them to proper case."
+      },
+      {
+        "type": "syntax",
+        "code": "=PROPER(TRIM(A2))"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Original Data",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "  mUTHU     rAJ  ",
+            "=PROPER(TRIM(A2))",
+            "Muthu Raj"
+          ],
+          [
+            " JOHN   SMITH ",
+            "=PROPER(TRIM(A3))",
+            "John Smith"
+          ],
+          [
+            "  priya kumar  ",
+            "=PROPER(TRIM(A4))",
+            "Priya Kumar"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "10. Combining CLEAN(), TRIM() and PROPER()"
+      },
+      {
+        "type": "paragraph",
+        "text": "For imported names that contain non-printing characters, extra spaces and inconsistent capitalization, all three functions can be combined."
+      },
+      {
+        "type": "syntax",
+        "code": "=PROPER(TRIM(CLEAN(A2)))"
+      },
+      {
+        "type": "steps",
+        "title": "How Excel Processes the Formula",
+        "steps": [
+          "CLEAN(A2) removes supported non-printing characters.",
+          "TRIM() removes unnecessary spaces.",
+          "PROPER() converts the cleaned text to proper case."
+        ]
+      },
+      {
+        "type": "example",
+        "title": "Complete Name Cleaning",
+        "before": "Raw data = extra spaces + inconsistent capitalization + hidden characters",
+        "after": "Clean result = Muthu Raj"
+      },
+
+      {
+        "type": "heading",
+        "text": "11. Cleaning Email Addresses"
+      },
+      {
+        "type": "paragraph",
+        "text": "Email addresses are commonly standardized using TRIM() and LOWER()."
+      },
+      {
+        "type": "syntax",
+        "code": "=LOWER(TRIM(A2))"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Original Email",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            " MUTHU@GMAIL.COM ",
+            "=LOWER(TRIM(A2))",
+            "muthu@gmail.com"
+          ],
+          [
+            " JOHN@ABC.COM  ",
+            "=LOWER(TRIM(A3))",
+            "john@abc.com"
+          ],
+          [
+            " PRIYA@ABC.COM ",
+            "=LOWER(TRIM(A4))",
+            "priya@abc.com"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "12. Cleaning Department Names"
+      },
+      {
+        "type": "table",
+        "title": "Department Data",
+        "headers": [
+          "Raw Department",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            " physics ",
+            "=UPPER(TRIM(A2))",
+            "PHYSICS"
+          ],
+          [
+            " chemistry",
+            "=UPPER(TRIM(A3))",
+            "CHEMISTRY"
+          ],
+          [
+            "  maths  ",
+            "=UPPER(TRIM(A4))",
+            "MATHS"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "13. Real-World Student Data Cleaning"
+      },
+      {
+        "type": "table",
+        "title": "Raw Student Data",
+        "headers": [
+          "Name",
+          "Department",
+          "Email"
+        ],
+        "rows": [
+          [
+            "  mUTHU raj  ",
+            " physics ",
+            " MUTHU@GMAIL.COM "
+          ],
+          [
+            "JOHN   SMITH",
+            " CHEMISTRY",
+            "JOHN@GMAIL.COM "
+          ],
+          [
+            " priya kumar ",
+            "MATHS  ",
+            " PRIYA@GMAIL.COM"
+          ]
+        ]
+      },
+      {
+        "type": "table",
+        "title": "Cleaning Formulas",
+        "headers": [
+          "Column",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "Name",
+            "=PROPER(TRIM(CLEAN(A2)))"
+          ],
+          [
+            "Department",
+            "=UPPER(TRIM(CLEAN(B2)))"
+          ],
+          [
+            "Email",
+            "=LOWER(TRIM(CLEAN(C2)))"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "14. Non-Breaking Space Problem"
+      },
+      {
+        "type": "paragraph",
+        "text": "TRIM() does not remove every type of space. Data copied from websites or external systems may contain a non-breaking space represented by CHAR(160)."
+      },
+      {
+        "type": "syntax",
+        "code": "=TRIM(SUBSTITUTE(A2,CHAR(160),\" \"))"
+      },
+      {
+        "type": "paragraph",
+        "text": "This formula replaces non-breaking spaces with normal spaces and then removes unnecessary spaces."
+      },
+
+      {
+        "type": "heading",
+        "text": "15. Complete Data Cleaning Formula"
+      },
+      {
+        "type": "paragraph",
+        "text": "For difficult imported text containing non-printing characters, non-breaking spaces, extra spaces and inconsistent capitalization, a combination of CLEAN(), SUBSTITUTE(), TRIM() and PROPER() can be useful."
+      },
+      {
+        "type": "syntax",
+        "code": "=PROPER(TRIM(SUBSTITUTE(CLEAN(A2),CHAR(160),\" \")))"
+      },
+      {
+        "type": "steps",
+        "title": "Execution Flow",
+        "steps": [
+          "CLEAN() removes supported non-printing characters.",
+          "SUBSTITUTE() replaces non-breaking spaces with normal spaces.",
+          "TRIM() removes unnecessary spaces.",
+          "PROPER() standardizes capitalization."
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "16. Function Comparison"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Function",
+          "Input",
+          "Output",
+          "Main Purpose"
+        ],
+        "rows": [
+          [
+            "UPPER()",
+            "muthu raj",
+            "MUTHU RAJ",
+            "Uppercase conversion"
+          ],
+          [
+            "LOWER()",
+            "MUTHU RAJ",
+            "muthu raj",
+            "Lowercase conversion"
+          ],
+          [
+            "PROPER()",
+            "mUTHU rAJ",
+            "Muthu Raj",
+            "Title/name capitalization"
+          ],
+          [
+            "TRIM()",
+            "  Muthu   Raj  ",
+            "Muthu Raj",
+            "Remove unnecessary spaces"
+          ],
+          [
+            "CLEAN()",
+            "Text with non-printing characters",
+            "Clean text",
+            "Remove non-printing characters"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "17. Quick Reference"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Requirement",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "Convert to uppercase",
+            "=UPPER(A2)"
+          ],
+          [
+            "Convert to lowercase",
+            "=LOWER(A2)"
+          ],
+          [
+            "Convert to proper case",
+            "=PROPER(A2)"
+          ],
+          [
+            "Remove extra spaces",
+            "=TRIM(A2)"
+          ],
+          [
+            "Remove non-printing characters",
+            "=CLEAN(A2)"
+          ],
+          [
+            "Clean spaces and hidden characters",
+            "=TRIM(CLEAN(A2))"
+          ],
+          [
+            "Clean and proper case",
+            "=PROPER(TRIM(A2))"
+          ],
+          [
+            "Clean imported name completely",
+            "=PROPER(TRIM(CLEAN(A2)))"
+          ],
+          [
+            "Standardize email",
+            "=LOWER(TRIM(CLEAN(A2)))"
+          ],
+          [
+            "Standardize department",
+            "=UPPER(TRIM(CLEAN(A2)))"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "18. Practice Exercise"
+      },
+      {
+        "type": "exercise",
+        "title": "Student Data Cleaning",
+        "steps": [
+          "Enter student names with different capitalization.",
+          "Add extra spaces before, after and between names.",
+          "Use TRIM() to remove unnecessary spaces.",
+          "Use PROPER() to standardize student names.",
+          "Use UPPER() to standardize department names.",
+          "Use LOWER() to standardize email addresses.",
+          "Use CLEAN() on imported text.",
+          "Combine CLEAN() and TRIM().",
+          "Create a final cleaned student master table."
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "19. Important Notes"
+      },
+      {
+        "type": "note",
+        "text": "UPPER(), LOWER() and PROPER() change the case of letters. TRIM() removes unnecessary normal spaces. CLEAN() removes non-printing characters. CLEAN() does not remove every type of whitespace, so imported data may sometimes require SUBSTITUTE() with CHAR(160)."
+      },
+
+      {
+        "type": "tip",
+        "title": "Easy Memory Trick",
+        "text": "UPPER() = EVERYTHING CAPITAL; LOWER() = everything small; PROPER() = First Letter Of Each Word; TRIM() = Remove Extra Spaces; CLEAN() = Remove Hidden Non-Printing Characters."
+      }
+    ]
+  },
+  "questions": [
+
+    {
+      "id": "excel_q316",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the primary purpose of the UPPER() function?",
+      "options": [
+        "Convert text to lowercase",
+        "Convert text to uppercase",
+        "Remove spaces",
+        "Remove numbers"
+      ],
+      "answer": [1],
+      "explanation": "UPPER() converts all alphabetic characters in a text string to uppercase."
+    },
+
+    {
+      "id": "excel_q317",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the result of =UPPER(\"muthu raj\")?",
+      "options": [
+        "Muthu Raj",
+        "muthu raj",
+        "MUTHU RAJ",
+        "Muthu raj"
+      ],
+      "answer": [2],
+      "explanation": "UPPER() converts all letters to uppercase, producing MUTHU RAJ."
+    },
+
+    {
+      "id": "excel_q318",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "Which function converts text into lowercase?",
+      "options": [
+        "UPPER()",
+        "LOWER()",
+        "PROPER()",
+        "TRIM()"
+      ],
+      "answer": [1],
+      "explanation": "LOWER() converts all alphabetic characters to lowercase."
+    },
+
+    {
+      "id": "excel_q319",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the result of =LOWER(\"MUTHU RAJ\")?",
+      "options": [
+        "MUTHU RAJ",
+        "Muthu Raj",
+        "muthu raj",
+        "Muthu raj"
+      ],
+      "answer": [2],
+      "explanation": "LOWER() converts all letters to lowercase."
+    },
+
+    {
+      "id": "excel_q320",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "Which function changes the first letter of each word to uppercase?",
+      "options": [
+        "UPPER()",
+        "LOWER()",
+        "PROPER()",
+        "CLEAN()"
+      ],
+      "answer": [2],
+      "explanation": "PROPER() capitalizes the first letter of each word and converts the remaining letters to lowercase."
+    },
+
+    {
+      "id": "excel_q321",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the result of =PROPER(\"mUTHU rAJ\")?",
+      "options": [
+        "MUTHU RAJ",
+        "muthu raj",
+        "Muthu Raj",
+        "Muthu raj"
+      ],
+      "answer": [2],
+      "explanation": "PROPER() converts the text to title case: Muthu Raj."
+    },
+
+    {
+      "id": "excel_q322",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the main purpose of TRIM()?",
+      "options": [
+        "Convert text to uppercase",
+        "Remove unnecessary spaces",
+        "Remove numbers",
+        "Create a table"
+      ],
+      "answer": [1],
+      "explanation": "TRIM() removes leading and trailing normal spaces and reduces multiple spaces between words to a single space."
+    },
+
+    {
+      "id": "excel_q323",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the result of =TRIM(\"  Muthu   Raj  \")?",
+      "options": [
+        "MuthuRaj",
+        "Muthu Raj",
+        "  Muthu Raj  ",
+        "Muthu   Raj"
+      ],
+      "answer": [1],
+      "explanation": "TRIM() removes unnecessary leading/trailing spaces and reduces multiple spaces between words to one."
+    },
+
+    {
+      "id": "excel_q324",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the primary purpose of CLEAN()?",
+      "options": [
+        "Remove unnecessary spaces",
+        "Convert text to uppercase",
+        "Remove non-printing characters",
+        "Convert numbers to text"
+      ],
+      "answer": [2],
+      "explanation": "CLEAN() removes non-printing characters from text."
+    },
+
+    {
+      "id": "excel_q325",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which function is most appropriate for cleaning extra spaces in a student's name?",
+      "options": [
+        "CLEAN()",
+        "TRIM()",
+        "LOWER()",
+        "UPPER()"
+      ],
+      "answer": [1],
+      "explanation": "TRIM() is specifically designed to remove unnecessary normal spaces."
+    },
+
+    {
+      "id": "excel_q326",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which function is most appropriate for removing non-printing characters from imported text?",
+      "options": [
+        "TRIM()",
+        "PROPER()",
+        "CLEAN()",
+        "LOWER()"
+      ],
+      "answer": [2],
+      "explanation": "CLEAN() removes non-printing characters from text."
+    },
+
+    {
+      "id": "excel_q327",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which formula cleans extra spaces and then converts a name to proper case?",
+      "options": [
+        "=TRIM(PROPER(A2))",
+        "=PROPER(TRIM(A2))",
+        "=UPPER(TRIM(A2))",
+        "=CLEAN(PROPER(A2))"
+      ],
+      "answer": [1],
+      "explanation": "TRIM() first removes unnecessary spaces and PROPER() then standardizes capitalization."
+    },
+
+    {
+      "id": "excel_q328",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What is the result of =PROPER(TRIM(\"  mUTHU     rAJ  \"))?",
+      "options": [
+        "MUTHU RAJ",
+        "muthu raj",
+        "Muthu Raj",
+        "Muthu     Raj"
+      ],
+      "answer": [2],
+      "explanation": "TRIM() produces 'mUTHU rAJ', and PROPER() converts it to 'Muthu Raj'."
+    },
+
+    {
+      "id": "excel_q329",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which formula is suitable for standardizing an email address by removing extra spaces and converting it to lowercase?",
+      "options": [
+        "=UPPER(TRIM(A2))",
+        "=PROPER(TRIM(A2))",
+        "=LOWER(TRIM(A2))",
+        "=CLEAN(UPPER(A2))"
+      ],
+      "answer": [2],
+      "explanation": "LOWER(TRIM(A2)) removes unnecessary spaces and converts the email address to lowercase."
+    },
+
+    {
+      "id": "excel_q330",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "If A2 contains \" MUTHU@GMAIL.COM \", what is the result of =LOWER(TRIM(A2))?",
+      "options": [
+        "MUTHU@GMAIL.COM",
+        "Muthu@gmail.com",
+        "muthu@gmail.com",
+        " MUTHU@GMAIL.COM "
+      ],
+      "answer": [2],
+      "explanation": "TRIM() removes the extra spaces and LOWER() converts the email address to lowercase."
+    },
+
+    {
+      "id": "excel_q331",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which formula removes non-printing characters and unnecessary spaces?",
+      "options": [
+        "=CLEAN(TRIM(A2))",
+        "=TRIM(CLEAN(A2))",
+        "=UPPER(LOWER(A2))",
+        "=PROPER(UPPER(A2))"
+      ],
+      "answer": [1],
+      "explanation": "TRIM(CLEAN(A2)) first removes non-printing characters and then removes unnecessary spaces."
+    },
+
+    {
+      "id": "excel_q332",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What does =CLEAN(A2) do?",
+      "options": [
+        "Converts A2 to uppercase",
+        "Removes all spaces from A2",
+        "Removes supported non-printing characters from A2",
+        "Converts A2 to proper case"
+      ],
+      "answer": [2],
+      "explanation": "CLEAN() removes non-printing characters from text."
+    },
+
+    {
+      "id": "excel_q333",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which formula is best for cleaning an imported student name and converting it to proper case?",
+      "options": [
+        "=UPPER(A2)",
+        "=LOWER(A2)",
+        "=PROPER(TRIM(CLEAN(A2)))",
+        "=CLEAN(UPPER(A2))"
+      ],
+      "answer": [2],
+      "explanation": "CLEAN() removes non-printing characters, TRIM() removes unnecessary spaces and PROPER() standardizes the name."
+    },
+
+    {
+      "id": "excel_q334",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "A department column contains values such as \" physics \", \"CHEMISTRY\" and \" Maths \". Which formula can standardize them as uppercase without unnecessary spaces?",
+      "options": [
+        "=LOWER(TRIM(A2))",
+        "=PROPER(TRIM(A2))",
+        "=UPPER(TRIM(A2))",
+        "=CLEAN(PROPER(A2))"
+      ],
+      "answer": [2],
+      "explanation": "UPPER(TRIM(A2)) removes unnecessary spaces and converts the department name to uppercase."
+    },
+
+    {
+      "id": "excel_q335",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which function should be used when the main problem is inconsistent capitalization in names?",
+      "options": [
+        "PROPER()",
+        "TRIM()",
+        "CLEAN()",
+        "SUM()"
+      ],
+      "answer": [0],
+      "explanation": "PROPER() is commonly used to standardize names by capitalizing the first letter of each word."
+    },
+
+    {
+      "id": "excel_q336",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "A2 contains \"  rAVI     kumAR  \". Which formula produces \"Ravi Kumar\"?",
+      "options": [
+        "=UPPER(A2)",
+        "=LOWER(A2)",
+        "=PROPER(TRIM(A2))",
+        "=CLEAN(A2)"
+      ],
+      "answer": [2],
+      "explanation": "TRIM() removes the extra spaces and PROPER() converts the text to proper case."
+    },
+
+    {
+      "id": "excel_q337",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "A2 contains imported text with hidden non-printing characters and extra spaces. Which formula is most appropriate for cleaning it?",
+      "options": [
+        "=UPPER(A2)",
+        "=TRIM(CLEAN(A2))",
+        "=LOWER(A2)",
+        "=PROPER(A2)"
+      ],
+      "answer": [1],
+      "explanation": "CLEAN() removes non-printing characters and TRIM() removes unnecessary spaces."
+    },
+
+    {
+      "id": "excel_q338",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "Which statement correctly describes the difference between TRIM() and CLEAN()?",
+      "options": [
+        "TRIM() removes non-printing characters and CLEAN() changes case",
+        "TRIM() removes unnecessary spaces and CLEAN() removes non-printing characters",
+        "Both functions do exactly the same thing",
+        "TRIM() converts text to uppercase and CLEAN() converts text to lowercase"
+      ],
+      "answer": [1],
+      "explanation": "TRIM() handles unnecessary normal spaces, while CLEAN() handles non-printing characters."
+    },
+
+    {
+      "id": "excel_q339",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "Which formula standardizes an email address by removing non-printing characters, removing unnecessary spaces and converting it to lowercase?",
+      "options": [
+        "=UPPER(TRIM(CLEAN(A2)))",
+        "=LOWER(TRIM(CLEAN(A2)))",
+        "=PROPER(TRIM(A2))",
+        "=CLEAN(UPPER(A2))"
+      ],
+      "answer": [1],
+      "explanation": "CLEAN() removes non-printing characters, TRIM() removes unnecessary spaces and LOWER() standardizes the email to lowercase."
+    },
+
+    {
+      "id": "excel_q340",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "Which formula standardizes a student name by removing non-printing characters, extra spaces and inconsistent capitalization?",
+      "options": [
+        "=UPPER(TRIM(A2))",
+        "=LOWER(CLEAN(A2))",
+        "=PROPER(TRIM(CLEAN(A2)))",
+        "=TRIM(LOWER(A2))"
+      ],
+      "answer": [2],
+      "explanation": "CLEAN() removes non-printing characters, TRIM() removes extra spaces and PROPER() standardizes the capitalization."
+    },
+
+    {
+      "id": "excel_q341",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "What does =UPPER(TRIM(A2)) do?",
+      "options": [
+        "Only removes spaces",
+        "Only converts text to uppercase",
+        "Removes unnecessary spaces and converts the remaining text to uppercase",
+        "Converts text to proper case"
+      ],
+      "answer": [2],
+      "explanation": "TRIM() removes unnecessary spaces and UPPER() converts the resulting text to uppercase."
+    },
+
+    {
+      "id": "excel_q342",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "What does =LOWER(TRIM(CLEAN(A2))) do?",
+      "options": [
+        "Converts text to uppercase",
+        "Removes supported non-printing characters, removes unnecessary spaces and converts text to lowercase",
+        "Converts text to proper case only",
+        "Removes all spaces from the text"
+      ],
+      "answer": [1],
+      "explanation": "The formula combines CLEAN(), TRIM() and LOWER() for imported text cleaning and lowercase standardization."
+    },
+
+    {
+      "id": "excel_q343",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "Which function should be used to convert \"john smith\" into \"John Smith\"?",
+      "options": [
+        "UPPER()",
+        "LOWER()",
+        "PROPER()",
+        "CLEAN()"
+      ],
+      "answer": [2],
+      "explanation": "PROPER(\"john smith\") returns \"John Smith\"."
+    },
+
+    {
+      "id": "excel_q344",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "Which formula converts \"  PHYSICS  \" into \"PHYSICS\"?",
+      "options": [
+        "=LOWER(A2)",
+        "=PROPER(A2)",
+        "=UPPER(TRIM(A2))",
+        "=CLEAN(A2)"
+      ],
+      "answer": [2],
+      "explanation": "TRIM() removes the surrounding spaces and UPPER() ensures uppercase."
+    },
+
+    {
+      "id": "excel_q345",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "A user copies text from a website and some hidden control characters appear in the data. Which function should be tried first to remove supported non-printing characters?",
+      "options": [
+        "CLEAN()",
+        "PROPER()",
+        "UPPER()",
+        "AVERAGE()"
+      ],
+      "answer": [0],
+      "explanation": "CLEAN() is designed to remove non-printing characters from text."
+    },
+
+    {
+      "id": "excel_q346",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "Which formula is most suitable for a complete basic cleaning of a student name?",
+      "options": [
+        "=SUM(A2)",
+        "=PROPER(TRIM(CLEAN(A2)))",
+        "=UPPER(A2)+LOWER(A2)",
+        "=COUNT(A2)"
+      ],
+      "answer": [1],
+      "explanation": "PROPER(TRIM(CLEAN(A2))) combines three useful text-cleaning operations."
+    },
+
+    {
+      "id": "excel_q347",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "Which function should you use when you want all department codes to appear as capital letters?",
+      "options": [
+        "LOWER()",
+        "PROPER()",
+        "TRIM()",
+        "UPPER()"
+      ],
+      "answer": [3],
+      "explanation": "UPPER() converts alphabetic characters to uppercase."
+    },
+
+    {
+      "id": "excel_q348",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "Which function should you use when you want all email addresses to appear in lowercase?",
+      "options": [
+        "UPPER()",
+        "LOWER()",
+        "PROPER()",
+        "TRIM()"
+      ],
+      "answer": [1],
+      "explanation": "LOWER() converts alphabetic characters in email addresses to lowercase."
+    },
+
+    {
+      "id": "excel_q349",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "A2 contains \"  MUTHU     RAJ  \". Which function alone will fix the spacing but not the capitalization?",
+      "options": [
+        "UPPER()",
+        "LOWER()",
+        "TRIM()",
+        "PROPER()"
+      ],
+      "answer": [2],
+      "explanation": "TRIM() fixes unnecessary spaces but does not change letter capitalization."
+    },
+
+    {
+      "id": "excel_q350",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "A2 contains \"  mUTHU     rAJ  \". Which formula will return \"Muthu Raj\"?",
+      "options": [
+        "=TRIM(A2)",
+        "=UPPER(TRIM(A2))",
+        "=PROPER(TRIM(A2))",
+        "=LOWER(A2)"
+      ],
+      "answer": [2],
+      "explanation": "TRIM() removes the extra spaces and PROPER() converts the text to Muthu Raj."
+    }
+
+  ]
+  },
+  {
+  "id": "excel_u2_c9",
+  "title": "Text Functions – I",
+  "concept": {
+    "title": "Text Functions – I",
+    "body": [
+      {
+        "type": "heading",
+        "text": "1. Introduction to Text Functions"
+      },
+      {
+        "type": "paragraph",
+        "text": "Text functions are used to extract, combine, count, search and manipulate text values in Excel. They are especially useful for cleaning and analyzing names, IDs, codes, email addresses, phone numbers and other text-based data."
+      },
+      {
+        "type": "table",
+        "title": "Text Functions Covered",
+        "headers": [
+          "Function",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            "LEFT()",
+            "Extracts characters from the beginning of text"
+          ],
+          [
+            "RIGHT()",
+            "Extracts characters from the end of text"
+          ],
+          [
+            "MID()",
+            "Extracts characters from the middle of text"
+          ],
+          [
+            "LEN()",
+            "Counts the number of characters"
+          ],
+          [
+            "FIND()",
+            "Finds the position of one text within another"
+          ],
+          [
+            "SEARCH()",
+            "Finds the position of text without case sensitivity"
+          ],
+          [
+            "CONCAT()",
+            "Combines text values"
+          ],
+          [
+            "CONCATENATE()",
+            "Combines multiple text values"
+          ],
+          [
+            "TEXTJOIN()",
+            "Combines text using a delimiter"
+          ],
+          [
+            "&",
+            "Combines text values using the concatenation operator"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "2. LEFT() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "LEFT() extracts a specified number of characters from the left side of a text string."
+      },
+      {
+        "type": "syntax",
+        "code": "=LEFT(text, [num_chars])"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Text",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "MUTHU",
+            "=LEFT(A2,2)",
+            "MU"
+          ],
+          [
+            "CHENNAI",
+            "=LEFT(A3,3)",
+            "CHE"
+          ],
+          [
+            "PHY101",
+            "=LEFT(A4,3)",
+            "PHY"
+          ]
+        ]
+      },
+      {
+        "type": "example",
+        "title": "Extract Department Code",
+        "before": "Product Code = PHY101",
+        "steps": [
+          "Identify the number of characters required from the left.",
+          "Use =LEFT(A2,3).",
+          "Excel extracts the first three characters."
+        ],
+        "after": "Result = PHY"
+      },
+
+      {
+        "type": "heading",
+        "text": "3. RIGHT() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "RIGHT() extracts a specified number of characters from the right side of a text string."
+      },
+      {
+        "type": "syntax",
+        "code": "=RIGHT(text, [num_chars])"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Text",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "MUTHU",
+            "=RIGHT(A2,2)",
+            "HU"
+          ],
+          [
+            "CHENNAI",
+            "=RIGHT(A3,3)",
+            "NAI"
+          ],
+          [
+            "PHY101",
+            "=RIGHT(A4,3)",
+            "101"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "4. MID() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "MID() extracts a specified number of characters from a text string starting at a specified position."
+      },
+      {
+        "type": "syntax",
+        "code": "=MID(text, start_num, num_chars)"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Text",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "PHY101",
+            "=MID(A2,4,3)",
+            "101"
+          ],
+          [
+            "STU2026",
+            "=MID(A3,4,4)",
+            "2026"
+          ],
+          [
+            "ABC12345",
+            "=MID(A4,4,3)",
+            "123"
+          ]
+        ]
+      },
+      {
+        "type": "example",
+        "title": "Extract Middle Code",
+        "before": "Student ID = STU2026",
+        "steps": [
+          "Start from character position 4.",
+          "Extract 4 characters.",
+          "Use =MID(A2,4,4)."
+        ],
+        "after": "Result = 2026"
+      },
+
+      {
+        "type": "heading",
+        "text": "5. LEN() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "LEN() returns the number of characters in a text string, including spaces."
+      },
+      {
+        "type": "syntax",
+        "code": "=LEN(text)"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Text",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "MUTHU",
+            "=LEN(A2)",
+            "5"
+          ],
+          [
+            "Muthu Raj",
+            "=LEN(A3)",
+            "9"
+          ],
+          [
+            "PHY101",
+            "=LEN(A4)",
+            "6"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "text": "LEN() counts spaces as characters. For example, LEN(\"Muthu Raj\") returns 9 because the space is also counted."
+      },
+
+      {
+        "type": "heading",
+        "text": "6. FIND() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "FIND() returns the position of one text string inside another text string. FIND() is case-sensitive."
+      },
+      {
+        "type": "syntax",
+        "code": "=FIND(find_text, within_text, [start_num])"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Text",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "Muthu Raj",
+            "=FIND(\"Raj\",A2)",
+            "7"
+          ],
+          [
+            "ABC-123",
+            "=FIND(\"-\",A3)",
+            "4"
+          ],
+          [
+            "student@gmail.com",
+            "=FIND(\"@\",A4)",
+            "8"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "text": "FIND() is case-sensitive. FIND(\"a\",\"Apple\") returns an error because lowercase a is not the same as uppercase A."
+      },
+
+      {
+        "type": "heading",
+        "text": "7. SEARCH() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "SEARCH() returns the position of one text string inside another text string. Unlike FIND(), SEARCH() is not case-sensitive."
+      },
+      {
+        "type": "syntax",
+        "code": "=SEARCH(find_text, within_text, [start_num])"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Text",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "Muthu Raj",
+            "=SEARCH(\"raj\",A2)",
+            "7"
+          ],
+          [
+            "Apple",
+            "=SEARCH(\"a\",A3)",
+            "1"
+          ],
+          [
+            "Student@Gmail.com",
+            "=SEARCH(\"gmail\",A4)",
+            "9"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "8. FIND() vs SEARCH()"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Feature",
+          "FIND()",
+          "SEARCH()"
+        ],
+        "rows": [
+          [
+            "Case Sensitive",
+            "Yes",
+            "No"
+          ],
+          [
+            "Finds text position",
+            "Yes",
+            "Yes"
+          ],
+          [
+            "Supports wildcards",
+            "No",
+            "Yes"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "9. CONCAT() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "CONCAT() combines text from multiple cells or text values into one text string."
+      },
+      {
+        "type": "syntax",
+        "code": "=CONCAT(text1, [text2], ...)"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "First Name",
+          "Last Name",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "Muthu",
+            "Raj",
+            "=CONCAT(A2,B2)",
+            "MuthuRaj"
+          ],
+          [
+            "John",
+            "Smith",
+            "=CONCAT(A3,B3)",
+            "JohnSmith"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "text": "CONCAT() does not automatically insert a space between text values. If a space is required, include \" \" in the formula."
+      },
+      {
+        "type": "syntax",
+        "code": "=CONCAT(A2,\" \",B2)"
+      },
+
+      {
+        "type": "heading",
+        "text": "10. CONCATENATE() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "CONCATENATE() combines multiple text values into a single text string. It is an older function and CONCAT() is generally preferred in newer Excel versions."
+      },
+      {
+        "type": "syntax",
+        "code": "=CONCATENATE(text1, text2, ...)"
+      },
+      {
+        "type": "example",
+        "title": "Combine First Name and Last Name",
+        "before": "First Name = Muthu; Last Name = Raj",
+        "steps": [
+          "Use =CONCATENATE(A2,\" \",B2).",
+          "The space is added between the two names."
+        ],
+        "after": "Result = Muthu Raj"
+      },
+
+      {
+        "type": "heading",
+        "text": "11. TEXTJOIN() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "TEXTJOIN() combines multiple text values using a specified delimiter. It can also ignore empty cells."
+      },
+      {
+        "type": "syntax",
+        "code": "=TEXTJOIN(delimiter, ignore_empty, text1, [text2], ...)"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Name",
+          "Value"
+        ],
+        "rows": [
+          [
+            "A2",
+            "Muthu"
+          ],
+          [
+            "B2",
+            "Raj"
+          ],
+          [
+            "C2",
+            "Mariappan"
+          ]
+        ]
+      },
+      {
+        "type": "syntax",
+        "code": "=TEXTJOIN(\" \",TRUE,A2:C2)"
+      },
+      {
+        "type": "paragraph",
+        "text": "The formula joins the values in A2:C2 using a space as the delimiter and ignores empty cells."
+      },
+      {
+        "type": "example",
+        "title": "Join Student Name",
+        "before": "Muthu | Raj | Mariappan",
+        "steps": [
+          "Select the cells containing the name parts.",
+          "Use a space as the delimiter.",
+          "Set ignore_empty to TRUE."
+        ],
+        "after": "Result = Muthu Raj Mariappan"
+      },
+
+      {
+        "type": "heading",
+        "text": "12. & Concatenation Operator"
+      },
+      {
+        "type": "paragraph",
+        "text": "The ampersand (&) operator can be used to join text values."
+      },
+      {
+        "type": "syntax",
+        "code": "=A2&\" \"&B2"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "First Name",
+          "Last Name",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "Muthu",
+            "Raj",
+            "=A2&\" \"&B2",
+            "Muthu Raj"
+          ],
+          [
+            "John",
+            "Smith",
+            "=A3&\" \"&B3",
+            "John Smith"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "13. Real-World Example: Student ID"
+      },
+      {
+        "type": "table",
+        "title": "Student Data",
+        "headers": [
+          "Student ID",
+          "Student Name",
+          "Department"
+        ],
+        "rows": [
+          [
+            "PHY202601",
+            "Muthu Raj",
+            "Physics"
+          ],
+          [
+            "CHE202602",
+            "John Smith",
+            "Chemistry"
+          ],
+          [
+            "MAT202603",
+            "Priya Kumar",
+            "Maths"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "LEFT() can extract the department code and RIGHT() can extract the student number."
+      },
+      {
+        "type": "syntax",
+        "code": "=LEFT(A2,3)\n=RIGHT(A2,2)"
+      },
+      {
+        "type": "example",
+        "title": "Extract Student ID Components",
+        "before": "Student ID = PHY202601",
+        "steps": [
+          "Use LEFT(A2,3) to extract PHY.",
+          "Use RIGHT(A2,2) to extract 01."
+        ],
+        "after": "Department Code = PHY; Student Number = 01"
+      },
+
+      {
+        "type": "heading",
+        "text": "14. Real-World Example: Email Address"
+      },
+      {
+        "type": "paragraph",
+        "text": "FIND() or SEARCH() can be used to locate the @ symbol in an email address."
+      },
+      {
+        "type": "syntax",
+        "code": "=FIND(\"@\",A2)"
+      },
+      {
+        "type": "paragraph",
+        "text": "The position returned by FIND() can then be used with LEFT() and MID() to extract the username or domain."
+      },
+
+      {
+        "type": "heading",
+        "text": "15. Extract Username from Email"
+      },
+      {
+        "type": "syntax",
+        "code": "=LEFT(A2,FIND(\"@\",A2)-1)"
+      },
+      {
+        "type": "example",
+        "title": "Email Username",
+        "before": "Email = muthu@gmail.com",
+        "steps": [
+          "FIND(\"@\",A2) finds the position of @.",
+          "Subtract 1 to exclude @.",
+          "LEFT() extracts the characters before @."
+        ],
+        "after": "Result = muthu"
+      },
+
+      {
+        "type": "heading",
+        "text": "16. Extract Email Domain"
+      },
+      {
+        "type": "syntax",
+        "code": "=RIGHT(A2,LEN(A2)-FIND(\"@\",A2))"
+      },
+      {
+        "type": "example",
+        "title": "Email Domain",
+        "before": "Email = muthu@gmail.com",
+        "steps": [
+          "LEN(A2) calculates the total number of characters.",
+          "FIND(\"@\",A2) finds the position of @.",
+          "Subtract the @ position from the total length.",
+          "RIGHT() extracts the remaining characters."
+        ],
+        "after": "Result = gmail.com"
+      },
+
+      {
+        "type": "heading",
+        "text": "17. Function Comparison"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Function",
+          "Main Purpose"
+        ],
+        "rows": [
+          [
+            "LEFT()",
+            "Extract from left"
+          ],
+          [
+            "RIGHT()",
+            "Extract from right"
+          ],
+          [
+            "MID()",
+            "Extract from middle"
+          ],
+          [
+            "LEN()",
+            "Count characters"
+          ],
+          [
+            "FIND()",
+            "Find position, case-sensitive"
+          ],
+          [
+            "SEARCH()",
+            "Find position, not case-sensitive"
+          ],
+          [
+            "CONCAT()",
+            "Combine text"
+          ],
+          [
+            "CONCATENATE()",
+            "Combine text"
+          ],
+          [
+            "TEXTJOIN()",
+            "Combine text using delimiter"
+          ],
+          [
+            "&",
+            "Join text values"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "18. Quick Reference"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Requirement",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "First 3 characters",
+            "=LEFT(A2,3)"
+          ],
+          [
+            "Last 3 characters",
+            "=RIGHT(A2,3)"
+          ],
+          [
+            "Middle characters",
+            "=MID(A2,4,3)"
+          ],
+          [
+            "Count characters",
+            "=LEN(A2)"
+          ],
+          [
+            "Find text position",
+            "=FIND(\"@\",A2)"
+          ],
+          [
+            "Case-insensitive search",
+            "=SEARCH(\"gmail\",A2)"
+          ],
+          [
+            "Join two cells",
+            "=CONCAT(A2,B2)"
+          ],
+          [
+            "Join with space",
+            "=CONCAT(A2,\" \",B2)"
+          ],
+          [
+            "Join multiple cells",
+            "=TEXTJOIN(\" \",TRUE,A2:C2)"
+          ],
+          [
+            "Join using &",
+            "=A2&\" \"&B2"
+          ],
+          [
+            "Extract email username",
+            "=LEFT(A2,FIND(\"@\",A2)-1)"
+          ],
+          [
+            "Extract email domain",
+            "=RIGHT(A2,LEN(A2)-FIND(\"@\",A2))"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "19. Practice Exercise"
+      },
+      {
+        "type": "exercise",
+        "title": "Student and Email Data",
+        "steps": [
+          "Enter student IDs such as PHY202601, CHE202602 and MAT202603.",
+          "Use LEFT() to extract the department code.",
+          "Use RIGHT() to extract the student number.",
+          "Use MID() to extract the year portion.",
+          "Use LEN() to calculate the length of each ID.",
+          "Enter student email addresses.",
+          "Use FIND() to locate the @ symbol.",
+          "Use LEFT() and FIND() together to extract the email username.",
+          "Use RIGHT(), LEN() and FIND() together to extract the email domain.",
+          "Combine first name and last name using CONCAT().",
+          "Combine multiple name parts using TEXTJOIN()."
+        ]
+      },
+
+      {
+        "type": "tip",
+        "title": "Easy Memory Trick",
+        "text": "LEFT() = Take from left; RIGHT() = Take from right; MID() = Take from middle; LEN() = Count characters; FIND() = Find position with case sensitivity; SEARCH() = Search without case sensitivity; CONCAT() = Combine; TEXTJOIN() = Combine with delimiter."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "excel_q351",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the primary purpose of the LEFT() function?",
+      "options": [
+        "Extract characters from the beginning of text",
+        "Extract characters from the end of text",
+        "Count characters",
+        "Combine text"
+      ],
+      "answer": [0],
+      "explanation": "LEFT() extracts a specified number of characters from the beginning of a text string."
+    },
+
+    {
+      "id": "excel_q352",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the result of =LEFT(\"MUTHU\",2)?",
+      "options": [
+        "MU",
+        "HU",
+        "MUT",
+        "TH"
+      ],
+      "answer": [0],
+      "explanation": "LEFT() extracts the first two characters, which are MU."
+    },
+
+    {
+      "id": "excel_q353",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "Which function extracts characters from the right side of text?",
+      "options": [
+        "LEFT()",
+        "MID()",
+        "RIGHT()",
+        "LEN()"
+      ],
+      "answer": [2],
+      "explanation": "RIGHT() extracts characters from the end of a text string."
+    },
+
+    {
+      "id": "excel_q354",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the result of =RIGHT(\"PHY101\",3)?",
+      "options": [
+        "PHY",
+        "101",
+        "Y10",
+        "01"
+      ],
+      "answer": [1],
+      "explanation": "RIGHT() extracts the last three characters, which are 101."
+    },
+
+    {
+      "id": "excel_q355",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "Which function is used to extract characters from a specified position in the middle of text?",
+      "options": [
+        "LEFT()",
+        "RIGHT()",
+        "MID()",
+        "LEN()"
+      ],
+      "answer": [2],
+      "explanation": "MID() extracts characters starting from a specified position."
+    },
+
+    {
+      "id": "excel_q356",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the result of =MID(\"PHY101\",4,3)?",
+      "options": [
+        "PHY",
+        "101",
+        "HY1",
+        "01"
+      ],
+      "answer": [1],
+      "explanation": "Starting at character 4 and extracting 3 characters gives 101."
+    },
+
+    {
+      "id": "excel_q357",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What does LEN() return?",
+      "options": [
+        "Number of words",
+        "Number of cells",
+        "Number of characters",
+        "Number of numbers only"
+      ],
+      "answer": [2],
+      "explanation": "LEN() returns the number of characters in a text string, including spaces."
+    },
+
+    {
+      "id": "excel_q358",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the result of =LEN(\"Muthu\")?",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": [1],
+      "explanation": "Muthu contains five characters."
+    },
+
+    {
+      "id": "excel_q359",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What is the result of =LEN(\"Muthu Raj\")?",
+      "options": [
+        "8",
+        "9",
+        "10",
+        "7"
+      ],
+      "answer": [1],
+      "explanation": "Muthu has 5 characters, Raj has 3 and the space counts as one character, giving 9."
+    },
+
+    {
+      "id": "excel_q360",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "Which function finds the position of one text string within another and is case-sensitive?",
+      "options": [
+        "SEARCH()",
+        "FIND()",
+        "MID()",
+        "CONCAT()"
+      ],
+      "answer": [1],
+      "explanation": "FIND() searches for text and is case-sensitive."
+    },
+
+    {
+      "id": "excel_q361",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What is the result of =FIND(\"@\",\"muthu@gmail.com\")?",
+      "options": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": [2],
+      "explanation": "The @ symbol is the 6th character in muthu@gmail.com."
+    },
+
+    {
+      "id": "excel_q362",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which function searches for text without considering letter case?",
+      "options": [
+        "FIND()",
+        "SEARCH()",
+        "LEFT()",
+        "MID()"
+      ],
+      "answer": [1],
+      "explanation": "SEARCH() is not case-sensitive."
+    },
+
+    {
+      "id": "excel_q363",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What is the result of =SEARCH(\"raj\",\"Muthu Raj\")?",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": [2],
+      "explanation": "SEARCH() is not case-sensitive and finds Raj starting at position 7."
+    },
+
+    {
+      "id": "excel_q364",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which function combines multiple text values into one text string?",
+      "options": [
+        "LEN()",
+        "FIND()",
+        "CONCAT()",
+        "MID()"
+      ],
+      "answer": [2],
+      "explanation": "CONCAT() combines multiple text values."
+    },
+
+    {
+      "id": "excel_q365",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What is the result of =CONCAT(\"Muthu\",\"Raj\")?",
+      "options": [
+        "Muthu Raj",
+        "MuthuRaj",
+        "Muthu-Raj",
+        "RajMuthu"
+      ],
+      "answer": [1],
+      "explanation": "CONCAT() does not automatically add a space, so the result is MuthuRaj."
+    },
+
+    {
+      "id": "excel_q366",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which formula combines first name and last name with a space between them?",
+      "options": [
+        "=CONCAT(A2,B2)",
+        "=CONCAT(A2,\" \",B2)",
+        "=CONCAT(A2+B2)",
+        "=LEN(A2,B2)"
+      ],
+      "answer": [1],
+      "explanation": "The \" \" argument adds a space between the two text values."
+    },
+
+    {
+      "id": "excel_q367",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which function combines text values using a delimiter?",
+      "options": [
+        "TEXTJOIN()",
+        "LEN()",
+        "MID()",
+        "FIND()"
+      ],
+      "answer": [0],
+      "explanation": "TEXTJOIN() combines multiple text values using a specified delimiter."
+    },
+
+    {
+      "id": "excel_q368",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What does the TRUE argument do in =TEXTJOIN(\" \",TRUE,A2:C2)?",
+      "options": [
+        "Converts text to uppercase",
+        "Ignores empty cells",
+        "Adds numbers",
+        "Searches for spaces"
+      ],
+      "answer": [1],
+      "explanation": "The TRUE value tells TEXTJOIN() to ignore empty cells."
+    },
+
+    {
+      "id": "excel_q369",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which operator can be used to join text values?",
+      "options": [
+        "+",
+        "-",
+        "&",
+        "*"
+      ],
+      "answer": [2],
+      "explanation": "The ampersand (&) is Excel's text concatenation operator."
+    },
+
+    {
+      "id": "excel_q370",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What is the result of =\"Muthu\"&\" \"&\"Raj\"?",
+      "options": [
+        "MuthuRaj",
+        "Muthu Raj",
+        "Muthu+Raj",
+        "Raj Muthu"
+      ],
+      "answer": [1],
+      "explanation": "The & operator joins the text values and the \" \" adds a space."
+    },
+
+    {
+      "id": "excel_q371",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which formula extracts the username from muthu@gmail.com?",
+      "options": [
+        "=RIGHT(A2,5)",
+        "=LEFT(A2,FIND(\"@\",A2)-1)",
+        "=MID(A2,1,2)",
+        "=LEN(A2)"
+      ],
+      "answer": [1],
+      "explanation": "FIND() locates @ and LEFT() extracts everything before it."
+    },
+
+    {
+      "id": "excel_q372",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "If A2 contains muthu@gmail.com, which formula extracts gmail.com?",
+      "options": [
+        "=LEFT(A2,5)",
+        "=RIGHT(A2,5)",
+        "=RIGHT(A2,LEN(A2)-FIND(\"@\",A2))",
+        "=MID(A2,1,5)"
+      ],
+      "answer": [2],
+      "explanation": "LEN() gives the total length and FIND() gives the @ position. RIGHT() extracts the characters after @."
+    },
+
+    {
+      "id": "excel_q373",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "A2 contains PHY202601. Which formula extracts PHY?",
+      "options": [
+        "=RIGHT(A2,3)",
+        "=MID(A2,4,3)",
+        "=LEFT(A2,3)",
+        "=LEN(A2)"
+      ],
+      "answer": [2],
+      "explanation": "LEFT(A2,3) extracts the first three characters."
+    },
+
+    {
+      "id": "excel_q374",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "A2 contains PHY202601. Which formula extracts 2026?",
+      "options": [
+        "=LEFT(A2,4)",
+        "=MID(A2,4,4)",
+        "=RIGHT(A2,4)",
+        "=FIND(\"2026\",A2)"
+      ],
+      "answer": [1],
+      "explanation": "The year starts at character 4 and contains four characters."
+    },
+
+    {
+      "id": "excel_q375",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "What is the main difference between FIND() and SEARCH()?",
+      "options": [
+        "FIND() counts characters and SEARCH() combines text",
+        "FIND() is case-sensitive and SEARCH() is not case-sensitive",
+        "FIND() extracts text and SEARCH() deletes text",
+        "There is no difference"
+      ],
+      "answer": [1],
+      "explanation": "FIND() is case-sensitive, while SEARCH() is not case-sensitive."
+    },
+
+    {
+      "id": "excel_q376",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "Which formula joins three cells A2:C2 with a comma and ignores empty cells?",
+      "options": [
+        "=TEXTJOIN(\",\",TRUE,A2:C2)",
+        "=CONCAT(A2:C2)",
+        "=LEN(A2:C2)",
+        "=FIND(\",\",A2:C2)"
+      ],
+      "answer": [0],
+      "explanation": "TEXTJOIN() allows a delimiter and can ignore empty cells."
+    },
+
+    {
+      "id": "excel_q377",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "Which formula is best for extracting the last four digits from a student ID?",
+      "options": [
+        "=LEFT(A2,4)",
+        "=RIGHT(A2,4)",
+        "=MID(A2,4,4)",
+        "=LEN(A2)"
+      ],
+      "answer": [1],
+      "explanation": "RIGHT() extracts characters from the end of the text."
+    },
+
+    {
+      "id": "excel_q378",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "A2 contains \"STU2026\". What is the result of =MID(A2,4,4)?",
+      "options": [
+        "STU",
+        "2026",
+        "TU20",
+        "026"
+      ],
+      "answer": [1],
+      "explanation": "Character 4 is the beginning of 2026, and four characters are extracted."
+    },
+
+    {
+      "id": "excel_q379",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "Which formula combines Muthu, Raj and Mariappan from A2:C2 with spaces between the names?",
+      "options": [
+        "=CONCAT(A2:C2)",
+        "=TEXTJOIN(\" \",TRUE,A2:C2)",
+        "=LEN(A2:C2)",
+        "=FIND(\" \",A2:C2)"
+      ],
+      "answer": [1],
+      "explanation": "TEXTJOIN() is designed to combine multiple cells using a delimiter."
+    },
+
+    {
+      "id": "excel_q380",
+      "type": "MCQ",
+      "difficulty_rating": 3,
+      "question": "Which function would you use to count the total number of characters in an email address before extracting its domain?",
+      "options": [
+        "LEFT()",
+        "RIGHT()",
+        "LEN()",
+        "CONCAT()"
+      ],
+      "answer": [2],
+      "explanation": "LEN() returns the total number of characters in the email address."
+    }
+  ]
+},
+
+{
+  "id": "excel_u2_c10",
+  "title": "Text Functions – III: SUBSTITUTE() and REPLACE()",
+  "concept": {
+    "title": "SUBSTITUTE() and REPLACE()",
+    "body": [
+
+      {
+        "type": "heading",
+        "text": "1. Introduction"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUBSTITUTE() and REPLACE() are used to modify text in Excel. SUBSTITUTE() replaces specific text with another text, while REPLACE() replaces characters based on their position."
+      },
+
+      {
+        "type": "table",
+        "title": "SUBSTITUTE() vs REPLACE()",
+        "headers": [
+          "Function",
+          "Purpose",
+          "Works Based On"
+        ],
+        "rows": [
+          [
+            "SUBSTITUTE()",
+            "Replaces specific text",
+            "Existing text"
+          ],
+          [
+            "REPLACE()",
+            "Replaces characters",
+            "Character position"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "2. SUBSTITUTE() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUBSTITUTE() replaces existing text with new text inside a text string."
+      },
+      {
+        "type": "syntax",
+        "code": "=SUBSTITUTE(text, old_text, new_text, [instance_num])"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Argument",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "text",
+            "Original text"
+          ],
+          [
+            "old_text",
+            "Text that should be replaced"
+          ],
+          [
+            "new_text",
+            "Replacement text"
+          ],
+          [
+            "instance_num",
+            "Optional occurrence to replace"
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "Example 1 – Replace a Word",
+        "before": "Excel is easy",
+        "steps": [
+          "Identify the word that should be replaced.",
+          "Use SUBSTITUTE().",
+          "Replace easy with powerful."
+        ],
+        "formula": "=SUBSTITUTE(A2,\"easy\",\"powerful\")",
+        "after": "Excel is powerful"
+      },
+
+      {
+        "type": "example",
+        "title": "Example 2 – Replace a Character",
+        "before": "STU-2026-001",
+        "steps": [
+          "Find the hyphen character.",
+          "Replace the hyphen with a slash."
+        ],
+        "formula": "=SUBSTITUTE(A2,\"-\",\"/\")",
+        "after": "STU/2026/001"
+      },
+
+      {
+        "type": "example",
+        "title": "Example 3 – Remove a Character",
+        "before": "987-654-3210",
+        "steps": [
+          "Find the hyphen.",
+          "Replace the hyphen with an empty string."
+        ],
+        "formula": "=SUBSTITUTE(A2,\"-\",\"\")",
+        "after": "9876543210"
+      },
+
+      {
+        "type": "example",
+        "title": "Example 4 – Replace Spaces",
+        "before": "Muthu Raj",
+        "steps": [
+          "Find the space.",
+          "Replace the space with an underscore."
+        ],
+        "formula": "=SUBSTITUTE(A2,\" \",\"_\")",
+        "after": "Muthu_Raj"
+      },
+
+      {
+        "type": "heading",
+        "text": "3. SUBSTITUTE() with Instance Number"
+      },
+      {
+        "type": "paragraph",
+        "text": "The optional instance_num argument allows you to replace only a specific occurrence of the old text."
+      },
+
+      {
+        "type": "example",
+        "title": "Replace Only the Second Hyphen",
+        "before": "ABC-2026-001",
+        "formula": "=SUBSTITUTE(A2,\"-\",\"/\",2)",
+        "after": "ABC-2026/001"
+      },
+
+      {
+        "type": "table",
+        "title": "Instance Number Examples",
+        "headers": [
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "=SUBSTITUTE(\"A-B-C\",\"-\",\"/\",1)",
+            "A/B-C"
+          ],
+          [
+            "=SUBSTITUTE(\"A-B-C\",\"-\",\"/\",2)",
+            "A-B/C"
+          ],
+          [
+            "=SUBSTITUTE(\"A-B-C\",\"-\",\"/\")",
+            "A/B/C"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "4. REPLACE() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "REPLACE() replaces a specified number of characters starting from a specified position."
+      },
+      {
+        "type": "syntax",
+        "code": "=REPLACE(old_text, start_num, num_chars, new_text)"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Argument",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "old_text",
+            "Original text"
+          ],
+          [
+            "start_num",
+            "Starting character position"
+          ],
+          [
+            "num_chars",
+            "Number of characters to replace"
+          ],
+          [
+            "new_text",
+            "Replacement text"
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "Example 5 – Replace Part of a Student ID",
+        "before": "STU202601",
+        "formula": "=REPLACE(A2,4,4,\"2027\")",
+        "after": "STU202701"
+      },
+
+      {
+        "type": "example",
+        "title": "Example 6 – Replace a Phone Number Section",
+        "before": "9876543210",
+        "formula": "=REPLACE(A2,4,3,\"XXX\")",
+        "after": "987XXX3210"
+      },
+
+      {
+        "type": "example",
+        "title": "Example 7 – Mask an ID",
+        "before": "ABC123456",
+        "formula": "=REPLACE(A2,4,5,\"XXXXX\")",
+        "after": "ABCXXXXX6"
+      },
+
+      {
+        "type": "heading",
+        "text": "5. SUBSTITUTE() vs REPLACE()"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Requirement",
+          "Recommended Function"
+        ],
+        "rows": [
+          [
+            "Replace a specific word",
+            "SUBSTITUTE()"
+          ],
+          [
+            "Replace a specific character",
+            "SUBSTITUTE()"
+          ],
+          [
+            "Replace only the second occurrence",
+            "SUBSTITUTE()"
+          ],
+          [
+            "Replace characters at a known position",
+            "REPLACE()"
+          ],
+          [
+            "Mask part of an ID",
+            "REPLACE()"
+          ],
+          [
+            "Change a fixed section of text",
+            "REPLACE()"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "6. Real-World Example – Student Data"
+      },
+
+      {
+        "type": "table",
+        "title": "Student IDs",
+        "headers": [
+          "Student ID",
+          "Required Result"
+        ],
+        "rows": [
+          [
+            "PHY-2026-001",
+            "PHY/2026/001"
+          ],
+          [
+            "CHE-2026-002",
+            "CHE/2026/002"
+          ],
+          [
+            "MAT-2026-003",
+            "MAT/2026/003"
+          ]
+        ]
+      },
+
+      {
+        "type": "syntax",
+        "code": "=SUBSTITUTE(A2,\"-\",\"/\")"
+      },
+
+      {
+        "type": "heading",
+        "text": "7. Real-World Example – Remove Formatting Characters"
+      },
+      {
+        "type": "paragraph",
+        "text": "SUBSTITUTE() can remove characters such as hyphens, spaces, brackets and other unwanted separators."
+      },
+
+      {
+        "type": "syntax",
+        "code": "=SUBSTITUTE(A2,\"-\",\"\")"
+      },
+
+      {
+        "type": "heading",
+        "text": "8. Practice Exercise"
+      },
+      {
+        "type": "exercise",
+        "title": "SUBSTITUTE() and REPLACE() Practice",
+        "steps": [
+          "Replace all hyphens in student IDs with slashes.",
+          "Remove all hyphens from phone numbers.",
+          "Replace only the second hyphen in an ID.",
+          "Replace a department code using REPLACE().",
+          "Mask part of a student ID using REPLACE().",
+          "Replace spaces with underscores.",
+          "Replace a specific word in a sentence.",
+          "Compare the results of SUBSTITUTE() and REPLACE()."
+        ]
+      },
+
+      {
+        "type": "tip",
+        "title": "Easy Memory Trick",
+        "text": "SUBSTITUTE() = Replace matching text. REPLACE() = Replace characters by position."
+      }
+    ]
+  },
+  "questions": [
+
+    {
+      "id": "excel_q126",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the primary purpose of SUBSTITUTE()?",
+      "options": [
+        "To count characters",
+        "To replace specific text with another text",
+        "To convert text into a number",
+        "To extract text from the left"
+      ],
+      "answer": [1],
+      "explanation": "SUBSTITUTE() replaces existing text with new text."
+    },
+
+    {
+      "id": "excel_q127",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "Which is the correct syntax for SUBSTITUTE()?",
+      "options": [
+        "=SUBSTITUTE(text, old_text, new_text)",
+        "=SUBSTITUTE(old_text, text, number)",
+        "=SUBSTITUTE(text, start_num, num_chars)",
+        "=SUBSTITUTE(number, format_text)"
+      ],
+      "answer": [0],
+      "explanation": "The basic syntax is =SUBSTITUTE(text, old_text, new_text)."
+    },
+
+    {
+      "id": "excel_q128",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What will =SUBSTITUTE(\"Excel Course\",\"Course\",\"Training\") return?",
+      "options": [
+        "Excel Course",
+        "Training Course",
+        "Excel Training",
+        "Excel"
+      ],
+      "answer": [2],
+      "explanation": "SUBSTITUTE() replaces Course with Training, producing Excel Training."
+    },
+
+    {
+      "id": "excel_q129",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What is the purpose of the optional instance_num argument in SUBSTITUTE()?",
+      "options": [
+        "It specifies the number of characters to remove",
+        "It specifies which occurrence should be replaced",
+        "It specifies the starting position",
+        "It specifies the length of the text"
+      ],
+      "answer": [1],
+      "explanation": "instance_num tells Excel which occurrence of old_text should be replaced."
+    },
+
+    {
+      "id": "excel_q130",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "If A2 contains \"ABC-2026-001\", which formula changes all hyphens to slashes?",
+      "options": [
+        "=SUBSTITUTE(A2,\"-\",\"/\")",
+        "=REPLACE(A2,\"-\",\"/\")",
+        "=SUBSTITUTE(A2,\"/\",\"-\")",
+        "=TEXT(A2,\"/\")"
+      ],
+      "answer": [0],
+      "explanation": "SUBSTITUTE() without instance_num replaces all occurrences of the specified text."
+    },
+
+    {
+      "id": "excel_q131",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What will =SUBSTITUTE(\"A-B-C\",\"-\",\"/\",2) return?",
+      "options": [
+        "A/B/C",
+        "A-B/C",
+        "A/B-C",
+        "A-B-C"
+      ],
+      "answer": [1],
+      "explanation": "The second hyphen is replaced, so the result is A-B/C."
+    },
+
+    {
+      "id": "excel_q132",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the primary purpose of REPLACE()?",
+      "options": [
+        "Replace characters based on their position",
+        "Replace all matching words",
+        "Format a number",
+        "Convert text to a number"
+      ],
+      "answer": [0],
+      "explanation": "REPLACE() replaces a specified number of characters starting from a specified position."
+    },
+
+    {
+      "id": "excel_q133",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "Which is the correct syntax for REPLACE()?",
+      "options": [
+        "=REPLACE(text, old_text, new_text)",
+        "=REPLACE(old_text, start_num, num_chars, new_text)",
+        "=REPLACE(value, format_text)",
+        "=REPLACE(text, instance_num)"
+      ],
+      "answer": [1],
+      "explanation": "The syntax is =REPLACE(old_text, start_num, num_chars, new_text)."
+    },
+
+    {
+      "id": "excel_q134",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "If A2 contains \"STU202601\", what will =REPLACE(A2,4,4,\"2027\") return?",
+      "options": [
+        "STU202701",
+        "STU202601",
+        "2027202601",
+        "STU2027"
+      ],
+      "answer": [0],
+      "explanation": "Starting at position 4, four characters are replaced by 2027."
+    },
+
+    {
+      "id": "excel_q135",
+      "type": "SCENARIO",
+      "difficulty_rating": 2,
+      "question": "A student ID is stored as \"PHY-2026-001\" in A2. The college wants to replace all hyphens with slashes. Which formula should be used?",
+      "options": [
+        "=REPLACE(A2,\"-\",\"/\")",
+        "=SUBSTITUTE(A2,\"-\",\"/\")",
+        "=TEXT(A2,\"/\")",
+        "=VALUE(A2)"
+      ],
+      "answer": [1],
+      "explanation": "SUBSTITUTE() is appropriate because the replacement is based on matching the hyphen character."
+    },
+
+    {
+      "id": "excel_q136",
+      "type": "SCENARIO",
+      "difficulty_rating": 2,
+      "question": "A phone number is stored as \"9876543210\". You want the middle three digits to become XXX. Which formula is appropriate?",
+      "options": [
+        "=SUBSTITUTE(A2,\"654\",\"XXX\")",
+        "=REPLACE(A2,4,3,\"XXX\")",
+        "=TEXT(A2,\"XXX\")",
+        "=VALUE(A2)"
+      ],
+      "answer": [1],
+      "explanation": "REPLACE() is suitable because the characters are being replaced based on their position."
+    }
+  ]
+
+},
+
+{
+  "id": "excel_u2_c11",
+  "title": "TEXT() Function",
+  "concept": {
+    "title": "TEXT() Function – Formatting Numbers, Dates and Time",
+    "body": [
+
+      {
+        "type": "heading",
+        "text": "1. What is TEXT()?"
+      },
+      {
+        "type": "paragraph",
+        "text": "The TEXT() function converts a number or date into text using a specified format."
+      },
+
+      {
+        "type": "syntax",
+        "code": "=TEXT(value, format_text)"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Argument",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "value",
+            "Number, date or time to format"
+          ],
+          [
+            "format_text",
+            "Format that should be applied"
+          ]
+        ]
+      },
+
+      {
+        "type": "note",
+        "text": "TEXT() returns text. The displayed result may look like a number or date, but the result is stored as text."
+      },
+
+      {
+        "type": "heading",
+        "text": "2. Number Formatting"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Formula",
+          "Example Result"
+        ],
+        "rows": [
+          [
+            "=TEXT(123456,\"0\")",
+            "123456"
+          ],
+          [
+            "=TEXT(123456,\"#,##0\")",
+            "123,456"
+          ],
+          [
+            "=TEXT(1234567,\"#,##0\")",
+            "1,234,567"
+          ],
+          [
+            "=TEXT(1234.5,\"0.00\")",
+            "1234.50"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "3. Decimal Places"
+      },
+
+      {
+        "type": "example",
+        "title": "Display Two Decimal Places",
+        "before": "Value = 85.5",
+        "formula": "=TEXT(A2,\"0.00\")",
+        "after": "85.50"
+      },
+
+      {
+        "type": "example",
+        "title": "Display One Decimal Place",
+        "before": "Value = 85.56",
+        "formula": "=TEXT(A2,\"0.0\")",
+        "after": "85.6"
+      },
+
+      {
+        "type": "heading",
+        "text": "4. Percentage Formatting"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "Percentage values are stored as decimal numbers. For example, 0.85 represents 85%."
+      },
+
+      {
+        "type": "syntax",
+        "code": "=TEXT(A2,\"0%\")"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Value",
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "0.85",
+            "=TEXT(A2,\"0%\")",
+            "85%"
+          ],
+          [
+            "0.856",
+            "=TEXT(A2,\"0.0%\")",
+            "85.6%"
+          ],
+          [
+            "0.8567",
+            "=TEXT(A2,\"0.00%\")",
+            "85.67%"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "5. Currency Formatting"
+      },
+
+      {
+        "type": "example",
+        "title": "Indian Currency",
+        "before": "Amount = 125000",
+        "formula": "=TEXT(A2,\"₹#,##0\")",
+        "after": "₹125,000"
+      },
+
+      {
+        "type": "example",
+        "title": "Currency with Decimal Places",
+        "before": "Amount = 125000.5",
+        "formula": "=TEXT(A2,\"₹#,##0.00\")",
+        "after": "₹125,000.50"
+      },
+
+      {
+        "type": "heading",
+        "text": "6. Date Formatting"
+      },
+
+      {
+        "type": "paragraph",
+        "text": "TEXT() can display an Excel date in different formats."
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Format",
+          "Example"
+        ],
+        "rows": [
+          [
+            "dd-mm-yyyy",
+            "13-08-2026"
+          ],
+          [
+            "dd/mm/yyyy",
+            "13/08/2026"
+          ],
+          [
+            "dd-mmm-yyyy",
+            "13-Aug-2026"
+          ],
+          [
+            "dd-mmmm-yyyy",
+            "13-August-2026"
+          ],
+          [
+            "mmm-yyyy",
+            "Aug-2026"
+          ],
+          [
+            "mmmm-yyyy",
+            "August-2026"
+          ]
+        ]
+      },
+
+      {
+        "type": "syntax",
+        "code": "=TEXT(A2,\"dd-mm-yyyy\")"
+      },
+
+      {
+        "type": "heading",
+        "text": "7. Extract Day Name"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Formula",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            "=TEXT(A2,\"ddd\")",
+            "Short day name"
+          ],
+          [
+            "=TEXT(A2,\"dddd\")",
+            "Full day name"
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "Day Name",
+        "before": "Date = 13-08-2026",
+        "formula": "=TEXT(A2,\"dddd\")",
+        "after": "Thursday"
+      },
+
+      {
+        "type": "heading",
+        "text": "8. Month Name"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "=TEXT(A2,\"mmm\")",
+            "Aug"
+          ],
+          [
+            "=TEXT(A2,\"mmmm\")",
+            "August"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "9. Time Formatting"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Format",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            "hh:mm",
+            "Hours and minutes"
+          ],
+          [
+            "hh:mm:ss",
+            "Hours, minutes and seconds"
+          ],
+          [
+            "hh:mm AM/PM",
+            "12-hour format"
+          ],
+          [
+            "HH:mm",
+            "24-hour style display"
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "Display Time",
+        "before": "Time = 14:30:25",
+        "formula": "=TEXT(A2,\"hh:mm:ss\")",
+        "after": "14:30:25"
+      },
+
+      {
+        "type": "heading",
+        "text": "10. Combine Text and Number"
+      },
+
+      {
+        "type": "example",
+        "title": "Student Score",
+        "before": "Marks = 85",
+        "formula": "=\"Student scored \"&TEXT(A2,\"0\")&\" marks\"",
+        "after": "Student scored 85 marks"
+      },
+
+      {
+        "type": "example",
+        "title": "Percentage Message",
+        "before": "Percentage = 0.856",
+        "formula": "=\"Student scored \"&TEXT(A2,\"0.0%\")",
+        "after": "Student scored 85.6%"
+      },
+
+      {
+        "type": "heading",
+        "text": "11. Combine Date with Text"
+      },
+
+      {
+        "type": "example",
+        "title": "Admission Date",
+        "before": "Date = 13-08-2026",
+        "formula": "=\"Admission Date: \"&TEXT(A2,\"dd-mm-yyyy\")",
+        "after": "Admission Date: 13-08-2026"
+      },
+
+      {
+        "type": "heading",
+        "text": "12. Student Result Example"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Student",
+          "Marks",
+          "Percentage",
+          "Result"
+        ],
+        "rows": [
+          [
+            "Muthu",
+            "274",
+            "0.9133",
+            "91.33%"
+          ],
+          [
+            "Ravi",
+            "253",
+            "0.8433",
+            "84.33%"
+          ],
+          [
+            "Priya",
+            "240",
+            "0.8",
+            "80.00%"
+          ]
+        ]
+      },
+
+      {
+        "type": "syntax",
+        "code": "=TEXT(C2,\"0.00%\")"
+      },
+
+      {
+        "type": "heading",
+        "text": "13. Invoice Example"
+      },
+
+      {
+        "type": "example",
+        "title": "Invoice Amount",
+        "before": "Amount = 25678.5",
+        "formula": "=\"Total Amount: \"&TEXT(A2,\"₹#,##0.00\")",
+        "after": "Total Amount: ₹25,678.50"
+      },
+
+      {
+        "type": "heading",
+        "text": "14. Important TEXT() Formats"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Format",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            "0",
+            "Whole number"
+          ],
+          [
+            "0.00",
+            "Two decimal places"
+          ],
+          [
+            "#,##0",
+            "Number with comma separator"
+          ],
+          [
+            "0%",
+            "Percentage"
+          ],
+          [
+            "0.00%",
+            "Percentage with two decimals"
+          ],
+          [
+            "dd-mm-yyyy",
+            "Date"
+          ],
+          [
+            "dd-mmm-yyyy",
+            "Date with short month"
+          ],
+          [
+            "dddd",
+            "Full day name"
+          ],
+          [
+            "mmmm",
+            "Full month name"
+          ],
+          [
+            "hh:mm:ss",
+            "Time"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "15. Important Note"
+      },
+      {
+        "type": "note",
+        "text": "TEXT() is mainly used when a value needs to be displayed in a specific format or combined with other text. If you need to perform mathematical calculations on the result, remember that TEXT() returns text."
+      },
+
+      {
+        "type": "heading",
+        "text": "16. Practice Exercise"
+      },
+      {
+        "type": "exercise",
+        "title": "TEXT() Function Practice",
+        "steps": [
+          "Format marks with two decimal places.",
+          "Format percentages with one decimal place.",
+          "Format salary values with comma separators.",
+          "Display salary with the ₹ symbol.",
+          "Format dates as dd-mm-yyyy.",
+          "Display the full month name.",
+          "Display the full day name.",
+          "Format time as hh:mm:ss.",
+          "Create a message containing a student's percentage.",
+          "Create an invoice message containing the formatted amount.",
+          "Create a message containing an admission date."
+        ]
+      },
+
+      {
+        "type": "tip",
+        "title": "Easy Memory Trick",
+        "text": "TEXT() = Convert a value into a specific display format."
+      }
+    ]
+  },
+"questions": [
+ {
+      "id": "excel_q137",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the primary purpose of TEXT()?",
+      "options": [
+        "Convert text to a number",
+        "Convert a number or date into formatted text",
+        "Count text characters",
+        "Replace text"
+      ],
+      "answer": [1],
+      "explanation": "TEXT() formats a number, date, or time and returns the result as text."
+    },
+
+    {
+      "id": "excel_q138",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "Which is the correct syntax for TEXT()?",
+      "options": [
+        "=TEXT(text, old_text, new_text)",
+        "=TEXT(value, format_text)",
+        "=TEXT(value, start_num)",
+        "=TEXT(number, new_text)"
+      ],
+      "answer": [1],
+      "explanation": "The syntax is =TEXT(value, format_text)."
+    },
+
+    {
+      "id": "excel_q139",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "If A2 contains 125.5, what will =TEXT(A2,\"0.00\") return?",
+      "options": [
+        "125",
+        "125.5",
+        "125.50",
+        "126"
+      ],
+      "answer": [2],
+      "explanation": "The format 0.00 displays exactly two decimal places."
+    },
+
+    {
+      "id": "excel_q140",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "If A2 contains 0.8567, which formula displays 85.67%?",
+      "options": [
+        "=TEXT(A2,\"0.67%\")",
+        "=TEXT(A2,\"0.00%\")",
+        "=TEXT(A2,\"0.00\")",
+        "=TEXT(A2,\"%0.00\")"
+      ],
+      "answer": [1],
+      "explanation": "The 0.00% format displays a percentage with two decimal places."
+    },
+
+    {
+      "id": "excel_q141",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "If A2 contains the date 13-Aug-2026, which formula displays 13-08-2026?",
+      "options": [
+        "=TEXT(A2,\"dd-mm-yyyy\")",
+        "=TEXT(A2,\"dd-mm-yy\")",
+        "=TEXT(A2,\"dd/mm/yy\")",
+        "=TEXT(A2,\"yyyy-mm-dd\")"
+      ],
+      "answer": [0],
+      "explanation": "dd-mm-yyyy displays the day, month and four-digit year."
+    },
+
+    {
+      "id": "excel_q142",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which TEXT() format displays the full month name?",
+      "options": [
+        "\"mmm\"",
+        "\"mm\"",
+        "\"mmmm\"",
+        "\"month\""
+      ],
+      "answer": [2],
+      "explanation": "mmmm displays the full month name, such as August."
+    },
+
+    {
+      "id": "excel_q143",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which TEXT() format displays the full day name?",
+      "options": [
+        "\"ddd\"",
+        "\"dddd\"",
+        "\"day\"",
+        "\"dd\""
+      ],
+      "answer": [1],
+      "explanation": "dddd displays the full day name, such as Thursday."
+    },
+
+    {
+      "id": "excel_q144",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "If A2 contains 25000, which formula displays ₹25,000.00?",
+      "options": [
+        "=TEXT(A2,\"₹#,##0.00\")",
+        "=TEXT(A2,\"₹0\")",
+        "=TEXT(A2,\"#,##0%\")",
+        "=TEXT(A2,\"₹00\")"
+      ],
+      "answer": [0],
+      "explanation": "₹#,##0.00 displays the rupee symbol, comma separator and two decimal places."
+    },
+
+    {
+      "id": "excel_q145",
+      "type": "SCENARIO",
+      "difficulty_rating": 2,
+      "question": "A report contains a percentage in D2 as 0.9133. You want the message 'Student scored 91.33%'. Which formula is correct?",
+      "options": [
+        "=\"Student scored \"&D2",
+        "=\"Student scored \"&TEXT(D2,\"0.00%\")",
+        "=TEXT(\"Student scored \",D2)",
+        "=VALUE(\"Student scored \"&D2)"
+      ],
+      "answer": [1],
+      "explanation": "TEXT() formats the percentage while & combines it with the message."
+    },
+
+    {
+      "id": "excel_q146",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What type of value does TEXT() return?",
+      "options": [
+        "Number",
+        "Date serial number",
+        "Text",
+        "Boolean"
+      ],
+      "answer": [2],
+      "explanation": "TEXT() returns a formatted value as text."
+    },
+
+    {
+      "id": "excel_q147",
+      "type": "SCENARIO",
+      "difficulty_rating": 2,
+      "question": "An invoice amount is 12500.50 in A2. Which formula creates 'Total Amount: ₹12,500.50'?",
+      "options": [
+        "=\"Total Amount: \"&TEXT(A2,\"₹#,##0.00\")",
+        "=TEXT(A2,\"Total Amount: ₹\")",
+        "=\"Total Amount: \"&VALUE(A2)",
+        "=SUBSTITUTE(A2,\"Total Amount\",\"₹\")"
+      ],
+      "answer": [0],
+      "explanation": "TEXT() formats the amount and & combines it with the label."
+    }
+
+]
+
+},
+{
+  "id": "excel_u2_c12",
+  "title": "Advanced Text Functions: VALUE(), EXACT(), CHAR() and UNICHAR()",
+  "concept": {
+    "title": "VALUE(), EXACT(), CHAR() and UNICHAR()",
+    "body": [
+
+      {
+        "type": "heading",
+        "text": "1. Introduction"
+      },
+      {
+        "type": "paragraph",
+        "text": "These functions are useful when working with text and numbers, comparing text values and generating characters from character codes."
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Function",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            "VALUE()",
+            "Converts text representing a number into a number"
+          ],
+          [
+            "EXACT()",
+            "Checks whether two text values are exactly the same"
+          ],
+          [
+            "CHAR()",
+            "Returns a character based on a numeric code"
+          ],
+          [
+            "UNICHAR()",
+            "Returns a Unicode character based on a numeric code"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "2. VALUE() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "VALUE() converts text that represents a number into a numeric value."
+      },
+      {
+        "type": "syntax",
+        "code": "=VALUE(text)"
+      },
+
+      {
+        "type": "example",
+        "title": "Convert Text Number",
+        "before": "A2 contains \"2500\" as text",
+        "formula": "=VALUE(A2)",
+        "after": "2500 as a numeric value"
+      },
+
+      {
+        "type": "example",
+        "title": "Convert Text Percentage",
+        "before": "A2 contains \"85%\"",
+        "formula": "=VALUE(A2)",
+        "after": "0.85"
+      },
+
+      {
+        "type": "example",
+        "title": "Convert Text Decimal",
+        "before": "A2 contains \"125.50\"",
+        "formula": "=VALUE(A2)",
+        "after": "125.5"
+      },
+
+      {
+        "type": "heading",
+        "text": "3. VALUE() Real-World Example"
+      },
+      {
+        "type": "paragraph",
+        "text": "Imported data may contain numbers stored as text. VALUE() can convert such values into numbers so that calculations can be performed."
+      },
+
+      {
+        "type": "syntax",
+        "code": "=VALUE(A2)+100"
+      },
+
+      {
+        "type": "example",
+        "title": "Salary Calculation",
+        "before": "A2 = \"25000\"",
+        "formula": "=VALUE(A2)+5000",
+        "after": "30000"
+      },
+
+      {
+        "type": "heading",
+        "text": "4. EXACT() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "EXACT() compares two text values and returns TRUE when they are exactly the same. EXACT() is case-sensitive."
+      },
+
+      {
+        "type": "syntax",
+        "code": "=EXACT(text1, text2)"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Formula",
+          "Result"
+        ],
+        "rows": [
+          [
+            "=EXACT(\"Muthu\",\"Muthu\")",
+            "TRUE"
+          ],
+          [
+            "=EXACT(\"Muthu\",\"muthu\")",
+            "FALSE"
+          ],
+          [
+            "=EXACT(\"ABC\",\"ABC\")",
+            "TRUE"
+          ],
+          [
+            "=EXACT(\"ABC\",\"abc\")",
+            "FALSE"
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "Case-Sensitive Username Check",
+        "before": "Entered = Muthu; Stored = muthu",
+        "formula": "=EXACT(A2,B2)",
+        "after": "FALSE"
+      },
+
+      {
+        "type": "heading",
+        "text": "5. EXACT() with IF()"
+      },
+      {
+        "type": "syntax",
+        "code": "=IF(EXACT(A2,B2),\"Match\",\"Not Match\")"
+      },
+
+      {
+        "type": "example",
+        "title": "Compare Student Codes",
+        "before": "A2 = PHY101; B2 = PHY101",
+        "formula": "=IF(EXACT(A2,B2),\"Match\",\"Not Match\")",
+        "after": "Match"
+      },
+
+      {
+        "type": "heading",
+        "text": "6. CHAR() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "CHAR() returns the character represented by a numeric code."
+      },
+
+      {
+        "type": "syntax",
+        "code": "=CHAR(number)"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Formula",
+          "Example Purpose"
+        ],
+        "rows": [
+          [
+            "=CHAR(65)",
+            "A"
+          ],
+          [
+            "=CHAR(66)",
+            "B"
+          ],
+          [
+            "=CHAR(67)",
+            "C"
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "Create a New Line",
+        "before": "Text needs to appear on separate lines",
+        "formula": "=\"Name\"&CHAR(10)&\"Muthu\"",
+        "after": "Name followed by Muthu on a new line"
+      },
+
+      {
+        "type": "note",
+        "text": "When CHAR(10) is used for a line break inside a cell, Wrap Text may need to be enabled."
+      },
+
+      {
+        "type": "heading",
+        "text": "7. CHAR() Practical Examples"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Formula",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            "=\"A\"&CHAR(10)&\"B\"",
+            "Put A and B on separate lines"
+          ],
+          [
+            "=\"Name:\"&CHAR(10)&A2",
+            "Create a two-line label"
+          ],
+          [
+            "=\"Maths\"&CHAR(10)&\"Physics\"",
+            "Create multiline text"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "8. UNICHAR() Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "UNICHAR() returns the Unicode character associated with a numeric Unicode code point."
+      },
+
+      {
+        "type": "syntax",
+        "code": "=UNICHAR(number)"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Formula",
+          "Example"
+        ],
+        "rows": [
+          [
+            "=UNICHAR(9733)",
+            "★"
+          ],
+          [
+            "=UNICHAR(10003)",
+            "✓"
+          ],
+          [
+            "=UNICHAR(10007)",
+            "✗"
+          ],
+          [
+            "=UNICHAR(8594)",
+            "→"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "9. UNICHAR() for Status Display"
+      },
+
+      {
+        "type": "example",
+        "title": "Student Result Status",
+        "before": "If result is Pass, show a check mark.",
+        "formula": "=IF(B2=\"Pass\",UNICHAR(10003),UNICHAR(10007))",
+        "after": "✓ for Pass and ✗ for other results"
+      },
+
+      {
+        "type": "heading",
+        "text": "10. Combine UNICHAR() with IF()"
+      },
+
+      {
+        "type": "syntax",
+        "code": "=IF(B2>=50,UNICHAR(10003)&\" Pass\",UNICHAR(10007)&\" Fail\")"
+      },
+
+      {
+        "type": "example",
+        "title": "Result Status",
+        "before": "Marks = 72",
+        "steps": [
+          "Check whether marks are at least 50.",
+          "If TRUE, generate a check mark using UNICHAR().",
+          "If FALSE, generate a cross mark."
+        ],
+        "after": "✓ Pass"
+      },
+
+      {
+        "type": "heading",
+        "text": "11. VALUE() vs TEXT()"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Function",
+          "Conversion"
+        ],
+        "rows": [
+          [
+            "VALUE()",
+            "Text → Number"
+          ],
+          [
+            "TEXT()",
+            "Number/Date → Formatted Text"
+          ]
+        ]
+      },
+
+      {
+        "type": "example",
+        "title": "VALUE()",
+        "formula": "=VALUE(\"2500\")",
+        "after": "2500 as number"
+      },
+
+      {
+        "type": "example",
+        "title": "TEXT()",
+        "formula": "=TEXT(2500,\"#,##0\")",
+        "after": "2,500 as formatted text"
+      },
+
+      {
+        "type": "heading",
+        "text": "12. Real-World Data Conversion"
+      },
+
+      {
+        "type": "table",
+        "title": "Imported Data",
+        "headers": [
+          "Original Data",
+          "Problem",
+          "Function"
+        ],
+        "rows": [
+          [
+            "\"25000\"",
+            "Number stored as text",
+            "VALUE()"
+          ],
+          [
+            "\"85%\"",
+            "Percentage stored as text",
+            "VALUE()"
+          ],
+          [
+            "\"Muthu\" vs \"muthu\"",
+            "Case-sensitive comparison",
+            "EXACT()"
+          ],
+          [
+            "65",
+            "Generate character",
+            "CHAR()"
+          ],
+          [
+            "10003",
+            "Generate Unicode symbol",
+            "UNICHAR()"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "13. Function Comparison"
+      },
+
+      {
+        "type": "table",
+        "headers": [
+          "Function",
+          "Use When"
+        ],
+        "rows": [
+          [
+            "VALUE()",
+            "Text contains a number that needs to become numeric"
+          ],
+          [
+            "EXACT()",
+            "Two text values must be compared exactly"
+          ],
+          [
+            "CHAR()",
+            "A character is needed from a character code"
+          ],
+          [
+            "UNICHAR()",
+            "A Unicode symbol or character is needed"
+          ]
+        ]
+      },
+
+      {
+        "type": "heading",
+        "text": "14. Practice Exercise"
+      },
+
+      {
+        "type": "exercise",
+        "title": "VALUE(), EXACT(), CHAR() and UNICHAR()",
+        "steps": [
+          "Convert numbers stored as text into numbers using VALUE().",
+          "Convert a text percentage into a numeric percentage.",
+          "Compare two student IDs using EXACT().",
+          "Check whether two usernames match exactly.",
+          "Create a line break using CHAR(10).",
+          "Generate alphabet characters using CHAR().",
+          "Generate a check mark using UNICHAR().",
+          "Generate a cross mark using UNICHAR().",
+          "Use UNICHAR() with IF() to display Pass or Fail symbols.",
+          "Compare TEXT() and VALUE() using practical examples."
+        ]
+      },
+
+      {
+        "type": "tip",
+        "title": "Easy Memory Trick",
+        "text": "VALUE() = Text to Number. EXACT() = Exact Text Comparison. CHAR() = Code to Character. UNICHAR() = Unicode Code to Character."
+      }
+    ]
+  },
+  "questions":[
+    {
+      "id": "excel_q148",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the primary purpose of VALUE()?",
+      "options": [
+        "Convert a number into formatted text",
+        "Convert text representing a number into a numeric value",
+        "Compare two text strings",
+        "Replace text"
+      ],
+      "answer": [1],
+      "explanation": "VALUE() converts text that represents a number into a numeric value."
+    },
+
+    {
+      "id": "excel_q149",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What will =VALUE(\"2500\") return?",
+      "options": [
+        "\"2500\" as text",
+        "2500 as a number",
+        "250",
+        "Error"
+      ],
+      "answer": [1],
+      "explanation": "VALUE() converts the text \"2500\" into the numeric value 2500."
+    },
+
+    {
+      "id": "excel_q150",
+      "type": "SCENARIO",
+      "difficulty_rating": 2,
+      "question": "An imported salary column contains numbers stored as text. You need to add 5000 to the salary in A2. Which formula is appropriate?",
+      "options": [
+        "=A2+5000",
+        "=VALUE(A2)+5000",
+        "=TEXT(A2,\"0\")+5000",
+        "=EXACT(A2,5000)"
+      ],
+      "answer": [1],
+      "explanation": "VALUE() converts the text salary into a number before performing the calculation."
+    },
+
+    {
+      "id": "excel_q151",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What does EXACT() do?",
+      "options": [
+        "Counts characters",
+        "Checks whether two text values are exactly the same",
+        "Converts text to numbers",
+        "Replaces characters"
+      ],
+      "answer": [1],
+      "explanation": "EXACT() compares two text strings and returns TRUE if they are exactly the same."
+    },
+
+    {
+      "id": "excel_q152",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Is EXACT() case-sensitive?",
+      "options": [
+        "Yes",
+        "No",
+        "Only with numbers",
+        "Only with dates"
+      ],
+      "answer": [0],
+      "explanation": "EXACT() is case-sensitive."
+    },
+
+    {
+      "id": "excel_q153",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What will =EXACT(\"Muthu\",\"muthu\") return?",
+      "options": [
+        "TRUE",
+        "FALSE",
+        "Muthu",
+        "Error"
+      ],
+      "answer": [1],
+      "explanation": "The strings differ in capitalization, so EXACT() returns FALSE."
+    },
+
+    {
+      "id": "excel_q154",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What will =EXACT(\"ABC123\",\"ABC123\") return?",
+      "options": [
+        "TRUE",
+        "FALSE",
+        "ABC123",
+        "123"
+      ],
+      "answer": [0],
+      "explanation": "Both strings are exactly the same, including case."
+    },
+
+    {
+      "id": "excel_q155",
+      "type": "SCENARIO",
+      "difficulty_rating": 2,
+      "question": "A system stores a username as 'Admin'. The user enters 'admin'. You want the comparison to be case-sensitive. Which formula should be used?",
+      "options": [
+        "=A2=B2",
+        "=EXACT(A2,B2)",
+        "=VALUE(A2)",
+        "=TEXT(A2,\"admin\")"
+      ],
+      "answer": [1],
+      "explanation": "EXACT() performs a case-sensitive comparison."
+    },
+
+    {
+      "id": "excel_q156",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What does CHAR() return?",
+      "options": [
+        "A character based on a numeric code",
+        "A number based on text",
+        "A date",
+        "A percentage"
+      ],
+      "answer": [0],
+      "explanation": "CHAR() returns the character corresponding to a character code."
+    },
+
+    {
+      "id": "excel_q157",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What will =CHAR(65) return?",
+      "options": [
+        "A",
+        "B",
+        "65",
+        "a"
+      ],
+      "answer": [0],
+      "explanation": "In the standard character code set used by CHAR(), 65 represents A."
+    },
+
+    {
+      "id": "excel_q158",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which CHAR() code is commonly used to create a line break in Excel?",
+      "options": [
+        "CHAR(1)",
+        "CHAR(9)",
+        "CHAR(10)",
+        "CHAR(100)"
+      ],
+      "answer": [2],
+      "explanation": "CHAR(10) is commonly used to insert a line break in a cell."
+    },
+
+    {
+      "id": "excel_q159",
+      "type": "SCENARIO",
+      "difficulty_rating": 2,
+      "question": "You want to display 'Name' and the student's name on separate lines within the same cell. Which formula can be used?",
+      "options": [
+        "=\"Name\"&CHAR(10)&A2",
+        "=\"Name\"&CHAR(1)&A2",
+        "=TEXT(A2,\"Name\")",
+        "=VALUE(A2)"
+      ],
+      "answer": [0],
+      "explanation": "CHAR(10) can be used to insert a line break between the two text values."
+    },
+
+    {
+      "id": "excel_q160",
+      "type": "MCQ",
+      "difficulty_rating": 1,
+      "question": "What is the purpose of UNICHAR()?",
+      "options": [
+        "Convert text into numbers",
+        "Return a Unicode character from a numeric code",
+        "Replace text",
+        "Format dates"
+      ],
+      "answer": [1],
+      "explanation": "UNICHAR() returns the Unicode character corresponding to a numeric code."
+    },
+
+    {
+      "id": "excel_q161",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "What will =UNICHAR(10003) generally return?",
+      "options": [
+        "A",
+        "✓",
+        "10003",
+        "?"
+      ],
+      "answer": [1],
+      "explanation": "Unicode code point 10003 represents a check mark."
+    },
+
+    {
+      "id": "excel_q162",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which formula can display a check mark when marks are 50 or above and a cross otherwise?",
+      "options": [
+        "=IF(A2>=50,UNICHAR(10003),UNICHAR(10007))",
+        "=IF(A2>=50,VALUE(10003),VALUE(10007))",
+        "=TEXT(A2,UNICHAR(10003))",
+        "=EXACT(A2,UNICHAR(10003))"
+      ],
+      "answer": [0],
+      "explanation": "IF() determines the condition and UNICHAR() generates the appropriate symbols."
+    },
+
+    {
+      "id": "excel_q163",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which function converts text such as \"2500\" into a number?",
+      "options": [
+        "TEXT()",
+        "VALUE()",
+        "EXACT()",
+        "CHAR()"
+      ],
+      "answer": [1],
+      "explanation": "VALUE() converts numeric text into a numeric value."
+    },
+
+    {
+      "id": "excel_q164",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which function converts a number such as 2500 into formatted text such as \"2,500\"?",
+      "options": [
+        "VALUE()",
+        "EXACT()",
+        "TEXT()",
+        "CHAR()"
+      ],
+      "answer": [2],
+      "explanation": "TEXT() formats a numeric value and returns text."
+    },
+
+    {
+      "id": "excel_q165",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which function should be used when you need a case-sensitive text comparison?",
+      "options": [
+        "VALUE()",
+        "TEXT()",
+        "EXACT()",
+        "SUBSTITUTE()"
+      ],
+      "answer": [2],
+      "explanation": "EXACT() performs a case-sensitive comparison."
+    },
+
+    {
+      "id": "excel_q166",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which function is most appropriate for replacing characters based on their position?",
+      "options": [
+        "SUBSTITUTE()",
+        "REPLACE()",
+        "VALUE()",
+        "TEXT()"
+      ],
+      "answer": [1],
+      "explanation": "REPLACE() works using start position and number of characters."
+    },
+
+    {
+      "id": "excel_q167",
+      "type": "MCQ",
+      "difficulty_rating": 2,
+      "question": "Which function is most appropriate for replacing a specific word wherever it occurs?",
+      "options": [
+        "REPLACE()",
+        "SUBSTITUTE()",
+        "CHAR()",
+        "VALUE()"
+      ],
+      "answer": [1],
+      "explanation": "SUBSTITUTE() searches for specific existing text and replaces it."
+    },
+
+    {
+      "id": "excel_q168",
+      "type": "SCENARIO",
+      "difficulty_rating": 3,
+      "question": "A report contains the text 'Muthu scored 91.3333%'. You want to create 'Muthu scored 91.33%'. Which approach is most appropriate?",
+      "options": [
+        "Use SUBSTITUTE() to remove digits",
+        "Use TEXT() to format the percentage",
+        "Use EXACT() to compare the percentage",
+        "Use CHAR() to format the percentage"
+      ],
+      "answer": [1],
+      "explanation": "TEXT() can format a percentage to two decimal places."
+    },
+
+    {
+      "id": "excel_q169",
+      "type": "SCENARIO",
+      "difficulty_rating": 3,
+      "question": "An employee ID is 'EMP-2026-001'. You want only the second hyphen replaced with '/'. Which formula is correct?",
+      "options": [
+        "=SUBSTITUTE(A2,\"-\",\"/\")",
+        "=SUBSTITUTE(A2,\"-\",\"/\",2)",
+        "=REPLACE(A2,\"-\",\"/\")",
+        "=TEXT(A2,\"/\")"
+      ],
+      "answer": [1],
+      "explanation": "The instance_num argument 2 tells SUBSTITUTE() to replace only the second occurrence."
+    },
+
+    {
+      "id": "excel_q170",
+      "type": "SCENARIO",
+      "difficulty_rating": 3,
+      "question": "A student ID is 'STU123456'. You want to replace characters 4 through 8 with 'XXXXX'. Which function should be used?",
+      "options": [
+        "SUBSTITUTE()",
+        "REPLACE()",
+        "VALUE()",
+        "EXACT()"
+      ],
+      "answer": [1],
+      "explanation": "REPLACE() is designed for replacing a specified number of characters starting from a specified position."
+    }
+
+  ]
 }
 
       ]
