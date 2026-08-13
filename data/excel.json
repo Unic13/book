@@ -5843,10 +5843,10 @@
 },
 
 {
-  "id": "excel_u2_c10",
-  "title": "Text Functions – II: UPPER(), LOWER(), PROPER(), TRIM(), CLEAN()",
+  "id": "excel_u2_c9",
+  "title": "Day 6: UPPER(), LOWER(), PROPER(), TRIM(), CLEAN()",
   "concept": {
-    "title": "Text Functions – II",
+    "title": "Text Functions: UPPER(), LOWER(), PROPER(), TRIM(), CLEAN()",
     "body": [
       {
         "type": "heading",
@@ -7045,10 +7045,10 @@
   ]
   },
   {
-  "id": "excel_u2_c9",
-  "title": "Text Functions – I",
+  "id": "excel_u2_c10",
+  "title": "Day 6: LEFT(), RIGHT(), MID(), LEN(), FIND(), SEARCH(), CONCAT(), CONCATENATE(), TEXTJOIN()",
   "concept": {
-    "title": "Text Functions – I",
+    "title": "Text Functions: LEFT(), RIGHT(), MID(), LEN(), FIND(), SEARCH(), CONCAT(), CONCATENATE(), TEXTJOIN()",
     "body": [
       {
         "type": "heading",
@@ -8259,10 +8259,10 @@
 },
 
 {
-  "id": "excel_u2_c10",
-  "title": "Text Functions – III: SUBSTITUTE() and REPLACE()",
+  "id": "excel_u2_c11",
+  "title": "Day 6: SUBSTITUTE() and REPLACE()",
   "concept": {
-    "title": "SUBSTITUTE() and REPLACE()",
+    "title": "Text function: SUBSTITUTE() and REPLACE()",
     "body": [
 
       {
@@ -8769,8 +8769,8 @@
 },
 
 {
-  "id": "excel_u2_c11",
-  "title": "TEXT() Function",
+  "id": "excel_u2_c12",
+  "title": "Day 7: TEXT() Function",
   "concept": {
     "title": "TEXT() Function – Formatting Numbers, Dates and Time",
     "body": [
@@ -9418,10 +9418,10 @@
 
 },
 {
-  "id": "excel_u2_c12",
-  "title": "Advanced Text Functions: VALUE(), EXACT(), CHAR() and UNICHAR()",
+  "id": "excel_u2_c13",
+  "title": "Day 7: VALUE(), EXACT(), CHAR() and UNICHAR()",
   "concept": {
-    "title": "VALUE(), EXACT(), CHAR() and UNICHAR()",
+    "title": "Advanced Text Functions VALUE(), EXACT(), CHAR() and UNICHAR()",
     "body": [
 
       {
