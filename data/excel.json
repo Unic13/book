@@ -10220,7 +10220,1685 @@
     }
 
   ]
+},
+{
+  "id": "excel_u2_c14",
+  "title": "Day 7: CHAR(), UNICHAR()",
+  "concept": {
+    "title": "CHAR(), UNICHAR()",
+"body": [
+        {
+        "type": "heading",
+        "text": "1. Introduction"
+        },
+        {
+        "type": "paragraph",
+        "text": "CHAR() and UNICHAR() are Excel functions used to generate characters from numeric codes. CHAR() works with character codes, while UNICHAR() works with Unicode code points and supports a much wider range of symbols and characters."
+        },
+        {
+        "type": "table",
+        "title": "Functions Covered",
+        "headers": [
+        "Function",
+        "Purpose"
+        ],
+        "rows": [
+        [
+        "CHAR()",
+        "Returns a character based on a numeric character code"
+        ],
+        [
+        "UNICHAR()",
+        "Returns a Unicode character based on a numeric Unicode code point"
+        ],
+        [
+        "Unicode",
+        "A universal character encoding system used to represent characters and symbols from many languages"
+        ]
+        ]
+        },
+          {
+    "type": "heading",
+    "text": "2. CHAR() Function"
+  },
+  {
+    "type": "paragraph",
+    "text": "CHAR() returns the character represented by a numeric character code. It is commonly used for ASCII characters and control characters such as tabs and line breaks."
+  },
+  {
+    "type": "syntax",
+    "code": "=CHAR(number)"
+  },
+  {
+    "type": "table",
+    "title": "Common CHAR() Codes",
+    "headers": [
+      "Formula",
+      "Result",
+      "Use"
+    ],
+    "rows": [
+      [
+        "=CHAR(9)",
+        "Tab",
+        "Tab spacing"
+      ],
+      [
+        "=CHAR(10)",
+        "Line break",
+        "Multiple lines in one cell"
+      ],
+      [
+        "=CHAR(13)",
+        "Carriage return",
+        "Carriage return"
+      ],
+      [
+        "=CHAR(32)",
+        "Space",
+        "Insert a space"
+      ],
+      [
+        "=CHAR(33)",
+        "!",
+        "Exclamation mark"
+      ],
+      [
+        "=CHAR(38)",
+        "&",
+        "Ampersand"
+      ],
+      [
+        "=CHAR(64)",
+        "@",
+        "At symbol"
+      ],
+      [
+        "=CHAR(65)",
+        "A",
+        "Uppercase A"
+      ],
+      [
+        "=CHAR(66)",
+        "B",
+        "Uppercase B"
+      ],
+      [
+        "=CHAR(67)",
+        "C",
+        "Uppercase C"
+      ],
+      [
+        "=CHAR(97)",
+        "a",
+        "Lowercase a"
+      ],
+      [
+        "=CHAR(98)",
+        "b",
+        "Lowercase b"
+      ]
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "3. CHAR() for Alphabet Characters"
+  },
+  {
+    "type": "paragraph",
+    "text": "CHAR() can generate alphabet characters when the corresponding character code is supplied."
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Formula",
+      "Result"
+    ],
+    "rows": [
+      [
+        "=CHAR(65)",
+        "A"
+      ],
+      [
+        "=CHAR(66)",
+        "B"
+      ],
+      [
+        "=CHAR(67)",
+        "C"
+      ],
+      [
+        "=CHAR(88)",
+        "X"
+      ],
+      [
+        "=CHAR(89)",
+        "Y"
+      ],
+      [
+        "=CHAR(90)",
+        "Z"
+      ],
+      [
+        "=CHAR(97)",
+        "a"
+      ],
+      [
+        "=CHAR(98)",
+        "b"
+      ],
+      [
+        "=CHAR(122)",
+        "z"
+      ]
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "4. CHAR(10) for Line Breaks"
+  },
+  {
+    "type": "paragraph",
+    "text": "CHAR(10) is commonly used to insert a line break inside an Excel cell. Wrap Text should be enabled to display the lines correctly."
+  },
+  {
+    "type": "syntax",
+    "code": "=\"Name: \"&A2&CHAR(10)&\"Department: \"&B2"
+  },
+  {
+    "type": "example",
+    "title": "Create a Two-Line Cell",
+    "before": "A2 = Muthu; B2 = Computer Science",
+    "formula": "=\"Name: \"&A2&CHAR(10)&\"Department: \"&B2",
+    "after": "Name: Muthu\nDepartment: Computer Science"
+  },
+
+  {
+    "type": "heading",
+    "text": "5. CHAR(9) for Tabs"
+  },
+  {
+    "type": "paragraph",
+    "text": "CHAR(9) represents a tab character and can be used to create spacing between labels and values."
+  },
+  {
+    "type": "syntax",
+    "code": "=\"Name:\"&CHAR(9)&A2"
+  },
+  {
+    "type": "example",
+    "title": "Create Tab Spacing",
+    "before": "A2 = Muthu",
+    "formula": "=\"Name:\"&CHAR(9)&A2",
+    "after": "Name:    Muthu"
+  },
+
+  {
+    "type": "heading",
+    "text": "6. CHAR() with Text Concatenation"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Formula",
+      "Purpose"
+    ],
+    "rows": [
+      [
+        "=\"A\"&CHAR(10)&\"B\"",
+        "Place A and B on separate lines"
+      ],
+      [
+        "=\"A\"&CHAR(32)&\"B\"",
+        "Add a space between A and B"
+      ],
+      [
+        "=\"Name:\"&CHAR(9)&A2",
+        "Add tab spacing"
+      ],
+      [
+        "=\"A\"&CHAR(38)&\"B\"",
+        "Create A&B"
+      ],
+      [
+        "=\"Email\"&CHAR(64)&\"example.com\"",
+        "Create an email-style address"
+      ]
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "7. UNICHAR() Function"
+  },
+  {
+    "type": "paragraph",
+    "text": "UNICHAR() returns the Unicode character associated with a numeric Unicode code point. It can generate symbols, mathematical characters, arrows, currency signs, bullets and characters from many writing systems."
+  },
+  {
+    "type": "syntax",
+    "code": "=UNICHAR(number)"
+  },
+  {
+    "type": "table",
+    "title": "Common UNICHAR() Symbols",
+    "headers": [
+      "Formula",
+      "Symbol",
+      "Meaning"
+    ],
+    "rows": [
+      [
+        "=UNICHAR(10003)",
+        "✓",
+        "Check mark"
+      ],
+      [
+        "=UNICHAR(10004)",
+        "✔",
+        "Heavy check mark"
+      ],
+      [
+        "=UNICHAR(10007)",
+        "✗",
+        "Cross mark"
+      ],
+      [
+        "=UNICHAR(10008)",
+        "✘",
+        "Heavy cross mark"
+      ],
+      [
+        "=UNICHAR(9888)",
+        "⚠",
+        "Warning"
+      ],
+      [
+        "=UNICHAR(10071)",
+        "❗",
+        "Important"
+      ],
+      [
+        "=UNICHAR(10067)",
+        "❓",
+        "Question"
+      ],
+      [
+        "=UNICHAR(8226)",
+        "•",
+        "Bullet"
+      ],
+      [
+        "=UNICHAR(9733)",
+        "★",
+        "Filled star"
+      ],
+      [
+        "=UNICHAR(9734)",
+        "☆",
+        "Empty star"
+      ]
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "8. Unicode Arrows"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Formula",
+      "Symbol",
+      "Use"
+    ],
+    "rows": [
+      [
+        "=UNICHAR(8592)",
+        "←",
+        "Left"
+      ],
+      [
+        "=UNICHAR(8593)",
+        "↑",
+        "Up"
+      ],
+      [
+        "=UNICHAR(8594)",
+        "→",
+        "Right"
+      ],
+      [
+        "=UNICHAR(8595)",
+        "↓",
+        "Down"
+      ],
+      [
+        "=UNICHAR(8596)",
+        "↔",
+        "Both directions"
+      ],
+      [
+        "=UNICHAR(9650)",
+        "▲",
+        "Up triangle"
+      ],
+      [
+        "=UNICHAR(9660)",
+        "▼",
+        "Down triangle"
+      ],
+      [
+        "=UNICHAR(9654)",
+        "▶",
+        "Right triangle"
+      ],
+      [
+        "=UNICHAR(9664)",
+        "◀",
+        "Left triangle"
+      ],
+      [
+        "=UNICHAR(10145)",
+        "➡",
+        "Heavy right arrow"
+      ]
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "9. Unicode Bullets and Shapes"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Formula",
+      "Symbol",
+      "Use"
+    ],
+    "rows": [
+      [
+        "=UNICHAR(8226)",
+        "•",
+        "Bullet"
+      ],
+      [
+        "=UNICHAR(9679)",
+        "●",
+        "Filled circle"
+      ],
+      [
+        "=UNICHAR(9675)",
+        "○",
+        "Empty circle"
+      ],
+      [
+        "=UNICHAR(9642)",
+        "▪",
+        "Small filled square"
+      ],
+      [
+        "=UNICHAR(9643)",
+        "▫",
+        "Small empty square"
+      ],
+      [
+        "=UNICHAR(9632)",
+        "■",
+        "Filled square"
+      ],
+      [
+        "=UNICHAR(9633)",
+        "□",
+        "Empty square"
+      ],
+      [
+        "=UNICHAR(9658)",
+        "►",
+        "Right pointer"
+      ]
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "10. Unicode Stars"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Formula",
+      "Symbol",
+      "Use"
+    ],
+    "rows": [
+      [
+        "=UNICHAR(9733)",
+        "★",
+        "Filled star"
+      ],
+      [
+        "=UNICHAR(9734)",
+        "☆",
+        "Empty star"
+      ],
+      [
+        "=UNICHAR(10025)",
+        "✩",
+        "Outlined star"
+      ],
+      [
+        "=UNICHAR(10026)",
+        "✪",
+        "Star with circle"
+      ]
+    ]
+  },
+  {
+    "type": "example",
+    "title": "Five-Star Rating",
+    "before": "Rating = 4 out of 5",
+    "formula": "=REPT(UNICHAR(9733),4)&REPT(UNICHAR(9734),1)",
+    "after": "★★★★☆"
+  },
+
+  {
+    "type": "heading",
+    "text": "11. Unicode Mathematical Symbols"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Formula",
+      "Symbol",
+      "Meaning"
+    ],
+    "rows": [
+      [
+        "=UNICHAR(177)",
+        "±",
+        "Plus or minus"
+      ],
+      [
+        "=UNICHAR(215)",
+        "×",
+        "Multiplication"
+      ],
+      [
+        "=UNICHAR(247)",
+        "÷",
+        "Division"
+      ],
+      [
+        "=UNICHAR(8800)",
+        "≠",
+        "Not equal"
+      ],
+      [
+        "=UNICHAR(8804)",
+        "≤",
+        "Less than or equal"
+      ],
+      [
+        "=UNICHAR(8805)",
+        "≥",
+        "Greater than or equal"
+      ],
+      [
+        "=UNICHAR(8734)",
+        "∞",
+        "Infinity"
+      ],
+      [
+        "=UNICHAR(8776)",
+        "≈",
+        "Approximately equal"
+      ],
+      [
+        "=UNICHAR(8721)",
+        "∑",
+        "Summation"
+      ],
+      [
+        "=UNICHAR(8730)",
+        "√",
+        "Square root"
+      ],
+      [
+        "=UNICHAR(960)",
+        "π",
+        "Pi"
+      ],
+      [
+        "=UNICHAR(916)",
+        "Δ",
+        "Delta"
+      ]
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "12. Unicode Currency Symbols"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Formula",
+      "Symbol",
+      "Currency"
+    ],
+    "rows": [
+      [
+        "=UNICHAR(8377)",
+        "₹",
+        "Indian Rupee"
+      ],
+      [
+        "=UNICHAR(36)",
+        "$",
+        "Dollar"
+      ],
+      [
+        "=UNICHAR(8364)",
+        "€",
+        "Euro"
+      ],
+      [
+        "=UNICHAR(163)",
+        "£",
+        "Pound"
+      ],
+      [
+        "=UNICHAR(165)",
+        "¥",
+        "Yen/Yuan"
+      ],
+      [
+        "=UNICHAR(8360)",
+        "₨",
+        "Rupee sign"
+      ]
+    ]
+  },
+  {
+    "type": "example",
+    "title": "Display a Rupee Symbol",
+    "before": "A2 = 50000",
+    "formula": "=UNICHAR(8377)&TEXT(A2,\"#,##0\")",
+    "after": "₹50,000"
+  },
+
+  {
+    "type": "heading",
+    "text": "13. Unicode Common Symbols"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Formula",
+      "Symbol",
+      "Use"
+    ],
+    "rows": [
+      [
+        "=UNICHAR(9829)",
+        "♥",
+        "Heart"
+      ],
+      [
+        "=UNICHAR(9824)",
+        "♠",
+        "Spade"
+      ],
+      [
+        "=UNICHAR(9830)",
+        "♦",
+        "Diamond"
+      ],
+      [
+        "=UNICHAR(9472)",
+        "─",
+        "Horizontal line"
+      ],
+      [
+        "=UNICHAR(9474)",
+        "│",
+        "Vertical line"
+      ],
+      [
+        "=UNICHAR(176)",
+        "°",
+        "Degree"
+      ],
+      [
+        "=UNICHAR(183)",
+        "·",
+        "Middle dot"
+      ],
+      [
+        "=UNICHAR(8230)",
+        "…",
+        "Ellipsis"
+      ]
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "14. Unicode and Code Points"
+  },
+  {
+    "type": "paragraph",
+    "text": "Unicode assigns a unique numeric code point to characters and symbols. UNICHAR() uses that code point to return the corresponding character in Excel."
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Character",
+      "Unicode Code Point",
+      "Excel Formula"
+    ],
+    "rows": [
+      [
+        "✓",
+        "10003",
+        "=UNICHAR(10003)"
+      ],
+      [
+        "→",
+        "8594",
+        "=UNICHAR(8594)"
+      ],
+      [
+        "•",
+        "8226",
+        "=UNICHAR(8226)"
+      ],
+      [
+        "★",
+        "9733",
+        "=UNICHAR(9733)"
+      ],
+      [
+        "₹",
+        "8377",
+        "=UNICHAR(8377)"
+      ],
+      [
+        "∞",
+        "8734",
+        "=UNICHAR(8734)"
+      ]
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "15. CHAR() vs UNICHAR()"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Feature",
+      "CHAR()",
+      "UNICHAR()"
+    ],
+    "rows": [
+      [
+        "Input",
+        "Character code",
+        "Unicode code point"
+      ],
+      [
+        "Main purpose",
+        "Common characters and control characters",
+        "Unicode characters and symbols"
+      ],
+      [
+        "Line break",
+        "CHAR(10)",
+        "CHAR(10) is normally used"
+      ],
+      [
+        "Tab",
+        "CHAR(9)",
+        "CHAR(9) is normally used"
+      ],
+      [
+        "Check mark",
+        "Not normally suitable",
+        "UNICHAR(10003)"
+      ],
+      [
+        "Arrow",
+        "Limited",
+        "UNICHAR() supports many arrows"
+      ],
+      [
+        "Bullet",
+        "Limited",
+        "UNICHAR(8226)"
+      ],
+      [
+        "Star",
+        "Limited",
+        "UNICHAR(9733)"
+      ],
+      [
+        "Currency symbols",
+        "Limited",
+        "UNICHAR() supports many Unicode currency symbols"
+      ]
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "16. Creating Status Symbols"
+  },
+  {
+    "type": "syntax",
+    "code": "=IF(A2=\"Approved\",UNICHAR(10003)&\" Approved\",IF(A2=\"Pending\",UNICHAR(9888)&\" Pending\",UNICHAR(10007)&\" Not Approved\"))"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Status",
+      "Output"
+    ],
+    "rows": [
+      [
+        "Approved",
+        "✓ Approved"
+      ],
+      [
+        "Pending",
+        "⚠ Pending"
+      ],
+      [
+        "Not Approved",
+        "✗ Not Approved"
+      ]
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "17. Creating a Pass or Fail Symbol"
+  },
+  {
+    "type": "syntax",
+    "code": "=IF(A2>=50,UNICHAR(10003)&\" Pass\",UNICHAR(10007)&\" Fail\")"
+  },
+  {
+    "type": "example",
+    "title": "Student Result",
+    "before": "A2 = 72",
+    "formula": "=IF(A2>=50,UNICHAR(10003)&\" Pass\",UNICHAR(10007)&\" Fail\")",
+    "after": "✓ Pass"
+  },
+
+  {
+    "type": "heading",
+    "text": "18. Creating Multi-Line Unicode Lists"
+  },
+  {
+    "type": "paragraph",
+    "text": "UNICHAR() can be combined with CHAR(10) to create bullet lists or symbol-based summaries inside one cell."
+  },
+  {
+    "type": "syntax",
+    "code": "=UNICHAR(8226)&\" Academic progress\"&CHAR(10)&UNICHAR(8226)&\" Research progress\"&CHAR(10)&UNICHAR(8226)&\" Publication status\""
+  },
+  {
+    "type": "example",
+    "title": "Bullet List",
+    "before": "Three points need to appear in one cell.",
+    "after": "• Academic progress\n• Research progress\n• Publication status"
+  },
+
+  {
+    "type": "heading",
+    "text": "19. Unicode Symbols for Reports"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Requirement",
+      "Formula",
+      "Output"
+    ],
+    "rows": [
+      [
+        "Check",
+        "=UNICHAR(10003)",
+        "✓"
+      ],
+      [
+        "Cross",
+        "=UNICHAR(10007)",
+        "✗"
+      ],
+      [
+        "Warning",
+        "=UNICHAR(9888)",
+        "⚠"
+      ],
+      [
+        "Bullet",
+        "=UNICHAR(8226)",
+        "•"
+      ],
+      [
+        "Star",
+        "=UNICHAR(9733)",
+        "★"
+      ],
+      [
+        "Up arrow",
+        "=UNICHAR(8593)",
+        "↑"
+      ],
+      [
+        "Down arrow",
+        "=UNICHAR(8595)",
+        "↓"
+      ],
+      [
+        "Right arrow",
+        "=UNICHAR(8594)",
+        "→"
+      ],
+      [
+        "Rupee",
+        "=UNICHAR(8377)",
+        "₹"
+      ],
+      [
+        "Greater than or equal",
+        "=UNICHAR(8805)",
+        "≥"
+      ],
+      [
+        "Less than or equal",
+        "=UNICHAR(8804)",
+        "≤"
+      ],
+      [
+        "Not equal",
+        "=UNICHAR(8800)",
+        "≠"
+      ]
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "20. Practical Exercise"
+  },
+  {
+    "type": "exercise",
+    "title": "CHAR(), UNICHAR() and Unicode Practice",
+    "steps": [
+      "Use CHAR(65), CHAR(66) and CHAR(67) to generate A, B and C.",
+      "Use CHAR(97), CHAR(98) and CHAR(99) to generate a, b and c.",
+      "Use CHAR(32) to insert a space between two text values.",
+      "Use CHAR(9) to create tab spacing between a label and a value.",
+      "Use CHAR(10) to place a student's name and email on separate lines.",
+      "Create a check mark using UNICHAR(10003).",
+      "Create a cross mark using UNICHAR(10007).",
+      "Create a warning symbol using UNICHAR(9888).",
+      "Create a bullet using UNICHAR(8226).",
+      "Create a star using UNICHAR(9733).",
+      "Create an empty star using UNICHAR(9734).",
+      "Create left, up, right and down arrows using UNICHAR().",
+      "Create a four-star rating using REPT() and UNICHAR().",
+      "Create a score condition using the ≥ symbol.",
+      "Create a currency amount using the ₹ symbol.",
+      "Create a Pass or Fail status using IF() and UNICHAR().",
+      "Create Approved, Pending and Not Approved statuses using Unicode symbols.",
+      "Create a three-line bullet summary using UNICHAR(8226) and CHAR(10).",
+      "Enable Wrap Text and verify the line breaks created with CHAR(10)."
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "21. Practice Data"
+  },
+  {
+    "type": "table",
+    "title": "Student Practice Data",
+    "headers": [
+      "Student",
+      "Marks",
+      "Status"
+    ],
+    "rows": [
+      [
+        "Muthu",
+        "72",
+        "Approved"
+      ],
+      [
+        "Ravi",
+        "45",
+        "Pending"
+      ],
+      [
+        "Priya",
+        "88",
+        "Not Approved"
+      ]
+    ]
+  },
+  {
+    "type": "exercise",
+    "title": "Practice Questions Using Unicode",
+    "steps": [
+      "Display ✓ Pass for marks of 50 or above and ✗ Fail otherwise.",
+      "Convert Approved into ✓ Approved.",
+      "Convert Pending into ⚠ Pending.",
+      "Convert Not Approved into ✗ Not Approved.",
+      "Create a two-line cell containing Student and Marks using CHAR(10).",
+      "Create a bullet-point summary containing Student, Marks and Status.",
+      "Display a right arrow beside a progress value.",
+      "Display a four-star-out-of-five rating.",
+      "Display each student's status using an appropriate Unicode symbol.",
+      "Create a report showing the condition Score ≥ 50."
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "22. Quick Reference"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Requirement",
+      "Formula"
+    ],
+    "rows": [
+      [
+        "Character from code",
+        "=CHAR(65)"
+      ],
+      [
+        "Line break",
+        "=CHAR(10)"
+      ],
+      [
+        "Tab",
+        "=CHAR(9)"
+      ],
+      [
+        "Space",
+        "=CHAR(32)"
+      ],
+      [
+        "Check mark",
+        "=UNICHAR(10003)"
+      ],
+      [
+        "Cross",
+        "=UNICHAR(10007)"
+      ],
+      [
+        "Warning",
+        "=UNICHAR(9888)"
+      ],
+      [
+        "Bullet",
+        "=UNICHAR(8226)"
+      ],
+      [
+        "Star",
+        "=UNICHAR(9733)"
+      ],
+      [
+        "Empty star",
+        "=UNICHAR(9734)"
+      ],
+      [
+        "Up arrow",
+        "=UNICHAR(8593)"
+      ],
+      [
+        "Down arrow",
+        "=UNICHAR(8595)"
+      ],
+      [
+        "Right arrow",
+        "=UNICHAR(8594)"
+      ],
+      [
+        "Left arrow",
+        "=UNICHAR(8592)"
+      ],
+      [
+        "Rupee symbol",
+        "=UNICHAR(8377)"
+      ],
+      [
+        "Greater than or equal",
+        "=UNICHAR(8805)"
+      ],
+      [
+        "Less than or equal",
+        "=UNICHAR(8804)"
+      ],
+      [
+        "Not equal",
+        "=UNICHAR(8800)"
+      ]
+    ]
+  },
+
+  {
+    "type": "heading",
+    "text": "23. Important Notes"
+  },
+  {
+    "type": "note",
+    "text": "CHAR() is mainly useful for common character codes and control characters such as tabs and line breaks."
+  },
+  {
+    "type": "note",
+    "text": "UNICHAR() is useful when you need Unicode symbols such as check marks, arrows, bullets, stars, mathematical symbols and currency symbols."
+  },
+  {
+    "type": "note",
+    "text": "Unicode code points identify characters and symbols. UNICHAR() converts a valid Unicode code point into the corresponding character."
+  },
+  {
+    "type": "note",
+    "text": "When using CHAR(10), enable Home → Wrap Text to display multiple lines inside a cell."
+  },
+  {
+    "type": "note",
+    "text": "The appearance of Unicode characters can vary depending on the font and operating system."
+  },
+
+  {
+    "type": "tip",
+    "title": "Easy Memory Trick",
+    "text": "CHAR() = Character Code to Character. UNICHAR() = Unicode Code Point to Character. Unicode = Universal system for representing characters and symbols."
+  }
+]
+
+  },
+  
+"questions": [
+{
+"id": "excel_q381",
+"type": "MCQ",
+"difficulty_rating": 1,
+"question": "What is the primary purpose of CHAR()?",
+"options": [
+"Convert a character code into a character",
+"Convert text into a number",
+"Compare two text values",
+"Format a date"
+],
+"answer": [0],
+"explanation": "CHAR() returns a character based on a numeric character code."
+},
+{
+"id": "excel_q382",
+"type": "MCQ",
+"difficulty_rating": 1,
+"question": "What is the syntax of CHAR()?",
+"options": [
+"=CHAR(number)",
+"=CHAR(text)",
+"=CHAR(character,number)",
+"=CHAR(code,text)"
+],
+"answer": [0],
+"explanation": "The syntax of CHAR() is =CHAR(number)."
+},
+{
+"id": "excel_q383",
+"type": "MCQ",
+"difficulty_rating": 1,
+"question": "What will =CHAR(65) return?",
+"options": [
+"A",
+"B",
+"65",
+"a"
+],
+"answer": [0],
+"explanation": "Character code 65 corresponds to uppercase A."
+},
+{
+"id": "excel_q384",
+"type": "MCQ",
+"difficulty_rating": 1,
+"question": "What will =CHAR(66) return?",
+"options": [
+"A",
+"B",
+"b",
+"66"
+],
+"answer": [1],
+"explanation": "Character code 66 corresponds to uppercase B."
+},
+{
+"id": "excel_q385",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which CHAR() code represents a regular space?",
+"options": [
+"CHAR(9)",
+"CHAR(10)",
+"CHAR(32)",
+"CHAR(65)"
+],
+"answer": [2],
+"explanation": "CHAR(32) represents the regular space character."
+},
+{
+"id": "excel_q386",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which CHAR() code is commonly used to insert a line break in an Excel cell?",
+"options": [
+"CHAR(9)",
+"CHAR(10)",
+"CHAR(32)",
+"CHAR(65)"
+],
+"answer": [1],
+"explanation": "CHAR(10) is commonly used for a line break in Excel."
+},
+{
+"id": "excel_q387",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which CHAR() code represents a tab character?",
+"options": [
+"CHAR(9)",
+"CHAR(10)",
+"CHAR(13)",
+"CHAR(32)"
+],
+"answer": [0],
+"explanation": "CHAR(9) represents a tab character."
+},
+{
+"id": "excel_q388",
+"type": "SCENARIO",
+"difficulty_rating": 2,
+"question": "You want to display a student's name and email address on separate lines in one cell. Which formula is appropriate?",
+"options": [
+"=\"Name: \"&A2&CHAR(10)&\"Email: \"&B2",
+  "=\"Name: \"&A2&CHAR(9)&\"Email: \"&B2",
+  "=\"Name: \"&A2&CHAR(32)&\"Email: \"&B2",
+  "=CHAR(A2)&CHAR(B2)"
+],
+"answer": [0],
+"explanation": "CHAR(10) inserts a line break between the name and email."
+},
+{
+"id": "excel_q389",
+"type": "MCQ",
+"difficulty_rating": 1,
+"question": "What is the primary purpose of UNICHAR()?",
+"options": [
+"Convert a Unicode code point into a character",
+"Convert text into numbers",
+"Compare text values",
+"Format numbers"
+],
+"answer": [0],
+"explanation": "UNICHAR() returns the Unicode character corresponding to a numeric Unicode code point."
+},
+{
+"id": "excel_q390",
+"type": "MCQ",
+"difficulty_rating": 1,
+"question": "What is the syntax of UNICHAR()?",
+"options": [
+"=UNICHAR(number)",
+"=UNICHAR(text)",
+"=UNICHAR(character)",
+"=UNICHAR(number,text)"
+],
+"answer": [0],
+"explanation": "The syntax of UNICHAR() is =UNICHAR(number)."
+},
+{
+"id": "excel_q391",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "What will =UNICHAR(10003) generally return?",
+"options": [
+"A",
+"✓",
+"10003",
+"✗"
+],
+"answer": [1],
+"explanation": "Unicode code point 10003 represents the check mark ✓."
+},
+{
+"id": "excel_q392",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "What will =UNICHAR(10007) generally return?",
+"options": [
+"✓",
+"✗",
+"★",
+"→"
+],
+"answer": [1],
+"explanation": "Unicode code point 10007 represents the cross mark ✗."
+},
+{
+"id": "excel_q393",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula generates a warning symbol?",
+"options": [
+"=UNICHAR(10003)",
+"=UNICHAR(9888)",
+"=UNICHAR(8226)",
+"=UNICHAR(9733)"
+],
+"answer": [1],
+"explanation": "UNICHAR(9888) generates the warning symbol ⚠."
+},
+{
+"id": "excel_q394",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula generates a bullet symbol?",
+"options": [
+"=UNICHAR(10003)",
+"=UNICHAR(8226)",
+"=UNICHAR(9733)",
+"=UNICHAR(8594)"
+],
+"answer": [1],
+"explanation": "Unicode code point 8226 represents the bullet symbol •."
+},
+{
+"id": "excel_q395",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula generates a filled star?",
+"options": [
+"=UNICHAR(8226)",
+"=UNICHAR(9733)",
+"=UNICHAR(10007)",
+"=UNICHAR(9888)"
+],
+"answer": [1],
+"explanation": "Unicode code point 9733 represents the filled star ★."
+},
+{
+"id": "excel_q396",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula generates an empty star?",
+"options": [
+"=UNICHAR(9733)",
+"=UNICHAR(9734)",
+"=UNICHAR(8226)",
+"=UNICHAR(8594)"
+],
+"answer": [1],
+"explanation": "Unicode code point 9734 represents the empty star ☆."
+},
+{
+"id": "excel_q397",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula generates a right arrow?",
+"options": [
+"=UNICHAR(8592)",
+"=UNICHAR(8593)",
+"=UNICHAR(8594)",
+"=UNICHAR(8595)"
+],
+"answer": [2],
+"explanation": "Unicode code point 8594 represents the right arrow →."
+},
+{
+"id": "excel_q398",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula generates an upward arrow?",
+"options": [
+"=UNICHAR(8592)",
+"=UNICHAR(8593)",
+"=UNICHAR(8594)",
+"=UNICHAR(8595)"
+],
+"answer": [1],
+"explanation": "Unicode code point 8593 represents the upward arrow ↑."
+},
+{
+"id": "excel_q399",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula generates a downward arrow?",
+"options": [
+"=UNICHAR(8592)",
+"=UNICHAR(8593)",
+"=UNICHAR(8594)",
+"=UNICHAR(8595)"
+],
+"answer": [3],
+"explanation": "Unicode code point 8595 represents the downward arrow ↓."
+},
+{
+"id": "excel_q400",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula generates a left arrow?",
+"options": [
+"=UNICHAR(8592)",
+"=UNICHAR(8593)",
+"=UNICHAR(8594)",
+"=UNICHAR(8595)"
+],
+"answer": [0],
+"explanation": "Unicode code point 8592 represents the left arrow ←."
+},
+{
+"id": "excel_q401",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula generates the Indian Rupee symbol?",
+"options": [
+"=UNICHAR(8377)",
+"=UNICHAR(8364)",
+"=UNICHAR(163)",
+"=UNICHAR(165)"
+],
+"answer": [0],
+"explanation": "Unicode code point 8377 represents the Indian Rupee symbol ₹."
+},
+{
+"id": "excel_q402",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula generates the greater-than-or-equal symbol?",
+"options": [
+"=UNICHAR(8800)",
+"=UNICHAR(8804)",
+"=UNICHAR(8805)",
+"=UNICHAR(8734)"
+],
+"answer": [2],
+"explanation": "UNICHAR(8805) generates the greater-than-or-equal symbol ≥."
+},
+{
+"id": "excel_q403",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula generates the less-than-or-equal symbol?",
+"options": [
+"=UNICHAR(8800)",
+"=UNICHAR(8804)",
+"=UNICHAR(8805)",
+"=UNICHAR(8734)"
+],
+"answer": [1],
+"explanation": "UNICHAR(8804) generates the less-than-or-equal symbol ≤."
+},
+{
+"id": "excel_q404",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula generates the not-equal symbol?",
+"options": [
+"=UNICHAR(8800)",
+"=UNICHAR(8804)",
+"=UNICHAR(8805)",
+"=UNICHAR(8734)"
+],
+"answer": [0],
+"explanation": "UNICHAR(8800) generates the not-equal symbol ≠."
+},
+{
+"id": "excel_q405",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "What does Unicode provide?",
+"options": [
+"A universal system for representing characters and symbols",
+"A method for calculating percentages",
+"A method for sorting Excel rows",
+"A system only for numbers"
+],
+"answer": [0],
+"explanation": "Unicode is a universal character encoding system used to represent characters and symbols."
+},
+{
+"id": "excel_q406",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "What is a Unicode code point?",
+"options": [
+"A numeric value identifying a Unicode character",
+"An Excel cell address",
+"A worksheet number",
+"A text formatting command"
+],
+"answer": [0],
+"explanation": "A Unicode code point is a numeric value assigned to a Unicode character."
+},
+{
+"id": "excel_q407",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "What is the main advantage of UNICHAR() over CHAR()?",
+"options": [
+"UNICHAR() performs calculations",
+"UNICHAR() supports a much wider range of Unicode characters",
+"UNICHAR() formats dates",
+"UNICHAR() automatically sorts data"
+],
+"answer": [1],
+"explanation": "UNICHAR() supports Unicode and therefore can generate a much wider range of characters and symbols."
+},
+{
+"id": "excel_q408",
+"type": "SCENARIO",
+"difficulty_rating": 3,
+"question": "A report needs to display 'Progress ↑ 15%'. Which formula is appropriate?",
+"options": [
+ "=\"Progress \"&UNICHAR(8593)&\" 15%\"",
+  "=\"Progress \"&UNICHAR(8595)&\" 15%\"",
+  "=\"Progress \"&CHAR(10)&\" 15%\"",
+  "=\"Progress \"&UNICHAR(10003)&\" 15%\""
+],
+"answer": [0],
+"explanation": "UNICHAR(8593) generates the upward arrow ↑."
+},
+{
+"id": "excel_q409",
+"type": "SCENARIO",
+"difficulty_rating": 3,
+"question": "You want to display 'Score ≥ 80'. Which formula is correct?",
+"options": [
+"=\"Score \"&UNICHAR(8805)&\" 80\"",
+  "=\"Score \"&UNICHAR(8804)&\" 80\"",
+  "=\"Score \"&UNICHAR(8800)&\" 80\"",
+  "=\"Score \"&CHAR(8805)&\" 80\""
+],
+"answer": [0],
+"explanation": "UNICHAR(8805) generates the greater-than-or-equal symbol ≥."
+},
+{
+"id": "excel_q410",
+"type": "SCENARIO",
+"difficulty_rating": 3,
+"question": "A2 contains 50000. You want to display ₹50,000. Which formula is appropriate?",
+"options": [
+"=UNICHAR(8377)&TEXT(A2,\"#,##0\")",
+  "=CHAR(8377)&TEXT(A2,\"#,##0\")",
+  "=UNICHAR(8377)&A2",
+  "=CHAR(8377)&A2"
+],
+"answer": [0],
+"explanation": "UNICHAR(8377) generates ₹ and TEXT() formats 50000 as 50,000."
+},
+{
+"id": "excel_q411",
+"type": "SCENARIO",
+"difficulty_rating": 3,
+"question": "You want to create a four-star-out-of-five rating such as ★★★★☆. Which formula is appropriate?",
+"options": [
+"=REPT(UNICHAR(9733),4)&REPT(UNICHAR(9734),1)",
+"=REPT(UNICHAR(8226),4)",
+"=REPT(UNICHAR(10003),5)",
+"=REPT(CHAR(9733),4)"
+],
+"answer": [0],
+"explanation": "UNICHAR(9733) creates filled stars and UNICHAR(9734) creates an empty star."
+},
+{
+"id": "excel_q412",
+"type": "SCENARIO",
+"difficulty_rating": 3,
+"question": "A status column contains Approved, Pending and Not Approved. Which approach can create ✓, ⚠ and ✗ status indicators?",
+"options": [
+"Use UNICHAR() with IF()",
+"Use CHAR(10) for every status",
+"Use CHAR(32) for every status",
+"Use only CHAR()"
+],
+"answer": [0],
+"explanation": "UNICHAR() generates the symbols and IF() can select the correct symbol based on the status."
+},
+{
+"id": "excel_q413",
+"type": "SCENARIO",
+"difficulty_rating": 3,
+"question": "A marks cell contains 72. You want to display ✓ Pass when the mark is at least 50 and ✗ Fail otherwise. Which formula is correct?",
+"options": [
+"=IF(A2>=50,UNICHAR(10003)&\" Pass\",UNICHAR(10007)&\" Fail\")",
+  "=IF(A2>=50,CHAR(10003)&\" Pass\",CHAR(10007)&\" Fail\")",
+  "=IF(A2>=50,UNICHAR(8226)&\" Pass\",UNICHAR(8226)&\" Fail\")",
+  "=IF(A2>=50,CHAR(10)&\" Pass\",CHAR(10)&\" Fail\")"
+],
+"answer": [0],
+"explanation": "IF() checks the marks and UNICHAR() generates the check or cross symbol."
+},
+{
+"id": "excel_q414",
+"type": "SCENARIO",
+"difficulty_rating": 3,
+"question": "You need two bullet points on separate lines in one cell. Which formula is appropriate?",
+"options": [
+  "=UNICHAR(8226)&\" Point 1\"&CHAR(10)&UNICHAR(8226)&\" Point 2\"",
+  "=CHAR(8226)&\" Point 1\"&CHAR(32)&\" Point 2\"",
+  "=UNICHAR(10003)&\" Point 1\"&CHAR(9)&\" Point 2\"",
+  "=UNICHAR(9733)&\" Point 1\"&UNICHAR(9734)&\" Point 2\""
+],
+"answer": [0],
+"explanation": "UNICHAR(8226) creates bullets and CHAR(10) creates the line break."
+},
+{
+"id": "excel_q415",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which combination is most appropriate for creating a multi-line Unicode list?",
+"options": [
+"UNICHAR() and CHAR(10)",
+"CHAR(32) and VALUE()",
+"CHAR(9) and EXACT()",
+"UNICHAR() and VALUE()"
+],
+"answer": [0],
+"explanation": "UNICHAR() can create the symbols while CHAR(10) creates the line breaks."
+},
+{
+"id": "excel_q416",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which statement correctly compares CHAR() and UNICHAR()?",
+"options": [
+"CHAR() uses character codes, while UNICHAR() uses Unicode code points",
+"CHAR() only works with numbers and UNICHAR() only works with text",
+"Both functions always produce exactly the same range of characters",
+"UNICHAR() is used only for line breaks"
+],
+"answer": [0],
+"explanation": "CHAR() uses character codes, while UNICHAR() works with Unicode code points."
+},
+{
+"id": "excel_q417",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula creates a horizontal line symbol?",
+"options": [
+"=UNICHAR(9472)",
+"=UNICHAR(9474)",
+"=UNICHAR(8226)",
+"=UNICHAR(9733)"
+],
+"answer": [0],
+"explanation": "Unicode code point 9472 represents the horizontal line ─."
+},
+{
+"id": "excel_q418",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula creates the infinity symbol?",
+"options": [
+"=UNICHAR(8734)",
+"=UNICHAR(8800)",
+"=UNICHAR(8805)",
+"=UNICHAR(8730)"
+],
+"answer": [0],
+"explanation": "UNICHAR(8734) generates the infinity symbol ∞."
+},
+{
+"id": "excel_q419",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula creates the square root symbol?",
+"options": [
+"=UNICHAR(8730)",
+"=UNICHAR(8734)",
+"=UNICHAR(8721)",
+"=UNICHAR(8800)"
+],
+"answer": [0],
+"explanation": "UNICHAR(8730) generates the square root symbol √."
+},
+{
+"id": "excel_q420",
+"type": "MCQ",
+"difficulty_rating": 2,
+"question": "Which formula creates the multiplication symbol ×?",
+"options": [
+"=UNICHAR(215)",
+"=UNICHAR(247)",
+"=UNICHAR(177)",
+"=UNICHAR(8800)"
+],
+"answer": [0],
+"explanation": "UNICHAR(215) generates the multiplication symbol ×."
 }
+]
+
+}
+
+
 
       ]
     }
